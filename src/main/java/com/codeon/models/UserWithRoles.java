@@ -1,4 +1,4 @@
-package com.europa.springblog.models;
+package com.codeon.models;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;

@@ -1,7 +1,6 @@
-package com.europa.springblog.repositories;
+package com.codeon.repositories;
 
-import com.europa.springblog.models.Post;
-import com.europa.springblog.models.User;
+import com.codeon.models.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PostRepo extends JpaRepository<Post, Long> {

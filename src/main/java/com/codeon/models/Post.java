@@ -1,4 +1,4 @@
-package com.europa.springblog.models;
+package com.codeon.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 

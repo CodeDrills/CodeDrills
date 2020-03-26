@@ -1,8 +1,8 @@
-package com.europa.springblog.services;
+package com.codeon.services;
 
-import com.europa.springblog.models.User;
-import com.europa.springblog.models.UserWithRoles;
-import com.europa.springblog.repositories.UserRepo;
+import com.codeon.repositories.UserRepo;
+import com.codeon.models.User;
+import com.codeon.models.UserWithRoles;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

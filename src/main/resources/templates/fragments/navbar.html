@@ -17,11 +17,9 @@
                 <a class="nav-link" href="/posts/show">Home</a>
             </li>
             <div sec:authorize = "isAuthenticated()">
-                <div th:if="${user.id == post.user.id}">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/posts/create">Create Post</a>
-                    </li>
-                </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="/posts/create">Create Post</a>
+                </li>
             </div>
             <li class="nav-item">
                 <form th:action="@{/logout_app}" th:method="post">

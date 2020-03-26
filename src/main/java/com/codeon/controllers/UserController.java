@@ -1,7 +1,7 @@
-package com.europa.springblog.controllers;
+package com.codeon.controllers;
 
-import com.europa.springblog.models.User;
-import com.europa.springblog.repositories.UserRepo;
+import com.codeon.repositories.UserRepo;
+import com.codeon.models.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

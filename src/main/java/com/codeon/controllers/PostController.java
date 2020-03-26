@@ -1,11 +1,11 @@
-package com.europa.springblog.controllers;
+package com.codeon.controllers;
 
 
-import com.europa.springblog.services.EmailService;
-import com.europa.springblog.models.Post;
-import com.europa.springblog.models.User;
-import com.europa.springblog.repositories.PostRepo;
-import com.europa.springblog.repositories.UserRepo;
+import com.codeon.models.Post;
+import com.codeon.models.User;
+import com.codeon.repositories.PostRepo;
+import com.codeon.repositories.UserRepo;
+import com.codeon.services.EmailService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

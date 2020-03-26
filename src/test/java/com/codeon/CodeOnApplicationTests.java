@@ -1,10 +1,10 @@
-package com.europa.springblog;
+package com.codeon;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringblogApplicationTests {
+class CodeOnApplicationTests {
 
     @Test
     void contextLoads() {

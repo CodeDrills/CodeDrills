@@ -1,7 +1,6 @@
-package com.europa.springblog.services;
+package com.codeon.services;
 
-import com.europa.springblog.models.Post;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.codeon.models.Post;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;

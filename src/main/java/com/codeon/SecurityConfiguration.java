@@ -1,6 +1,6 @@
-package com.europa.springblog;
+package com.codeon;
 
-import com.europa.springblog.services.UserDetailsLoader;
+import com.codeon.services.UserDetailsLoader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;

@@ -34,6 +34,16 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
     private List<JobSharingRecommendationRating> jobSharingRecommendationRatingList;
 
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
+    private List<InterviewQuestion> interviewQuestionList;
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
+    private List<InterviewQuestionComment> interviewQuestionCommentList;
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
+    private List<InterviewQuestionRating> interviewQuestionRatingList;
+
     public User() {}
     //added copy constructor for spring security
     public User(User copy) {

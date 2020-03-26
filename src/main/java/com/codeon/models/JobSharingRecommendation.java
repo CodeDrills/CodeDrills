@@ -111,4 +111,18 @@ public class JobSharingRecommendation {
         }
         this.ratingTotal = sum;
     }
+
+    @Override
+    public String toString() {
+        return "JobSharingRecommendation{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", employer='" + employer + '\'' +
+                ", body='" + body + '\'' +
+                ", user=" + user +
+                ", commentsList=" + commentsList +
+                ", ratingsList=" + ratingsList +
+                ", ratingTotal=" + ratingTotal +
+                '}';
+    }
 }

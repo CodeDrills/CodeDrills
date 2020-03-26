@@ -14,9 +14,6 @@ public class Forum {
     @Column(nullable = false, length = 200)
     private String forumtitle ;
 
-    @Column(nullable = false)
-    private String forumbody;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -39,13 +36,6 @@ public class Forum {
         this.forumtitle = forumtitle;
     }
 
-    public String getForumbody() {
-        return forumbody;
-    }
-
-    public void setForumbody(String forumbody) {
-        this.forumbody = forumbody;
-    }
     public User getUser() {
         return user;
     }

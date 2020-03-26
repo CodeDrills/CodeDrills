@@ -1,27 +1,12 @@
 package com.codeon;
 
 
-import com.codeon.models.Post;
-import com.codeon.models.User;
-import com.codeon.repositories.PostRepo;
-import com.codeon.repositories.UserRepo;
-import org.junit.*;
 import org.junit.runner.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.*;
 import org.springframework.boot.test.context.*;
-import org.springframework.http.HttpStatus;
-import org.springframework.mock.web.MockHttpSession;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.*;
-import org.springframework.test.web.servlet.*;
-import javax.servlet.http.HttpSession;
 
-import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertNotNull;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = CodeOnApplication.class)

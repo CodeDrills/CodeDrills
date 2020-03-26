@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
 
 @Entity
-@Table(name="job_sharing_recommendation_comments")
-public class JobSharingRecommendationComment {
+@Table(name="post_comments")
+public class PostComment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -21,10 +21,10 @@ public class JobSharingRecommendationComment {
 
     @JsonBackReference
     @ManyToOne
-    @JoinColumn (name = "job_sharing_recommendation_id")
-    private JobSharingRecommendation recommendation;
+    @JoinColumn (name = "post_id")
+    private Post post;
 
-    public JobSharingRecommendationComment() {}
+    public PostComment() {}
 
     public long getId() {
         return id;
@@ -50,21 +50,21 @@ public class JobSharingRecommendationComment {
         this.user = user;
     }
 
-    public JobSharingRecommendation getRecommendation() {
-        return recommendation;
+    public Post getPost() {
+        return post;
     }
 
-    public void setRecommendation(JobSharingRecommendation recommendation) {
-        this.recommendation = recommendation;
+    public void setPost(Post post) {
+        this.post = post;
     }
 
     @Override
     public String toString() {
-        return "JobSharingRecommendationComment{" +
+        return "PostComment{" +
                 "id=" + id +
                 ", body='" + body + '\'' +
                 ", user=" + user +
-                ", recommendation=" + recommendation +
+                ", post=" + post +
                 '}';
     }
 }

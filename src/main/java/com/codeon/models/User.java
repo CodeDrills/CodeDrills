@@ -15,39 +15,26 @@ public class User {
     private String email;
     @Column(nullable = false)
     private String password;
+    @Column(name = "profile_image_url", nullable = false)
+    private String profileImageURL;
     @Column(nullable = false)
     private boolean isAdmin;
     @Column(nullable = false)
+    private boolean isInstructor;
+    @Column(nullable = false)
     private boolean isAlum;
     @Column(nullable = false)
-    private boolean isInstructor;
+    private boolean isStudent;
     @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
-    private List<JobSharingRecommendation> jobSharingRecommendationList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Post> postList;
     @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
-    private List<JobSharingRecommendationComment> jobSharingRecommendationCommentList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<PostComment> commentList;
     @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
-    private List<JobSharingRecommendationRating> jobSharingRecommendationRatingList;
-    @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
-    private List<InterviewQuestion> interviewQuestionList;
-    @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
-    private List<InterviewQuestionComment> interviewQuestionCommentList;
-    @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
-    private List<InterviewQuestionRating> interviewQuestionRatingList;
-    @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
-    private List<MentorshipPost> mentorshipPostList;
-    @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
-    private List<MentorshipPostComment> mentorshipPostCommentList;
-    @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
-    private List<MentorshipPostRating> mentorshipPostRatingList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<PostRating> ratingList;
+
 
     public User() {}
 
@@ -58,10 +45,13 @@ public class User {
         username = copy.username;
         password = copy.password;
         isAdmin = copy.isAdmin;
-        isAlum = copy.isAlum;
         isInstructor = copy.isInstructor;
+        isAlum = copy.isAlum;
+        isStudent = copy.isStudent;
+        postList = copy.postList;
+        commentList = copy.commentList;
+        ratingList = copy.ratingList;
     }
-
 
     public long getId() {
         return id;
@@ -103,14 +93,6 @@ public class User {
         isAdmin = admin;
     }
 
-    public boolean isAlum() {
-        return isAlum;
-    }
-
-    public void setAlum(boolean alum) {
-        isAlum = alum;
-    }
-
     public boolean isInstructor() {
         return isInstructor;
     }
@@ -119,97 +101,51 @@ public class User {
         isInstructor = instructor;
     }
 
-    public List<JobSharingRecommendation> getJobSharingRecommendationList() {
-        return jobSharingRecommendationList;
+    public boolean isAlum() {
+        return isAlum;
     }
 
-    public void setJobSharingRecommendationList(List<JobSharingRecommendation> jobSharingRecommendationList) {
-        this.jobSharingRecommendationList = jobSharingRecommendationList;
+    public void setAlum(boolean alum) {
+        isAlum = alum;
     }
 
-    public List<JobSharingRecommendationComment> getJobSharingRecommendationCommentList() {
-        return jobSharingRecommendationCommentList;
+    public boolean isStudent() {
+        return isStudent;
     }
 
-    public void setJobSharingRecommendationCommentList(List<JobSharingRecommendationComment> jobSharingRecommendationCommentList) {
-        this.jobSharingRecommendationCommentList = jobSharingRecommendationCommentList;
+    public void setStudent(boolean student) {
+        isStudent = student;
     }
 
-    public List<JobSharingRecommendationRating> getJobSharingRecommendationRatingList() {
-        return jobSharingRecommendationRatingList;
+    public List<Post> getPostList() {
+        return postList;
     }
 
-    public void setJobSharingRecommendationRatingList(List<JobSharingRecommendationRating> jobSharingRecommendationRatingList) {
-        this.jobSharingRecommendationRatingList = jobSharingRecommendationRatingList;
+    public void setPostList(List<Post> postList) {
+        this.postList = postList;
     }
 
-    public List<InterviewQuestion> getInterviewQuestionList() {
-        return interviewQuestionList;
+    public List<PostComment> getCommentList() {
+        return commentList;
     }
 
-    public void setInterviewQuestionList(List<InterviewQuestion> interviewQuestionList) {
-        this.interviewQuestionList = interviewQuestionList;
+    public void setCommentList(List<PostComment> commentList) {
+        this.commentList = commentList;
     }
 
-    public List<InterviewQuestionComment> getInterviewQuestionCommentList() {
-        return interviewQuestionCommentList;
+    public List<PostRating> getRatingList() {
+        return ratingList;
     }
 
-    public void setInterviewQuestionCommentList(List<InterviewQuestionComment> interviewQuestionCommentList) {
-        this.interviewQuestionCommentList = interviewQuestionCommentList;
+    public void setRatingList(List<PostRating> ratingList) {
+        this.ratingList = ratingList;
     }
 
-    public List<InterviewQuestionRating> getInterviewQuestionRatingList() {
-        return interviewQuestionRatingList;
+    public String getProfileImageURL() {
+        return profileImageURL;
     }
 
-    public void setInterviewQuestionRatingList(List<InterviewQuestionRating> interviewQuestionRatingList) {
-        this.interviewQuestionRatingList = interviewQuestionRatingList;
-    }
-
-    public List<MentorshipPost> getMentorshipPostList() {
-        return mentorshipPostList;
-    }
-
-    public void setMentorshipPostList(List<MentorshipPost> mentorshipPostList) {
-        this.mentorshipPostList = mentorshipPostList;
-    }
-
-    public List<MentorshipPostComment> getMentorshipPostCommentList() {
-        return mentorshipPostCommentList;
-    }
-
-    public void setMentorshipPostCommentList(List<MentorshipPostComment> mentorshipPostCommentList) {
-        this.mentorshipPostCommentList = mentorshipPostCommentList;
-    }
-
-    public List<MentorshipPostRating> getMentorshipPostRatingList() {
-        return mentorshipPostRatingList;
-    }
-
-    public void setMentorshipPostRatingList(List<MentorshipPostRating> mentorshipPostRatingList) {
-        this.mentorshipPostRatingList = mentorshipPostRatingList;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", isAdmin=" + isAdmin +
-                ", isAlum=" + isAlum +
-                ", isInstructor=" + isInstructor +
-                ", jobSharingRecommendationList=" + jobSharingRecommendationList +
-                ", jobSharingRecommendationCommentList=" + jobSharingRecommendationCommentList +
-                ", jobSharingRecommendationRatingList=" + jobSharingRecommendationRatingList +
-                ", interviewQuestionList=" + interviewQuestionList +
-                ", interviewQuestionCommentList=" + interviewQuestionCommentList +
-                ", interviewQuestionRatingList=" + interviewQuestionRatingList +
-                ", mentorshipPostList=" + mentorshipPostList +
-                ", mentorshipPostCommentList=" + mentorshipPostCommentList +
-                ", mentorshipPostRatingList=" + mentorshipPostRatingList +
-                '}';
+    public void setProfileImageURL(String profileImageURL) {
+        this.profileImageURL = profileImageURL;
     }
 }

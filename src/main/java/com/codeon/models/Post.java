@@ -7,8 +7,9 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="job_sharing_recommendations")
-public class JobSharingRecommendation {
+@Table(name="posts")
+public class Post {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,11 +17,12 @@ public class JobSharingRecommendation {
     @Column(nullable = false, length = 100)
     private String title;
 
-    @Column(nullable = false, length = 100)
+    @Column(length = 100)
     private String employer;
 
     @Column(nullable = false)
     private String body;
+
 
     @JsonBackReference
     @ManyToOne
@@ -28,17 +30,19 @@ public class JobSharingRecommendation {
     private User user;
 
     @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recommendation")
-    private List<JobSharingRecommendationComment> commentsList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    private List<ImageURL> imageURLList;
 
     @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recommendation")
-    private List<JobSharingRecommendationRating> ratingsList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    private List<PostComment> commentList;
+
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    private List<PostRating> ratingList;
 
     @Column(nullable = false)
     private Integer ratingTotal;
-
-    public JobSharingRecommendation() {}
 
     public Long getId() {
         return id;
@@ -80,20 +84,20 @@ public class JobSharingRecommendation {
         this.user = user;
     }
 
-    public List<JobSharingRecommendationComment> getCommentsList() {
-        return commentsList;
+    public List<PostComment> getCommentList() {
+        return commentList;
     }
 
-    public void setCommentsList(List<JobSharingRecommendationComment> commentsList) {
-        this.commentsList = commentsList;
+    public void setCommentList(List<PostComment> commentList) {
+        this.commentList = commentList;
     }
 
-    public List<JobSharingRecommendationRating> getRatingsList() {
-        return ratingsList;
+    public List<PostRating> getRatingList() {
+        return ratingList;
     }
 
-    public void setRatingsList(List<JobSharingRecommendationRating> ratingsList) {
-        this.ratingsList = ratingsList;
+    public void setRatingList(List<PostRating> ratingList) {
+        this.ratingList = ratingList;
     }
 
     public Integer getRatingTotal() {
@@ -104,24 +108,33 @@ public class JobSharingRecommendation {
         this.ratingTotal = ratingTotal;
     }
 
-    public void setRatingTotal(List<Integer> ratingsList) {
-        Integer sum = 0;
-        for(Integer rating : ratingsList) {
-            sum += rating;
+    public void setRatingTotal(List<PostRating> ratingList) {
+        Integer total = 0;
+        for(PostRating postRating : ratingList) {
+            total += postRating.getRating();
         }
-        this.ratingTotal = sum;
+        this.ratingTotal = total;
+    }
+
+    public List<ImageURL> getImageURLList() {
+        return imageURLList;
+    }
+
+    public void setImageURLList(List<ImageURL> imageURLList) {
+        this.imageURLList = imageURLList;
     }
 
     @Override
     public String toString() {
-        return "JobSharingRecommendation{" +
+        return "Post{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", employer='" + employer + '\'' +
                 ", body='" + body + '\'' +
                 ", user=" + user +
-                ", commentsList=" + commentsList +
-                ", ratingsList=" + ratingsList +
+                ", imageURLList=" + imageURLList +
+                ", commentList=" + commentList +
+                ", ratingList=" + ratingList +
                 ", ratingTotal=" + ratingTotal +
                 '}';
     }

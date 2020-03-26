@@ -35,9 +35,8 @@ public class JobSharingRecommendation {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recommendation")
     private List<JobSharingRecommendationRating> ratingsList;
 
-    @Column(nullable = true)
-    private Integer ratingAverage;
-
+    @Column(nullable = false)
+    private Integer ratingTotal;
 
     public JobSharingRecommendation() {}
 
@@ -97,21 +96,20 @@ public class JobSharingRecommendation {
         this.ratingsList = ratingsList;
     }
 
-    public Integer getRatingAverage() {
-        return ratingAverage;
+    public Integer getRatingTotal() {
+        return ratingTotal;
     }
 
-    public void setRatingAverage(Integer ratingAverage) {
-        this.ratingAverage = ratingAverage;
+    public void setRatingTotal(Integer ratingTotal) {
+        this.ratingTotal = ratingTotal;
     }
 
-    public void setRatingAverage(List<Integer> ratingsList, Integer newRating) {
-        Integer intTotal = newRating;
-        Integer counter = ratingsList.size() + 1;
+    public void setRatingTotal(List<Integer> ratingsList) {
+        Integer sum = 0;
         for(Integer rating : ratingsList) {
-            intTotal += rating;
+            sum += rating;
         }
-        this.ratingAverage = intTotal / counter;
+        this.ratingTotal = sum;
     }
 
     @Override
@@ -124,7 +122,7 @@ public class JobSharingRecommendation {
                 ", user=" + user +
                 ", commentsList=" + commentsList +
                 ", ratingsList=" + ratingsList +
-                ", ratingAverage=" + ratingAverage +
+                ", ratingTotal=" + ratingTotal +
                 '}';
     }
 }

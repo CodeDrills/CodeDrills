@@ -39,8 +39,7 @@ public class JobSharingRecommendation {
     private Integer ratingAverage;
 
 
-    public JobSharingRecommendation() {
-    }
+    public JobSharingRecommendation() {}
 
     public Long getId() {
         return id;
@@ -113,5 +112,19 @@ public class JobSharingRecommendation {
             intTotal += rating;
         }
         this.ratingAverage = intTotal / counter;
+    }
+
+    @Override
+    public String toString() {
+        return "JobSharingRecommendation{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", employer='" + employer + '\'' +
+                ", body='" + body + '\'' +
+                ", user=" + user +
+                ", commentsList=" + commentsList +
+                ", ratingsList=" + ratingsList +
+                ", ratingAverage=" + ratingAverage +
+                '}';
     }
 }

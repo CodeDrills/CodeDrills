@@ -21,9 +21,9 @@ public class User {
     private boolean isAlum;
     @Column(nullable = false)
     private boolean isInstructor;
-    @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
-    private List<Post> postList;
+//    @JsonManagedReference
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
+//    private List<Post> postList;
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
     private List<JobSharingRecommendation> jobSharingRecommendationList;
@@ -78,13 +78,13 @@ public class User {
         this.password = password;
     }
 
-    public List<Post> getPostList() {
-        return postList;
-    }
-
-    public void setPostList(List<Post> postList) {
-        this.postList = postList;
-    }
+//    public List<Post> getPostList() {
+//        return postList;
+//    }
+//
+//    public void setPostList(List<Post> postList) {
+//        this.postList = postList;
+//    }
 
     public boolean isAdmin() {
         return isAdmin;

@@ -26,4 +26,57 @@ public class JobSharingRecommendationComment {
     @ManyToOne
     @JoinColumn (name = "job_sharing_recommendation_id")
     private JobSharingRecommendation recommendation;
+
+    public JobSharingRecommendationComment() {}
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public JobSharingRecommendation getRecommendation() {
+        return recommendation;
+    }
+
+    public void setRecommendation(JobSharingRecommendation recommendation) {
+        this.recommendation = recommendation;
+    }
+
+    @Override
+    public String toString() {
+        return "JobSharingRecommendationComment{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", body='" + body + '\'' +
+                ", user=" + user +
+                ", recommendation=" + recommendation +
+                '}';
+    }
 }

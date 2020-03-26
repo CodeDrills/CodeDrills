@@ -5,27 +5,22 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
 
 @Entity
-@Table(name="interview_question_ratings")
-public class InterviewQuestionRating {
-
+@Table(name="mentorship_post_ratings")
+public class MentorshipPostRating {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(nullable = false)
     private Integer rating;
-
     @JsonBackReference
     @ManyToOne
     @JoinColumn (name = "user_id")
     private User user;
-
     @JsonBackReference
     @ManyToOne
-    @JoinColumn (name = "interview_question_id")
-    private InterviewQuestion question;
+    @JoinColumn (name = "mentorship_post_id")
+    private MentorshipPost post;
 
-    public InterviewQuestionRating() {}
 
     public Long getId() {
         return id;
@@ -51,21 +46,21 @@ public class InterviewQuestionRating {
         this.user = user;
     }
 
-    public InterviewQuestion getQuestion() {
-        return question;
+    public MentorshipPost getMessage() {
+        return post;
     }
 
-    public void setQuestion(InterviewQuestion question) {
-        this.question = question;
+    public void setMessage(MentorshipPost post) {
+        this.post = post;
     }
 
     @Override
     public String toString() {
-        return "InterviewQuestionRating{" +
+        return "MentorshipPostRating{" +
                 "id=" + id +
                 ", rating=" + rating +
                 ", user=" + user +
-                ", question=" + question +
+                ", post=" + post +
                 '}';
     }
 }

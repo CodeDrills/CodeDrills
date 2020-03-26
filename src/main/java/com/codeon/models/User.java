@@ -21,9 +21,6 @@ public class User {
     private boolean isAlum;
     @Column(nullable = false)
     private boolean isInstructor;
-//    @JsonManagedReference
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
-//    private List<Post> postList;
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
     private List<JobSharingRecommendation> jobSharingRecommendationList;
@@ -33,7 +30,6 @@ public class User {
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
     private List<JobSharingRecommendationRating> jobSharingRecommendationRatingList;
-
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
     private List<InterviewQuestion> interviewQuestionList;
@@ -43,8 +39,18 @@ public class User {
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
     private List<InterviewQuestionRating> interviewQuestionRatingList;
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
+    private List<MentorshipPost> mentorshipPostList;
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
+    private List<MentorshipPostComment> mentorshipPostCommentList;
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
+    private List<MentorshipPostRating> mentorshipPostRatingList;
 
     public User() {}
+
     //added copy constructor for spring security
     public User(User copy) {
         id = copy.id; // This line is SUPER important! Many things won't work if it's absent
@@ -55,6 +61,7 @@ public class User {
         isAlum = copy.isAlum;
         isInstructor = copy.isInstructor;
     }
+
 
     public long getId() {
         return id;
@@ -88,14 +95,6 @@ public class User {
         this.password = password;
     }
 
-//    public List<Post> getPostList() {
-//        return postList;
-//    }
-//
-//    public void setPostList(List<Post> postList) {
-//        this.postList = postList;
-//    }
-
     public boolean isAdmin() {
         return isAdmin;
     }
@@ -118,5 +117,99 @@ public class User {
 
     public void setInstructor(boolean instructor) {
         isInstructor = instructor;
+    }
+
+    public List<JobSharingRecommendation> getJobSharingRecommendationList() {
+        return jobSharingRecommendationList;
+    }
+
+    public void setJobSharingRecommendationList(List<JobSharingRecommendation> jobSharingRecommendationList) {
+        this.jobSharingRecommendationList = jobSharingRecommendationList;
+    }
+
+    public List<JobSharingRecommendationComment> getJobSharingRecommendationCommentList() {
+        return jobSharingRecommendationCommentList;
+    }
+
+    public void setJobSharingRecommendationCommentList(List<JobSharingRecommendationComment> jobSharingRecommendationCommentList) {
+        this.jobSharingRecommendationCommentList = jobSharingRecommendationCommentList;
+    }
+
+    public List<JobSharingRecommendationRating> getJobSharingRecommendationRatingList() {
+        return jobSharingRecommendationRatingList;
+    }
+
+    public void setJobSharingRecommendationRatingList(List<JobSharingRecommendationRating> jobSharingRecommendationRatingList) {
+        this.jobSharingRecommendationRatingList = jobSharingRecommendationRatingList;
+    }
+
+    public List<InterviewQuestion> getInterviewQuestionList() {
+        return interviewQuestionList;
+    }
+
+    public void setInterviewQuestionList(List<InterviewQuestion> interviewQuestionList) {
+        this.interviewQuestionList = interviewQuestionList;
+    }
+
+    public List<InterviewQuestionComment> getInterviewQuestionCommentList() {
+        return interviewQuestionCommentList;
+    }
+
+    public void setInterviewQuestionCommentList(List<InterviewQuestionComment> interviewQuestionCommentList) {
+        this.interviewQuestionCommentList = interviewQuestionCommentList;
+    }
+
+    public List<InterviewQuestionRating> getInterviewQuestionRatingList() {
+        return interviewQuestionRatingList;
+    }
+
+    public void setInterviewQuestionRatingList(List<InterviewQuestionRating> interviewQuestionRatingList) {
+        this.interviewQuestionRatingList = interviewQuestionRatingList;
+    }
+
+    public List<MentorshipPost> getMentorshipPostList() {
+        return mentorshipPostList;
+    }
+
+    public void setMentorshipPostList(List<MentorshipPost> mentorshipPostList) {
+        this.mentorshipPostList = mentorshipPostList;
+    }
+
+    public List<MentorshipPostComment> getMentorshipPostCommentList() {
+        return mentorshipPostCommentList;
+    }
+
+    public void setMentorshipPostCommentList(List<MentorshipPostComment> mentorshipPostCommentList) {
+        this.mentorshipPostCommentList = mentorshipPostCommentList;
+    }
+
+    public List<MentorshipPostRating> getMentorshipPostRatingList() {
+        return mentorshipPostRatingList;
+    }
+
+    public void setMentorshipPostRatingList(List<MentorshipPostRating> mentorshipPostRatingList) {
+        this.mentorshipPostRatingList = mentorshipPostRatingList;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", isAdmin=" + isAdmin +
+                ", isAlum=" + isAlum +
+                ", isInstructor=" + isInstructor +
+                ", jobSharingRecommendationList=" + jobSharingRecommendationList +
+                ", jobSharingRecommendationCommentList=" + jobSharingRecommendationCommentList +
+                ", jobSharingRecommendationRatingList=" + jobSharingRecommendationRatingList +
+                ", interviewQuestionList=" + interviewQuestionList +
+                ", interviewQuestionCommentList=" + interviewQuestionCommentList +
+                ", interviewQuestionRatingList=" + interviewQuestionRatingList +
+                ", mentorshipPostList=" + mentorshipPostList +
+                ", mentorshipPostCommentList=" + mentorshipPostCommentList +
+                ", mentorshipPostRatingList=" + mentorshipPostRatingList +
+                '}';
     }
 }

@@ -35,6 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 /* Login configuration */
+                .csrf().disable() //TEST MAY BE MESSED UP
                 .formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/posts/show") // user's home page, it can be any URL

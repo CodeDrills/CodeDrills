@@ -19,6 +19,8 @@ public class User {
     private boolean isAdmin;
     @Column(nullable = false)
     private boolean isAlum;
+    @Column(nullable = false)
+    private boolean isInstructor;
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Post> postList;
@@ -32,6 +34,7 @@ public class User {
         password = copy.password;
         isAdmin = copy.isAdmin;
         isAlum = copy.isAlum;
+        isInstructor = copy.isInstructor;
     }
 
     public long getId() {
@@ -74,4 +77,27 @@ public class User {
         this.postList = postList;
     }
 
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+
+    public boolean isAlum() {
+        return isAlum;
+    }
+
+    public void setAlum(boolean alum) {
+        isAlum = alum;
+    }
+
+    public boolean isInstructor() {
+        return isInstructor;
+    }
+
+    public void setInstructor(boolean instructor) {
+        isInstructor = instructor;
+    }
 }

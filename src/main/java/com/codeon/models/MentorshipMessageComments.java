@@ -4,8 +4,8 @@ package com.codeon.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name="forum_comments")
-public class ForumComments {
+@Table(name="mentorshipMessage_comments")
+public class MentorshipMessageComments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -18,10 +18,10 @@ public class ForumComments {
     private User user;
 
     @ManyToOne
-    @JoinColumn (name = "forum_id")
-    private Forum forum;
+    @JoinColumn (name = "mentorshipMessageBoard_id")
+    private MentorshipMessageBoard mentorshipMessageBoard;
 
-    public ForumComments() {
+    public MentorshipMessageComments() {
     }
 
     public long getId() {
@@ -48,12 +48,12 @@ public class ForumComments {
         this.user = user;
     }
 
-    public Forum getForum() {
-        return forum;
+    public MentorshipMessageBoard getMentorshipMessageBoard() {
+        return mentorshipMessageBoard;
     }
 
-    public void setForum(Forum forum) {
-        this.forum = forum;
+    public void setMentorshipMessageBoard(MentorshipMessageBoard mentorshipMessageBoard) {
+        this.mentorshipMessageBoard = mentorshipMessageBoard;
     }
 }
 

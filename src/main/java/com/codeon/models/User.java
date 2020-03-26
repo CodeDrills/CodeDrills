@@ -15,6 +15,10 @@ public class User {
     private String email;
     @Column(nullable = false)
     private String password;
+    @Column(nullable = false)
+    private boolean isAdmin;
+    @Column(nullable = false)
+    private boolean isAlum;
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Post> postList;
@@ -26,6 +30,8 @@ public class User {
         email = copy.email;
         username = copy.username;
         password = copy.password;
+        isAdmin = copy.isAdmin;
+        isAlum = copy.isAlum;
     }
 
     public long getId() {

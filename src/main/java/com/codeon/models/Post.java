@@ -29,6 +29,11 @@ public class Post {
     @JoinColumn (name = "user_id")
     private User user;
 
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn (name = "post_type_id")
+    private PostType postType;
+
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     private List<ImageURL> imageURLList;
@@ -124,6 +129,14 @@ public class Post {
         this.imageURLList = imageURLList;
     }
 
+    public PostType getPostType() {
+        return postType;
+    }
+
+    public void setPostType(PostType postType) {
+        this.postType = postType;
+    }
+
     @Override
     public String toString() {
         return "Post{" +
@@ -132,6 +145,7 @@ public class Post {
                 ", employer='" + employer + '\'' +
                 ", body='" + body + '\'' +
                 ", user=" + user +
+                ", postType=" + postType +
                 ", imageURLList=" + imageURLList +
                 ", commentList=" + commentList +
                 ", ratingList=" + ratingList +

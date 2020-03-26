@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+</head>
+<body>
+<!-- Again referencing our errors and fixing them-->
+<th:block th:switch="${error}">
+    <div th:case="'Internal Server Error'">
+        <h1>500 Internal Server Error</h1>
+        <p>Sorry, it's me, not you.</p>
+        <p>&#58;&#40;</p>
+        <a href="/"><button type="button" class="btn error-btn">Back to Home</button></a>
+    </div>
+</th:block>
+</body>
+</html>

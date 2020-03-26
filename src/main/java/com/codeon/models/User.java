@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity @Table(name="users")
+@Entity(name="User") @Table(name="users")
 public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -22,8 +22,17 @@ public class User {
     @Column(nullable = false)
     private boolean isInstructor;
     @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
     private List<Post> postList;
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
+    private List<JobSharingRecommendation> jobSharingRecommendationList;
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
+    private List<JobSharingRecommendationComment> jobSharingRecommendationCommentList;
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user") //changed the case to singular
+    private List<JobSharingRecommendationRating> jobSharingRecommendationRatingList;
 
     public User() {}
     //added copy constructor for spring security

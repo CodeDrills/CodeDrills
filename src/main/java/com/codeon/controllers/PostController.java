@@ -2,11 +2,9 @@ package com.codeon.controllers;
 
 import com.codeon.models.ImageURL;
 import com.codeon.models.Post;
+import com.codeon.models.PostComment;
 import com.codeon.models.User;
-import com.codeon.repositories.ImageURLRepo;
-import com.codeon.repositories.PostRepo;
-import com.codeon.repositories.PostTypeRepo;
-import com.codeon.repositories.UserRepo;
+import com.codeon.repositories.*;
 import com.codeon.services.EmailService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -25,13 +23,15 @@ public class PostController {
     private PostRepo postDao;
     private UserRepo userDao;
     private PostTypeRepo postTypeDao;
+    private PostCommentRepo postCommentDao;
     private ImageURLRepo imageURLDao;
     private EmailService emailService;
 
-    public PostController(PostRepo postDao, UserRepo userDao, PostTypeRepo postTypeDao, ImageURLRepo imageURLDao, EmailService emailService) {
+    public PostController(PostRepo postDao, UserRepo userDao, PostTypeRepo postTypeDao, PostCommentRepo postCommentDao, ImageURLRepo imageURLDao, EmailService emailService) {
         this.postDao = postDao;
         this.userDao = userDao;
         this.postTypeDao = postTypeDao;
+        this.postCommentDao = postCommentDao;
         this.imageURLDao = imageURLDao;
         this.emailService = emailService;
     }
@@ -69,7 +69,8 @@ public class PostController {
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat formatter = new SimpleDateFormat(pattern);
         String date = formatter.format(now);
-        //HERE WE SET THE DATE OF THE POST
+        post.setDateTime(date);
+        post.setRatingTotal(0);
         Post continuePost = (Post) postDao.save(post);
         ImageURL imageURL = new ImageURL();
         imageURL.setUrl(photoURL);
@@ -121,7 +122,11 @@ public class PostController {
         dbPost.setImageURLList(post.getImageURLList());
         dbPost.setCommentList(post.getCommentList());
         dbPost.setRatingList(post.getRatingList());
-        dbPost.setRatingTotal(post.getRatingList());
+        if(dbPost.getRatingList() == null) {
+            dbPost.setRatingTotal(0);
+        } else {
+            dbPost.setRatingTotal(post.getRatingList());
+        }
 //        dbPost.setCreated(post.getCreated());
         postDao.save(dbPost);
         return "redirect:/posts/show";
@@ -139,6 +144,32 @@ public class PostController {
         //Update this to display things if needed.
         model.addAttribute("title", "Deleted");
         model.addAttribute("body", deletedTitle);
+        return "redirect:/posts/show";
+    }
+    //Post Comments Controllers. Consider making sep controller. Consider removing the get method after testing and only use post.
+    @GetMapping("/posts/{id}/comments/create")
+    public String getPostCommentForm(@PathVariable Long id, Model model){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Post post = postDao.findPostById(id);
+        if(user.getId() != post.getUser().getId()) {
+            return "redirect:/posts/show";
+        }
+        model.addAttribute("post", post);
+        model.addAttribute("postComment", new PostComment());
+        return "posts/comments/create";
+    }
+    @PostMapping("/posts/{id}/comments/create")
+    public String createPostComment(@ModelAttribute Post post, @ModelAttribute PostComment postComment) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        postComment.setUser(user);
+        postComment.setPost(post);
+        Date now = new Date();
+        String pattern = "yyyy-MM-dd";
+        SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+        String date = formatter.format(now);
+        postComment.setDateTime(date);
+//        postComment.setRatingTotal(0);
+        postCommentDao.save(postComment);
         return "redirect:/posts/show";
     }
 }

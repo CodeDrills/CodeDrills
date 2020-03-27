@@ -8,10 +8,6 @@
     <h1 th:text = "${post.title}"></h1>
     <p th:text = "${post.body}"></p>
     <p th:text = "${post.user.email}"></p>
-<!--    NEW TESTING-->
-    <div th:each="comment : ${post.commentList}">
-        <p th:text = "${comment.body}"></p>
-    </div>
     <div sec:authorize = "isAuthenticated()">
         <div th:if="${user.id == post.user.id}">
             <a th:href="@{|/posts/${post.id}/edit|}"><button>Edit Post</button></a>

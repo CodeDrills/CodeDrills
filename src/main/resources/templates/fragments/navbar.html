@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="navbar">
-    <a class="navbar-brand" href="/posts/show">Blog</a>
+    <a class="navbar-brand" href="/posts/show">Codeon</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="/posts/show">Home</a>
             </li>
-            <div sec:authorize = "isAuthenticated()">
+            <a sec:authorize = "!isAuthenticated()">
                 <li class="nav-item">
-                    <a class="nav-link" href="/posts/create">Create Post</a>
+                    <a class="nav-link" href="/sign-up">profile</a>
                 </li>
-            </div>
+            </a>
+            <a sec:authorize = "isAuthenticated()">
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile">profile</a>
+                </li>
+            </a>
             <li class="nav-item">
                 <form th:action="@{/logout_app}" th:method="post">
                     <button class="btn-link btn" style="margin-top: 8px">Logout</button>
                 </form>
             </li>
-        </ul>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
+        </ul>
     </div>
 </nav>
-</body>
 </html>

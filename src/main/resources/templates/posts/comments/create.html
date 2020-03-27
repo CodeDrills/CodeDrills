@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header.html :: header(title = 'Create a Post')"></head>
+<body>
+<nav th:replace="fragments/navbar.html :: navbar"></nav>
+<form th:action="@{|/posts/${post.id}/comments/create|}" th:method="post" th:object="${postComment}">
+    Description:
+    <input th:field="*{body}" />
+    <br />
+    <input type="submit" />
+</form>
+<div th:replace="fragments/body-scripts.html :: body-scripts"></div>
+</body>
+</html>

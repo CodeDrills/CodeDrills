@@ -2,6 +2,7 @@ package com.codeon.controllers;
 
 import com.codeon.models.ImageURL;
 import com.codeon.models.Post;
+import com.codeon.models.PostComment;
 import com.codeon.models.User;
 import com.codeon.repositories.ImageURLRepo;
 import com.codeon.repositories.PostRepo;
@@ -145,5 +146,17 @@ public class PostController {
         model.addAttribute("title", "Deleted");
         model.addAttribute("body", deletedTitle);
         return "redirect:/posts/show";
+    }
+    //Post Comments Controllers. Consider making sep controller. Consider removing the get method after testing and only use post.
+    @GetMapping("/posts/{id}/comment")
+    public String getCommentPostForm(@PathVariable Long id, Model model){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Post post = postDao.findPostById(id);
+        if(user.getId() != post.getUser().getId()) {
+            return "redirect:/posts/show";
+        }
+        model.addAttribute("post", post);
+        model.addAttribute("postComment", new PostComment());
+        return "posts/comments/create";
     }
 }

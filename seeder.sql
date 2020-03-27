@@ -1,6 +1,9 @@
-
-
 use codeon_db;
+
+insert into post_types (type) values ('mentorQuestion'), ('interviewQuestion'), ('jobListing');
+
+insert into skills (skill) values ('Java'), ('HTML'), ('CSS'), ('JavaScript'), ('Thymeleaf'),
+                                  ('MySql'), ('Git'), ('Ruby'), ('Python');
 
 insert into users (id, bio, email, first_name, is_admin, is_alum, is_instructor, is_student, last_name, password, profile_image_url, resume_url, username) values (1, 'User-centric user-facing approach', 'trumford0@merriam-webster.com', 'Tonnie', false, true, true, false, 'Rumford', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'http://dummyimage.com/100x221.bmp/ff4444/ffffff', 'http://dummyimage.com/227x175.bmp/ff4444/ffffff', 'trumford0');
 insert into users (id, bio, email, first_name, is_admin, is_alum, is_instructor, is_student, last_name, password, profile_image_url, resume_url, username) values (2, 'User-centric static paradigm', 'amatteau1@joomla.org', 'Alicea', false, true, false, false, 'Matteau', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'http://dummyimage.com/237x214.jpg/ff4444/ffffff', 'http://dummyimage.com/182x153.jpg/5fa2dd/ffffff', 'amatteau1');
@@ -52,3 +55,122 @@ insert into users (id, bio, email, first_name, is_admin, is_alum, is_instructor,
 insert into users (id, bio, email, first_name, is_admin, is_alum, is_instructor, is_student, last_name, password, profile_image_url, resume_url, username) values (48, 'Monitored multi-state function', 'smckerrow1b@alibaba.com', 'Saidee', true, false, false, true, 'McKerrow', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'http://dummyimage.com/125x176.bmp/ff4444/ffffff', 'http://dummyimage.com/234x134.png/cc0000/ffffff', 'smckerrow1b');
 insert into users (id, bio, email, first_name, is_admin, is_alum, is_instructor, is_student, last_name, password, profile_image_url, resume_url, username) values (49, 'Multi-layered dedicated synergy', 'lleather1c@bigcartel.com', 'Lorens', true, false, false, false, 'Leather', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'http://dummyimage.com/204x107.png/cc0000/ffffff', 'http://dummyimage.com/107x234.png/cc0000/ffffff', 'lleather1c');
 insert into users (id, bio, email, first_name, is_admin, is_alum, is_instructor, is_student, last_name, password, profile_image_url, resume_url, username) values (50, 'Ergonomic cohesive parallelism', 'gpauling1d@dell.com', 'Gerri', false, true, false, false, 'Pauling', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'http://dummyimage.com/107x102.png/5fa2dd/ffffff', 'http://dummyimage.com/149x106.jpg/cc0000/ffffff', 'gpauling1d');
+
+insert into users_skills (user_id, skill_id) values (4, 8);
+insert into users_skills (user_id, skill_id) values (7, 7);
+insert into users_skills (user_id, skill_id) values (25, 3);
+insert into users_skills (user_id, skill_id) values (3, 9);
+insert into users_skills (user_id, skill_id) values (15, 8);
+insert into users_skills (user_id, skill_id) values (25, 5);
+insert into users_skills (user_id, skill_id) values (25, 1);
+insert into users_skills (user_id, skill_id) values (5, 3);
+insert into users_skills (user_id, skill_id) values (18, 5);
+insert into users_skills (user_id, skill_id) values (13, 4);
+insert into users_skills (user_id, skill_id) values (25, 6);
+insert into users_skills (user_id, skill_id) values (18, 2);
+insert into users_skills (user_id, skill_id) values (18, 2);
+insert into users_skills (user_id, skill_id) values (5, 2);
+insert into users_skills (user_id, skill_id) values (2, 6);
+insert into users_skills (user_id, skill_id) values (8, 8);
+insert into users_skills (user_id, skill_id) values (1, 2);
+insert into users_skills (user_id, skill_id) values (23, 3);
+insert into users_skills (user_id, skill_id) values (2, 7);
+insert into users_skills (user_id, skill_id) values (11, 2);
+insert into users_skills (user_id, skill_id) values (15, 1);
+insert into users_skills (user_id, skill_id) values (9, 2);
+insert into users_skills (user_id, skill_id) values (20, 9);
+
+insert into posts (user_id, post_type_id, title, body, date_time, employer, rating_total) values (3, 1, 'Orcinus orca', 'Accounting', '10/13/2019', 'Lazz', 5);
+insert into posts (user_id, post_type_id, title, body, date_time, employer, rating_total) values (6, 1, 'Ceratotherium simum', 'Training', '6/21/2019', null, 5);
+insert into posts (user_id, post_type_id, title, body, date_time, employer, rating_total) values (12, 3,  'Junonia genoveua', 'Accounting', '10/4/2019', 'Wikizz', -2);
+insert into posts (user_id, post_type_id, title, body, date_time, employer, rating_total) values (25, 2, 'Cynictis penicillata', 'Business Development', '4/8/2019', 'Twitterworks', 80);
+insert into posts (user_id, post_type_id, title, body, date_time, employer, rating_total) values (2, 1, 'Terrapene carolina', 'Engineering', '5/25/2019', 'Twiyo', 69);
+insert into posts (user_id, post_type_id, title, body, date_time, employer, rating_total) values (5, 3, 'Centrocercus urophasianus', 'Marketing', '10/2/2019', 'Aivee', 47);
+insert into posts (user_id, post_type_id, title, body, date_time, employer, rating_total) values (17, 3,  'Dipodomys deserti', 'Legal', '7/17/2019', 'Divavu', 11);
+insert into posts (user_id, post_type_id, title, body, date_time, employer, rating_total) values (19, 2, 'Chlidonias leucopterus', 'Training', '10/31/2019', 'Youbridge', 51);
+insert into posts (user_id, post_type_id, title, body, date_time, employer, rating_total) values (10, 1, 'Upupa epops', 'Services', '4/25/2019', 'Gabvine', 70);
+insert into posts (user_id, post_type_id, title, body, date_time, employer, rating_total) values (10, 2, 'Chionis alba', 'Human Resources', '5/25/2019', 'Wikivu', 68);
+insert into posts (user_id, post_type_id, title, body, date_time, employer, rating_total) values (15, 3, 'Loris tardigratus', 'Services', '11/12/2019', null, 55);
+insert into posts (user_id, post_type_id, title, body, date_time, employer, rating_total) values (6, 1, 'Theropithecus gelada', 'Accounting', '5/31/2019', 'Skidoo', -1);
+insert into posts (user_id, post_type_id, title, body, date_time, employer, rating_total) values (22, 2, 'Ctenophorus ornatus', 'Marketing', '10/17/2019', 'Jabbersphere', 51);
+insert into posts (user_id, post_type_id, title, body, date_time, employer, rating_total) values (20, 1, 'Upupa epops', 'Sales', '8/17/2019', 'Youbridge', 39);
+insert into posts (user_id, post_type_id, title, body, date_time, employer, rating_total) values (2, 2, 'Milvago chimachima', 'Training', '5/11/2019', 'Fivespan', 69);
+insert into posts (user_id, post_type_id, title, body, date_time, employer, rating_total) values (4, 3, 'Laniaurius atrococcineus', 'Human Resources', '4/15/2019', 'Twitterbridge', 35);
+insert into posts (user_id, post_type_id, title, body, date_time, employer, rating_total) values (13, 1, 'Felis libyca', 'Business Development', '9/8/2019', null, 72);
+insert into posts (user_id, post_type_id, title, body, date_time, employer, rating_total) values (26, 2, 'Falco mexicanus', 'Training', '4/7/2019', 'Zoonoodle', -9);
+insert into posts (user_id, post_type_id, title, body, date_time, employer, rating_total) values (28, 2, 'Chordeiles minor', 'Sales', '4/2/2019', 'Yodoo', 74);
+insert into posts (user_id, post_type_id, title, body, date_time, employer, rating_total) values (8, 3, 'Tamiasciurus hudsonicus', 'Accounting', '6/22/2019', 'Divanoodle', 99);
+insert into posts (user_id, post_type_id, title, body, date_time, employer, rating_total) values (10, 2, 'Cervus duvauceli', 'Training', '3/9/2020', 'Devbug', 55);
+insert into posts (user_id, post_type_id, title, body, date_time, employer, rating_total) values (14, 1, 'Gazella thompsonii', 'Research and Development', '4/5/2019', 'Avamm', 32);
+
+insert into post_ratings (user_id, post_id, rating) values (19, 11, 0);
+insert into post_ratings (user_id, post_id, rating) values (24, 10, 1);
+insert into post_ratings (user_id, post_id, rating) values (7, 20, 0);
+insert into post_ratings (user_id, post_id, rating) values (29, 13, -1);
+insert into post_ratings (user_id, post_id, rating) values (3, 6, 0);
+insert into post_ratings (user_id, post_id, rating) values (23, 8, 0);
+insert into post_ratings (user_id, post_id, rating) values (29, 15, -1);
+insert into post_ratings (user_id, post_id, rating) values (20, 9, -1);
+insert into post_ratings (user_id, post_id, rating) values (8, 19, 1);
+insert into post_ratings (user_id, post_id, rating) values (2, 13, 0);
+insert into post_ratings (user_id, post_id, rating) values (27, 6, -1);
+insert into post_ratings (user_id, post_id, rating) values (1, 4, 1);
+insert into post_ratings (user_id, post_id, rating) values (18, 11, -1);
+insert into post_ratings (user_id, post_id, rating) values (14, 17, 1);
+insert into post_ratings (user_id, post_id, rating) values (15, 16, 1);
+insert into post_ratings (user_id, post_id, rating) values (27, 4, -1);
+insert into post_ratings (user_id, post_id, rating) values (10, 14, -1);
+insert into post_ratings (user_id, post_id, rating) values (25, 1, 1);
+insert into post_ratings (user_id, post_id, rating) values (23, 3, 0);
+insert into post_ratings (user_id, post_id, rating) values (5, 13, -1);
+insert into post_ratings (user_id, post_id, rating) values (5, 3, -1);
+insert into post_ratings (user_id, post_id, rating) values (13, 10, 1);
+insert into post_ratings (user_id, post_id, rating) values (18, 10, 1);
+
+insert into post_comments (body, date_time, post_id, user_id) values ('Prestium Pharma, Inc.', '4/29/2019', 17, 13);
+insert into post_comments (body, date_time, post_id, user_id) values ('McKesson Contract Packaging', '7/24/2019', 15, 2);
+insert into post_comments (body, date_time, post_id, user_id) values ('Air Liquide Healthcare America Corporation', '2/22/2020', 17, 6);
+insert into post_comments (body, date_time, post_id, user_id) values ('Mylan Pharmaceuticals Inc.', '9/25/2019', 15, 14);
+insert into post_comments (body, date_time, post_id, user_id) values ('Mylan Pharmaceuticals Inc.', '2/4/2020', 6, 5);
+insert into post_comments (body, date_time, post_id, user_id) values ('China Ningbo Shangge Cosmetic Technology Corp.', '12/2/2019', 10, 19);
+insert into post_comments (body, date_time, post_id, user_id) values ('Church & Dwight Co., Inc.', '1/4/2020', 2, 19);
+insert into post_comments (body, date_time, post_id, user_id) values ('Natural Health Supply', '10/23/2019', 9, 15);
+insert into post_comments (body, date_time, post_id, user_id) values ('Guerlain', '5/14/2019', 20, 9);
+insert into post_comments (body, date_time, post_id, user_id) values ('Physicians Total Care, Inc.', '1/18/2020', 12, 6);
+insert into post_comments (body, date_time, post_id, user_id) values ('Unit Dose Services', '9/26/2019', 17, 18);
+insert into post_comments (body, date_time, post_id, user_id) values ('ABC Compounding Co., Inc.', '12/21/2019', 5, 6);
+insert into post_comments (body, date_time, post_id, user_id) values ('Virtus Pharmaceuticals', '9/7/2019', 9, 20);
+insert into post_comments (body, date_time, post_id, user_id) values ('REMEDYREPACK INC.', '11/27/2019', 16, 16);
+insert into post_comments (body, date_time, post_id, user_id) values ('Mylan Pharmaceuticals Inc.', '9/1/2019', 14, 11);
+insert into post_comments (body, date_time, post_id, user_id) values ('BioActive Nutritional, Inc.', '7/29/2019', 20, 14);
+insert into post_comments (body, date_time, post_id, user_id) values ('Nelco Laboratories, Inc.', '11/9/2019', 8, 7);
+insert into post_comments (body, date_time, post_id, user_id) values ('Digestive Care, Inc.', '8/28/2019', 20, 2);
+insert into post_comments (body, date_time, post_id, user_id) values ('Supervalu Inc', '3/28/2019', 13, 4);
+insert into post_comments (body, date_time, post_id, user_id) values ('Enemeez Inc. DBA Summit Pharmaceuticals', '9/15/2019', 7, 13);
+insert into post_comments (body, date_time, post_id, user_id) values ('ENERGIZER PERSONAL CARE, LLC', '10/1/2019', 12, 6);
+insert into post_comments (body, date_time, post_id, user_id) values ('Natural Health Supply', '6/29/2019', 19, 17);
+insert into post_comments (body, date_time, post_id, user_id) values ('McKesson', '10/28/2019', 3, 12);
+
+insert into image_urls (post_id, url) values (16, 'http://dummyimage.com/115x178.png/ff4444/ffffff');
+insert into image_urls (post_id, url) values (11, 'http://dummyimage.com/217x105.bmp/5fa2dd/ffffff');
+insert into image_urls (post_id, url) values (16, 'http://dummyimage.com/214x212.jpg/ff4444/ffffff');
+insert into image_urls (post_id, url) values (19, 'http://dummyimage.com/126x153.bmp/5fa2dd/ffffff');
+insert into image_urls (post_id, url) values (19, 'http://dummyimage.com/242x182.jpg/ff4444/ffffff');
+insert into image_urls (post_id, url) values (10, 'http://dummyimage.com/102x155.jpg/5fa2dd/ffffff');
+insert into image_urls (post_id, url) values (20, 'http://dummyimage.com/152x163.png/5fa2dd/ffffff');
+insert into image_urls (post_id, url) values (6, 'http://dummyimage.com/119x178.bmp/ff4444/ffffff');
+insert into image_urls (post_id, url) values (3, 'http://dummyimage.com/108x120.jpg/dddddd/000000');
+insert into image_urls (post_id, url) values (16, 'http://dummyimage.com/183x219.png/cc0000/ffffff');
+insert into image_urls (post_id, url) values (5, 'http://dummyimage.com/156x170.png/dddddd/000000');
+insert into image_urls (post_id, url) values (20, 'http://dummyimage.com/229x134.jpg/dddddd/000000');
+insert into image_urls (post_id, url) values (17, 'http://dummyimage.com/185x230.png/dddddd/000000');
+insert into image_urls (post_id, url) values (19, 'http://dummyimage.com/126x173.bmp/cc0000/ffffff');
+insert into image_urls (post_id, url) values (4, 'http://dummyimage.com/104x153.bmp/dddddd/000000');
+insert into image_urls (post_id, url) values (7, 'http://dummyimage.com/217x145.bmp/ff4444/ffffff');
+insert into image_urls (post_id, url) values (5, 'http://dummyimage.com/201x142.png/5fa2dd/ffffff');
+insert into image_urls (post_id, url) values (19, 'http://dummyimage.com/148x224.jpg/dddddd/000000');
+insert into image_urls (post_id, url) values (17, 'http://dummyimage.com/159x214.jpg/dddddd/000000');
+insert into image_urls (post_id, url) values (10, 'http://dummyimage.com/242x216.jpg/ff4444/ffffff');
+insert into image_urls (post_id, url) values (9, 'http://dummyimage.com/183x200.bmp/dddddd/000000');
+insert into image_urls (post_id, url) values (17, 'http://dummyimage.com/191x238.png/cc0000/ffffff');
+insert into image_urls (post_id, url) values (20, 'http://dummyimage.com/203x237.jpg/ff4444/ffffff');

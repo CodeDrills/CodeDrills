@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header.html :: header(title = 'Register your account!')"></head>
+<body>
+<h1>Register your account</h1>
+<form th:action="@{/register}" method="POST" th:object="${user}">
+    <label for="firstName">First Name</label>
+    <input id="firstName" th:field="*{firstName}"/>
+    <br/>
+    <label for="lastName">Last Name</label>
+    <input id="lastName" th:field="*{lastName}"/>
+    <br/>
+    <label for="username">Username</label>
+    <input id="username" th:field="*{username}"/>
+    <br/>
+    <label for="email">Email</label>
+    <input id="email" th:field="*{email}"/>
+    <br/>
+    <label for="password">Password</label>
+    <input id="password" type="password" th:field="*{password}"/>
+    <br/>
+    <label for="bio">Personal Bio</label>
+    <textarea id="bio" th:field="*{bio}" cols="30" rows="10" maxlength="250" placeholder="Please type a brief summary that is less than 250 words."></textarea>
+    <br/>
+    <button class="button photo-upload" type="button" id="photo-picker">Upload Profile Image</button>
+    <input type="hidden" class="" id="photo-upload" name="photoURL">
+    <button class="button photo-upload" type="button" id="resume-picker">Upload Profile Image</button>
+    <input type="hidden"  class="" id="resume-upload" name="resumeURL">
+    <br/>
+    <label for="is-admin">Admin</label>
+    <input id="is-admin" type="radio" th:value="true" th:field="*{isAdmin}">
+    <br/>
+    <label for="is-instructor">Instructor</label>
+    <input id="is-instructor" type="radio" th:value="true" th:field="*{isInstructor}">
+    <br/>
+    <label for="is-alum">Alum</label>
+    <input id="is-alum" type="radio" th:value="true" th:field="*{isAlum}">
+    <br/>
+    <label for="is-student">Student</label>
+    <input id="is-student" type="radio" th:value="true" th:field="*{isStudent}">
+    <br/>
+    <input value="Sign me up!" type="submit" />
+</form>
+<div th:replace="fragments/body-scripts.html :: body-scripts"></div>
+</body>
+</html>

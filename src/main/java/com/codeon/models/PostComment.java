@@ -3,6 +3,7 @@ package com.codeon.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -25,8 +26,8 @@ public class PostComment {
     @JoinColumn (name = "post_id")
     private Post post;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date created;
+    @Column
+    private LocalDateTime dateTime;
 
     public PostComment() {}
 
@@ -62,12 +63,12 @@ public class PostComment {
         this.post = post;
     }
 
-    public Date getCreated() {
-        return created;
+    public LocalDateTime getDateTime() {
+        return dateTime;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
 
     @Override
@@ -77,7 +78,7 @@ public class PostComment {
                 ", body='" + body + '\'' +
                 ", user=" + user +
                 ", post=" + post +
-                ", created=" + created +
+                ", dateTime=" + dateTime +
                 '}';
     }
 }

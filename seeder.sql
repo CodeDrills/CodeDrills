@@ -1,3 +1,5 @@
+drop database codeon_db;
+
 use codeon_db;
 
 

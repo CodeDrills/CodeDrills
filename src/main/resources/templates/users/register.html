@@ -28,7 +28,7 @@
     <input type="hidden"  class="" id="resume-upload" name="resumeURL">
     <form th:action="@{profile_image_url}" th:method="POST">
         <div class="modal-body" id="image">
-            <th:block th:include="fragment/photoUpload :: upload"/>
+            <th:block th:include="fragment/body-scripts"/>
         </div>
         <button class="button photo-upload" type="button" id="photo-picker">Upload Profile Image</button>
     </form>

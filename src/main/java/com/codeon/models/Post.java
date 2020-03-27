@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -47,6 +48,9 @@ public class Post {
 
     @Column(nullable = false)
     private Integer ratingTotal;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
 
     public Long getId() {
         return id;
@@ -136,6 +140,14 @@ public class Post {
         this.postType = postType;
     }
 
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
     @Override
     public String toString() {
         return "Post{" +
@@ -149,6 +161,7 @@ public class Post {
                 ", commentList=" + commentList +
                 ", ratingList=" + ratingList +
                 ", ratingTotal=" + ratingTotal +
+                ", created=" + created +
                 '}';
     }
 }

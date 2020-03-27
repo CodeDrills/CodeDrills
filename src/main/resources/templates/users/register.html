@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header.html :: header(title = 'Register your account!')"></head>
+<!--<head th:replace="fragments/header.html :: header(title = 'Register your account!')"></head>-->
 <body>
 <h1>Register your account</h1>
 <form th:action="@{/register}" method="POST" th:object="${user}">
@@ -22,10 +22,16 @@
     <label for="bio">Personal Bio</label>
     <textarea id="bio" th:field="*{bio}" cols="30" rows="10" maxlength="250" placeholder="Please type a brief summary that is less than 250 words."></textarea>
     <br/>
-    <button class="button photo-upload" type="button" id="photo-picker">Upload Profile Image</button>
-    <input type="hidden" class="" id="photo-upload" name="photoURL">
+<!--    <button class="button photo-upload" type="button" id="photo-picker">Upload Profile Image</button>-->
+<!--    <input type="hidden" class="" id="photo-upload" name="photoURL">-->
     <button class="button photo-upload" type="button" id="resume-picker">Upload Resume Image</button>
     <input type="hidden"  class="" id="resume-upload" name="resumeURL">
+    <form th:action="@{profile_image_url}" th:method="POST">
+        <div class="modal-body" id="image">
+            <th:block th:include="fragment/photoUpload :: upload"/>
+        </div>
+        <button class="button photo-upload" type="button" id="photo-picker">Upload Profile Image</button>
+    </form>
     <br/>
     <label for="is-admin">Admin</label>
     <input id="is-admin" type="radio" value="true" name="isAdmin">

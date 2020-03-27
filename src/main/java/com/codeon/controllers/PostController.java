@@ -147,7 +147,7 @@ public class PostController {
         return "redirect:/posts/show";
     }
     //Post Comments Controllers. Consider making sep controller. Consider removing the get method after testing and only use post.
-    @GetMapping("/posts/{id}/comment")
+    @GetMapping("/posts/{id}/comments/create")
     public String getPostCommentForm(@PathVariable Long id, Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Post post = postDao.findPostById(id);
@@ -158,7 +158,7 @@ public class PostController {
         model.addAttribute("postComment", new PostComment());
         return "posts/comments/create";
     }
-    @PostMapping("/posts/{id}/comment")
+    @PostMapping("/posts/{id}/comments/create")
     public String createPostComment(@ModelAttribute Post post, @ModelAttribute PostComment postComment) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         postComment.setUser(user);

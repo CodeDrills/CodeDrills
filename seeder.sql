@@ -5,6 +5,8 @@ insert into post_types (type) values ('mentorQuestion'), ('interviewQuestion'), 
 insert into skills (skill) values ('Java'), ('HTML'), ('CSS'), ('JavaScript'), ('Thymeleaf'),
                                   ('MySql'), ('Git'), ('Ruby'), ('Python');
 
+
+
 insert into users (id, bio, email, first_name, is_admin, is_alum, is_instructor, is_student, last_name, password, profile_image_url, resume_url, username) values (1, 'User-centric user-facing approach', 'trumford0@merriam-webster.com', 'Tonnie', false, true, true, false, 'Rumford', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'http://dummyimage.com/100x221.bmp/ff4444/ffffff', 'http://dummyimage.com/227x175.bmp/ff4444/ffffff', 'trumford0');
 insert into users (id, bio, email, first_name, is_admin, is_alum, is_instructor, is_student, last_name, password, profile_image_url, resume_url, username) values (2, 'User-centric static paradigm', 'amatteau1@joomla.org', 'Alicea', false, true, false, false, 'Matteau', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'http://dummyimage.com/237x214.jpg/ff4444/ffffff', 'http://dummyimage.com/182x153.jpg/5fa2dd/ffffff', 'amatteau1');
 insert into users (id, bio, email, first_name, is_admin, is_alum, is_instructor, is_student, last_name, password, profile_image_url, resume_url, username) values (3, 'Secured incremental Graphic Interface', 'vbalfour2@icio.us', 'Vincenty', false, true, false, true, 'Balfour', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'http://dummyimage.com/101x204.jpg/dddddd/000000', 'http://dummyimage.com/233x227.bmp/ff4444/ffffff', 'vbalfour2');

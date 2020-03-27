@@ -122,7 +122,7 @@ public class PostController {
         dbPost.setCommentList(post.getCommentList());
         dbPost.setRatingList(post.getRatingList());
         dbPost.setRatingTotal(post.getRatingList());
-        dbPost.setCreated(post.getCreated());
+//        dbPost.setCreated(post.getCreated());
         postDao.save(dbPost);
         return "redirect:/posts/show";
     }

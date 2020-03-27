@@ -20,16 +20,21 @@ public class UserController {
     }
 
     @GetMapping("/sign-up")
-    public String showSignupForm(Model model){
+    public String showSignupForm(Model model) {
         model.addAttribute("user", new User());
         return "users/sign-up";
     }
 
     @PostMapping("/sign-up")
-    public String saveUser(@ModelAttribute User user){
-        String hash = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hash);
-        userDao.save(user);
-        return "redirect:/login";
+    public String saveUser(@ModelAttribute User user) {
+        if ((userDao.findUserByUsername(user.getUsername()) == null)
+            && (userDao.findUserByEmail(user.getEmail()) == null)) {
+                String hash = passwordEncoder.encode(user.getPassword());
+                user.setPassword(hash);
+                userDao.save(user);
+                return "redirect:/login";
+            } else {
+                return "redirect:/register";
+            }
+        }
     }
-}

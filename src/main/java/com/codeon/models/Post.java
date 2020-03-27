@@ -51,7 +51,7 @@ public class Post {
     private Integer ratingTotal;
 
     @Column
-    private LocalDateTime dateTime;
+    private String dateTime;
 
     public Long getId() {
         return id;
@@ -141,11 +141,11 @@ public class Post {
         this.postType = postType;
     }
 
-    public LocalDateTime getDateTime() {
+    public String getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
+    public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
     }
 

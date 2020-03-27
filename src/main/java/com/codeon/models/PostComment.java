@@ -27,7 +27,7 @@ public class PostComment {
     private Post post;
 
     @Column
-    private LocalDateTime dateTime;
+    private String dateTime;
 
     public PostComment() {}
 
@@ -63,11 +63,11 @@ public class PostComment {
         this.post = post;
     }
 
-    public LocalDateTime getDateTime() {
+    public String getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
+    public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
     }
 

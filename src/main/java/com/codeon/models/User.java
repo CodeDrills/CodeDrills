@@ -19,8 +19,12 @@ public class User {
     private String email;
     @Column(nullable = false)
     private String password;
+    @Column(nullable = false)
+    private String bio;
     @Column(name = "profile_image_url", nullable = false)
     private String profileImageURL;
+    @Column(name = "resume_url", nullable = false)
+    private String resumeURL;
     @Column(nullable = false)
     private boolean isAdmin;
     @Column(nullable = false)
@@ -38,6 +42,13 @@ public class User {
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<PostRating> ratingList;
+    @ManyToMany
+    @JoinTable(
+            name="users_skills",
+            joinColumns={@JoinColumn(name="user_id")},
+            inverseJoinColumns={@JoinColumn(name="skill_id")}
+    )
+    private List<Skill> skillList;
 
 
     public User() {}
@@ -151,5 +162,29 @@ public class User {
 
     public void setProfileImageURL(String profileImageURL) {
         this.profileImageURL = profileImageURL;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getResumeURL() {
+        return resumeURL;
+    }
+
+    public void setResumeURL(String resumeURL) {
+        this.resumeURL = resumeURL;
     }
 }

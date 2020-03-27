@@ -23,7 +23,6 @@ public class Post {
     @Column(nullable = false)
     private String body;
 
-
     @JsonBackReference
     @ManyToOne
     @JoinColumn (name = "user_id")

@@ -69,7 +69,8 @@ public class PostController {
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat formatter = new SimpleDateFormat(pattern);
         String date = formatter.format(now);
-        //HERE WE SET THE DATE OF THE POST
+        post.setDateTime(date);
+        post.setRatingTotal(0);
         Post continuePost = (Post) postDao.save(post);
         ImageURL imageURL = new ImageURL();
         imageURL.setUrl(photoURL);
@@ -121,7 +122,11 @@ public class PostController {
         dbPost.setImageURLList(post.getImageURLList());
         dbPost.setCommentList(post.getCommentList());
         dbPost.setRatingList(post.getRatingList());
-        dbPost.setRatingTotal(post.getRatingList());
+        if(dbPost.getRatingList() == null) {
+            dbPost.setRatingTotal(0);
+        } else {
+            dbPost.setRatingTotal(post.getRatingList());
+        }
 //        dbPost.setCreated(post.getCreated());
         postDao.save(dbPost);
         return "redirect:/posts/show";

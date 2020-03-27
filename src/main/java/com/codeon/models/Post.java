@@ -53,6 +53,8 @@ public class Post {
     @Column
     private String dateTime;
 
+    public Post() {}
+
     public Long getId() {
         return id;
     }

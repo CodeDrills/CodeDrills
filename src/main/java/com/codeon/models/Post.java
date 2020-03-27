@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -49,8 +50,8 @@ public class Post {
     @Column(nullable = false)
     private Integer ratingTotal;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date created;
+    @Column
+    private LocalDateTime dateTime;
 
     public Long getId() {
         return id;
@@ -140,12 +141,12 @@ public class Post {
         this.postType = postType;
     }
 
-    public Date getCreated() {
-        return created;
+    public LocalDateTime getDateTime() {
+        return dateTime;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
 
     @Override
@@ -161,7 +162,7 @@ public class Post {
                 ", commentList=" + commentList +
                 ", ratingList=" + ratingList +
                 ", ratingTotal=" + ratingTotal +
-                ", created=" + created +
+                ", dateTime=" + dateTime +
                 '}';
     }
 }

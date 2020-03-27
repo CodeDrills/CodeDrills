@@ -3,6 +3,7 @@ package com.codeon.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name="post_comments")
@@ -23,6 +24,9 @@ public class PostComment {
     @ManyToOne
     @JoinColumn (name = "post_id")
     private Post post;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
 
     public PostComment() {}
 
@@ -58,6 +62,14 @@ public class PostComment {
         this.post = post;
     }
 
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
     @Override
     public String toString() {
         return "PostComment{" +
@@ -65,6 +77,7 @@ public class PostComment {
                 ", body='" + body + '\'' +
                 ", user=" + user +
                 ", post=" + post +
+                ", created=" + created +
                 '}';
     }
 }

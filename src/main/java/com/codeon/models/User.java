@@ -50,7 +50,6 @@ public class User {
     )
     private List<Skill> skillList;
 
-
     public User() {}
 
     //added copy constructor for spring security
@@ -66,6 +65,8 @@ public class User {
         postList = copy.postList;
         commentList = copy.commentList;
         ratingList = copy.ratingList;
+        bio = copy.bio;
+        skillList = copy.skillList;
     }
 
     public long getId() {
@@ -186,5 +187,21 @@ public class User {
 
     public void setResumeURL(String resumeURL) {
         this.resumeURL = resumeURL;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public List<Skill> getSkillList() {
+        return skillList;
+    }
+
+    public void setSkillList(List<Skill> skillList) {
+        this.skillList = skillList;
     }
 }

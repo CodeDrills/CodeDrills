@@ -7,9 +7,21 @@
     Title:
     <input th:field="*{title}" />
     <br />
+    Employer:
+    <input th:field="*{employer}" />
+    <br />
     Description:
     <input th:field="*{body}" />
     <br />
+    Post Type:
+    <select name="postTypeId">
+        <option value="1">Job Sharing Recommendation</option>
+        <option value="2">Mentorship Message Board</option>
+        <option value="3">Mock Interview Question</option>
+    </select>
+    <br />
+    <button class="button photo-upload" type="button" id="photo-picker">Upload Profile Image</button>
+    <input type="hidden" name="photo-upload" class="" id="photo-upload" name="photoURL">
     <input type="submit" />
 </form>
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>

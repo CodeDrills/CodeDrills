@@ -28,7 +28,7 @@
             id: document.getElementById("user-id").value,
             name: document.getElementById("username").value,
             email: document.getElementById("email").value,
-            photoUrl: document.getElementById("photo-url").value,
+            // photoUrl: document.getElementById("photo-url").value,
         });
         window.talkSession = new Talk.Session({
             appId: "tGg3hIao",
@@ -38,7 +38,7 @@
             id: document.getElementById("other-user-id").value,
             name: document.getElementById("other-username").value,
             email: document.getElementById("other-email").value,
-            photoUrl: document.getElementById("other-photo-url").value,
+            // photoUrl: document.getElementById("other-photo-url").value,
         });
 
         const conversation = talkSession.getOrCreateConversation(Talk.oneOnOneId(me, other))

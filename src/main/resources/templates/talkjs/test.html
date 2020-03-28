@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header.html :: header(title = 'Create a Post')"></head>
+<head th:replace="fragments/header.html :: header(title = 'Test Talk JS')"></head>
 <body>
-
+<input id="user-id" type="hidden" th:value="${user.id}">
+<input id="username" type="hidden" th:value="${user.username}">
+<input id="email" type="hidden" th:value="${user.email}">
+<input id="photo-url" type="hidden" th:value="${user.profileImageURL}">
+<input id="other-user-id" type="hidden" th:value="${otherUser.id}">
+<input id="other-username" type="hidden" th:value="${otherUser.username}">
+<input id="other-email" type="hidden" th:value="${otherUser.email}">
+<input id="other-photo-url" type="hidden" th:value="${otherUser.profileImageURL}">
 <!-- minified snippet to load TalkJS without delaying your page -->
 <script>
     (function(t,a,l,k,j,s){
@@ -16,24 +23,23 @@
 
 <!-- TalkJS initialization code, which we'll customize in the next steps -->
 <script>
+    document.getElementById();
     Talk.ready.then(function() {
         const me = new Talk.User({
-            id: "51",
-            name: "CATMAN",
-            email: "catman@example.com",
-            photoUrl: "https://demo.talkjs.com/img/alice.jpg",
-            welcomeMessage: "Hey there! How are you? :-)"
+            id: document.getElementById("user-id").value,
+            name: document.getElementById("username").value,
+            email: document.getElementById("email").value,
+            photoUrl: document.getElementById("photo-url").value,
         });
         window.talkSession = new Talk.Session({
             appId: "tGg3hIao",
             me: me
         });
-         const other = new Talk.User({
-            id: "52",
-            name: "DOGMAN",
-            email: "dogman@example.com",
-            photoUrl: "https://demo.talkjs.com/img/sebastian.jpg",
-            welcomeMessage: "Hey, how can I help?"
+        const other = new Talk.User({
+            id: document.getElementById("other-user-id").value,
+            name: document.getElementById("other-username").value,
+            email: document.getElementById("other-email").value,
+            photoUrl: document.getElementById("other-photo-url").value,
         });
 
         const conversation = talkSession.getOrCreateConversation(Talk.oneOnOneId(me, other))

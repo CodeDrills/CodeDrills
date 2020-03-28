@@ -20,7 +20,7 @@ public class TalkJSTestController {
     public TalkJSTestController(UserRepo userDao) {
         this.userDao = userDao;
     }
-
+    //comment to make it where i can commit
     @GetMapping("/test/{otherUserId}")
     public String getTestHtml(Model model, Principal principal, @PathVariable Long otherUserId) {
         String username;

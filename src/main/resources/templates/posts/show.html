@@ -9,6 +9,12 @@
     <p th:text = "${post.body}"></p>
     <p th:text = "${post.user.email}"></p>
 <!--    NEW TESTING-->
+
+<!-- Will working on ratings -->
+    <a th:href="@{|/posts/${post.id}/ratings/upvote|}"><button>Upvote</button></a>
+    <p>Rating Total: <span th:text = "${post.ratingTotal}"></span></p>
+<!-- END Will working on ratings -->
+
     <div th:each="comment : ${post.commentList}">
         <p th:text = "${comment.body}"></p>
     </div>

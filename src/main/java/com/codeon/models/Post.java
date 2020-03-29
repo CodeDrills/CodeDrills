@@ -2,6 +2,8 @@ package com.codeon.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Formula;
+import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.*;
 import java.util.List;
@@ -46,6 +48,7 @@ public class Post {
     private List<PostRating> ratingList;
 
     @Column(nullable = false)
+    @Formula(value = "(SELECT sum(r.rating) FROM post_ratings r WHERE r.post_id = id)")
     private Integer ratingTotal;
 
     @Column

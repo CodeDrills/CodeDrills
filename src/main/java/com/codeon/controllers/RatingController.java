@@ -40,6 +40,7 @@ public class RatingController {
                 rating.setRating(1);
                 postRatingDao.save(rating);
                 post.setRatingTotal(post.getRatingList());
+                System.out.println("Post rating total: " + post.getRatingTotal());
                 return "redirect:/posts/show";
             }
         }

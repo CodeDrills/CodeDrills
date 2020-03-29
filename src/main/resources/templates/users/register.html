@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<!--<head th:replace="fragments/header.html :: header(title = 'Register your account!')"></head>-->
+<head th:replace="fragments/header.html :: header(title = 'Register your account!')"></head>
 <body>
+
 <h1>Register your account</h1>
+
+
+
 <form th:action="@{/register}" method="POST" th:object="${user}">
     <label for="firstName">First Name</label>
     <input id="firstName" th:field="*{firstName}"/>

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
     <meta charset="UTF-8">
-    <th:block th:include="fragment/header :: main-header('Your profile')"/>
+
     <title>Title</title>
 </head>
 <body>
+<h1>Welcome to your profile <span th:text="${user.username}">user</span>!</h1>
 
+<div th:replace="fragments/body-scripts.html :: body-scripts"></div>
 </body>
 </html>

@@ -10,21 +10,27 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
+
             <li class="nav-item active">
                 <a class="nav-link" href="/posts/show">View Post</a>
             </li>
+
             <a sec:authorize = "!isAuthenticated()">
                 <li class="nav-item">
                     <a class="nav-link" href="/register">register</a>
                 </li>
             </a>
+
             <a sec:authorize = "isAuthenticated()">
                 <li class="nav-item">
                     <a class="nav-link" href="/profile">profile</a>
                 </li>
             </a>
-            <a sec:authorize = "!isAuthenticated()">
+
+            <a sec:authorize = "!isAuthenticated()" th:href="@{/login}">
             </a>
+
+
             <a sec:authorize = "isAuthenticated()">
             <li class="nav-item">
                 <form th:action="@{/logout}" th:method="post">
@@ -32,10 +38,13 @@
                 </form>
             </li>
             </a>
+
+            <a sec:authorize=   "isAuthenticated()">
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
+            </a>
         </ul>
     </div>
 </nav>

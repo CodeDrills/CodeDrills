@@ -14,7 +14,7 @@
             </li>
             <a sec:authorize = "!isAuthenticated()">
                 <li class="nav-item">
-                    <a class="nav-link" href="/sign-up">profile</a>
+                    <a class="nav-link" href="/register">register</a>
                 </li>
             </a>
             <a sec:authorize = "isAuthenticated()">
@@ -23,7 +23,7 @@
                 </li>
             </a>
             <li class="nav-item">
-                <form th:action="@{/logout_app}" th:method="post">
+                <form th:action="@{/logout}" th:method="post">
                     <button class="btn-link btn" style="margin-top: 8px">Logout</button>
                 </form>
             </li>

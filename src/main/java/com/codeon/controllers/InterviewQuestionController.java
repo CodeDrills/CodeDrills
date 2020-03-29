@@ -40,22 +40,22 @@ public class InterviewQuestionController {
     @GetMapping("/interview-question")
     @ResponseBody
     public List<Post> showInterviewQuestionsAsJSON() {
-        System.out.println(postDao.findAllPostsInterviewQuestions());
-        return postDao.findAllPostsInterviewQuestions();
+//        return postDao.findAllByPostTypeId(2L);
+        return postDao.findAllByPostTypeId_Type("interview_question");
     }
 
-    @GetMapping("/interview-question/show")
-    public String showInterviewQuestions(Model model, Principal principal) {
-        System.out.println("here");
-        List<Post> interviewQuestions = postDao.findAllPostsInterviewQuestions();
-        String username = "";
-        User user = new User();
-        if (principal != null) {
-            username = principal.getName();
-            user = userDao.findUserByUsername(username);
-        }
-        model.addAttribute("user", user);
-        model.addAttribute("postList", interviewQuestions);
-        return "interview-questions/interview-question";
-    }
+//    @GetMapping("/interview-question/show")
+//    public String showInterviewQuestions(Model model, Principal principal) {
+//        System.out.println("here");
+//        List<Post> interviewQuestions = postDao.findAllPostsInterviewQuestions();
+//        String username = "";
+//        User user = new User();
+//        if (principal != null) {
+//            username = principal.getName();
+//            user = userDao.findUserByUsername(username);
+//        }
+//        model.addAttribute("user", user);
+//        model.addAttribute("postList", interviewQuestions);
+//        return "interview-questions/interview-question";
+//    }
 }

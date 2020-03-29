@@ -25,14 +25,23 @@ public class User {
     private String profileImageURL;
     @Column(name = "resume_url", nullable = false)
     private String resumeURL;
-    @Column(nullable = false)
-    private boolean isAdmin;
-    @Column(nullable = false)
-    private boolean isInstructor;
-    @Column(nullable = false)
-    private boolean isAlum;
-    @Column(nullable = false)
-    private boolean isStudent;
+    @Column(name = "is_active", nullable = false)
+    private boolean isActive;
+//    @Column(nullable = false)
+//    private boolean isAdmin;
+//    @Column(nullable = false)
+//    private boolean isInstructor;
+//    @Column(nullable = false)
+//    private boolean isAlum;
+//    @Column(nullable = false)
+//    private boolean isStudent;
+    @ManyToMany
+    @JoinTable(
+        name="users_roles",
+        joinColumns={@JoinColumn(name="user_id")},
+        inverseJoinColumns={@JoinColumn(name="security_role_id")}
+    )
+    private List<SecurityRole> roleList;
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Post> postList;
@@ -53,21 +62,22 @@ public class User {
     public User() {}
 
     //added copy constructor for spring security
-    public User(User copy) {
-        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
-        email = copy.email;
-        username = copy.username;
-        password = copy.password;
-        isAdmin = copy.isAdmin;
-        isInstructor = copy.isInstructor;
-        isAlum = copy.isAlum;
-        isStudent = copy.isStudent;
-        postList = copy.postList;
-        commentList = copy.commentList;
-        ratingList = copy.ratingList;
-        bio = copy.bio;
-        skillList = copy.skillList;
-    }
+//    public User(User copy) {
+//        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+//        email = copy.email;
+//        username = copy.username;
+//        password = copy.password;
+//        isAdmin = copy.isAdmin;
+//        isInstructor = copy.isInstructor;
+//        isAlum = copy.isAlum;
+//        isStudent = copy.isStudent;
+//        postList = copy.postList;
+//        commentList = copy.commentList;
+//        ratingList = copy.ratingList;
+//        bio = copy.bio;
+//        skillList = copy.skillList;
+//    }
+
 
     public long getId() {
         return id;
@@ -83,6 +93,22 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -101,36 +127,44 @@ public class User {
         this.password = password;
     }
 
-    public boolean isAdmin() {
-        return isAdmin;
+    public String getBio() {
+        return bio;
     }
 
-    public void setAdmin(boolean admin) {
-        isAdmin = admin;
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
-    public boolean isInstructor() {
-        return isInstructor;
+    public String getProfileImageURL() {
+        return profileImageURL;
     }
 
-    public void setInstructor(boolean instructor) {
-        isInstructor = instructor;
+    public void setProfileImageURL(String profileImageURL) {
+        this.profileImageURL = profileImageURL;
     }
 
-    public boolean isAlum() {
-        return isAlum;
+    public String getResumeURL() {
+        return resumeURL;
     }
 
-    public void setAlum(boolean alum) {
-        isAlum = alum;
+    public void setResumeURL(String resumeURL) {
+        this.resumeURL = resumeURL;
     }
 
-    public boolean isStudent() {
-        return isStudent;
+    public boolean isActive() {
+        return isActive;
     }
 
-    public void setStudent(boolean student) {
-        isStudent = student;
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public List<SecurityRole> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<SecurityRole> roleList) {
+        this.roleList = roleList;
     }
 
     public List<Post> getPostList() {
@@ -155,46 +189,6 @@ public class User {
 
     public void setRatingList(List<PostRating> ratingList) {
         this.ratingList = ratingList;
-    }
-
-    public String getProfileImageURL() {
-        return profileImageURL;
-    }
-
-    public void setProfileImageURL(String profileImageURL) {
-        this.profileImageURL = profileImageURL;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getResumeURL() {
-        return resumeURL;
-    }
-
-    public void setResumeURL(String resumeURL) {
-        this.resumeURL = resumeURL;
-    }
-
-    public String getBio() {
-        return bio;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
     }
 
     public List<Skill> getSkillList() {

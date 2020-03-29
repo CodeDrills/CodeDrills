@@ -12,6 +12,10 @@
 
 <!-- Will working on ratings -->
     <a th:href="@{|/posts/${post.id}/ratings/upvote|}"><button>Upvote</button></a>
+    <a th:href="@{|/posts/${post.id}/ratings/downvote|}"><button>Downvote</button></a>
+    <div th:each="postRating : ${post.ratingList}">
+        <p th:text="${postRating.rating}"></p>
+    </div>
     <p>Rating Total: <span th:text = "${post.ratingTotal}"></span></p>
 <!-- END Will working on ratings -->
 

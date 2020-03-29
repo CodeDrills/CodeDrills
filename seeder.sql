@@ -108,6 +108,7 @@ insert into posts (user_id, post_type_id, title, body, date_time, employer, rati
 insert into post_ratings (user_id, post_id, rating) values (1, 1, 1);
 insert into post_ratings (user_id, post_id, rating) values (2, 1, 1);
 insert into post_ratings (user_id, post_id, rating) values (3, 1, 1);
+insert into post_ratings (user_id, post_id, rating) values (4, 1, 0);
 insert into post_ratings (user_id, post_id, rating) values (4, 2, 1);
 insert into post_ratings (user_id, post_id, rating) values (5, 2, 0);
 insert into post_ratings (user_id, post_id, rating) values (6, 2, 1);

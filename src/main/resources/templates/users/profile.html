@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
     <meta charset="UTF-8">
     <head th:replace="fragments/header.html :: header(title = 'Profile')"></head>
     <title>Title</title>
@@ -17,6 +17,8 @@
 
 <h1>Update your Bio</h1>
 
+<h1>Here are your Post</h1>
+<p><span th:each="post: ${post}"></span></body></p>
 
 
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>

@@ -53,6 +53,12 @@ public class Post {
 
     public Post() {}
 
+    public Post(String title,String body,String dateTime) {
+        this.title = title;
+        this.body = body;
+        this.dateTime = dateTime;
+    }
+
     public Long getId() {
         return id;
     }

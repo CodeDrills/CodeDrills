@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <meta charset="UTF-8">
-
+    <head th:replace="fragments/header.html :: header(title = 'Profile')"></head>
     <title>Title</title>
 </head>
 <body>
+<nav th:replace="fragments/navbar.html :: navbar"></nav>
+
+
+
 <h1>Welcome to your profile <span th:text="${user.username}">user</span>!</h1>
+<h3 class="mt-0">User information:</h3>
+<p><span th:text="${user.firstName}"></span></p>
+<h3 class="mt-0">About Me:</h3>
+<p><span th:text="${user.bio}"></span></p>
+
+<h1>Update your Bio</h1>
+
+
 
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>
 </body>

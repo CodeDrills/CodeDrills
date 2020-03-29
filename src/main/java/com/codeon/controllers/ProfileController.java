@@ -9,6 +9,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +33,17 @@ public class ProfileController {
     public String profileview(Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", userDao.getOne((user.getId())));
+
+
         return"users/profile";
+    }
+
+    @PostMapping("/user/{id}edit")
+    public String profileEdit(@PathVariable long id, @ModelAttribute User user){
+        User updateInfo = userDao.getOne(id);
+            updateInfo.setBio(user.getBio());
+            userDao.save(updateInfo);
+        return "redirect:/profile";
     }
 
 

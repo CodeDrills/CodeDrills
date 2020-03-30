@@ -1,22 +1,17 @@
 package com.codeon.controllers;
 
 import com.codeon.models.Post;
-
-
 import com.codeon.models.User;
-
 import com.codeon.repositories.PostRepo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-
-@Controller
-public class APIQuestionsController {
-
 import java.util.List;
 import java.util.Random;
+
+
+
 
 @Controller
 public class APIQuestionsController {
@@ -39,7 +34,7 @@ public class APIQuestionsController {
     public Post getQuestion(@PathVariable Long id) {
         return postDao.findPostById(id);
 
-
+    }
     @GetMapping("/api/questions/show-one")
     @ResponseBody
     public Post getQuestion() {

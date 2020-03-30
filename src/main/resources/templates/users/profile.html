@@ -6,9 +6,6 @@
 </head>
 <body>
 <h1>Welcome to your profile <span th:text="${user.username}">user</span>!</h1>
-<div th:each="role : ${user.roleList}">
-    <p th:text = "${role.role}"></p>
-</div>
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>
 </body>
 </html>

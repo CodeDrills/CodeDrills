@@ -5,6 +5,7 @@ import com.codeon.models.Post;
 import com.codeon.models.User;
 import com.codeon.repositories.PostRepo;
 import com.codeon.repositories.UserRepo;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,8 @@ public class ProfileController {
     private UserRepo userDao;
     private PostRepo postDao;
 
+    @Value("${filestack.api.key}")
+    private String fsapi;
 
     public ProfileController(UserRepo userDao, PostRepo postDao){
         this.userDao= userDao;
@@ -36,6 +39,7 @@ public class ProfileController {
         List<Post> posts = postDao.getAllByUser_Id(user.getId());
         model.addAttribute("post", posts);
         model.addAttribute("user", userDao.getOne((user.getId())));
+        model.addAttribute("fsapi", fsapi);
         return "users/profile";
     }
 

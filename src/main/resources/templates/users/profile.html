@@ -22,6 +22,12 @@
 <textarea class="form-control" id="about_me" name="aboutMe" type ="text" th:field="*{user.bio}"
           placeholder="Tell us about you..."></textarea>
 
+
+<button type="button" class="btn btn-light" data-toggle="modal" id="add-picture" data-target="#pictureModal">Edit
+    Picture</button>
+
+
+
 <h1>Here are your Post</h1>
 <main class="container">
     <div th:each="post : ${post}">

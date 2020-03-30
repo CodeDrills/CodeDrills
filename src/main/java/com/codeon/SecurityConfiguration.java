@@ -59,7 +59,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/posts/{id}/delete"// only authenticated users can delete ads
 //                        "posts/show" //test
                 )
-                .authenticated()
-        ;
+                .authenticated();
     }
 }

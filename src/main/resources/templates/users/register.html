@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header.html :: header(title = 'Register your account!')"></head>
 <body>
-
+<nav th:replace="fragments/navbar.html :: navbar"></nav>
 <h1>Register your account</h1>
 
 
@@ -30,12 +30,6 @@
     <input type="hidden" class="" id="photo-upload" name="photoURL">
     <button class="button photo-upload" type="button" id="resume-picker">Upload Resume Image</button>
     <input type="hidden"  class="" id="resume-upload" name="resumeURL">
-<!--    <form th:action="@{profile_image_url}" th:method="POST">-->
-<!--        <div class="modal-body" id="image">-->
-<!--            <th:block th:include="fragment/body-scripts"/>-->
-<!--        </div>-->
-<!--        <button class="button photo-upload" type="button" id="photo-picker">Upload Profile Image</button>-->
-<!--    </form>-->
     <br/>
     <label for="is-admin">Admin</label>
     <input id="is-admin" type="radio" value="ADMIN" name="admin">

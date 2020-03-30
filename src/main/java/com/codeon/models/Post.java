@@ -59,6 +59,12 @@ public class Post {
 
     public Post() {}
 
+    public Post(String title,String body,String dateTime) {
+        this.title = title;
+        this.body = body;
+        this.dateTime = dateTime;
+    }
+
     public Long getId() {
         return id;
     }
@@ -129,6 +135,14 @@ public class Post {
             total += postRating.getRating();
         }
         this.ratingTotal = total;
+    }
+
+    public Integer getRatingTotal(List<PostRating> ratingList) {
+        Integer total = 0;
+        for(PostRating postRating : ratingList) {
+            total += postRating.getRating();
+        }
+        return total;
     }
 
     public List<ImageURL> getImageURLList() {

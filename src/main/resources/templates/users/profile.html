@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
     <meta charset="UTF-8">
     <head th:replace="fragments/header.html :: header(title = 'Profile')"></head>
     <title>Title</title>
@@ -24,6 +24,30 @@
 <!--                  placeholder="Update any new accomplishments"></textarea>-->
 <!--    </form>-->
 <!--</div>-->
+
+<h3 class="mt-0">User information:</h3>
+<p><span th:text="${user.firstName}"></span></p>
+<h3 class="mt-0">About Me:</h3>
+<p><span th:text="${user.bio}"></span></p>
+
+<h1>Update your Bio</h1>
+<a th:href="@{|/user/${user.id}/edit|}"><button>Edit info</button></a>
+<label for="about_me" class="col-form-label">About Me:</label>
+<textarea class="form-control" id="about_me" name="aboutMe" type ="text" th:field="*{user.bio}"
+          placeholder="Tell us about you..."></textarea>
+
+
+<button type="button" class="btn btn-light" data-toggle="modal" id="add-picture" data-target="#pictureModal">Edit
+    Picture</button>
+
+
+
+
+
+
+
+
+
 
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>
 </body>

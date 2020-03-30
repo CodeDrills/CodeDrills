@@ -15,10 +15,12 @@ public class SecurityRole {
 
     @Column(nullable = false)
     private String role;
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn (name = "user_id")
-    private User user;
+//    @JsonBackReference
+//    @ManyToOne
+//    @JoinColumn (name = "user_id")
+//    private User user;
+    @ManyToMany(mappedBy = "roleList")
+    private List<User> userList;
 
     public SecurityRole() {}
 
@@ -38,11 +40,11 @@ public class SecurityRole {
         this.role = role;
     }
 
-    public User getUser() {
-        return user;
+    public List<User> getUserList() {
+        return userList;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
     }
 }

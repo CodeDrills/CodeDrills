@@ -43,8 +43,24 @@
     <label for="is-student">Student</label>
     <input id="is-student" type="radio" value="STUDENT" name="student">
     <br/>
+    <div class="skills-div" id="skills-div">
+        <input type="text" id="skills-param-0" name="skills-param" placeholder="Please input a skill.">
+    </div>
+    <button class="add-skill-button" id="add-skill-button">Add Another Skill</button>
     <input value="Sign me up!" type="submit" />
 </form>
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>
+<script>
+    let i = 0;
+    document.getElementById("add-skill-button").addEventListener("click", function(e) {
+        e.preventDefault();
+        let newDiv = document.createElement("div");
+        // and give it some content
+        newDiv.innerHTML = `<input type="text" id="skills-param-${i}" name="skills-param" placeholder="Please input a skill.">`
+        // add the text node to the newly created div
+        document.querySelector("#skills-div").appendChild(newDiv);
+        i++;
+    })
+</script>
 </body>
 </html>

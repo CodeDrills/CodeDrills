@@ -1,0 +1,5 @@
+USE codeon_db;
+SELECT * FROM posts p JOIN post_types t ON p.post_type_id = t.id WHERE t.type = 'interview_question';
+
+# SELECT sum(r.rating) FROM post_ratings r WHERE r.user_id = post0_.id;
+

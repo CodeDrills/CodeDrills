@@ -1,7 +1,9 @@
 package com.codeon.controllers;
 
 import com.codeon.models.SecurityRole;
+import com.codeon.models.Skill;
 import com.codeon.repositories.SecurityRoleRepo;
+import com.codeon.repositories.SkillRepo;
 import com.codeon.repositories.UserRepo;
 import com.codeon.models.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,11 +23,13 @@ public class UserController {
     private UserRepo userDao;
     private PasswordEncoder passwordEncoder;
     private SecurityRoleRepo securityRoleDao;
+    private SkillRepo skillDao;
 
-    public UserController(UserRepo userDao, PasswordEncoder passwordEncoder, SecurityRoleRepo securityRoleDao) {
+    public UserController(UserRepo userDao, PasswordEncoder passwordEncoder, SecurityRoleRepo securityRoleDao, SkillRepo skillDao) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
         this.securityRoleDao = securityRoleDao;
+        this.skillDao = skillDao;
     }
 
     @GetMapping("/register")
@@ -41,7 +45,7 @@ public class UserController {
 
     //this is going to need to be refactored MAKE IT ALL A MAP or something.
     @PostMapping("/register")
-    public String registerUser(@RequestParam String photoURL, @RequestParam String resumeURL, @RequestParam(required = false) String admin, @RequestParam(required = false) String instructor, @RequestParam(required = false) String alumnus, @RequestParam(required = false) String student, @ModelAttribute User user, Principal principal) {
+    public String registerUser(@RequestParam(name = "skills-param") List<String> skillsStringList, @RequestParam String photoURL, @RequestParam String resumeURL, @RequestParam(required = false) String admin, @RequestParam(required = false) String instructor, @RequestParam(required = false) String alumnus, @RequestParam(required = false) String student, @ModelAttribute User user, Principal principal) {
         //This prinicipal logic may be redundant or need to be deleted if spring security covers keeping logged in users away from this
         if(principal != null) {
             //which controller should this go to? profile?
@@ -57,6 +61,7 @@ public class UserController {
         user.setResumeURL(resumeURL);
         user = userDao.save(user);
         List<SecurityRole> userRoleList = new ArrayList<>();
+        List<Skill> userSkillList = new ArrayList<>();
         if(admin != null) {
             if(securityRoleDao.findSecurityRoleByRole("ADMIN") == null) {
                 SecurityRole addRole = new SecurityRole();
@@ -121,9 +126,28 @@ public class UserController {
                 userRoleList.add(securityRoleDao.save(updateRole));
             }
         }
+        for(String skill : skillsStringList) {
+            if(skill != "") {
+                if(skillDao.findSkillByName(skill) == null) {
+                    Skill addSkill = new Skill();
+                    addSkill.setName(skill);
+                    List<User> userList = new ArrayList<>();
+                    userList.add(user);
+                    addSkill.setUserList(userList);
+                    userSkillList.add(skillDao.save(addSkill));
+                } else {
+                    Skill updateSkill = skillDao.findSkillByName(skill);
+                    List<User> userList = updateSkill.getUserList();
+                    userList.add(user);
+                    updateSkill.setUserList(userList);
+                    userSkillList.add(skillDao.save(updateSkill));
+                }
+            }
+        }
         //CONSIDER ADDING FEATURE WHERE AN ADMIN VERIFIES ALL ACCOUNTS AND PERMS if that is the case this will be set to false initially
         user.setActive(true);
         user.setRoleList(userRoleList);
+        user.setSkillList(userSkillList);
         userDao.save(user);
         return "redirect:/login";
     }

@@ -18,6 +18,7 @@
                 return response.json()
             })
             .then(res => {
+
                 startButton.parentNode.removeChild(startButton);
                 fill.innerHTML = `
                     <div id="question-${res.id}">
@@ -26,7 +27,21 @@
                         <form action="api/question/${res.id}" method="post">
                             <input type="radio" value>
                         </form>
+                    </div>;
+
+                    startButton.parentNode.removeChild(startButton);
+                    fill.innerHTML = `
+                    <div id="question-${res.id}">
+                        <p>Question Title: ${res.title}</p>
+                        <p>Question: ${res.body}</p>
+                        <div id="answer-${res.id}"><p>Answer: ${res.answer}</p></div>
+                        <button id="answer-button-${res.id}">Show Answer</button>
                     </div>`;
+                document.getElementById(`answer-${res.id}`).style.display = "none";
+                document.getElementById(`answer-button-${res.id}`).addEventListener("click", function() {
+                    document.getElementById(`answer-${res.id}`).style.display = "block";
+                })
+
             })
     })
 </script>

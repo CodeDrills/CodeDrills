@@ -131,6 +131,14 @@ public class Post {
         this.ratingTotal = total;
     }
 
+    public Integer getRatingTotal(List<PostRating> ratingList) {
+        Integer total = 0;
+        for(PostRating postRating : ratingList) {
+            total += postRating.getRating();
+        }
+        return total;
+    }
+
     public List<ImageURL> getImageURLList() {
         return imageURLList;
     }

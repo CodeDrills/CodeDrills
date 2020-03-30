@@ -18,7 +18,20 @@
 <h1>Update your Bio</h1>
 
 <h1>Here are your Post</h1>
-<p><span th:each="post: ${post}"></span></body></p>
+<main class="container">
+    <div th:each="post : ${post}">
+        <a th:href="@{|/posts/${post.id}|}"><h1 th:text="${post.title}"></h1></a>
+        <p th:text="${post.body}"></p>
+        <a th:href="'mailto:'+${post.user.email}"><span th:text="${post.user.email}"></span> </a>
+        <br>
+        <a th:href="@{|/posts/${post.id}/edit|}"><button>Edit Post</button></a>
+        <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST" style="display:inline">
+            <button>Delete Post</button>
+        </form>
+        <hr>
+    </div>
+    <h1> Here are your comments</h1>
+</main>
 
 
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>

@@ -33,21 +33,15 @@ public class ProfileController {
     @GetMapping("/profile")
     public String profileview(Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        List<Post> posts = postDao.getAllByUser_Id(user.getId());
-//        model.addAttribute("post", posts);
+        List<Post> posts = postDao.getAllByUser_Id(user.getId());
+        model.addAttribute("post", posts);
         model.addAttribute("user", userDao.getOne((user.getId())));
         return "users/profile";
     }
 
 
 
-    @PostMapping("profile/{id}/edit")
-    public String profileEdit(@PathVariable long id, @ModelAttribute User user){
-        User updateInfo = userDao.getOne(id);
-            updateInfo.setBio(user.getBio());
-            userDao.save(updateInfo);
-        return "redirect:/profile";
-    }
+
 
 
 }

@@ -10,6 +10,7 @@
 
 
 <h1>Welcome to your profile <span th:text="${user.username}">user</span>!</h1>
+
 <h3 class="mt-0">User information:</h3>
 <p><span th:text="${user.firstName}"></span></p>
 <h3 class="mt-0">About Me:</h3>
@@ -36,6 +37,8 @@
     </div>
     <h1> Here are your comments</h1>
 </main>
+
+
 
 
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>

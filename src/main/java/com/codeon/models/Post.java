@@ -2,6 +2,8 @@ package com.codeon.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.Formula;
+import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.*;
 import java.util.List;
@@ -20,8 +22,11 @@ public class Post {
     @Column(length = 100)
     private String employer;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "text")
     private String body;
+
+    @Column(columnDefinition = "text")
+    private String answer;
 
     @JsonBackReference
     @ManyToOne
@@ -46,6 +51,7 @@ public class Post {
     private List<PostRating> ratingList;
 
     @Column(nullable = false)
+    @Formula(value = "(SELECT sum(r.rating) FROM post_ratings r WHERE r.post_id = id)")
     private Integer ratingTotal;
 
     @Column
@@ -129,6 +135,14 @@ public class Post {
             total += postRating.getRating();
         }
         this.ratingTotal = total;
+    }
+
+    public Integer getRatingTotal(List<PostRating> ratingList) {
+        Integer total = 0;
+        for(PostRating postRating : ratingList) {
+            total += postRating.getRating();
+        }
+        return total;
     }
 
     public List<ImageURL> getImageURLList() {

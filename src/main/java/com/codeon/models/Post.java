@@ -22,8 +22,11 @@ public class Post {
     @Column(length = 100)
     private String employer;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "text")
     private String body;
+
+    @Column(columnDefinition = "text")
+    private String answer;
 
     @JsonBackReference
     @ManyToOne

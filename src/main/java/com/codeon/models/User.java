@@ -27,20 +27,8 @@ public class User {
     private String resumeURL;
     @Column(name = "is_active", nullable = false)
     private boolean isActive;
-//    @Column(nullable = false)
-//    private boolean isAdmin;
-//    @Column(nullable = false)
-//    private boolean isInstructor;
-//    @Column(nullable = false)
-//    private boolean isAlum;
-//    @Column(nullable = false)
-//    private boolean isStudent;
-    @ManyToMany
-    @JoinTable(
-        name="users_roles",
-        joinColumns={@JoinColumn(name="user_id")},
-        inverseJoinColumns={@JoinColumn(name="security_role_id")}
-    )
+    @JsonManagedReference
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
     private List<SecurityRole> roleList;
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -62,21 +50,14 @@ public class User {
     public User() {}
 
     //added copy constructor for spring security
-//    public User(User copy) {
-//        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
-//        email = copy.email;
-//        username = copy.username;
-//        password = copy.password;
-//        isAdmin = copy.isAdmin;
-//        isInstructor = copy.isInstructor;
-//        isAlum = copy.isAlum;
-//        isStudent = copy.isStudent;
-//        postList = copy.postList;
-//        commentList = copy.commentList;
-//        ratingList = copy.ratingList;
-//        bio = copy.bio;
-//        skillList = copy.skillList;
-//    }
+    public User(User copy) {
+        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
+        roleList = copy.roleList;
+        isActive = copy.isActive;
+    }
 
 
     public long getId() {

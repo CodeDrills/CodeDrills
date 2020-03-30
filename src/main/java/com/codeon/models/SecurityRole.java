@@ -1,5 +1,7 @@
 package com.codeon.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,9 +15,10 @@ public class SecurityRole {
 
     @Column(nullable = false)
     private String role;
-
-    @ManyToMany(mappedBy = "roleList")
-    private List<User> userList;
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn (name = "user_id")
+    private User user;
 
     public SecurityRole() {}
 
@@ -35,11 +38,11 @@ public class SecurityRole {
         this.role = role;
     }
 
-    public List<User> getUserList() {
-        return userList;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

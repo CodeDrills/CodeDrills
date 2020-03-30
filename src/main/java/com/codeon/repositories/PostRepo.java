@@ -13,8 +13,8 @@ public interface PostRepo extends JpaRepository<Post, Long> {
     public Post findPostByTitle(String title);
     public Post findPostByPostTypeId(Long id);
     //bellow was throwing errors. did not modify just commented out for compiling
-//    List<Post> getAllPostbyusersid (long id);
-    List <Post> getAllByUser_Id(Long id);
+//    public List<Post> getAllPostbyusersid (long id);
+    public List <Post> getAllByUser_Id(Long id);
     public List<Post> findAllByPostTypeId_Type(String type);
 
 }

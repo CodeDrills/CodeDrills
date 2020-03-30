@@ -15,11 +15,18 @@
                 return response.json()
             })
             .then(res => {
+<<<<<<< HEAD
                 if(document.getElementById("start-button") !== null) {
                     document.getElementById("start-button").parentNode.removeChild(document.getElementById("start-button"));
                 }
                 fill.innerHTML= "";
                 fill.innerHTML = `
+=======
+          if(document.getElementById("start-button") !== null) {
+                    document.getElementById("start-button").parentNode.removeChild(document.getElementById("start-button"));
+                }
+                    fill.innerHTML = `
+>>>>>>> 5e8bca51f5d17f9dfa7c5c7aa8048c973bee6f4a
                     <div id="question-${res.id}">
                         <p>Question Title: ${res.title}</p>
                         <p>Question: ${res.body}</p>
@@ -34,7 +41,6 @@
                 document.getElementById(`question-button-${res.id}`).addEventListener("click", function () {
                     getQuestion();
                 })
-
             })
     }
     document.getElementById("start-button").addEventListener("click", function() {

@@ -4,7 +4,6 @@ import com.codeon.models.Post;
 import com.codeon.repositories.PostRepo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-
 import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 import java.util.Random;
@@ -13,7 +12,6 @@ import java.util.Random;
 public class APIQuestionsController {
 
     private Random random = new Random();
-
     private PostRepo postDao;
 
     public APIQuestionsController(PostRepo postDao) {
@@ -24,7 +22,6 @@ public class APIQuestionsController {
     public String getQuestionView() {
         return "questions/show";
     }
-
     @GetMapping("/api/questions/show-one")
     @ResponseBody
     public Post getQuestion() {

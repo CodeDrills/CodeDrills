@@ -55,26 +55,71 @@ public class UserController {
         user.setPassword(hash);
         user.setProfileImageURL(photoURL);
         user.setResumeURL(resumeURL);
+        user = userDao.save(user);
         List<SecurityRole> userRoleList = new ArrayList<>();
         if(admin != null) {
-            SecurityRole addRole = new SecurityRole();
-            addRole.setRole("ADMIN");
-            userRoleList.add(addRole);
+            if(securityRoleDao.findSecurityRoleByRole("ADMIN") == null) {
+                SecurityRole addRole = new SecurityRole();
+                addRole.setRole("ADMIN");
+                List<User> userList = new ArrayList<>();
+                userList.add(user);
+                addRole.setUserList(userList);
+                userRoleList.add(securityRoleDao.save(addRole));
+            } else {
+                SecurityRole updateRole = securityRoleDao.findSecurityRoleByRole("ADMIN");
+                List<User> userList = updateRole.getUserList();
+                userList.add(user);
+                updateRole.setUserList(userList);
+                userRoleList.add(securityRoleDao.save(updateRole));
+            }
         }
         if(instructor != null) {
-            SecurityRole addRole = new SecurityRole();
-            addRole.setRole("INSTRUCTOR");
-            userRoleList.add(addRole);
+            if(securityRoleDao.findSecurityRoleByRole("INSTRUCTOR") == null) {
+                SecurityRole addRole = new SecurityRole();
+                addRole.setRole("INSTRUCTOR");
+                List<User> userList = new ArrayList<>();
+                userList.add(user);
+                addRole.setUserList(userList);
+                userRoleList.add(securityRoleDao.save(addRole));
+            } else {
+                SecurityRole updateRole = securityRoleDao.findSecurityRoleByRole("INSTRUCTOR");
+                List<User> userList = updateRole.getUserList();
+                userList.add(user);
+                updateRole.setUserList(userList);
+                userRoleList.add(securityRoleDao.save(updateRole));
+            }
         }
         if(alumnus != null) {
-            SecurityRole addRole = new SecurityRole();
-            addRole.setRole("ALUMNUS");
-            userRoleList.add(addRole);
+            if(securityRoleDao.findSecurityRoleByRole("ALUMNUS") == null) {
+                SecurityRole addRole = new SecurityRole();
+                addRole.setRole("ALUMNUS");
+                List<User> userList = new ArrayList<>();
+                userList.add(user);
+                addRole.setUserList(userList);
+                userRoleList.add(securityRoleDao.save(addRole));
+            } else {
+                SecurityRole updateRole = securityRoleDao.findSecurityRoleByRole("ALUMNUS");
+                List<User> userList = updateRole.getUserList();
+                userList.add(user);
+                updateRole.setUserList(userList);
+                userRoleList.add(securityRoleDao.save(updateRole));
+            }
         }
         if(student != null) {
-            SecurityRole addRole = new SecurityRole();
-            addRole.setRole("STUDENT");
-            userRoleList.add(addRole);
+            if(securityRoleDao.findSecurityRoleByRole("STUDENT") == null) {
+                SecurityRole addRole = new SecurityRole();
+                addRole.setRole("STUDENT");
+                List<User> userList = new ArrayList<>();
+                userList.add(user);
+                addRole.setUserList(userList);
+                userRoleList.add(securityRoleDao.save(addRole));
+            } else {
+                SecurityRole updateRole = securityRoleDao.findSecurityRoleByRole("STUDENT");
+                List<User> userList = updateRole.getUserList();
+                userList.add(user);
+                updateRole.setUserList(userList);
+                userRoleList.add(securityRoleDao.save(updateRole));
+            }
         }
         //CONSIDER ADDING FEATURE WHERE AN ADMIN VERIFIES ALL ACCOUNTS AND PERMS if that is the case this will be set to false initially
         user.setActive(true);

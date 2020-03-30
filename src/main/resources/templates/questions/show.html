@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/header.html :: header(title = 'Interview Questions')"></head>
+<body>
+<nav th:replace="fragments/navbar.html :: navbar"></nav>
+<button class="start-button" id="start-button">Start Question Round</button>
+<div id="fill-this"></div>
+<div th:replace="fragments/body-scripts.html :: body-scripts"></div>
+<script>
+    let startButton = document.getElementById("start-button");
+    let fill = document.getElementById("fill-this");
+    startButton.addEventListener("click", function() {
+        let id = Math.floor(Math.random() * (5 - 0 + 1));
+        fetch(`http://localhost:8080/api/questions/${id}`, {
+            method: 'GET',
+        })
+            .then(response => {
+                return response.json()
+            })
+            .then(res => {
+                startButton.parentNode.removeChild(startButton);
+                fill.innerHTML = `
+                    <div id="question-${res.id}">
+                        <p>Question Title: ${res.title}</p>
+                        <p>Question: ${res.body}</p>
+                        <form action="api/question/${res.id}" method="post">
+                            <input type="radio" value>
+                        </form>
+                    </div>`;
+            })
+    })
+</script>
+</body>
+</html>

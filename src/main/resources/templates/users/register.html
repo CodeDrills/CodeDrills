@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/header.html :: header(title = 'Register your account!')"></head>
 <body>
-
+<nav th:replace="fragments/navbar.html :: navbar"></nav>
 <h1>Register your account</h1>
 
 
@@ -26,16 +26,15 @@
     <label for="bio">Personal Bio</label>
     <textarea id="bio" th:field="*{bio}" cols="30" rows="10" maxlength="250" placeholder="Please type a brief summary that is less than 250 words."></textarea>
     <br/>
-    <button class="button photo-upload" type="button" id="photo-picker">Upload Profile Image</button>
-    <input type="hidden" class="" id="photo-upload" name="photoURL">
-    <button class="button photo-upload" type="button" id="resume-picker">Upload Resume Image</button>
-    <input type="hidden"  class="" id="resume-upload" name="resumeURL">
-<!--    <form th:action="@{profile_image_url}" th:method="POST">-->
-<!--        <div class="modal-body" id="image">-->
-<!--            <th:block th:include="fragment/body-scripts"/>-->
-<!--        </div>-->
-<!--        <button class="button photo-upload" type="button" id="photo-picker">Upload Profile Image</button>-->
-<!--    </form>-->
+<!--    <button class="button photo-upload" type="button" id="photo-picker">Upload Profile Image</button>-->
+<!--    <input type="hidden" class="" id="photo-upload" name="photoURL">-->
+<!--    <button class="button photo-upload" type="button" id="resume-picker">Upload Resume Image</button>-->
+<!--    <input type="hidden"  class="" id="resume-upload" name="resumeURL">-->
+    <p class="align-self-end profile-btns">
+        <button type="button" class="btn btn-light" data-toggle="modal" id="add-picture" data-target="#pictureModal">Load
+            Picture</button>
+        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#myModal">Load Resume</button>
+    </p>
     <br/>
     <label for="is-admin">Admin</label>
     <input id="is-admin" type="radio" value="ADMIN" name="admin">

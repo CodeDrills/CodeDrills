@@ -15,11 +15,10 @@
                 return response.json()
             })
             .then(res => {
-                if(document.getElementById("start-button") !== null) {
+          if(document.getElementById("start-button") !== null) {
                     document.getElementById("start-button").parentNode.removeChild(document.getElementById("start-button"));
                 }
-                fill.innerHTML= "";
-                fill.innerHTML = `
+                    fill.innerHTML = `
                     <div id="question-${res.id}">
                         <p>Question Title: ${res.title}</p>
                         <p>Question: ${res.body}</p>

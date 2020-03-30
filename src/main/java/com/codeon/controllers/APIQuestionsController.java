@@ -1,7 +1,6 @@
 package com.codeon.controllers;
 
 import com.codeon.models.Post;
-import com.codeon.models.User;
 import com.codeon.repositories.PostRepo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +24,7 @@ public class APIQuestionsController {
     public String getQuestionView() {
         return "questions/show";
     }
-
+  
     @GetMapping("/api/questions/show-one")
     @ResponseBody
     public Post getQuestion() {

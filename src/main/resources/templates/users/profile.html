@@ -1,11 +1,46 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
     <meta charset="UTF-8">
-
+    <head th:replace="fragments/header.html :: header(title = 'Profile')"></head>
     <title>Title</title>
 </head>
 <body>
+<nav th:replace="fragments/navbar.html :: navbar"></nav>
+
+
+
 <h1>Welcome to your profile <span th:text="${user.username}">user</span>!</h1>
+
+<h3 class="mt-0">User information:</h3>
+<p><span th:text="${user.firstName}"></span></p>
+<h3 class="mt-0">About Me:</h3>
+<p><span th:text="${user.bio}"></span></p>
+
+<h1>Update your Bio</h1>
+<a th:href="@{|/user/${user.id}/edit|}"><button>Edit info</button></a>
+<label for="about_me" class="col-form-label">About Me:</label>
+<textarea class="form-control" id="about_me" name="aboutMe" type ="text" th:field="*{user.bio}"
+          placeholder="Tell us about you..."></textarea>
+
+<h1>Here are your Post</h1>
+<main class="container">
+    <div th:each="post : ${post}">
+        <a th:href="@{|/posts/${post.id}|}"><h1 th:text="${post.title}"></h1></a>
+        <p th:text="${post.body}"></p>
+        <a th:href="'mailto:'+${post.user.email}"><span th:text="${post.user.email}"></span> </a>
+        <br>
+        <a th:href="@{|/posts/${post.id}/edit|}"><button>Edit Post</button></a>
+        <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST" style="display:inline">
+            <button>Delete Post</button>
+        </form>
+        <hr>
+    </div>
+    <h1> Here are your comments</h1>
+</main>
+
+
+
+
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>
 </body>
 </html>

@@ -18,9 +18,9 @@ public class UserWithRoles extends User implements UserDetails {
         String roles = "";
         for(int i = 0; i < user.getRoleList().size(); i++) {
             if(i != user.getRoleList().size() - 1) {
-                roles += user.getRoleList().get(i).getRole() + ",";
+                roles += "ROLE_" + user.getRoleList().get(i).getRole() + ",";
             } else {
-                roles += user.getRoleList().get(i).getRole();
+                roles += "ROLE_" + user.getRoleList().get(i).getRole();
             }
         }
         this.roles = roles;
@@ -30,10 +30,8 @@ public class UserWithRoles extends User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        String roles = ""; // Since we're not using the authorization part of the component
         return AuthorityUtils.commaSeparatedStringToAuthorityList(this.roles);
     }
-
     @Override
     public boolean isAccountNonExpired() {
         return true;

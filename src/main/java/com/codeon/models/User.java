@@ -27,8 +27,12 @@ public class User {
     private String resumeURL;
     @Column(name = "is_active", nullable = false)
     private boolean isActive;
-    @JsonManagedReference
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+        name="users_security_roles",
+        joinColumns={@JoinColumn(name="user_id")},
+        inverseJoinColumns={@JoinColumn(name="role_id")}
+    )
     private List<SecurityRole> roleList;
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")

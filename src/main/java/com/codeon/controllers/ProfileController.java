@@ -23,7 +23,7 @@ public class ProfileController {
     private UserRepo userDao;
     private PostRepo postDao;
 
-    @Value("${filestack.api.key}")
+    @Value("filestack.api.key")
     private String fsapi;
 
     public ProfileController(UserRepo userDao, PostRepo postDao){

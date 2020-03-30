@@ -7,43 +7,39 @@
 <div id="fill-this"></div>
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>
 <script>
-    let startButton = document.getElementById("start-button");
-    let fill = document.getElementById("fill-this");
-    startButton.addEventListener("click", function() {
-        let id = Math.floor(Math.random() * (5 - 0 + 1));
-        fetch(`http://localhost:8080/api/questions/${id}`, {
+    const getQuestion = function() {
+        fetch(`http://localhost:8080/api/questions/show-one`, {
             method: 'GET',
         })
             .then(response => {
                 return response.json()
             })
             .then(res => {
-
-                startButton.parentNode.removeChild(startButton);
+                if(document.getElementById("start-button") !== null) {
+                    document.getElementById("start-button").parentNode.removeChild(document.getElementById("start-button"));
+                }
+                fill.innerHTML= "";
                 fill.innerHTML = `
-                    <div id="question-${res.id}">
-                        <p>Question Title: ${res.title}</p>
-                        <p>Question: ${res.body}</p>
-                        <form action="api/question/${res.id}" method="post">
-                            <input type="radio" value>
-                        </form>
-                    </div>;
-
-                    startButton.parentNode.removeChild(startButton);
-                    fill.innerHTML = `
                     <div id="question-${res.id}">
                         <p>Question Title: ${res.title}</p>
                         <p>Question: ${res.body}</p>
                         <div id="answer-${res.id}"><p>Answer: ${res.answer}</p></div>
                         <button id="answer-button-${res.id}">Show Answer</button>
+                        <button id="question-button-${res.id}">Get Another Question</button>
                     </div>`;
                 document.getElementById(`answer-${res.id}`).style.display = "none";
-                document.getElementById(`answer-button-${res.id}`).addEventListener("click", function() {
+                document.getElementById(`answer-button-${res.id}`).addEventListener("click", function () {
                     document.getElementById(`answer-${res.id}`).style.display = "block";
+                });
+                document.getElementById(`question-button-${res.id}`).addEventListener("click", function () {
+                    getQuestion();
                 })
-
             })
-    })
+    }
+    document.getElementById("start-button").addEventListener("click", function() {
+        getQuestion();
+    });
+    let fill = document.getElementById("fill-this");
 </script>
 </body>
 </html>

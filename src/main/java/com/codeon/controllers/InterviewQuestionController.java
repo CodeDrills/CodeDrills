@@ -16,10 +16,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 @Controller
 public class InterviewQuestionController {
 
+    private static Random randomStatic;
+    private Random random = new Random();
     private PostRepo postDao;
     private UserRepo userDao;
     private PostTypeRepo postTypeDao;
@@ -45,8 +48,21 @@ public class InterviewQuestionController {
 
     @GetMapping("/interview-question/show")
     public String showInterviewQuestions(Model model, Principal principal) {
-        System.out.println("here");
         List<Post> interviewQuestions = postDao.findAllByPostTypeId_Type("interview_question");
+        Post selectedPost = null;
+        Integer pickQuestion, questionRoll, selectedPostRating;
+        boolean determiningPost = true;
+        while(determiningPost) {
+            pickQuestion = random.nextInt(interviewQuestions.size());
+            System.out.println("Selecting Question: " + pickQuestion);
+            selectedPost = interviewQuestions.get(pickQuestion);
+            selectedPostRating = selectedPost.getRatingTotal(selectedPost.getRatingList());
+            System.out.println(selectedPostRating);
+            questionRoll = random.nextInt(31) -10;
+            if(selectedPostRating >= questionRoll) {
+                determiningPost = false;
+            }
+        }
         String username = "";
         User user = new User();
         if (principal != null) {
@@ -54,7 +70,7 @@ public class InterviewQuestionController {
             user = userDao.findUserByUsername(username);
         }
         model.addAttribute("user", user);
-        model.addAttribute("postList", interviewQuestions);
+        model.addAttribute("post", selectedPost);
         return "/interview-questions/interview-question";
     }
 }

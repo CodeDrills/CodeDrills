@@ -9,7 +9,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,9 +33,15 @@ public class ProfileController {
     @GetMapping("/profile")
     public String profileview(Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Post> posts = postDao.getAllByUser_Id(user.getId());
+        model.addAttribute("post", posts);
         model.addAttribute("user", userDao.getOne((user.getId())));
-        return"users/profile";
+        return "users/profile";
     }
+
+
+
+
 
 
 }

@@ -40,14 +40,28 @@ public class InterviewQuestionController {
     }
 
     //SHOW IT JUST AS JSON.
-    @GetMapping("/interview-question")
+    @GetMapping("/interview-questions")
     @ResponseBody
     public List<Post> showInterviewQuestionsAsJSON() {
         return postDao.findAllByPostTypeId_Type("interview_question");
     }
 
-    @GetMapping("/interview-question/show")
-    public String showInterviewQuestions(Model model, Principal principal) {
+    @GetMapping("/interview-questions/show")
+    public String showAllInterviewQuestions(Model model, Principal principal) {
+        List<Post> interviewQuestions = postDao.findAllByPostTypeId_Type("interview_question");
+        String username = "";
+        User user = new User();
+        if(principal != null) {
+            username = principal.getName();
+            user = userDao.findUserByUsername(username);
+        }
+        model.addAttribute("user", user);
+        model.addAttribute("postList", interviewQuestions);
+        return "interview-questions/show";
+    }
+
+    @GetMapping("/interview-questions/show-one")
+    public String showOneInterviewQuestion(Model model, Principal principal) {
         List<Post> interviewQuestions = postDao.findAllByPostTypeId_Type("interview_question");
         Post selectedPost = null;
         Integer pickQuestion, questionRoll, selectedPostRating;
@@ -71,6 +85,27 @@ public class InterviewQuestionController {
         }
         model.addAttribute("user", user);
         model.addAttribute("post", selectedPost);
-        return "/interview-questions/interview-question";
+        return "/interview-questions/show-one";
+    }
+
+    @GetMapping("/interview-questions/create")
+    public String getPostCreateForm(Model model) {
+        model.addAttribute("post", new Post());
+        return "interview-questions/create";
+    }
+
+    @PostMapping("/interview-questions/create")
+    public String createPost(@RequestParam Long postTypeId, @ModelAttribute Post post) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        post.setUser(user);
+        Date now = new Date();
+        String pattern = "yyyy-MM-dd";
+        SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+        String date = formatter.format(now);
+        post.setDateTime(date);
+        post.setRatingTotal(0);
+        post.setPostType(postTypeDao.getPostTypeById(postTypeId));
+        postDao.save(post);
+        return "redirect:/interview-questions/show";
     }
 }

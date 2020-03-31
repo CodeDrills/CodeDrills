@@ -169,6 +169,14 @@ public class Post {
         this.dateTime = dateTime;
     }
 
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
     @Override
     public String toString() {
         return "Post{" +

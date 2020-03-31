@@ -1,6 +1,6 @@
 use codeon_db;
 
-insert into post_types (type) values ('mentor_question'), ('interview_question'), ('job_listing');
+insert into post_types (type) values ('interview_question'), ('mentorship') ('job_listing');
 
 
 

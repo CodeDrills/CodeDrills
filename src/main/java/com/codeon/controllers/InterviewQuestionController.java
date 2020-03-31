@@ -43,12 +43,12 @@ public class InterviewQuestionController {
     @GetMapping("/interview-questions")
     @ResponseBody
     public List<Post> showInterviewQuestionsAsJSON() {
-        return postDao.findAllByPostTypeId_Type("interview_question");
+        return postDao.findAllByPostTypeId_Type("interview-questions");
     }
 
     @GetMapping("/interview-questions/show")
     public String showAllInterviewQuestions(Model model, Principal principal) {
-        List<Post> interviewQuestions = postDao.findAllByPostTypeId_Type("interview_question");
+        List<Post> interviewQuestions = postDao.findAllByPostTypeId_Type("interview-questions");
         String username = "";
         User user = new User();
         if(principal != null) {
@@ -62,7 +62,7 @@ public class InterviewQuestionController {
 
     @GetMapping("/interview-questions/show-one")
     public String showOneInterviewQuestion(Model model, Principal principal) {
-        List<Post> interviewQuestions = postDao.findAllByPostTypeId_Type("interview_question");
+        List<Post> interviewQuestions = postDao.findAllByPostTypeId_Type("interview-questions");
         Post selectedPost = null;
         Integer pickQuestion, questionRoll, selectedPostRating;
         boolean determiningPost = true;

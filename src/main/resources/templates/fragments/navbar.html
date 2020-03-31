@@ -34,7 +34,7 @@
 
             <a sec:authorize = "isAuthenticated()">
             <li class="nav-item">
-                <form th:action="@{/logout}" th:method="post">
+                <form th:action="@{/logout_app}" th:method="post">
                     <button class="btn-link btn">Logout</button>
                 </form>
             </li>

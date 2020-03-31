@@ -19,32 +19,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 //COMMENTED OUT SO I CAN RUN APP
-//@Controller
+@Controller
 public class ProfileController {
-//    private UserRepo userDao;
-//    private PostRepo postDao;
-//
+    private UserRepo userDao;
+    private PostRepo postDao;
+
 //    @Value("${filestack.api.key}")
 //    private String fsapi;
-//
-//    public ProfileController(UserRepo userDao, PostRepo postDao){
-//        this.userDao= userDao;
-//        this.postDao= postDao;
-//    }
-//
-//
-//
-//    @GetMapping("/profile")
-//    public String profileview(Model model){
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        List<Post> posts = postDao.getAllByUser_Id(user.getId());
-//        model.addAttribute("post", posts);
-//        model.addAttribute("user", userDao.getOne((user.getId())));
+
+    public ProfileController(UserRepo userDao, PostRepo postDao){
+        this.userDao= userDao;
+        this.postDao= postDao;
+    }
+
+
+
+    @GetMapping("/profile")
+    public String profileview(Model model){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Post> posts = postDao.getAllByUser_Id(user.getId());
+        model.addAttribute("post", posts);
+        model.addAttribute("user", userDao.getOne((user.getId())));
 //        model.addAttribute("fsapi", fsapi);
-//        return "users/profile";
-//    }
-//
-//
-//
-//
+        return "users/profile";
+    }
+
+
+
 }

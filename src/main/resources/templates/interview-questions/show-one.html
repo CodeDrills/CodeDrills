@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="fragments/header.html :: header(title = 'Latest Posts')"></head>
+<head th:replace="fragments/header.html :: header(title = 'Interview Questions')"></head>
 <body>
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
-<div th:each="post : ${postList}">
     <h1 th:text = "${post.title}"></h1>
     <p th:text = "${post.body}"></p>
     <p th:text = "${post.user.email}"></p>
-<!--    NEW TESTING-->
+    <!--    NEW TESTING-->
 
-<!-- Will working on ratings -->
+    <!-- Will working on ratings -->
     <div sec:authorize = "isAuthenticated()">
         <a th:href="@{|/upvote/${post.id}|}"><button>Upvote</button></a>
         <a th:href="@{|/downvote/${post.id}|}"><button>Downvote</button></a>
         <p>Rating Total: <span th:text = "${post.getRatingTotal()}"></span></p>
     </div>
-<!-- END Will working on ratings -->
+    <!-- END Will working on ratings -->
 
     <div th:each="comment : ${post.commentList}">
         <p th:text = "${comment.body}"></p>
@@ -26,7 +25,6 @@
             <a th:href="@{|/posts/${post.id}/delete|}"><button>Delete Post</button></a>
         </div>
     </div>
-</div>
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>
 </body>
 </html>

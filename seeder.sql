@@ -1,10 +1,9 @@
 use codeon_db;
 
-insert into post_types (type) values ('interview_question'), ('mentorship') ('job_listing');
 
+insert into post_types (type) values ('interview_questions'), ('mentorship-posts'), ('job_postings');
 
-
-insert into skills (skill) values ('Java'), ('HTML'), ('CSS'), ('JavaScript'), ('Thymeleaf'),
+insert into skills (name) values ('Java'), ('HTML'), ('CSS'), ('JavaScript'), ('Thymeleaf'),
                                   ('MySql'), ('Git'), ('Ruby'), ('Python');
 
 insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (1,  true,'User-centric user-facing approach', 'trumford0@merriam-webster.com', 'Tonnie', 'Rumford', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'http://dummyimage.com/100x221.bmp/ff4444/ffffff', 'http://dummyimage.com/227x175.bmp/ff4444/ffffff', 'trumford0');

@@ -37,13 +37,13 @@ public class MentorshipController {
     @GetMapping("/mentorship")
     public String mentorshipHomeView(Model model, Principal principal) {
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
-        model.addAttribute("postList", postDao.findAllByPostTypeId_Type("mentorship"));
+        model.addAttribute("postList", postDao.findAllByPostTypeId_Type("mentorship-posts"));
         return "mentorship/posts/show";
     }
-    @GetMapping("/mentorship-posts")
+    @GetMapping("/mentorship-posts/show")
     public String showAllPosts(Model model, Principal principal) {
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
-        model.addAttribute("postList", postDao.findAllByPostTypeId_Type("mentorship"));
+        model.addAttribute("postList", postDao.findAllByPostTypeId_Type("mentorship-posts"));
         return "mentorship/posts/show";
     }
     @GetMapping("/mentorship-posts/create")
@@ -123,7 +123,7 @@ public class MentorshipController {
         return "redirect:/mentorship";
     }
 
-    @DeleteMapping("/mentorship/delete")
+    @DeleteMapping("/mentorship-posts/delete")
     public String deletePost(@RequestParam Long id, Model model, Principal principal){
 //        System.out.println(id);
 //        Post post = postDao.findPostById(id);
@@ -132,6 +132,11 @@ public class MentorshipController {
 //            return "redirect:/mentorship-posts";
 //        }
 //        String deletedTitle = post.getTitle();
+        System.out.println("============================================");
+        System.out.println("============================================");
+        System.out.println("============================================");
+        System.out.println("============================================");
+        System.out.println(id);
         postDao.deleteById(id);
         return "redirect:/mentorship-posts";
     }

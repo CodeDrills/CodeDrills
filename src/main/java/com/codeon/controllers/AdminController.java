@@ -15,7 +15,6 @@ public class AdminController {
 
     @GetMapping("admin/dashboard")
     public String getDashboard(Model model){
-
         model.addAttribute("adminList", userDao.findAllByRoleList_Role("ADMIN"));
         return "admin/dashboard";
     }

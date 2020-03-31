@@ -25,10 +25,6 @@
 <!--    </form>-->
 <!--</div>-->
 
-<h3 class="mt-0">User information:</h3>
-<p><span th:text="${user.firstName}"></span></p>
-<h3 class="mt-0">About Me:</h3>
-<p><span th:text="${user.bio}"></span></p>
 
 <h1>Update your Bio</h1>
 <a th:href="@{|/user/${user.id}/edit|}"><button>Edit info</button></a>
@@ -36,9 +32,6 @@
 <textarea class="form-control" id="about_me" name="aboutMe" type ="text" th:field="*{user.bio}"
           placeholder="Tell us about you..."></textarea>
 
-
-<button type="button" class="btn btn-light" data-toggle="modal" id="add-picture" data-target="#pictureModal">Edit
-    Picture</button>
 
 
 

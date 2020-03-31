@@ -30,7 +30,9 @@
             <a sec:authorize = "!isAuthenticated()" th:href="@{/login}">
                 <a class="nav-link" href="/login">login</a>
             </a>
-
+            <a sec:authorize = "isAuthenticated()" th:href="@{/posts/create}">
+                <a class="nav-link" href="/posts/create">post/create</a>
+            </a>
 
             <a sec:authorize = "isAuthenticated()">
             <li class="nav-item">

@@ -43,7 +43,12 @@ public class ProfileController {
 //        model.addAttribute("fsapi", fsapi);
         return "users/profile";
     }
-
-
+    @PostMapping("users/{id}/edit")
+    public String profileEdit(@PathVariable long id, @ModelAttribute User user) {
+        User updateInfo = userDao.getOne(id);
+        updateInfo.setBio(user.getBio());
+        userDao.save(updateInfo);
+        return "redirect:/profile";
+    }
 
 }

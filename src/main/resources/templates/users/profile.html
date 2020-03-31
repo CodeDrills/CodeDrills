@@ -11,28 +11,37 @@
 
 <h1>Welcome to your profile <span th:text="${user.username}">user</span>!</h1>
 <h3 class="mt-0">User information:</h3>
-<p><span th:text="${user.firstName}"></span></p>
+<p>first name: <span th:text="${user.firstName}"></span> last name: <span th:text="${user.lastName}"></span> </p>
 <h3 class="mt-0">About Me:</h3>
 <p><span th:text="${user.bio}"></span></p>
 
-<h1>Update your profile information</h1>
 
-<!--<div class="form-group">-->
-<!--    <form th:action="@{'/users/' + ${user.id} + '/edit'}" th:method="POST" th:object="${user}">-->
-<!--        <label for="about_me" class="col-form-label">About Me:</label>-->
-<!--        <textarea class="form-control" id="about_me" name="aboutMe" type ="text" th:field="*{bio}"-->
-<!--                  placeholder="Update any new accomplishments"></textarea>-->
-<!--    </form>-->
-<!--</div>-->
-
-
-<h1>Update your Bio</h1>
-<a th:href="@{|/user/${user.id}/edit|}"><button>Edit info</button></a>
-<label for="about_me" class="col-form-label">About Me:</label>
-<textarea class="form-control" id="about_me" name="aboutMe" type ="text" th:field="*{user.bio}"
-          placeholder="Tell us about you..."></textarea>
+<div class="form-group">
+    <form th:action="@{'/users/' + ${user.id} + '/edit'}" th:method="POST" th:object="${user}">
+        <label for="about_me" class="col-form-label">About Me:</label>
+        <textarea class="form-control" id="about_me" name="aboutMe" type ="text"  th:field="*{bio}"
+                  placeholder="Update any new accomplishments"></textarea>
+        <button type="submit" class="btn btn-primary form-control">Save Edits</button>
+    </form>
+</div>
 
 
+
+<main class="container">
+    <h1> Here are your comments</h1>
+    <div th:each="post : ${post}">
+        <a th:href="@{|/posts/${post.id}|}"><h1 th:text="${post.title}"></h1></a>
+        <p th:text="${post.body}"></p>
+        <a th:href="'mailto:'+${post.user.email}"><span th:text="${post.user.email}"></span> </a>
+        <br>
+        <a th:href="@{|/posts/${post.id}/edit|}"><button>Edit Post</button></a>
+        <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST" style="display:inline">
+            <button>Delete Post</button>
+        </form>
+        <hr>
+    </div>
+
+</main>
 
 
 

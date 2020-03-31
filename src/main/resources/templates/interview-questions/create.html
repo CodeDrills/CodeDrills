@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header.html :: header(title = 'Create a Post')"></head>
+<body>
+<nav th:replace="fragments/navbar.html :: navbar"></nav>
+<form th:action="@{/interview-questions/create}" th:method="post" th:object="${post}">
+    Title:
+    <input th:field="*{title}" />
+    <br />
+    Body:
+    <input th:field="*{body}" />
+    <br />
+    Answer:
+    <input th:field="*{answer}" />
+    <br />
+    <input type="hidden" class="" id="postTypeId" name="postTypeId" value="3">
+    <input type="submit" />
+</form>
+<div th:replace="fragments/body-scripts.html :: body-scripts"></div>
+</body>
+</html>

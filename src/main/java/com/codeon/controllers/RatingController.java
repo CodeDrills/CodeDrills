@@ -33,7 +33,7 @@ public class RatingController {
 
     /*If a user has already upvoted the post and they click upvote again it will set rating to 0
       If they have not rated the post yet, a new rating will be created and set to 1. */
-    @GetMapping("/posts/{id}/ratings/upvote")
+    @GetMapping("/upvote/{id}")
     public String createUpvote(@PathVariable Long id, Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Post post = postDao.findPostById(id);
@@ -61,7 +61,7 @@ public class RatingController {
 
     /*If a user has already downvoted the post and they click downvote again it will set rating to 0
       If they have not rated the post yet, a new rating will be created and set to -1. */
-    @GetMapping("/posts/{id}/ratings/downvote")
+    @GetMapping("/downvote/{id}")
     public String createDownvote(@PathVariable Long id) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Post post = postDao.findPostById(id);

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header.html :: header(title = 'Edit an Interview Question')"></head>
+<body>
+<nav th:replace="fragments/navbar.html :: navbar"></nav>
+<form th:action="@{|/interview-questions/edit/${post.id}|}" th:method="post" th:object="${post}">
+    Title:
+    <input th:field="*{title}" th:value="*{title}"/>
+    <br />
+    Description:
+    <input th:field="*{body}" th:value="*{body}"/>
+    <br />
+    Answer:
+    <input th:field="*{answer}" th:value="*{answer}"/>
+    <br />
+    <input type="submit" />
+</form>
+<div th:replace="fragments/body-scripts.html :: body-scripts"></div>
+</body>
+</html>
+

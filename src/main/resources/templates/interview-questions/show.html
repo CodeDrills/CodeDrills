@@ -21,8 +21,8 @@
     </div>
     <div sec:authorize = "isAuthenticated()">
         <div th:if="${user.id == post.user.id}">
-            <a th:href="@{|/posts/${post.id}/edit|}"><button>Edit Post</button></a>
-            <a th:href="@{|/posts/${post.id}/delete|}"><button>Delete Post</button></a>
+            <a th:href="@{|/interview-questions/edit/${post.id}|}"><button>Edit Post</button></a>
+            <a th:method="DELETE" th:href="@{|/interview-questions/delete/${post.id}|}"><button>Delete Post</button></a>
         </div>
     </div>
 </div>

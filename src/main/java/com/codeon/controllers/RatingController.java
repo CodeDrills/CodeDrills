@@ -39,7 +39,7 @@ public class RatingController {
         Post post = postDao.findPostById(id);
         for(PostRating rating : post.getRatingList()) {
             if(rating.getUser().getId() == user.getId()) {
-                if(rating.getRating() == 0) {
+                if(rating.getRating() == 0 || rating.getRating() == -1) {
                     rating.setRating(1);
                 } else {
                     rating.setRating(0);
@@ -67,7 +67,7 @@ public class RatingController {
         Post post = postDao.findPostById(id);
         for(PostRating rating : post.getRatingList()) {
             if(rating.getUser().getId() == user.getId()) {
-                if(rating.getRating() == 0) {
+                if(rating.getRating() == 0 || rating.getRating() == 1) {
                     rating.setRating(-1);
                 } else {
                     rating.setRating(0);

@@ -1,6 +1,7 @@
 use codeon_db;
 
-insert into post_types (type) values ('job_listing'), ('mentor_question'), ('interview_question');
+
+insert into post_types (type) values ('interview_question'), ('mentorship') ('job_listing');
 
 insert into skills (name) values ('Java'), ('HTML'), ('CSS'), ('JavaScript'), ('Thymeleaf'),
                                   ('MySql'), ('Git'), ('Ruby'), ('Python');

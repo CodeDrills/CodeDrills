@@ -43,21 +43,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutUrl("/logout_app")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
                 .logoutSuccessUrl("/login?logout") // append a query string value
                 /* Pages that can be viewed without having to log in */
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/posts", "posts/show") // anyone can see the home and the ads pages
+                .antMatchers("/register") // anyone can see the home and the ads pages
                 .permitAll()
                 /* Pages that require authentication */
                 .and()
                 .authorizeRequests()
-                .antMatchers(
-                        "/posts/create", // only authenticated users can create ads
-                        "/posts/{id}/edit", // only authenticated users can edit ads
-                        "/posts/{id}/delete"// only authenticated users can delete ads
-//                        "posts/show" //test
-                )
+                .antMatchers("/**")
                 .authenticated();
     }
 }

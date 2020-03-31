@@ -132,6 +132,11 @@ public class MentorshipController {
 //            return "redirect:/mentorship-posts";
 //        }
 //        String deletedTitle = post.getTitle();
+        System.out.println("============================================");
+        System.out.println("============================================");
+        System.out.println("============================================");
+        System.out.println("============================================");
+        System.out.println(id);
         postDao.deleteById(id);
         return "redirect:/mentorship-posts";
     }

@@ -38,16 +38,17 @@
 
         // Add our event listeners
 
-        photoBtn.addEventListener('click', function (e) {
-            e.preventDefault();
-            photoPicker.open();
-        });
+        if(photoBtn != null && resumeBtn != null) {
+            photoBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                photoPicker.open();
+            });
 
-        resumeBtn.addEventListener('click', function (e) {
-            e.preventDefault();
-            resumePicker.open();
-        });
-
+            resumeBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                resumePicker.open();
+            });
+        }
         function updatePhotoForm (result) {
             const fileData = result.filesUploaded[0];
             photoInput.value = fileData.url; //this is the good part

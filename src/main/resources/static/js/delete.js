@@ -8,7 +8,7 @@
             let postId = idSplit[2];
             fetch(`https://codeon-capstone.com/${postType}/delete?id=${postId}`, {
                 method: 'DELETE',
-                mode: 'no-cors',
+                credentials: 'same-origin',
                 headers: {
                     'X-CSRF-TOKEN': token
                 }

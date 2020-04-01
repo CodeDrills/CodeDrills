@@ -7,6 +7,7 @@
             let postId = idSplit[1];
             fetch(`https://codeon-capstone.com/upvote/${postId}`, {
                 method: 'GET',
+                credentials: 'same-origin',
                 headers: {
                     'X-CSRF-TOKEN': token
                 }
@@ -23,6 +24,7 @@
             let postId = idSplit[1];
             fetch(`https://codeon-capstone.com/downvote/${postId}`, {
                 method: 'GET',
+                credentials: 'same-origin',
                 headers: {
                     'X-CSRF-TOKEN': token
                 }

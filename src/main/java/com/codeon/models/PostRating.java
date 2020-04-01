@@ -58,14 +58,4 @@ public class PostRating {
     public void setPost(Post post) {
         this.post = post;
     }
-
-    @Override
-    public String toString() {
-        return "PostRating{" +
-                "id=" + id +
-                ", rating=" + rating +
-                ", user=" + user +
-                ", post=" + post +
-                '}';
-    }
 }

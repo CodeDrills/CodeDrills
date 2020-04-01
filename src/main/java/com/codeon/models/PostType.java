@@ -47,13 +47,4 @@ public class PostType {
     public void setPostList(List<Post> postList) {
         this.postList = postList;
     }
-
-    @Override
-    public String toString() {
-        return "PostType{" +
-                "id=" + id +
-                ", type='" + type + '\'' +
-                ", postList=" + postList +
-                '}';
-    }
 }

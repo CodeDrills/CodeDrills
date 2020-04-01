@@ -14,10 +14,10 @@ import java.security.Principal;
 import java.util.List;
 
 @Controller
-public class TalkJSTestController {
+public class TalkJSController {
     private UserRepo userDao;
 
-    public TalkJSTestController(UserRepo userDao) {
+    public TalkJSController(UserRepo userDao) {
         this.userDao = userDao;
     }
     //comment to make it where i can commit

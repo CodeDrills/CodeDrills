@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="fragments/header.html :: header(title = 'Latest Posts')"></head>
+<head th:replace="fragments/header.html :: header(title = 'All Job Postings')"></head>
 <body>
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
 <div th:each="post : ${postList}">
@@ -8,25 +8,26 @@
     <p th:text = "${post.body}"></p>
     <p th:text = "${post.user.email}"></p>
 
+<!-- Will working on ratings -->
     <div sec:authorize = "isAuthenticated()">
-        <a th:href="@{|/posts/${post.id}/ratings/upvote|}"><button>Upvote</button></a>
         <button class="upvote-button" th:id="'upvote-' + ${post.id}">Upvote JS</button>
-        <a th:href="@{|/posts/${post.id}/ratings/downvote|}"><button>Downvote</button></a>
         <button class="downvote-button" th:id="'downvote-' + ${post.id}">Downvote JS</button>
-        <div th:each="postRating : ${post.ratingList}">
-            <p th:text="${postRating.rating}"></p>
-        </div>
         <p>Rating Total: <span th:text = "${post.getRatingTotal()}"></span></p>
     </div>
+<!-- END Will working on ratings -->
+
     <div th:each="comment : ${post.commentList}">
         <p th:text = "${comment.body}"></p>
     </div>
-    <div th:if="${user.id == post.user.id}">
-        <a th:href="@{|/posts/${post.id}/edit|}"><button>Edit Post</button></a>
-        <button class="delete-button" th:id="${post.postType.type} + '-' + ${post.id}">Delete Post</button>
+    <div class="create-comment-div" th:id="'create-comment-div-' + ${post.id}"></div>
+    <button class="add-comment-button" th:id="'add-comment-button-' + ${post.id}">Comment</button>
+    <div sec:authorize = "isAuthenticated()">
+        <div th:if="${user.id == post.user.id}">
+            <a th:href="@{|/job-postings/edit/${post.id}|}"><button>Edit Post</button></a>
+            <button class="delete-button" th:id="${post.postType.type} + '-' + ${post.id}">Delete Post</button>
+        </div>
     </div>
 </div>
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>
-
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head th:replace="fragments/header.html :: header(title = 'Create a Post')"></head>
 <body>
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
-<form th:action="@{|/posts/${post.id}/comments/create|}" th:method="post" th:object="${postComment}">
+<form th:action="@{|/comments/create/${post.id}|}" th:method="post" th:object="${postComment}">
     Description:
     <input th:field="*{body}" />
     <br />

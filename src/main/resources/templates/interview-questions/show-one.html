@@ -19,6 +19,8 @@
     <div th:each="comment : ${post.commentList}">
         <p th:text = "${comment.body}"></p>
     </div>
+    <div class="create-comment-div" th:id="'create-comment-div-' + ${post.id}"></div>
+    <button class="add-comment-button" th:id="'add-comment-button-' + ${post.id}">Comment</button>
     <div sec:authorize = "isAuthenticated()">
         <div th:if="${user.id == post.user.id}">
             <a th:href="@{|/posts/${post.id}/edit|}"><button>Edit Post</button></a>

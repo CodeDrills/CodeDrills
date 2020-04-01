@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header.html :: header(title = 'Edit Post')"></head>
+<head th:replace="fragments/header.html :: header(title = 'Edit a Job Posting')"></head>
 <body>
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
-<form th:action="@{|/posts/${post.id}/edit|}" th:method="post" th:object="${post}">
+<form th:action="@{|/job-postings/edit/${post.id}|}" th:method="post" th:object="${post}">
     Title:
     <input th:field="*{title}" th:value="*{title}"/>
     <br />
-    Description:
-    <input th:field="*{body}" th:value="*{title}"/>
+    Employer:
+    <input th:field="*{employer}" th:value="*{employer}"/>
+    <br />
+    Body:
+    <input th:field="*{body}" th:value="*{body}"/>
     <br />
     <input type="submit" />
 </form>

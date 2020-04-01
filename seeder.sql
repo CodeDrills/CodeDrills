@@ -98,7 +98,29 @@ insert into users_skills (user_id, skill_id) values (20, 9);
 # insert into posts (user_id, post_type_id, title, body, date_time, employer) values (14, 1, 'Gazella thompsonii', 'Research and Development', '4/5/2019', 'Avamm');
 
 
+# mentorship questions
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (3, 2, 'Java,JS','Whats the difference between Java and Javascript', 'Java applications are run in a virtual machine or web browser while JavaScript is run on a web browser. Java code is compiled whereas while JavaScript code is in text and in a web page. JavaScript is an OOP scripting language, whereas Java is an OOP programming language', '10/13/2019', 'codeup student');
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (6, 2, 'Imposter syndrome', 'How do you guys Imposter Syndrome','Heres a link:https://medium.com/better-programming/how-to-overcome-imposter-syndrome-as-a-programmer-ba3138090737' ,'6/21/2019', 'codeup student');
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (12, 2,  'Java', 'Anyone need a mentor in Java','I am a Java programmer and have been for the last 3 years if there is anyone that needs help or has questions let me know if i can help', '10/4/2019', 'alumnus working for Accenture');
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (4, 2, 'Java,JS','Whats the difference between Java and Javascript', 'Java applications are run in a virtual machine or web browser while JavaScript is run on a web browser. Java code is compiled whereas while JavaScript code is in text and in a web page. JavaScript is an OOP scripting language, whereas Java is an OOP programming language', '10/13/2019', 'codeup student');
 
+
+# interview questions
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (25, 3, 'They asked A question about OOP', 'What are OOP concepts?','They are an abstraction, encapsulation, inheritance, and polymorphism. Grasping them is key to understanding how Java works. Basically, Java OOP concepts let us create working methods and variables, then re-use all or part of them without compromising security', '4/8/2019', 'Accenture');
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (2, 3, 'I got asked about arrays ','How do you find the missing number in a given integer array of 1 to 100?', '1) Calculate the sum of all numbers stored in the array of size 51. 2) Subtract the sum from (52 * 53)/2 ---- Formula : n * (n + 1) / 2.', '5/25/2019', 'Amazon');
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (5, 3, 'Saw this question on LinkedIn', 'Explain encapsulation, inheritance, polymorphism and abstraction', 'Encapsulation is the mechanism of hiding of data implementation by restricting access to public methods. Instance variables are kept private and accessor methods are made public to achieve this. Abstract means a concept or an Idea which is not associated with any particular instance. Inheritances expresses “is-a” and/or “has-a” relationship between two objects. Using Inheritance, In derived classes we can reuse the code of existing super classes. In Java, concept of “is-a” is based on class inheritance (using extends) or interface implementation (using implements). Polymorphism: It means one name many forms. It is further of two types — static and dynamic. Static polymorphism is achieved using method overloading and dynamic polymorphism using method overriding. It is closely related to inheritance. We can write a code that works on the superclass, and it will work with any subclass type as well.','10/2/2019', 'Aivee');
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (17, 3,  'Interview question about Spring Boot', 'Can you explain what happens in the background when a Spring Boot Application is “Run as Java Application','When a Spring Boot application is executed as “Run as Java application”, then it automatically launches up the tomcat server as soon as it sees, that you are developing a web application.', '7/17/2019', 'Intuit');
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (19, 3, 'I got interviewed by SWBC, this is what they asked', 'Tell me about some software projects you have worked on.','I just told them about my projects from Codeup and the projects i did at home', '10/31/2019', 'SWBC');
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (8, 3,  'Just a question i though of in case your applying at a job that uses MySQL','What is a join in MySQL?','Services', '4/25/2019', 'Alumnus');
+
+
+# job postings
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (10, 1, 'Enhance IT', 'Entry Level Software Engineer','You will be joining our cutting-edge development team as it grows. We want individuals who are comfortable asking “why?” The ideal candidate for this role is motivated, energized and has a creative thought process. They are a team player possessing strong analytical as well as technical skills and are able to communicate the logic behind technical decisions to non-tech stakeholders. They must be comfortable working in an agile environment and have the ability to “take the wheel” when necessary.', '4/1/2020', 'Enhance IT');
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (15, 1, 'Raytheon', 'Software Developer I','Description: The Software Developer will provide software development in support of custom software design and development of CNO tools and techniques. Candidate will be required to Provide/author documentation, participate in design, code, and software readiness reviews as prescribed by the customers software development procedures and processes.', '11/12/2019', 'Raytheon');
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (7, 1, 'Labatt Food Service','Entry Level Full Stack Software Developer','As a software developer at Labatt, you will take on projects approximately 6 months in length, iterate on a small team of 3-5, test thoroughly, design clean & modular code, experiment, learn, be challenged, and serve the needs of the business. All developers are expected to contribute to the team''s success by solving non-trivial problems and sharing lessons learned with the group. Developers are also expected to follow the group''s established coding and process best practices as established by the group to ensure quality and consistent code - code that will last for many years. That said, developers have a significant amount of freedom over their projects and the ability to experiment with newer technologies and practices that may help the group overall.', '5/31/2019', 'Labatt Food Service');
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (22, 1, 'uncle bob''s', 'Entry Level Software Developer','• College degree (Associates or Bachelors)• Must be authorized to work in the US • Strong desire to learn to code - No prior professional experience required. • A natural problem solver • Strong communication and interpersonal skills• Willing to relocate anywhere in the US - Relocation assistance provided','10/17/2019', 'uncle bob''s');
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (20, 1, 'Accenture','Federal - Entry Level Java Developer Associate [April 2020 Start]','Eager to learn about technology’s role in a real-world setting. You are already passionate about technology and know its potential. Now you are ready to work on a team, use your skills, and deliver innovative solutions that help our federal clients improve the services they provide to the American Public.','8/17/2019', 'Accenture');
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (1, 1, 'ERP', 'Java Developer - Entry Level- Apply now!','ERP is currently seeking a Java Developer with at least 1-2 years experience in Java Software Development for a full-time position supporting a federal client in San Antonio, TX.', '5/11/2019', 'ERP');
 
 insert into post_ratings (user_id, post_id, rating) values (1, 1, 1);
 insert into post_ratings (user_id, post_id, rating) values (2, 1, 1);
@@ -146,26 +168,26 @@ insert into post_comments (body, date_time, post_id, user_id) values ('ENERGIZER
 insert into post_comments (body, date_time, post_id, user_id) values ('Natural Health Supply', '6/29/2019', 19, 17);
 insert into post_comments (body, date_time, post_id, user_id) values ('McKesson', '10/28/2019', 3, 12);
 
-insert into image_urls (post_id, url) values (16, 'http://dummyimage.com/115x178.png/ff4444/ffffff');
-insert into image_urls (post_id, url) values (11, 'http://dummyimage.com/217x105.bmp/5fa2dd/ffffff');
-insert into image_urls (post_id, url) values (16, 'http://dummyimage.com/214x212.jpg/ff4444/ffffff');
-insert into image_urls (post_id, url) values (19, 'http://dummyimage.com/126x153.bmp/5fa2dd/ffffff');
-insert into image_urls (post_id, url) values (19, 'http://dummyimage.com/242x182.jpg/ff4444/ffffff');
-insert into image_urls (post_id, url) values (10, 'http://dummyimage.com/102x155.jpg/5fa2dd/ffffff');
-insert into image_urls (post_id, url) values (20, 'http://dummyimage.com/152x163.png/5fa2dd/ffffff');
-insert into image_urls (post_id, url) values (6, 'http://dummyimage.com/119x178.bmp/ff4444/ffffff');
-insert into image_urls (post_id, url) values (3, 'http://dummyimage.com/108x120.jpg/dddddd/000000');
-insert into image_urls (post_id, url) values (16, 'http://dummyimage.com/183x219.png/cc0000/ffffff');
-insert into image_urls (post_id, url) values (5, 'http://dummyimage.com/156x170.png/dddddd/000000');
-insert into image_urls (post_id, url) values (20, 'http://dummyimage.com/229x134.jpg/dddddd/000000');
-insert into image_urls (post_id, url) values (17, 'http://dummyimage.com/185x230.png/dddddd/000000');
-insert into image_urls (post_id, url) values (19, 'http://dummyimage.com/126x173.bmp/cc0000/ffffff');
-insert into image_urls (post_id, url) values (4, 'http://dummyimage.com/104x153.bmp/dddddd/000000');
-insert into image_urls (post_id, url) values (7, 'http://dummyimage.com/217x145.bmp/ff4444/ffffff');
-insert into image_urls (post_id, url) values (5, 'http://dummyimage.com/201x142.png/5fa2dd/ffffff');
-insert into image_urls (post_id, url) values (19, 'http://dummyimage.com/148x224.jpg/dddddd/000000');
-insert into image_urls (post_id, url) values (17, 'http://dummyimage.com/159x214.jpg/dddddd/000000');
-insert into image_urls (post_id, url) values (10, 'http://dummyimage.com/242x216.jpg/ff4444/ffffff');
-insert into image_urls (post_id, url) values (9, 'http://dummyimage.com/183x200.bmp/dddddd/000000');
-insert into image_urls (post_id, url) values (17, 'http://dummyimage.com/191x238.png/cc0000/ffffff');
-insert into image_urls (post_id, url) values (20, 'http://dummyimage.com/203x237.jpg/ff4444/ffffff');
+# insert into image_urls (post_id, url) values (16, 'http://dummyimage.com/115x178.png/ff4444/ffffff');
+# insert into image_urls (post_id, url) values (11, 'http://dummyimage.com/217x105.bmp/5fa2dd/ffffff');
+# insert into image_urls (post_id, url) values (16, 'http://dummyimage.com/214x212.jpg/ff4444/ffffff');
+# insert into image_urls (post_id, url) values (19, 'http://dummyimage.com/126x153.bmp/5fa2dd/ffffff');
+# insert into image_urls (post_id, url) values (19, 'http://dummyimage.com/242x182.jpg/ff4444/ffffff');
+# insert into image_urls (post_id, url) values (10, 'http://dummyimage.com/102x155.jpg/5fa2dd/ffffff');
+# insert into image_urls (post_id, url) values (20, 'http://dummyimage.com/152x163.png/5fa2dd/ffffff');
+# insert into image_urls (post_id, url) values (6, 'http://dummyimage.com/119x178.bmp/ff4444/ffffff');
+# insert into image_urls (post_id, url) values (3, 'http://dummyimage.com/108x120.jpg/dddddd/000000');
+# insert into image_urls (post_id, url) values (16, 'http://dummyimage.com/183x219.png/cc0000/ffffff');
+# insert into image_urls (post_id, url) values (5, 'http://dummyimage.com/156x170.png/dddddd/000000');
+# insert into image_urls (post_id, url) values (20, 'http://dummyimage.com/229x134.jpg/dddddd/000000');
+# insert into image_urls (post_id, url) values (17, 'http://dummyimage.com/185x230.png/dddddd/000000');
+# insert into image_urls (post_id, url) values (19, 'http://dummyimage.com/126x173.bmp/cc0000/ffffff');
+# insert into image_urls (post_id, url) values (4, 'http://dummyimage.com/104x153.bmp/dddddd/000000');
+# insert into image_urls (post_id, url) values (7, 'http://dummyimage.com/217x145.bmp/ff4444/ffffff');
+# insert into image_urls (post_id, url) values (5, 'http://dummyimage.com/201x142.png/5fa2dd/ffffff');
+# insert into image_urls (post_id, url) values (19, 'http://dummyimage.com/148x224.jpg/dddddd/000000');
+# insert into image_urls (post_id, url) values (17, 'http://dummyimage.com/159x214.jpg/dddddd/000000');
+# insert into image_urls (post_id, url) values (10, 'http://dummyimage.com/242x216.jpg/ff4444/ffffff');
+# insert into image_urls (post_id, url) values (9, 'http://dummyimage.com/183x200.bmp/dddddd/000000');
+# insert into image_urls (post_id, url) values (17, 'http://dummyimage.com/191x238.png/cc0000/ffffff');
+# insert into image_urls (post_id, url) values (20, 'http://dummyimage.com/203x237.jpg/ff4444/ffffff');

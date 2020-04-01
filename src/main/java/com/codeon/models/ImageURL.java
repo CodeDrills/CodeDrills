@@ -46,12 +46,4 @@ public class ImageURL {
         this.post = post;
     }
 
-    @Override
-    public String toString() {
-        return "ImageURL{" +
-                "id=" + id +
-                ", url='" + url + '\'' +
-                ", post=" + post +
-                '}';
-    }
 }

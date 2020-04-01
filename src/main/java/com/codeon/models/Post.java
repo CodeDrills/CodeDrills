@@ -177,21 +177,4 @@ public class Post {
         this.answer = answer;
     }
 
-    @Override
-    public String toString() {
-        return "Post{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", employer='" + employer + '\'' +
-                ", body='" + body + '\'' +
-                ", user=" + user +
-                ", postType=" + postType +
-                ", imageURLList=" + imageURLList +
-                ", commentList=" + commentList +
-                ", ratingList=" + ratingList +
-                ", ratingTotal=" + ratingTotal +
-                ", dateTime=" + dateTime +
-                '}';
-    }
-
 }

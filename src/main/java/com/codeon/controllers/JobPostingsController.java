@@ -47,20 +47,14 @@ public class JobPostingsController {
 
     @GetMapping("/job-postings/show")
     public String showAllJobPostings(Model model, Principal principal) {
-        List<Post> jobPostings = postDao.findAllByPostTypeId_Type("job-postings");
-        String username = "";
-        User user = new User();
-        if(principal != null) {
-            username = principal.getName();
-            user = userDao.findUserByUsername(username);
-        }
-        model.addAttribute("user", user);
-        model.addAttribute("postList", jobPostings);
+        model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
+        model.addAttribute("postList", postDao.findAllByPostTypeId_Type("job-postings"));
         return "job-postings/show";
     }
 
     @GetMapping("/job-postings/create")
-    public String jobPostingsCreateForm(Model model) {
+    public String jobPostingsCreateForm(Model model, Principal principal) {
+        model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("post", new Post());
         return "job-postings/create";
     }

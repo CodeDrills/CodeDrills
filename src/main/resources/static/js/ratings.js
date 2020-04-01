@@ -36,7 +36,6 @@
     // })
     // UNCOMMENT BELOW FOR PRODUCTION PUSH
 
-    const token = document.querySelector('meta[name="_csrf"]').content;
     let upvoteButtonClass = document.querySelectorAll(".upvote-button");
     upvoteButtonClass.forEach(button => {
         button.addEventListener("click", function(e) {

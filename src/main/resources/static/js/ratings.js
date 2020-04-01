@@ -2,7 +2,8 @@
     const token = document.querySelector('meta[name="_csrf"]').content;
     let upvoteButtonClass = document.querySelectorAll(".upvote-button");
     upvoteButtonClass.forEach(button => {
-        button.addEventListener("click", function() {
+        button.addEventListener("click", function(e) {
+            e.preventDefault();
             let idSplit = this.getAttribute("id").split("-");
             let postId = idSplit[1];
             fetch(`https://codeon-capstone.com/upvote/${postId}`, {
@@ -18,7 +19,8 @@
     })
     let downvoteButtonClass = document.querySelectorAll(".downvote-button");
     downvoteButtonClass.forEach(button => {
-        button.addEventListener("click", function() {
+        button.addEventListener("click", function(e) {
+            e.preventDefault();
             let idSplit = this.getAttribute("id").split("-");
             let postId = idSplit[1];
             fetch(`https://codeon-capstone.com/downvote/${postId}`, {

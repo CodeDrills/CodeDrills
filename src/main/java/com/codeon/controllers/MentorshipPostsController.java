@@ -107,18 +107,7 @@ public class MentorshipPostsController {
             return "redirect:/mentorship-posts/show";
         }
         dbPost.setTitle(post.getTitle());
-        dbPost.setEmployer(post.getEmployer());
         dbPost.setBody(post.getBody());
-        dbPost.setPostType(post.getPostType());
-        dbPost.setImageURLList(post.getImageURLList());
-        dbPost.setCommentList(post.getCommentList());
-        dbPost.setRatingList(post.getRatingList());
-        if(dbPost.getRatingList() == null) {
-            dbPost.setRatingTotal(0);
-        } else {
-            dbPost.setRatingTotal(post.getRatingList());
-        }
-//        dbPost.setCreated(post.getCreated());
         postDao.save(dbPost);
         return "redirect:/mentorship-posts/show";
     }

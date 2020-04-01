@@ -38,19 +38,19 @@ public class MentorshipController {
     public String mentorshipHomeView(Model model, Principal principal) {
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("postList", postDao.findAllByPostTypeId_Type("mentorship-posts"));
-        return "mentorship/posts/show";
+        return "mentorship-posts/posts/show";
     }
     @GetMapping("/mentorship-posts/show")
     public String showAllPosts(Model model, Principal principal) {
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("postList", postDao.findAllByPostTypeId_Type("mentorship-posts"));
-        return "mentorship/posts/show";
+        return "mentorship-posts/posts/show";
     }
     @GetMapping("/mentorship-posts/create")
     public String getPostCreateForm(Model model, Principal principal) {
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("post", new Post());
-        return "mentorship/posts/create";
+        return "mentorship-posts/posts/create";
     }
     @PostMapping("/mentorship-posts/create")
     public String createPost(Principal principal, @RequestParam String photoURL, @ModelAttribute Post post) {
@@ -85,7 +85,7 @@ public class MentorshipController {
         }
         model.addAttribute("user", user);
         model.addAttribute("postList", postList);
-        return "mentorship/posts/show";
+        return "mentorship-posts/posts/show";
     }
 
     @GetMapping("/mentorship-posts/edit/{id}")
@@ -96,7 +96,7 @@ public class MentorshipController {
             return "redirect:/posts/show";
         }
         model.addAttribute("post", post);
-        return "mentorship/posts/edit";
+        return "mentorship-posts/posts/edit";
     }
 
     @PostMapping("/mentorship-posts/edit/{id}")
@@ -120,25 +120,18 @@ public class MentorshipController {
         }
 //        dbPost.setCreated(post.getCreated());
         postDao.save(dbPost);
-        return "redirect:/mentorship";
+        return "redirect:/mentorship-posts/show";
     }
 
     @DeleteMapping("/mentorship-posts/delete")
     public String deletePost(@RequestParam Long id, Model model, Principal principal){
-//        System.out.println(id);
-//        Post post = postDao.findPostById(id);
-//        User user = userDao.findUserByUsername(principal.getName());
-//        if(user.getId() != post.getUser().getId()) {
-//            return "redirect:/mentorship-posts";
-//        }
-//        String deletedTitle = post.getTitle();
-        System.out.println("============================================");
-        System.out.println("============================================");
-        System.out.println("============================================");
-        System.out.println("============================================");
-        System.out.println(id);
+        Post post = postDao.findPostById(id);
+        User user = userDao.findUserByUsername(principal.getName());
+        if(user.getId() != post.getUser().getId()) {
+            return "redirect:/mentorship-posts/show";
+        }
         postDao.deleteById(id);
-        return "redirect:/mentorship-posts";
+        return "redirect:/mentorship-posts/show";
     }
     //Post Comments Controllers. Consider making sep controller. Consider removing the get method after testing and only use post.
     @GetMapping("/comments/create/{id}")
@@ -150,7 +143,7 @@ public class MentorshipController {
         }
         model.addAttribute("post", post);
         model.addAttribute("postComment", new PostComment());
-        return "mentorship/comments/create";
+        return "mentorship-posts/comments/create";
     }
     @PostMapping("/comments/create/{id}")
     public String createPostComment(@ModelAttribute Post post, @ModelAttribute PostComment postComment) {

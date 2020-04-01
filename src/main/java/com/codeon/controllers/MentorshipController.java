@@ -124,14 +124,15 @@ public class MentorshipController {
     }
 
     @DeleteMapping("/mentorship-posts/delete")
+    @ResponseBody
     public String deletePost(@RequestParam Long id, Model model, Principal principal){
         Post post = postDao.findPostById(id);
         User user = userDao.findUserByUsername(principal.getName());
         if(user.getId() != post.getUser().getId()) {
-            return "redirect:/mentorship-posts/show";
+            return "-1";
         }
         postDao.deleteById(id);
-        return "redirect:/mentorship-posts/show";
+        return "id";
     }
     //Post Comments Controllers. Consider making sep controller. Consider removing the get method after testing and only use post.
     @GetMapping("/comments/create/{id}")

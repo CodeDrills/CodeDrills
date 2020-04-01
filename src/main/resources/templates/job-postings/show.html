@@ -10,8 +10,8 @@
 
 <!-- Will working on ratings -->
     <div sec:authorize = "isAuthenticated()">
-        <a th:href="@{|/upvote/${post.id}|}"><button>Upvote</button></a>
-        <a th:href="@{|/downvote/${post.id}|}"><button>Downvote</button></a>
+        <button class="upvote-button" th:id="'upvote-' + ${post.id}">Upvote JS</button>
+        <button class="downvote-button" th:id="'downvote-' + ${post.id}">Downvote JS</button>
         <p>Rating Total: <span th:text = "${post.getRatingTotal()}"></span></p>
     </div>
 <!-- END Will working on ratings -->
@@ -22,7 +22,7 @@
     <div sec:authorize = "isAuthenticated()">
         <div th:if="${user.id == post.user.id}">
             <a th:href="@{|/job-postings/edit/${post.id}|}"><button>Edit Post</button></a>
-            <a th:method="DELETE" th:href="@{|/job-postings/delete/${post.id}|}"><button>Delete Post</button></a>
+            <button class="delete-button" th:id="${post.postType.type} + '-' + ${post.id}">Delete Post</button>
         </div>
     </div>
 </div>

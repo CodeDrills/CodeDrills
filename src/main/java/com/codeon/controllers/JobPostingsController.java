@@ -121,18 +121,15 @@ public class JobPostingsController {
         return "redirect:/job-postings/show";
     }
 
-//    @PostMapping("/interview-questions/delete/{id}")
-//    public String deletePost(@PathVariable Long id, Model model){
-//        Post post = postDao.findPostById(id);
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        if(user.getId() != post.getUser().getId()) {
-//            return "redirect:/interview-questions/show";
-//        }
-//        String deletedTitle = post.getTitle();
-//        postDao.deleteById(id);
-//        //Update this to display things if needed.
-//        model.addAttribute("title", "Deleted");
-//        model.addAttribute("body", deletedTitle);
-//        return "redirect:/interview-questions/show";
-//    }
+    @DeleteMapping("/job-postings/delete")
+    @ResponseBody
+    public String deletePost(@RequestParam Long id, Model model, Principal principal){
+        Post post = postDao.findPostById(id);
+        User user = userDao.findUserByUsername(principal.getName());
+        if(user.getId() != post.getUser().getId()) {
+            return "-1";
+        }
+        postDao.deleteById(id);
+        return "id";
+    }
 }

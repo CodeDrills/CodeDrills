@@ -7,6 +7,7 @@
             let postId = idSplit[1];
             fetch(`http://localhost:8080/upvote/${postId}`, {
                 method: 'GET',
+                mode: 'no-cors',
                 headers: {
                     'X-CSRF-TOKEN': token
                 }
@@ -23,6 +24,7 @@
             let postId = idSplit[1];
             fetch(`http://localhost:8080/downvote/${postId}`, {
                 method: 'GET',
+                mode: 'no-cors',
                 headers: {
                     'X-CSRF-TOKEN': token
                 }

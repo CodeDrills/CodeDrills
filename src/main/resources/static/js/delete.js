@@ -8,6 +8,7 @@
             let postId = idSplit[2];
             fetch(`http://localhost:8080/${postType}/delete?id=${postId}`, {
                 method: 'DELETE',
+                mode: 'no-cors',
                 headers: {
                     'X-CSRF-TOKEN': token
                 }

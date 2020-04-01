@@ -1,5 +1,5 @@
 (function () {
-    const token = document.querySelector('meta[name="_csrf"]').content;
+    // const token = document.querySelector('meta[name="_csrf"]').content;
     // let deleteButtonClass = document.querySelectorAll(".delete-button");
     // deleteButtonClass.forEach(button => {
     //     button.addEventListener("click", function(e) {

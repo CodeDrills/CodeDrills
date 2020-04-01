@@ -11,8 +11,69 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="//static.filestackapi.com/filestack-js/1.x.x/filestack.min.js"></script>
     <script type="text/javascript" th:src="@{~/js/keys.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/comment.js}" th:inline="javascript"></script>
     <script type="text/javascript" th:src="@{~/js/delete.js}" th:inline="javascript"></script>
     <script type="text/javascript" th:src="@{~/js/ratings.js}" th:inline="javascript"></script>
+    <script>
+        if(document.getElementById("add-skill-button") !== null) {
+            let i = 0;
+            document.getElementById("add-skill-button").addEventListener("click", function(e) {
+                e.preventDefault();
+                let newDiv = document.createElement("div");
+                // and give it some content
+                newDiv.innerHTML = `<input type="text" id="skills-param-${i}" name="skills-param" placeholder="Please input a skill.">`
+                // add the text node to the newly created div
+                document.querySelector("#skills-div").appendChild(newDiv);
+                i++;
+            })
+        }
+        if(document.querySelectorAll(".add-comment-button") !== null) {
+            const token = document.querySelector('meta[name="_csrf"]').content;
+            let i = 0;
+            document.querySelectorAll(".add-comment-button").forEach(button => button.addEventListener("click", function(e) {
+                e.preventDefault();
+                //WAS USING THIS TO APPEND CHILD
+                // let newDiv = document.createElement("div");
+                // newDiv.innerHTML = `<input type="text" id="comment-${this.getAttribute("id").split("-")[3]}" name="body" placeholder="Comment."><button class="post-comment-button" id="post-comment-button-${this.getAttribute("id").split("-")[3]}">Submit.</button>`
+                document.querySelector(`#create-comment-div-${this.getAttribute("id").split("-")[3]}`).innerHTML = `<input type="text" id="comment-${this.getAttribute("id").split("-")[3]}" name="body" placeholder="Comment."><button class="post-comment-button" id="post-comment-button-${this.getAttribute("id").split("-")[3]}">Submit.</button>`;
+                document.querySelector(`#post-comment-button-${this.getAttribute("id").split("-")[3]}`).addEventListener("click", function(e) {
+                    e.preventDefault();
+                    let body = document.querySelector(`#comment-${this.getAttribute("id").split("-")[3]}`).value;
+                    let idSplit = this.getAttribute("id").split("-");
+                    let postId = idSplit[3];
+                    fetch(`http://localhost:8080/comments/create/${postId}?body=${body}`, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': token
+                        }
+                    })
+                        .then(res => {
+                            location.reload(true);
+                        })
+                    })
+                // UNCOMMENT BELOW FOR PRODUCTION
+                //
+                // let deleteButtonClass = document.querySelectorAll(".delete-button");
+                // deleteButtonClass.forEach(button => {
+                //     button.addEventListener("click", function(e) {
+                //         e.preventDefault();
+                //         let idSplit = this.getAttribute("id").split("-");
+                //         let postType = idSplit[0] + "-" + idSplit[1];
+                //         let postId = idSplit[2];
+                //         fetch(`https://codeon-capstone.com/${postType}/delete?id=${postId}`, {
+                //             method: 'DELETE',
+                //             headers: {
+                //                 'X-CSRF-TOKEN': token
+                //             }
+                //         })
+                //             .then(res => {
+                //                location.reload(true);
+                //             })
+                //     })
+                // })
+            }))
+        }
+    </script>
     <script>
         // Set up the picker
         const client = filestack.init(FILESTACK_API_KEY);

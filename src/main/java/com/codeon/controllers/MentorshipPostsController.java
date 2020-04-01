@@ -121,6 +121,6 @@ public class MentorshipPostsController {
             return "-1";
         }
         postDao.deleteById(id);
-        return "id";
+        return String.format("%d", id);
     }
 }

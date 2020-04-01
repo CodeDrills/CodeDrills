@@ -169,21 +169,12 @@ public class Post {
         this.dateTime = dateTime;
     }
 
-    @Override
-    public String toString() {
-        return "Post{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", employer='" + employer + '\'' +
-                ", body='" + body + '\'' +
-                ", user=" + user +
-                ", postType=" + postType +
-                ", imageURLList=" + imageURLList +
-                ", commentList=" + commentList +
-                ", ratingList=" + ratingList +
-                ", ratingTotal=" + ratingTotal +
-                ", dateTime=" + dateTime +
-                '}';
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 
 }

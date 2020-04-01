@@ -71,14 +71,4 @@ public class PostComment {
         this.dateTime = dateTime;
     }
 
-    @Override
-    public String toString() {
-        return "PostComment{" +
-                "id=" + id +
-                ", body='" + body + '\'' +
-                ", user=" + user +
-                ", post=" + post +
-                ", dateTime=" + dateTime +
-                '}';
-    }
 }

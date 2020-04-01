@@ -13,6 +13,9 @@
 <h3 class="mt-0">User information:</h3>
 <p>first name: <span th:text="${user.firstName}"></span> last name: <span th:text="${user.lastName}"></span> </p>
 <h3 class="mt-0">About Me:</h3>
+<div>
+    <img th:src="${user.profileImageURL}" alt="profile" class="img-fluid align-self-center mr-3" width="25%" height="25%">
+</div>
 <p><span th:text="${user.bio}"></span></p>
 
 
@@ -25,9 +28,25 @@
     </form>
 </div>
 
-
+<!--<main class="container">-->
+<!--    <h1> Here are your Post</h1>-->
+<!--    <div th:each="post : ${post}">-->
+<!--        <div th:if="${user.id == post.user.id}">-->
+<!--        <a th:href="@{|/posts/${post.id}|}"><h1 th:text="${post.title}"></h1></a>-->
+<!--        <p th:text="${post.body}"></p>-->
+<!--        <a th:href="'mailto:'+${post.user.email}"><span th:text="${post.user.email}"></span> </a>-->
+<!--        <br>-->
+<!--        <a th:href="@{|/posts/${post.id}/edit|}"><button>Edit Post</button></a>-->
+<!--        <form th:action="@{|/posts/${post.id}/delete|}" th:method="POST" style="display:inline">-->
+<!--            <button>Delete Post</button>-->
+<!--        </form>-->
+<!--        <hr>-->
+<!--    </div>-->
+<!--    </div>-->
+<!--</main>-->
 
 <main class="container">
+
     <h1> Here are your Posts</h1>
     <div th:each="post : ${post}">
         <a th:href="@{|/posts/${post.id}|}"><h1 th:text="${post.title}"></h1></a>
@@ -39,8 +58,40 @@
             <button>Delete Post</button>
         </form>
         <hr>
+
+    <h1> Here are your Interview Questions</h1>
+    <div th:each="post :${postList}">
+        <div th:if="${user.id == post.user.id}">
+            <a th:href="@{|/posts/${post.id}|}"><h1 th:text="${post.title}"></h1></a>
+            <p th:text="${post.body}"></p>
+        </div>
+
     </div>
 </main>
+
+<main class="container">
+    <h1> Here are your Mentorship Post</h1>
+    <div th:each="post :${mentorList}">
+        <div th:if="${user.id == post.user.id}">
+            <a th:href="@{|/posts/${post.id}|}"><h1 th:text="${post.title}"></h1></a>
+            <p th:text="${post.body}"></p>
+        </div>
+    </div>
+</main>
+
+
+=======
+<main class="container">
+    <h1> Here are your job Postings</h1>
+    <div th:each="post :${jobList}">
+        <div th:if="${user.id == post.user.id}">
+            <a th:href="@{|/posts/${post.id}|}"><h1 th:text="${post.title}"></h1></a>
+            <p th:text="${post.body}"></p>
+        </div>
+    </div>
+</main>
+
+
 
 
 

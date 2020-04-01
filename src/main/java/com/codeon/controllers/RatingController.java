@@ -33,21 +33,21 @@ public class RatingController {
 
     /*If a user has already upvoted the post and they click upvote again it will set rating to 0
       If they have not rated the post yet, a new rating will be created and set to 1. */
-    @GetMapping("/posts/{id}/ratings/upvote")
+    @GetMapping("/upvote/{id}")
     public String createUpvote(@PathVariable Long id, Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Post post = postDao.findPostById(id);
+        String returnString = "redirect:/" + post.getPostType().getType() + "/show";
         for(PostRating rating : post.getRatingList()) {
             if(rating.getUser().getId() == user.getId()) {
-                if(rating.getRating() == 0) {
+                if(rating.getRating() == 0 || rating.getRating() == -1) {
                     rating.setRating(1);
                 } else {
                     rating.setRating(0);
                 }
                 postRatingDao.save(rating);
                 post.setRatingTotal(post.getRatingList());
-                System.out.println("Post rating total: " + post.getRatingTotal());
-                return "redirect:/posts/show";
+                return returnString;
             }
         }
         PostRating newRating = new PostRating();
@@ -56,25 +56,26 @@ public class RatingController {
         newRating.setUser(user);
         postRatingDao.save(newRating);
         post.setRatingTotal(post.getRatingList());
-        return "redirect:/posts/show";
+        return returnString;
     }
 
     /*If a user has already downvoted the post and they click downvote again it will set rating to 0
       If they have not rated the post yet, a new rating will be created and set to -1. */
-    @GetMapping("/posts/{id}/ratings/downvote")
+    @GetMapping("/downvote/{id}")
     public String createDownvote(@PathVariable Long id) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Post post = postDao.findPostById(id);
+        String returnString = "redirect:/" + post.getPostType().getType() + "/show";
         for(PostRating rating : post.getRatingList()) {
             if(rating.getUser().getId() == user.getId()) {
-                if(rating.getRating() == 0) {
+                if(rating.getRating() == 0 || rating.getRating() == 1) {
                     rating.setRating(-1);
                 } else {
                     rating.setRating(0);
                 }
                 postRatingDao.save(rating);
                 post.setRatingTotal(post.getRatingList());
-                return "redirect:/posts/show";
+                return returnString;
             }
         }
         PostRating newRating = new PostRating();
@@ -83,6 +84,6 @@ public class RatingController {
         newRating.setUser(user);
         postRatingDao.save(newRating);
         post.setRatingTotal(post.getRatingList());
-        return "redirect:/posts/show";
+        return returnString;
     }
 }

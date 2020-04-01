@@ -16,8 +16,6 @@ public class Skill {
     @Column(nullable = false)
     private String name;
 
-
-
     @ManyToMany(mappedBy = "skillList")
     private List<User> userList;
 

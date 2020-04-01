@@ -8,23 +8,10 @@
     <h1 th:text = "${post.title}"></h1>
     <p th:text = "${post.body}"></p>
     <p th:text = "${post.user.email}"></p>
-    <!--    NEW TESTING-->
-
-    <!-- Will working on ratings -->
     <div sec:authorize = "isAuthenticated()">
-        <a th:href="@{|/upvote/${post.id}|}"><button>Upvote</button></a>
-        <a th:href="@{|/downvote/${post.id}|}"><button>Downvote</button></a>
-        <p>Rating Total: <span th:text = "${post.getRatingTotal()}"></span></p>
-    </div>
-    <!-- END Will working on ratings -->
-
-    <div th:each="comment : ${post.commentList}">
-        <p th:text = "${comment.body}"></p>
-    </div>
-    <div sec:authorize = "isAuthenticated()">
-        <div th:if="${user.id == post.user.id}">\
+        <div th:if="${user.id == post.user.id}">
             <a th:href="@{|/posts/${post.id}/edit|}"><button>Edit Post</button></a>
-            <button class="delete-button" th:id="${post.getPostType()} + '-' + ${post.id}">Delete Post</button>
+            <a th:href="@{|/posts/${post.id}/delete|}"><button>Delete Post</button></a>
         </div>
     </div>
 </div>

@@ -81,28 +81,24 @@ insert into users_skills (user_id, skill_id) values (15, 1);
 insert into users_skills (user_id, skill_id) values (9, 2);
 insert into users_skills (user_id, skill_id) values (20, 9);
 
-insert into posts (user_id, post_type_id, title, body, date_time, employer) values (3, 1, 'Orcinus orca', 'Accounting', '10/13/2019', 'Lazz');
-insert into posts (user_id, post_type_id, title, body, date_time, employer) values (6, 1, 'Ceratotherium simum', 'Training', '6/21/2019', null);
-insert into posts (user_id, post_type_id, title, body, date_time, employer) values (12, 3,  'Junonia genoveua', 'Accounting', '10/4/2019', 'Wikizz');
-insert into posts (user_id, post_type_id, title, body, date_time, employer) values (25, 2, 'Cynictis penicillata', 'Business Development', '4/8/2019', 'Twitterworks');
-insert into posts (user_id, post_type_id, title, body, date_time, employer) values (2, 1, 'Terrapene carolina', 'Engineering', '5/25/2019', 'Twiyo');
-insert into posts (user_id, post_type_id, title, body, date_time, employer) values (5, 3, 'Centrocercus urophasianus', 'Marketing', '10/2/2019', 'Aivee');
-insert into posts (user_id, post_type_id, title, body, date_time, employer) values (17, 3,  'Dipodomys deserti', 'Legal', '7/17/2019', 'Divavu');
-insert into posts (user_id, post_type_id, title, body, date_time, employer) values (19, 2, 'Chlidonias leucopterus', 'Training', '10/31/2019', 'Youbridge');
-insert into posts (user_id, post_type_id, title, body, date_time, employer) values (10, 1, 'Upupa epops', 'Services', '4/25/2019', 'Gabvine');
-insert into posts (user_id, post_type_id, title, body, date_time, employer) values (10, 2, 'Chionis alba', 'Human Resources', '5/25/2019', 'Wikivu');
-insert into posts (user_id, post_type_id, title, body, date_time, employer) values (15, 3, 'Loris tardigratus', 'Services', '11/12/2019', null);
-insert into posts (user_id, post_type_id, title, body, date_time, employer) values (6, 1, 'Theropithecus gelada', 'Accounting', '5/31/2019', 'Skidoo');
-insert into posts (user_id, post_type_id, title, body, date_time, employer) values (22, 2, 'Ctenophorus ornatus', 'Marketing', '10/17/2019', 'Jabbersphere');
-insert into posts (user_id, post_type_id, title, body, date_time, employer) values (20, 1, 'Upupa epops', 'Sales', '8/17/2019', 'Youbridge');
-insert into posts (user_id, post_type_id, title, body, date_time, employer) values (2, 2, 'Milvago chimachima', 'Training', '5/11/2019', 'Fivespan');
-insert into posts (user_id, post_type_id, title, body, date_time, employer) values (4, 3, 'Laniaurius atrococcineus', 'Human Resources', '4/15/2019', 'Twitterbridge');
-insert into posts (user_id, post_type_id, title, body, date_time, employer) values (13, 1, 'Felis libyca', 'Business Development', '9/8/2019', null);
-insert into posts (user_id, post_type_id, title, body, date_time, employer) values (26, 2, 'Falco mexicanus', 'Training', '4/7/2019', 'Zoonoodle');
-insert into posts (user_id, post_type_id, title, body, date_time, employer) values (28, 2, 'Chordeiles minor', 'Sales', '4/2/2019', 'Yodoo');
-insert into posts (user_id, post_type_id, title, body, date_time, employer) values (8, 3, 'Tamiasciurus hudsonicus', 'Accounting', '6/22/2019', 'Divanoodle');
-insert into posts (user_id, post_type_id, title, body, date_time, employer) values (10, 2, 'Cervus duvauceli', 'Training', '3/9/2020', 'Devbug');
-insert into posts (user_id, post_type_id, title, body, date_time, employer) values (14, 1, 'Gazella thompsonii', 'Research and Development', '4/5/2019', 'Avamm');
+
+
+# insert into posts (user_id, post_type_id, title, body, date_time, employer) values (10, 2, 'Chionis alba', 'Human Resources', '5/25/2019', 'Wikivu');
+# insert into posts (user_id, post_type_id, title, body, date_time, employer) values (15, 3, 'Loris tardigratus', 'Services', '11/12/2019', null);
+# insert into posts (user_id, post_type_id, title, body, date_time, employer) values (6, 1, 'Theropithecus gelada', 'Accounting', '5/31/2019', 'Skidoo');
+# insert into posts (user_id, post_type_id, title, body, date_time, employer) values (22, 2, 'Ctenophorus ornatus', 'Marketing', '10/17/2019', 'Jabbersphere');
+# insert into posts (user_id, post_type_id, title, body, date_time, employer) values (20, 1, 'Upupa epops', 'Sales', '8/17/2019', 'Youbridge');
+# insert into posts (user_id, post_type_id, title, body, date_time, employer) values (2, 2, 'Milvago chimachima', 'Training', '5/11/2019', 'Fivespan');
+# insert into posts (user_id, post_type_id, title, body, date_time, employer) values (4, 3, 'Laniaurius atrococcineus', 'Human Resources', '4/15/2019', 'Twitterbridge');
+# insert into posts (user_id, post_type_id, title, body, date_time, employer) values (13, 1, 'Felis libyca', 'Business Development', '9/8/2019', null);
+# insert into posts (user_id, post_type_id, title, body, date_time, employer) values (26, 2, 'Falco mexicanus', 'Training', '4/7/2019', 'Zoonoodle');
+# insert into posts (user_id, post_type_id, title, body, date_time, employer) values (28, 2, 'Chordeiles minor', 'Sales', '4/2/2019', 'Yodoo');
+# insert into posts (user_id, post_type_id, title, body, date_time, employer) values (8, 3, 'Tamiasciurus hudsonicus', 'Accounting', '6/22/2019', 'Divanoodle');
+# insert into posts (user_id, post_type_id, title, body, date_time, employer) values (10, 2, 'Cervus duvauceli', 'Training', '3/9/2020', 'Devbug');
+# insert into posts (user_id, post_type_id, title, body, date_time, employer) values (14, 1, 'Gazella thompsonii', 'Research and Development', '4/5/2019', 'Avamm');
+
+
+
 
 insert into post_ratings (user_id, post_id, rating) values (1, 1, 1);
 insert into post_ratings (user_id, post_id, rating) values (2, 1, 1);

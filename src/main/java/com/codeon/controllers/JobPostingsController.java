@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Random;
 
 @Controller
-public class InterviewQuestionController {
+public class JobPostingsController {
 
     private Random random = new Random();
     private PostRepo postDao;
@@ -29,7 +29,7 @@ public class InterviewQuestionController {
     private ImageURLRepo imageURLDao;
     private EmailService emailService;
 
-    public InterviewQuestionController(PostRepo postDao, UserRepo userDao, PostTypeRepo postTypeDao, PostCommentRepo postCommentDao, ImageURLRepo imageURLDao, EmailService emailService) {
+    public JobPostingsController(PostRepo postDao, UserRepo userDao, PostTypeRepo postTypeDao, PostCommentRepo postCommentDao, ImageURLRepo imageURLDao, EmailService emailService) {
         this.postDao = postDao;
         this.userDao = userDao;
         this.postTypeDao = postTypeDao;
@@ -39,15 +39,15 @@ public class InterviewQuestionController {
     }
 
     //SHOW IT JUST AS JSON.
-    @GetMapping("/interview-questions")
+    @GetMapping("/job-postings")
     @ResponseBody
-    public List<Post> showInterviewQuestionsAsJSON() {
-        return postDao.findAllByPostTypeId_Type("interview-questions");
+    public List<Post> showJobPostingsAsJSON() {
+        return postDao.findAllByPostTypeId_Type("job-postings");
     }
 
-    @GetMapping("/interview-questions/show")
-    public String showAllInterviewQuestions(Model model, Principal principal) {
-        List<Post> interviewQuestions = postDao.findAllByPostTypeId_Type("interview-questions");
+    @GetMapping("/job-postings/show")
+    public String showAllJobPostings(Model model, Principal principal) {
+        List<Post> jobPostings = postDao.findAllByPostTypeId_Type("job-postings");
         String username = "";
         User user = new User();
         if(principal != null) {
@@ -55,46 +55,18 @@ public class InterviewQuestionController {
             user = userDao.findUserByUsername(username);
         }
         model.addAttribute("user", user);
-        model.addAttribute("postList", interviewQuestions);
-        return "interview-questions/show";
+        model.addAttribute("postList", jobPostings);
+        return "job-postings/show";
     }
 
-    @GetMapping("/interview-questions/show-one")
-    public String showOneInterviewQuestion(Model model, Principal principal) {
-        List<Post> interviewQuestions = postDao.findAllByPostTypeId_Type("interview-questions");
-        Post selectedPost = null;
-        Integer pickQuestion, questionRoll, selectedPostRating;
-        boolean determiningPost = true;
-        while(determiningPost) {
-            pickQuestion = random.nextInt(interviewQuestions.size());
-            System.out.println("Selecting Question: " + pickQuestion);
-            selectedPost = interviewQuestions.get(pickQuestion);
-            selectedPostRating = selectedPost.getRatingTotal(selectedPost.getRatingList());
-            System.out.println(selectedPostRating);
-            questionRoll = random.nextInt(31) -10;
-            if(selectedPostRating >= questionRoll) {
-                determiningPost = false;
-            }
-        }
-        String username = "";
-        User user = new User();
-        if (principal != null) {
-            username = principal.getName();
-            user = userDao.findUserByUsername(username);
-        }
-        model.addAttribute("user", user);
-        model.addAttribute("post", selectedPost);
-        return "/interview-questions/show-one";
-    }
-
-    @GetMapping("/interview-questions/create")
-    public String getPostCreateForm(Model model) {
+    @GetMapping("/job-postings/create")
+    public String jobPostingsCreateForm(Model model) {
         model.addAttribute("post", new Post());
-        return "interview-questions/create";
+        return "job-postings/create";
     }
 
-    @PostMapping("/interview-questions/create")
-    public String createPost(@RequestParam Long postTypeId, @ModelAttribute Post post) {
+    @PostMapping("/job-postings/create")
+    public String createJobPosting(@RequestParam Long postTypeId, @ModelAttribute Post post) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
         Date now = new Date();
@@ -105,11 +77,11 @@ public class InterviewQuestionController {
         post.setRatingTotal(0);
         post.setPostType(postTypeDao.getPostTypeById(postTypeId));
         postDao.save(post);
-        return "redirect:/interview-questions/show";
+        return "redirect:/job-postings/show";
     }
 
-    @GetMapping("/interview-questions/{id}")
-    public String getPost(@PathVariable Long id, Model model, Principal principal){
+    @GetMapping("/job-postings/{id}")
+    public String getJobPostings(@PathVariable Long id, Model model, Principal principal){
         String username;
         User user = new User();
         List<Post> postList = new ArrayList<>();
@@ -120,32 +92,33 @@ public class InterviewQuestionController {
         }
         model.addAttribute("user", user);
         model.addAttribute("postList", postList);
-        return "interview-questions/show";
+        return "job-postings/show";
     }
 
-    @GetMapping("/interview-questions/edit/{id}")
-    public String getEditPostForm(@PathVariable Long id, Model model){
+    @GetMapping("/job-postings/edit/{id}")
+    public String getEditJobPostingForm(@PathVariable Long id, Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Post post = postDao.findPostById(id);
         if(user.getId() != post.getUser().getId()) {
-            return "redirect:/interview-questions/show";
+            return "redirect:/job-postings/show";
         }
         model.addAttribute("post", post);
-        return "interview-questions/edit";
+        return "job-postings/edit";
     }
 
-    @PostMapping("/interview-questions/edit/{id}")
-    public String updatePost(@PathVariable Long id, @ModelAttribute Post post) {
+    @PostMapping("/job-postings/edit/{id}")
+    public String updateJobPosting(@PathVariable Long id, @ModelAttribute Post post) {
         Post dbPost = postDao.findPostById(id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if(user.getId() != dbPost.getUser().getId()) {
-            return "redirect:/interview-questions/show";
+            return "redirect:/job-postings/show";
         }
         dbPost.setTitle(post.getTitle());
         dbPost.setBody(post.getBody());
-        dbPost.setAnswer(post.getAnswer());
+        dbPost.setAnswer(post.getEmployer());
+        System.out.println("here");
         postDao.save(dbPost);
-        return "redirect:/interview-questions/show";
+        return "redirect:/job-postings/show";
     }
 
 //    @PostMapping("/interview-questions/delete/{id}")

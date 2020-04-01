@@ -8,13 +8,13 @@
             let postId = idSplit[2];
             fetch(`https://codeon-capstone.com/${postType}/delete?id=${postId}`, {
                 method: 'DELETE',
-                credentials: 'same-origin',
+                redirect: 'follow',
                 headers: {
                     'X-CSRF-TOKEN': token
                 }
             })
                 .then(res => {
-                    location.reload(true);
+                    console.log("complete");
                 })
         })
     })

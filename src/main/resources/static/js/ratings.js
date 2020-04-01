@@ -7,13 +7,13 @@
             let postId = idSplit[1];
             fetch(`https://codeon-capstone.com/upvote/${postId}`, {
                 method: 'GET',
-                credentials: 'same-origin',
+                redirect: 'follow',
                 headers: {
                     'X-CSRF-TOKEN': token
                 }
             })
                 .then(res => {
-                    location.reload(true);
+                    console.log("then");
                 })
         })
     })
@@ -24,13 +24,13 @@
             let postId = idSplit[1];
             fetch(`https://codeon-capstone.com/downvote/${postId}`, {
                 method: 'GET',
-                credentials: 'same-origin',
+                redirect: 'follow',
                 headers: {
                     'X-CSRF-TOKEN': token
                 }
             })
                 .then(res => {
-                    location.reload(true);
+                    console.log("then");
                 })
         })
     })

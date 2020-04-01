@@ -1,18 +1,74 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Home</title>
 </head>
 <body>
 <th:block th:fragment="body-scripts">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
     <script src="//static.filestackapi.com/filestack-js/1.x.x/filestack.min.js"></script>
     <script type="text/javascript" th:src="@{~/js/keys.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/comment.js}" th:inline="javascript"></script>
     <script type="text/javascript" th:src="@{~/js/delete.js}" th:inline="javascript"></script>
     <script type="text/javascript" th:src="@{~/js/ratings.js}" th:inline="javascript"></script>
+<!--    add skill used in register and add comment used in all show pages-->
+    <script>
+        if (document.getElementById("add-skill-button") !== null) {
+            let i = 0;
+            document.getElementById("add-skill-button").addEventListener("click", function (e) {
+                e.preventDefault();
+                let newDiv = document.createElement("div");
+                // and give it some content
+                newDiv.innerHTML = `<input type="text" id="skills-param-${i}" name="skills-param" placeholder="Please input a skill.">`
+                // add the text node to the newly created div
+                document.querySelector("#skills-div").appendChild(newDiv);
+                i++;
+            })
+        }
+        if (document.querySelectorAll(".add-comment-button") !== null) {
+            const token = document.querySelector('meta[name="_csrf"]').content;
+            let i = 0;
+            document.querySelectorAll(".add-comment-button").forEach(button => button.addEventListener("click", function (e) {
+                e.preventDefault();
+                document.querySelector(`#create-comment-div-${this.getAttribute("id").split("-")[3]}`).innerHTML = `<input type="text" id="comment-${this.getAttribute("id").split("-")[3]}" name="body" placeholder="Comment."><button class="post-comment-button" id="post-comment-button-${this.getAttribute("id").split("-")[3]}">Submit.</button>`;
+                document.querySelector(`#post-comment-button-${this.getAttribute("id").split("-")[3]}`).addEventListener("click", function (e) {
+                    e.preventDefault();
+                    let body = document.querySelector(`#comment-${this.getAttribute("id").split("-")[3]}`).value;
+                    let idSplit = this.getAttribute("id").split("-");
+                    let postId = idSplit[3];
+                    fetch(`http://localhost:8080/comments/create/${postId}?body=${body}`, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': token
+                        }
+                    })
+                        .then(res => {
+                            location.reload(true);
+                        })
+                    //change this for production
+                    // fetch(`http://codeon-capstone.com/comments/create/${postId}?body=${body}`, {
+                    //     method: 'POST',
+                    //     headers: {
+                    //         'X-CSRF-TOKEN': token
+                    //     }
+                    // })
+                    //     .then(res => {
+                    //         location.reload(true);
+                    //     })
+                })
+
+            }))
+        }
+    </script>
     <script>
         // Set up the picker
         const client = filestack.init(FILESTACK_API_KEY);
@@ -39,7 +95,7 @@
 
         // Add our event listeners
 
-        if(photoBtn != null && resumeBtn != null) {
+        if (photoBtn != null && resumeBtn != null) {
             photoBtn.addEventListener('click', function (e) {
                 e.preventDefault();
                 photoPicker.open();
@@ -50,13 +106,15 @@
                 resumePicker.open();
             });
         }
-        function updatePhotoForm (result) {
+
+        function updatePhotoForm(result) {
             const fileData = result.filesUploaded[0];
             photoInput.value = fileData.url; //this is the good part
             console.log(fileData.url);
             console.log(photoInput.value);
         };
-        function updateResumeForm (result) {
+
+        function updateResumeForm(result) {
             const fileData = result.filesUploaded[0];
             resumeInput.value = fileData.url; //this is the good part
             console.log(fileData.url);

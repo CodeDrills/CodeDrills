@@ -153,12 +153,12 @@ public class UserController {
     }
 
     @GetMapping("/profile")
-    public String profileview(Model model){
+    public String profileView(Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Post> posts = postDao.getAllByUser_Id(user.getId());
-        List<Post> interviewQuestions = postDao.findAllByPostTypeId_Type("interview_question");
-        List<Post> mentorship = postDao.findAllByPostTypeId_Type("mentor_question");
-        List<Post> jobPostings = postDao.findAllByPostTypeId_Type("job_listing");
+        List<Post> interviewQuestions = postDao.findAllByPostTypeId_Type("interview-questions");
+        List<Post> mentorship = postDao.findAllByPostTypeId_Type("mentor-questions");
+        List<Post> jobPostings = postDao.findAllByPostTypeId_Type("job-listings");
         List<PostComment>  postComments = postCommentDao.getAllByUser_Id(user.getId());
 
         model.addAttribute("jobList", jobPostings);
@@ -169,7 +169,7 @@ public class UserController {
         model.addAttribute("user", userDao.getOne((user.getId())));
         return "users/profile";
     }
-    @PostMapping("users/{id}/edit")
+    @PostMapping("users/edit{id}/")
     public String profileEdit(@PathVariable long id, @ModelAttribute User user) {
         User updateInfo = userDao.getOne(id);
         updateInfo.setBio(user.getBio());

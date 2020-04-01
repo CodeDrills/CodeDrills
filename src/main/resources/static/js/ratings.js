@@ -10,7 +10,7 @@
             let idSplit = this.getAttribute("id").split("-");
             let postId = idSplit[1];
             fetch(`http://localhost:8080/upvote/${postId}`, {
-                method: 'GET',
+                method: 'POST',
                 headers: {
                     'X-CSRF-TOKEN': token
                 }
@@ -27,7 +27,7 @@
             let idSplit = this.getAttribute("id").split("-");
             let postId = idSplit[1];
             fetch(`http://localhost:8080/downvote/${postId}`, {
-                method: 'GET',
+                method: 'POST',
                 headers: {
                     'X-CSRF-TOKEN': token
                 }

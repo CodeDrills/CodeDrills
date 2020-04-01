@@ -5,9 +5,8 @@
         button.addEventListener("click", function() {
             let idSplit = this.getAttribute("id").split("-");
             let postId = idSplit[1];
-            fetch(`http://localhost:8080/upvote/${postId}`, {
+            fetch(`https://codeon-capstone.com/${postId}`, {
                 method: 'GET',
-                mode: 'no-cors',
                 headers: {
                     'X-CSRF-TOKEN': token
                 }
@@ -22,7 +21,7 @@
         button.addEventListener("click", function() {
             let idSplit = this.getAttribute("id").split("-");
             let postId = idSplit[1];
-            fetch(`http://localhost:8080/downvote/${postId}`, {
+            fetch(`https://codeon-capstone.com/downvote/${postId}`, {
                 method: 'GET',
                 mode: 'no-cors',
                 headers: {

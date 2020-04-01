@@ -6,7 +6,7 @@
             let idSplit = this.getAttribute("id").split("-");
             let postType = idSplit[0] + "-" + idSplit[1];
             let postId = idSplit[2];
-            fetch(`http://localhost:8080/${postType}/delete?id=${postId}`, {
+            fetch(`https://codeon-capstone.com/${postType}/delete?id=${postId}`, {
                 method: 'DELETE',
                 mode: 'no-cors',
                 headers: {

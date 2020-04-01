@@ -39,13 +39,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                /* Login configuration */
-                .cors().and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/profile") // user's home page, it can be any URL
-                .permitAll() // Anyone can go to the login page
-                /* Logout configuration */
+                .defaultSuccessUrl("/profile")
+                .permitAll()
                 .and()
                 .logout()
                 .logoutUrl("/logout_app")

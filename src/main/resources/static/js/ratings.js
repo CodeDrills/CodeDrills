@@ -43,7 +43,7 @@
             let idSplit = this.getAttribute("id").split("-");
             let postId = idSplit[1];
             fetch(`https://codeon-capstone.com/upvote/${postId}`, {
-                method: 'GET',
+                method: 'POST',
                 headers: {
                     'X-CSRF-TOKEN': token
                 }
@@ -60,7 +60,7 @@
             let idSplit = this.getAttribute("id").split("-");
             let postId = idSplit[1];
             fetch(`https://codeon-capstone.com/downvote/${postId}`, {
-                method: 'GET',
+                method: 'POST',
                 headers: {
                     'X-CSRF-TOKEN': token
                 }

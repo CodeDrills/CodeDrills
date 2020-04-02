@@ -11,17 +11,7 @@
                 let body = document.querySelector(`#comment-${this.getAttribute("id").split("-")[3]}`).value;
                 let idSplit = this.getAttribute("id").split("-");
                 let postId = idSplit[3];
-                // fetch(`http://localhost:8080/comments/create/${postId}?body=${body}`, {
-                //     method: 'POST',
-                //     headers: {
-                //         'X-CSRF-TOKEN': token
-                //     }
-                // })
-                //     .then(res => {
-                //         location.reload(true);
-                //     })
-                //change this for production
-                fetch(`https://codeon-capstone.com/comments/create/${postId}?body=${body}`, {
+                fetch(`http://localhost:8080/comments/create/${postId}?body=${body}`, {
                     method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': token
@@ -30,6 +20,16 @@
                     .then(res => {
                         location.reload(true);
                     })
+                //change this for production
+                // fetch(`https://codeon-capstone.com/comments/create/${postId}?body=${body}`, {
+                //     method: 'POST',
+                //     headers: {
+                //         'X-CSRF-TOKEN': token
+                //     }
+                // })
+                //     .then(res => {
+                //         location.reload(true);
+                //     })
             })
 
         }))

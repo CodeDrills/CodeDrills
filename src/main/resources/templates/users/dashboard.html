@@ -10,9 +10,11 @@
 <h1>Most Recent Interview Questions</h1>
 <div th:each="post : ${interviewQuestionsList}">
     <div th:id="'post-' + ${post.id}"></div>
-    <h1 th:text = "${post.title}"></h1>
+    <h3 th:text = "${post.title}"></h3>
+    <h4 th:text = "${post.dateTime}"></h4>
     <p th:text = "${post.body}"></p>
-    <p th:text = "${post.user.email}"></p>
+    <p th:text = "${post.user.username}"></p>
+    <img th:if="${post.imageURLList != null}" th:text="${post.imageURLList[0].url}" alt="post-image">
 
     <div sec:authorize = "isAuthenticated()">
         <button class="upvote-button" th:id="'upvote-' + ${post.id}">Upvote JS</button>

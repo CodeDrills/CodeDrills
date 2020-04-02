@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul th:if="${#httpServletRequest.requestURI.contains('interview-questions')}" class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" th:href="@{|/users/profile|}">Profile</a>
+                <a class="nav-link" th:href="@{|/users/dashboard|}">Dashboard</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="@{|/interview-questions/show|}">View Interview Questions</a>
@@ -30,7 +30,7 @@
         </ul>
         <ul th:if="${#httpServletRequest.requestURI.contains('mentorship-posts')}" class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" th:href="@{|/users/profile|}">Profile</a>
+                <a class="nav-link" th:href="@{|/users/dashboard|}">Dashboard</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="@{|/mentorship-posts/show|}">View Mentorship Posts</a>
@@ -52,7 +52,7 @@
         </ul>
         <ul th:if="${#httpServletRequest.requestURI.contains('job-postings')}" class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" th:href="@{|/users/profile|}">Profile</a>
+                <a class="nav-link" th:href="@{|/users/dashboard|}">Dashboard</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="@{|/job-postings/show|}">View Job Postings</a>
@@ -65,6 +65,22 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" th:href="@{|/mentorship-posts/show|}">Mentorship Posts</a>
+            </li>
+            <li class="nav-item">
+                <form th:action="@{~/logout_app}" th:method="post">
+                    <button class="btn-link btn">Logout</button>
+                </form>
+            </li>
+        </ul>
+        <ul th:if="${#httpServletRequest.requestURI.contains('users/dashboard')}" class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{|/interview-questions/show|}">Interview Questions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{|/mentorship-posts/show|}">Mentorship Posts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{|/job-postings/show|}">Job Postings</a>
             </li>
             <li class="nav-item">
                 <form th:action="@{~/logout_app}" th:method="post">

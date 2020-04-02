@@ -156,11 +156,11 @@ public class UserController {
 
     @GetMapping("/users/dashboard")
     public String profileView(Model model, Principal principal){
-        List<Post> interviewQuestionsList = postDao.findAllByPostTypeId_Type("interview-questions");
+        List<Post> interviewQuestionsList = postDao.findAllByPostTypeId_Type("interview-questions").subList(postDao.findAllByPostTypeId_Type("interview-questions").size() - 2, postDao.findAllByPostTypeId_Type("interview-questions").size() - 1);
         interviewQuestionsList.sort(Collections.reverseOrder(Comparator.comparing((Post::getId))));
-        List<Post> mentorshipPostsList = postDao.findAllByPostTypeId_Type("mentorship-posts");
+        List<Post> mentorshipPostsList = postDao.findAllByPostTypeId_Type("mentorship-posts").subList(postDao.findAllByPostTypeId_Type("mentorship-posts").size() - 2, postDao.findAllByPostTypeId_Type("mentorship-posts").size() - 1);
         mentorshipPostsList.sort(Collections.reverseOrder(Comparator.comparing((Post::getId))));
-        List<Post> jobPostingsList = postDao.findAllByPostTypeId_Type("job-postings");
+        List<Post> jobPostingsList = postDao.findAllByPostTypeId_Type("job-postings").subList(postDao.findAllByPostTypeId_Type("mentorship-posts").size() - 2, postDao.findAllByPostTypeId_Type("mentorship-posts").size() - 1);
         mentorshipPostsList.sort(Collections.reverseOrder(Comparator.comparing((Post::getId))));
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("interviewQuestionsList", interviewQuestionsList);

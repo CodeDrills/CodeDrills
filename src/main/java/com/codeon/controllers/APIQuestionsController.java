@@ -41,7 +41,7 @@ public class APIQuestionsController {
     @GetMapping("/api/questions/show-one")
     @ResponseBody
     public Post getQuestion() {
-        List<Post> interviewQuestions = postDao.findAllByPostTypeId_Type("interview_question");
+        List<Post> interviewQuestions = postDao.findAllByPostTypeId_Type("interview-question");
         Post selectedPost = null;
         Integer pickQuestion, questionRoll, selectedPostRating;
         boolean determiningPost = true;

@@ -173,6 +173,23 @@ insert into post_comments (body, date_time, post_id, user_id) values ('Comments 
 insert into post_comments (body, date_time, post_id, user_id) values ('Comments are a great tool', '2020-01-19', 6, 17);
 insert into post_comments (body, date_time, post_id, user_id) values ('Comments are a great tool', '2020-01-19', 3, 12);
 
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (1, 1, 1);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (1, 3, 1);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (2, 1, 1);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (2, 5, -1);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (2, 7, 1);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (3, 1, 1);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (3, 2, 1);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (3, 3, 1);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (4, 4, -1);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (4, 1, 1);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (5, 4, -1);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (5, 2, 1);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (6, 1, 1);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (7, 7, 1);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (7, 9, 1);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (8, 2, 1);
+
 # insert into image_urls (post_id, url) values (16, 'http://dummyimage.com/115x178.png/ff4444/ffffff');
 # insert into image_urls (post_id, url) values (11, 'http://dummyimage.com/217x105.bmp/5fa2dd/ffffff');
 # insert into image_urls (post_id, url) values (16, 'http://dummyimage.com/214x212.jpg/ff4444/ffffff');

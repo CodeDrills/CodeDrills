@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -152,28 +154,25 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @GetMapping("/profile")
-    public String profileView(Model model){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<Post> posts = postDao.getAllByUser_Id(user.getId());
-        List<Post> interviewQuestions = postDao.findAllByPostTypeId_Type("interview-questions");
-        List<Post> mentorship = postDao.findAllByPostTypeId_Type("mentor-questions");
-        List<Post> jobPostings = postDao.findAllByPostTypeId_Type("job-listings");
-        List<PostComment>  postComments = postCommentDao.getAllByUser_Id(user.getId());
-
-        model.addAttribute("jobList", jobPostings);
-        model.addAttribute("mentorList", mentorship);
-        model.addAttribute("postList", interviewQuestions);
-        model.addAttribute("postComment", postComments);
-        model.addAttribute("post", posts);
-        model.addAttribute("user", userDao.getOne((user.getId())));
-        return "users/profile";
+    @GetMapping("/users/dashboard")
+    public String profileView(Model model, Principal principal){
+        List<Post> interviewQuestionsList = postDao.findAllByPostTypeId_Type("interview-questions").subList(postDao.findAllByPostTypeId_Type("interview-questions").size() - 2, postDao.findAllByPostTypeId_Type("interview-questions").size() - 1);
+        interviewQuestionsList.sort(Collections.reverseOrder(Comparator.comparing((Post::getId))));
+        List<Post> mentorshipPostsList = postDao.findAllByPostTypeId_Type("mentorship-posts").subList(postDao.findAllByPostTypeId_Type("mentorship-posts").size() - 2, postDao.findAllByPostTypeId_Type("mentorship-posts").size() - 1);
+        mentorshipPostsList.sort(Collections.reverseOrder(Comparator.comparing((Post::getId))));
+        List<Post> jobPostingsList = postDao.findAllByPostTypeId_Type("job-postings").subList(postDao.findAllByPostTypeId_Type("mentorship-posts").size() - 2, postDao.findAllByPostTypeId_Type("mentorship-posts").size() - 1);
+        mentorshipPostsList.sort(Collections.reverseOrder(Comparator.comparing((Post::getId))));
+        model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
+        model.addAttribute("interviewQuestionsList", interviewQuestionsList);
+        model.addAttribute("mentorshipPostsList", mentorshipPostsList);
+        model.addAttribute("jobPostingsList", jobPostingsList);
+        return "users/dashboard";
     }
     @PostMapping("users/edit{id}/")
     public String profileEdit(@PathVariable long id, @ModelAttribute User user) {
         User updateInfo = userDao.getOne(id);
         updateInfo.setBio(user.getBio());
         userDao.save(updateInfo);
-        return "redirect:/profile";
+        return "redirect:/users/dashboard";
     }
 }

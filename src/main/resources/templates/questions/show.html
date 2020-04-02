@@ -7,13 +7,15 @@
 <div id="fill-this"></div>
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>
 <script>
+    const token = document.querySelector('meta[name="_csrf"]').content;
     const getQuestion = function() {
         // fetch(`http://localhost:8080/api/questions/show-one`, {
         //     method: 'GET',
         // })
         //UNCOMMENT FETCH for Production.
-        fetch(`https://codeon-capstone/api/questions/show-one`, {
+        fetch(`https://codeon-capstone.com/api/questions/show-one`, {
             method: 'GET',
+            'X-CSRF-TOKEN': token
         })
             .then(response => {
                 return response.json()

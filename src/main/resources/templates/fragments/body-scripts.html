@@ -36,56 +36,60 @@
         }
     </script>
     <script>
-        // Set up the picker
-        const client = filestack.init(FILESTACK_API_KEY);
-        const photoOptions = {
-            onUploadDone: updatePhotoForm,
-            maxSize: 10 * 1024 * 1024,
-            accept: 'image/*',
-            uploadInBackground: false,
-        };
-        const resumeOptions = {
-            onUploadDone: updateResumeForm,
-            maxSize: 10 * 1024 * 1024,
-            accept: 'image/*',
-            uploadInBackground: false,
-        };
-        const photoPicker = client.picker(photoOptions);
-        const resumePicker = client.picker(resumeOptions);
-        // Get references to the DOM elements
-        const photoInput = document.getElementById('photo-upload');
-        const photoBtn = document.getElementById('photo-picker');
-        const resumeInput = document.getElementById('resume-upload');
-        const resumeBtn = document.getElementById('resume-picker');
-
-
-        // Add our event listeners
-
-        if (photoBtn != null && resumeBtn != null) {
-            photoBtn.addEventListener('click', function (e) {
-                e.preventDefault();
-                photoPicker.open();
-            });
-
-            resumeBtn.addEventListener('click', function (e) {
-                e.preventDefault();
-                resumePicker.open();
-            });
-        }
-
-        function updatePhotoForm(result) {
-            const fileData = result.filesUploaded[0];
-            photoInput.value = fileData.url; //this is the good part
-            console.log(fileData.url);
-            console.log(photoInput.value);
-        };
-
-        function updateResumeForm(result) {
-            const fileData = result.filesUploaded[0];
-            resumeInput.value = fileData.url; //this is the good part
-            console.log(fileData.url);
-            console.log(resumeInput.value);
-        };
+        // if (photoBtn !== null || resumeBtn !== null) {
+        //     // Set up the picker
+        //     const client = filestack.init(FILESTACK_API_KEY);
+        //     const photoOptions = {
+        //         onUploadDone: updatePhotoForm,
+        //         maxSize: 10 * 1024 * 1024,
+        //         accept: 'image/*',
+        //         uploadInBackground: false,
+        //     };
+        //     const resumeOptions = {
+        //         onUploadDone: updateResumeForm,
+        //         maxSize: 10 * 1024 * 1024,
+        //         accept: 'image/*',
+        //         uploadInBackground: false,
+        //     };
+        //     const photoPicker = client.picker(photoOptions);
+        //     const resumePicker = client.picker(resumeOptions);
+        //
+        //     // Get references to the DOM elements
+        //     const photoInput = document.getElementById('photo-upload');
+        //     const photoBtn = document.getElementById('photo-picker');
+        //     const resumeInput = document.getElementById('resume-upload');
+        //     const resumeBtn = document.getElementById('resume-picker');
+        //
+        //
+        //     // Add our event listeners
+        //
+        //     if (photoBtn !== null) {
+        //         photoBtn.addEventListener('click', function (e) {
+        //             e.preventDefault();
+        //             photoPicker.open();
+        //         });
+        //     }
+        //     if (resumeBtn !== null) {
+        //         resumeBtn.addEventListener('click', function (e) {
+        //             e.preventDefault();
+        //             resumePicker.open();
+        //         });
+        //     }
+        //
+        //     function updatePhotoForm(result) {
+        //         const fileData = result.filesUploaded[0];
+        //         photoInput.value = fileData.url; //this is the good part
+        //         console.log(fileData.url);
+        //         console.log(photoInput.value);
+        //     };
+        //
+        //     function updateResumeForm(result) {
+        //         const fileData = result.filesUploaded[0];
+        //         resumeInput.value = fileData.url; //this is the good part
+        //         console.log(fileData.url);
+        //         console.log(resumeInput.value);
+        //     };
+        // }
     </script>
 </th:block>
 </body>

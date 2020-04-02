@@ -20,7 +20,13 @@
 
     <div th:each="comment : ${post.commentList}">
         <p th:text = "${comment.body}"></p>
+        <div sec:authorize = "isAuthenticated()">
+            <button class="upvote-comment-button" th:id="'upvote-comment-' + ${comment.id}">Upvote JS</button>
+            <button class="downvote-comment-button" th:id="'downvote-comment-' + ${comment.id}">Downvote JS</button>
+        </div>
+        <p>Comment Rating Total: <span th:text = "${comment.getRatingTotal()}"></span></p>
     </div>
+
     <div sec:authorize = "isAuthenticated()">
         <div th:if="${user.id == post.user.id}">\
             <a th:href="@{|/posts/${post.id}/edit|}"><button>Edit Post</button></a>

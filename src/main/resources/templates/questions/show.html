@@ -8,7 +8,11 @@
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>
 <script>
     const getQuestion = function() {
-        fetch(`http://localhost:8080/api/questions/show-one`, {
+        // fetch(`http://localhost:8080/api/questions/show-one`, {
+        //     method: 'GET',
+        // })
+        //UNCOMMENT FETCH for Production.
+        fetch(`https://codeon-capstone/api/questions/show-one`, {
             method: 'GET',
         })
             .then(response => {

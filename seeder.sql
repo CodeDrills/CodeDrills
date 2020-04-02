@@ -111,6 +111,13 @@ insert into posts (user_id, post_type_id, title, body, answer, date_time, employ
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (17, 1,  'Interview question about Spring Boot', 'Can you explain what happens in the background when a Spring Boot Application is “Run as Java Application','When a Spring Boot application is executed as “Run as Java application”, then it automatically launches up the tomcat server as soon as it sees, that you are developing a web application.', '2019-06-14', 'Intuit');
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (19, 1, 'I got interviewed by SWBC, this is what they asked', 'Tell me about some software projects you have worked on.','I just told them about my projects from Codeup and the projects i did at home', '2019-06-16', 'SWBC');
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (8, 1,  'Just a question i though of in case your applying at a job that uses MySQL','What is a join in MySQL?','Services', '2019-06-17', 'Alumnus');
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (8, 1,  'Just a question i though of in case your applying at a job that uses MySQL','What is a join in MySQL?','Services', '2019-06-17', 'Alumnus');
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (8, 1,  'Just a question i though of in case your applying at a job that uses MySQL','What is a join in MySQL?','Services', '2019-06-17', 'Alumnus');
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (8, 1,  'Just a question i though of in case your applying at a job that uses MySQL','What is a join in MySQL?','Services', '2019-06-17', 'Alumnus');
+
+
+
+
 
 # job postings
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (10, 3, 'Enhance IT', 'Entry Level Software Engineer','You will be joining our cutting-edge development team as it grows. We want individuals who are comfortable asking “why?” The ideal candidate for this role is motivated, energized and has a creative thought process. They are a team player possessing strong analytical as well as technical skills and are able to communicate the logic behind technical decisions to non-tech stakeholders. They must be comfortable working in an agile environment and have the ability to “take the wheel” when necessary.', '2019-07-04', 'Enhance IT');
@@ -142,29 +149,29 @@ insert into post_ratings (user_id, post_id, rating) values (13, 5, 1);
 insert into post_ratings (user_id, post_id, rating) values (14, 5, 1);
 
 
-insert into post_comments (body, date_time, post_id, user_id) values ('Prestium Pharma, Inc.', '2019-09-01', 3, 13);
-insert into post_comments (body, date_time, post_id, user_id) values ('McKesson Contract Packaging', '2019-09-01', 15, 2);
-insert into post_comments (body, date_time, post_id, user_id) values ('Air Liquide Healthcare America Corporation', '2019-09-01', 1, 6);
-insert into post_comments (body, date_time, post_id, user_id) values ('Mylan Pharmaceuticals Inc.', '2019-09-21', 15, 14);
-insert into post_comments (body, date_time, post_id, user_id) values ('Mylan Pharmaceuticals Inc.', '2019-09-23', 6, 5);
-insert into post_comments (body, date_time, post_id, user_id) values ('China Ningbo Shangge Cosmetic Technology Corp.', '2019-09-23', 10, 19);
-insert into post_comments (body, date_time, post_id, user_id) values ('Church & Dwight Co., Inc.', '2019-09-23', 2, 19);
-insert into post_comments (body, date_time, post_id, user_id) values ('Natural Health Supply', '2019-10-01', 9, 15);
-insert into post_comments (body, date_time, post_id, user_id) values ('Guerlain', '2019-10-01', 4, 9);
-insert into post_comments (body, date_time, post_id, user_id) values ('Physicians Total Care, Inc.', '2019-10-09', 12, 6);
-insert into post_comments (body, date_time, post_id, user_id) values ('Unit Dose Services', '2019-10-09', 13, 18);
-insert into post_comments (body, date_time, post_id, user_id) values ('ABC Compounding Co., Inc.', '2019-10-09', 5, 6);
-insert into post_comments (body, date_time, post_id, user_id) values ('Virtus Pharmaceuticals', '2019-10-11', 9, 20);
-insert into post_comments (body, date_time, post_id, user_id) values ('REMEDYREPACK INC.', '2019-10-19', 16, 16);
-insert into post_comments (body, date_time, post_id, user_id) values ('Mylan Pharmaceuticals Inc.', '2019-11-01', 14, 11);
-insert into post_comments (body, date_time, post_id, user_id) values ('BioActive Nutritional, Inc.', '2019-11-19', 12, 14);
-insert into post_comments (body, date_time, post_id, user_id) values ('Nelco Laboratories, Inc.', '2019-12-07', 8, 7);
-insert into post_comments (body, date_time, post_id, user_id) values ('Digestive Care, Inc.', '2019-12-09', 11, 2);
-insert into post_comments (body, date_time, post_id, user_id) values ('Supervalu Inc', '2020-01-01', 13, 4);
-insert into post_comments (body, date_time, post_id, user_id) values ('Enemeez Inc. DBA Summit Pharmaceuticals', '2020-01-19', 7, 13);
-insert into post_comments (body, date_time, post_id, user_id) values ('ENERGIZER PERSONAL CARE, LLC', '2020-01-19', 12, 6);
-insert into post_comments (body, date_time, post_id, user_id) values ('Natural Health Supply', '2020-01-19', 6, 17);
-insert into post_comments (body, date_time, post_id, user_id) values ('McKesson', '2020-01-19', 3, 12);
+insert into post_comments (body, date_time, post_id, user_id) values ('This is where the comments go', '2019-09-01', 3, 13);
+insert into post_comments (body, date_time, post_id, user_id) values ('What a great comment', '2019-09-01', 15, 2);
+insert into post_comments (body, date_time, post_id, user_id) values ('This is where the comments go', '2019-09-01', 1, 6);
+insert into post_comments (body, date_time, post_id, user_id) values ('This is where the comments go', '2019-09-21', 15, 14);
+insert into post_comments (body, date_time, post_id, user_id) values ('This is where the comments go', '2019-09-23', 6, 5);
+insert into post_comments (body, date_time, post_id, user_id) values ('This is where the comments go', '2019-09-23', 10, 19);
+insert into post_comments (body, date_time, post_id, user_id) values ('This is where the comments go', '2019-09-23', 2, 19);
+insert into post_comments (body, date_time, post_id, user_id) values ('This is where the comments go', '2019-10-01', 9, 15);
+insert into post_comments (body, date_time, post_id, user_id) values ('What a great comment', '2019-10-01', 4, 9);
+insert into post_comments (body, date_time, post_id, user_id) values ('What a great comment', '2019-10-09', 12, 6);
+insert into post_comments (body, date_time, post_id, user_id) values ('What a great comment', '2019-10-09', 13, 18);
+insert into post_comments (body, date_time, post_id, user_id) values ('What a great comment', '2019-10-09', 5, 6);
+insert into post_comments (body, date_time, post_id, user_id) values ('What a great comment', '2019-10-11', 9, 20);
+insert into post_comments (body, date_time, post_id, user_id) values ('Comments are a great tool', '2019-10-19', 16, 16);
+insert into post_comments (body, date_time, post_id, user_id) values ('Comments are a great tool', '2019-11-01', 14, 11);
+insert into post_comments (body, date_time, post_id, user_id) values ('Comments are a great tool', '2019-11-19', 12, 14);
+insert into post_comments (body, date_time, post_id, user_id) values ('Comments are a great tool', '2019-12-07', 8, 7);
+insert into post_comments (body, date_time, post_id, user_id) values ('Comments are a great tool', '2019-12-09', 11, 2);
+insert into post_comments (body, date_time, post_id, user_id) values ('Comments are a great tool', '2020-01-01', 13, 4);
+insert into post_comments (body, date_time, post_id, user_id) values ('Comments are a great tool', '2020-01-19', 7, 13);
+insert into post_comments (body, date_time, post_id, user_id) values ('Comments are a great tool', '2020-01-19', 12, 6);
+insert into post_comments (body, date_time, post_id, user_id) values ('Comments are a great tool', '2020-01-19', 6, 17);
+insert into post_comments (body, date_time, post_id, user_id) values ('Comments are a great tool', '2020-01-19', 3, 12);
 
 insert into post_comment_ratings (user_id, post_comment_id, rating) values (1, 1, 1);
 insert into post_comment_ratings (user_id, post_comment_id, rating) values (1, 3, 1);

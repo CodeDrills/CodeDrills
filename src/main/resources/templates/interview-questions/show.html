@@ -6,6 +6,7 @@
 <div th:each="post : ${postList}">
     <h1 th:text = "${post.title}"></h1>
     <p th:text = "${post.body}"></p>
+    <p th:text = "${post.answer}"></p>
     <p th:text = "${post.user.email}"></p>
 
 <!-- Will working on ratings -->

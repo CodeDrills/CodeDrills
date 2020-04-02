@@ -8,12 +8,47 @@
     //
 
     if(upvoteButtonClass && downvoteButtonClass !== null) {
+        // upvoteButtonClass.forEach(button => {
+        //     button.addEventListener("click", function (e) {
+        //         e.preventDefault();
+        //         let idSplit = this.getAttribute("id").split("-");
+        //         let postId = idSplit[1];
+        //         fetch(`http://localhost:8080/upvote/${postId}`, {
+        //             method: 'POST',
+        //             headers: {
+        //                 'X-CSRF-TOKEN': token
+        //             }
+        //         })
+        //             .then(res => {
+        //                 location.reload(true);
+        //             })
+        //     })
+        // });
+        //
+        // downvoteButtonClass.forEach(button => {
+        //     button.addEventListener("click", function (e) {
+        //         e.preventDefault();
+        //         let idSplit = this.getAttribute("id").split("-");
+        //         let postId = idSplit[1];
+        //         fetch(`http://localhost:8080/downvote/${postId}`, {
+        //             method: 'POST',
+        //             headers: {
+        //                 'X-CSRF-TOKEN': token
+        //             }
+        //         })
+        //             .then(res => {
+        //                 location.reload(true);
+        //             })
+        //     })
+        // });
+        // UNCOMMENT BELOW FOR PRODUCTION PUSH
+
         upvoteButtonClass.forEach(button => {
-            button.addEventListener("click", function (e) {
+            button.addEventListener("click", function(e) {
                 e.preventDefault();
                 let idSplit = this.getAttribute("id").split("-");
                 let postId = idSplit[1];
-                fetch(`http://localhost:8080/upvote/${postId}`, {
+                fetch(`https://codeon-capstone.com/upvote/${postId}`, {
                     method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': token
@@ -26,11 +61,11 @@
         });
 
         downvoteButtonClass.forEach(button => {
-            button.addEventListener("click", function (e) {
+            button.addEventListener("click", function(e) {
                 e.preventDefault();
                 let idSplit = this.getAttribute("id").split("-");
                 let postId = idSplit[1];
-                fetch(`http://localhost:8080/downvote/${postId}`, {
+                fetch(`https://codeon-capstone.com/downvote/${postId}`, {
                     method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': token
@@ -44,12 +79,47 @@
     }
 
     if(upvoteCommentButtonClass && downvoteCommentButtonClass !== null) {
+        // upvoteCommentButtonClass.forEach(button => {
+        //     button.addEventListener("click", function(e) {
+        //         e.preventDefault();
+        //         let idSplit = this.getAttribute("id").split("-");
+        //         let commentId = idSplit[2];
+        //         fetch(`http://localhost:8080/upvote/comment/${commentId}`, {
+        //             method: 'POST',
+        //             headers: {
+        //                 'X-CSRF-TOKEN': token
+        //             }
+        //         })
+        //             .then(res => {
+        //                 location.reload(true);
+        //             })
+        //     })
+        // });
+        //
+        // downvoteCommentButtonClass.forEach(button => {
+        //     button.addEventListener("click", function(e) {
+        //         e.preventDefault();
+        //         let idSplit = this.getAttribute("id").split("-");
+        //         let commentId = idSplit[2];
+        //         fetch(`http://localhost:8080/downvote/comment/${commentId}`, {
+        //             method: 'POST',
+        //             headers: {
+        //                 'X-CSRF-TOKEN': token
+        //             }
+        //         })
+        //             .then(res => {
+        //                 location.reload(true);
+        //             })
+        //     })
+        // });
+
+        //UNCOMMENT FOR PRODUCTION
         upvoteCommentButtonClass.forEach(button => {
             button.addEventListener("click", function(e) {
                 e.preventDefault();
                 let idSplit = this.getAttribute("id").split("-");
                 let commentId = idSplit[2];
-                fetch(`http://localhost:8080/upvote/comment/${commentId}`, {
+                fetch(`https://codeon-capstone.com/upvote/comment/${commentId}`, {
                     method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': token
@@ -66,7 +136,7 @@
                 e.preventDefault();
                 let idSplit = this.getAttribute("id").split("-");
                 let commentId = idSplit[2];
-                fetch(`http://localhost:8080/downvote/comment/${commentId}`, {
+                fetch(`https://codeon-capstone.com/downvote/comment/${commentId}`, {
                     method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': token
@@ -77,41 +147,9 @@
                     })
             })
         });
-        // UNCOMMENT BELOW FOR PRODUCTION PUSH
 
-        // upvoteButtonClass.forEach(button => {
-        //     button.addEventListener("click", function(e) {
-        //         e.preventDefault();
-        //         let idSplit = this.getAttribute("id").split("-");
-        //         let postId = idSplit[1];
-        //         fetch(`https://codeon-capstone.com/upvote/${postId}`, {
-        //             method: 'POST',
-        //             headers: {
-        //                 'X-CSRF-TOKEN': token
-        //             }
-        //         })
-        //             .then(res => {
-        //                 location.reload(true);
-        //             })
-        //     })
-        // });
-        //
-        // downvoteButtonClass.forEach(button => {
-        //     button.addEventListener("click", function(e) {
-        //         e.preventDefault();
-        //         let idSplit = this.getAttribute("id").split("-");
-        //         let postId = idSplit[1];
-        //         fetch(`https://codeon-capstone.com/downvote/${postId}`, {
-        //             method: 'POST',
-        //             headers: {
-        //                 'X-CSRF-TOKEN': token
-        //             }
-        //         })
-        //             .then(res => {
-        //                 location.reload(true);
-        //             })
-        //     })
-        // });
+
+
     }
 
 })();

@@ -43,6 +43,9 @@ public class User {
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<PostRating> ratingList;
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<PostCommentRating> commentRatings;
     @ManyToMany
     @JoinTable(
             name="users_skills",
@@ -182,5 +185,13 @@ public class User {
 
     public void setSkillList(List<Skill> skillList) {
         this.skillList = skillList;
+    }
+
+    public List<PostCommentRating> getCommentRatings() {
+        return commentRatings;
+    }
+
+    public void setCommentRatings(List<PostCommentRating> commentRatings) {
+        this.commentRatings = commentRatings;
     }
 }

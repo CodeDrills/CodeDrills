@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
 import java.util.List;
@@ -49,10 +50,24 @@ public class TestController {
         model.addAttribute("firebaseKey", firebaseKey);
         return "whiteboard/whiteboard";
     }
+    @GetMapping("/test/whiteboard2")
+    public String getWhiteboard2(Model model, Principal principal, @RequestParam(required = false) Long otherUserId) {
+        model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
+        model.addAttribute("otherUser", userDao.findUserById(otherUserId));
+        model.addAttribute("firebaseKey", firebaseKey);
+        return "whiteboard/whiteboard";
+    }
     @GetMapping("/test/ace")
     public String getAce(Model model, Principal principal, @RequestParam(required = false) Long otherUserId) {
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("otherUser", userDao.findUserById(otherUserId));
         return "whiteboard/ace";
+    }
+    @GetMapping("/room/1")
+    public ModelAndView getRoomOne(Model model, Principal principal, @RequestParam(required = false) Long otherUserId) {
+        model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
+        model.addAttribute("otherUser", userDao.findUserById(otherUserId));
+        model.addAttribute("firebaseKey", firebaseKey);
+        return new ModelAndView("redirect: https://codeon-capstone.com/test/whiteboard#-M40Al3zn-5wmh_f_lkj");
     }
 }

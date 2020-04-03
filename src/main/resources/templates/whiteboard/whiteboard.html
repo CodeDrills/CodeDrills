@@ -32,7 +32,7 @@
 <script>
     function init() {
         //// Initialize Firebase.
-        var config = {
+        const config = {
             apiKey: document.querySelector('meta.firebaseKey').content,
             authDomain: "codeon-49481.firebaseapp.com",
             databaseURL: "https://codeon-49481.firebaseio.com"
@@ -40,19 +40,19 @@
         firebase.initializeApp(config);
 
         //// Get Firebase Database reference.
-        var firepadRef = getExampleRef();
+        const firepadRef = getExampleRef();
 
         //// Create ACE
-        var editor = ace.edit("firepad-container");
+        const editor = ace.edit("firepad-container");
         editor.setTheme("ace/theme/textmate");
-        var session = editor.getSession();
+        const session = editor.getSession();
         session.setUseWrapMode(true);
         session.setUseWorker(false);
         session.setMode("ace/mode/javascript");
 
         //// Create Firepad.
-        var firepad = Firepad.fromACE(firepadRef, editor, {
-            defaultText: '// JavaScript Editing with Firepad!\nfunction go() {\n  var message = "Hello, world.";\n  console.log(message);\n}'
+        const firepad = Firepad.fromACE(firepadRef, editor, {
+            defaultText: 'Welcome to CodeOn WhiteBoard. Please wait for your facilitator.'
         });
     }
 

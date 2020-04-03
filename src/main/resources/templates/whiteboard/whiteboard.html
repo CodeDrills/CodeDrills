@@ -32,7 +32,8 @@
 <script>
     function init() {
         //// Initialize Firebase.
-        firebase.initializeApp(document.querySelector('meta.firebaseKey').content);
+        const config = document.querySelector('meta.firebaseKey').content;
+        firebase.initializeApp(config);
 
         //// Get Firebase Database reference.
         var firepadRef = getExampleRef();

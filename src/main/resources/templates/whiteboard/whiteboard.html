@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Whiteboard</title>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase.js"></script>
+    <!-- CodeMirror -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.css" />
+    <!-- Firepad -->
+    <link rel="stylesheet" href="https://firepad.io/releases/v1.5.9/firepad.css" />
+    <script src="https://firepad.io/releases/v1.5.9/firepad.min.js"></script>
+</head>
+<body onload="init()">
+<div id="firepad"></div>
+<script type="text/javascript" th:src="@{~/js/keys.js}"></script>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="/__/firebase/7.13.2/firebase-app.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="/__/firebase/7.13.2/firebase-analytics.js"></script>
+<!-- Initialize Firebase -->
+<script src="/__/firebase/init.js"></script>
+<script>
+    function init() {
+        // Initialize Firebase.
+        // TODO: replace with your Firebase project configuration.
+        const config = {
+            apiKey: "<API_KEY>",
+            authDomain: "<AUTH_DOMAIN>.firebaseapp.com",
+            databaseURL: "https://<DATABASE_NAME>.firebaseio.com"
+        };
+        firebase.initializeApp(config);
+
+        // Get Firebase Database reference.
+        const firepadRef = firebase.database().ref();
+
+        // Create CodeMirror (with lineWrapping on).
+        const codeMirror = CodeMirror(document.getElementById('firepad'), { lineWrapping: true });
+
+        // Create Firepad (with rich text toolbar and shortcuts enabled).
+        const firepad = Firepad.fromCodeMirror(firepadRef, codeMirror, {
+            richTextShortcuts: true,
+            richTextToolbar: true,
+            defaultText: 'Hello, World!'
+        });
+    }
+</script>
+</body>
+</html>
+
+<!DOCTYPE html>

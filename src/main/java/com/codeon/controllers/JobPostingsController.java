@@ -6,6 +6,7 @@ import com.codeon.models.PostComment;
 import com.codeon.models.User;
 import com.codeon.repositories.*;
 import com.codeon.services.EmailService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,8 @@ import java.util.Random;
 @Controller
 public class JobPostingsController {
 
+    @Value("${filestack.api.key}")
+    private String filestackKey;
     private Random random = new Random();
     private PostRepo postDao;
     private UserRepo userDao;
@@ -56,6 +59,7 @@ public class JobPostingsController {
     public String jobPostingsCreateForm(Model model, Principal principal) {
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("post", new Post());
+        model.addAttribute("filestackKey", filestackKey);
         return "job-postings/create";
     }
 

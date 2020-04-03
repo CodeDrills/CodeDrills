@@ -126,17 +126,23 @@ const attachRatingsEventListener = function() {
 //
 //used in api/questions
 const attachGetQuestionEventListener = function() {
-    fetch(`/api/questions/show-one`, {
-        method: 'GET'
-    })
+    if(document.getElementById("start-button") != null) {
+        document.getElementById("start-button").addEventListener("click", function() {
+            attachGetQuestionEventListener();
+        });
+        let fill = document.getElementById("fill-this");
+
+        fetch(`/api/questions/show-one`, {
+            method: 'GET'
+        })
         .then(response => {
             return response.json()
         })
         .then(res => {
-            if(document.getElementById("start-button") !== null) {
+            if (document.getElementById("start-button") !== null) {
                 document.getElementById("start-button").parentNode.removeChild(document.getElementById("start-button"));
             }
-            fill.innerHTML= "";
+            fill.innerHTML = "";
             fill.innerHTML = `
                     <div id="question-${res.id}">
                         <p>Question Title: ${res.title}</p>
@@ -157,15 +163,12 @@ const attachGetQuestionEventListener = function() {
                 document.getElementById(`answer-${res.id}`).style.display = "block";
             });
             document.getElementById(`question-button-${res.id}`).addEventListener("click", function () {
-                getQuestion();
+                attachGetQuestionEventListener();
             })
             attachAddCommentEventListener();
             attachRatingsEventListener();
         })
-    document.getElementById("start-button").addEventListener("click", function() {
-        getQuestion();
-    });
-    let fill = document.getElementById("fill-this");
+    }
 };
 const attachAddSkillEventListener = function() {
     if (document.getElementById("add-skill-button") !== null) {
@@ -182,9 +185,10 @@ const attachAddSkillEventListener = function() {
     }
 }
 const attachFilestack = function() {
-    if (FILESTACK_API_KEY !== null) {
+    if (document.querySelector('meta.filestackKey') !== null && document.querySelector('meta.filestackKey').content !== "") {
         // Set up the picker
-        const client = filestack.init(FILESTACK_API_KEY);
+        const client1 = filestack.init(document.querySelector('meta.filestackKey').content);
+        const client2 = filestack.init(document.querySelector('meta.filestackKey').content);
         const photoOptions = {
             onUploadDone: updatePhotoForm,
             maxSize: 10 * 1024 * 1024,
@@ -194,11 +198,11 @@ const attachFilestack = function() {
         const resumeOptions = {
             onUploadDone: updateResumeForm,
             maxSize: 10 * 1024 * 1024,
-            accept: 'image/*',
+            accept: ['image/*', 'application/pdf'],
             uploadInBackground: false,
         };
-        const photoPicker = client.picker(photoOptions);
-        const resumePicker = client.picker(resumeOptions);
+        const photoPicker = client1.picker(photoOptions);
+        const resumePicker = client2.picker(resumeOptions);
 
         // Get references to the DOM elements
         const photoInput = document.getElementById('photo-upload');

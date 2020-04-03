@@ -6,6 +6,7 @@ import com.codeon.models.PostComment;
 import com.codeon.models.User;
 import com.codeon.repositories.*;
 import com.codeon.services.EmailService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +22,8 @@ import java.util.Random;
 @Controller
 public class InterviewQuestionController {
 
+    @Value("${filestack.api.key}")
+    private String filestackKey;
     private Random random = new Random();
     private PostRepo postDao;
     private UserRepo userDao;
@@ -90,6 +93,7 @@ public class InterviewQuestionController {
     @GetMapping("/interview-questions/create")
     public String getPostCreateForm(Model model) {
         model.addAttribute("post", new Post());
+        model.addAttribute("filestackKey", filestackKey);
         return "interview-questions/create";
     }
 

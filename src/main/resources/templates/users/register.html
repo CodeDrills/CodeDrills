@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header.html :: header(title = 'Register')"></head>
+
+<head>
+    <th:block th:include="fragments/header.html :: header(title = 'Register Account')"/>
+    <meta class="filestackKey" th:content="${filestackKey}"/>
+</head>
 
 <body>
 <nav th:replace="fragments/navbar.html :: navbar"></nav>

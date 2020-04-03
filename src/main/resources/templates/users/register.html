@@ -1,56 +1,64 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <th:block th:include="fragments/header.html :: header(title = 'Register Account')"/>
     <meta class="filestackKey" th:content="${filestackKey}"/>
 </head>
+
 <body>
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
-<h1>Register your account</h1>
+
 
 
 
 <form th:action="@{/register}" method="POST" th:object="${user}">
+
+    <div class="card register-mainBox">
+        <div class="card-body box-box">
+            <h1 class="text-center" >Register your account</h1>
     <label for="firstName">First Name</label>
-    <input id="firstName" th:field="*{firstName}"/>
+    <input  id="firstName" class="form-control" th:field="*{firstName}"/>
     <br/>
     <label for="lastName">Last Name</label>
-    <input id="lastName" th:field="*{lastName}"/>
+    <input id="lastName" class="form-control" th:field="*{lastName}"/>
     <br/>
     <label for="username">Username</label>
-    <input id="username" th:field="*{username}"/>
+    <input id="username" class="form-control" th:field="*{username}"/>
     <br/>
     <label for="email">Email</label>
-    <input id="email" th:field="*{email}"/>
+    <input id="email" class="form-control" placeholder="Enter email" th:field="*{email}"/>
     <br/>
     <label for="password">Password</label>
-    <input id="password" type="password" th:field="*{password}"/>
+    <input id="password" type="password" class="form-control" th:field="*{password}"/>
     <br/>
     <label for="bio">Personal Bio</label>
-    <textarea id="bio" th:field="*{bio}" cols="30" rows="10" maxlength="250" placeholder="Please type a brief summary that is less than 250 words."></textarea>
+    <textarea class="form-control" id="bio" th:field="*{bio}" cols="30" rows="10" maxlength="250" placeholder="Please type a brief summary that is less than 250 words."></textarea>
     <br/>
-    <button class="button photo-upload" type="button" id="photo-picker">Upload Profile Image</button>
+    <button class="btn btn-dark" type="button" id="photo-picker">Upload Profile Image</button>
     <input type="hidden" class="" id="photo-upload" name="photoURL">
-    <button class="button photo-upload" type="button" id="resume-picker">Upload Resume Image</button>
+    <button class="btn btn-dark button photo-upload" type="button" id="resume-picker">Upload Resume Image</button>
     <input type="hidden"  class="" id="resume-upload" name="resumeURL">
     <br/>
-    <label for="is-admin">Admin</label>
-    <input id="is-admin" type="radio" value="ADMIN" name="admin">
+    <input id="is-admin" type="checkbox" value="ADMIN" name="admin">
+            <label for="is-admin">Admin</label>
     <br/>
-    <label for="is-instructor">Instructor</label>
-    <input id="is-instructor" type="radio" value="INSTRUCTOR" name="instructor">
+    <input id="is-instructor" type="checkbox" value="INSTRUCTOR" name="instructor">
+            <label for="is-instructor">Instructor</label>
     <br/>
-    <label for="is-alum">Alum</label>
-    <input id="is-alum" type="radio" value="ALUMNUS" name="alumnus">
+    <input id="is-alum" type="checkbox" value="ALUMNUS" name="alumnus">
+            <label for="is-alum">Alum</label>
     <br/>
-    <label for="is-student">Student</label>
-    <input id="is-student" type="radio" value="STUDENT" name="student">
+    <input id="is-student" type="checkbox" value="STUDENT" name="student">
+            <label for="is-student">Student</label>
     <br/>
     <div class="skills-div" id="skills-div">
-        <input type="text" id="skills-param-0" name="skills-param" placeholder="Please input a skill.">
+        <input class="form-control" type="text" id="skills-param-0" name="skills-param" placeholder="Please input a skill.">
     </div>
-    <button class="add-skill-button" id="add-skill-button">Add Another Skill</button>
-    <input value="Sign me up!" type="submit" />
+    <button class="btn btn-dark add-skill-button" id="add-skill-button">Add Another Skill</button>
+    <input class="form-control" value="Sign me up!" type="submit" />
+    </div>
+    </div>
 </form>
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>
 </body>

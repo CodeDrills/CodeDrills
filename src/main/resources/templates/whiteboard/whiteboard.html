@@ -32,7 +32,11 @@
 <script>
     function init() {
         //// Initialize Firebase.
-        const config = document.querySelector('meta.firebaseKey').content;
+        var config = {
+            apiKey: document.querySelector('meta.firebasekKey').content,
+            authDomain: "firepad-tests.firebaseapp.com",
+            databaseURL: "https://firepad-tests.firebaseio.com"
+        };
         firebase.initializeApp(config);
 
         //// Get Firebase Database reference.

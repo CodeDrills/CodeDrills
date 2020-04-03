@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header.html :: header(title = 'Create an Interview Quesiton')"></head>
+<head>
+    <th:block th:include="fragments/header.html :: header(title = 'Create Interview Question')"/>
+    <meta class="filestackKey" th:content="${filestackKey}"/>
+</head>
 <body>
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
 <form th:action="@{/interview-questions/create}" th:method="post" th:object="${post}">

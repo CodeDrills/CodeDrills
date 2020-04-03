@@ -2,6 +2,7 @@ package com.codeon.controllers;
 
 import com.codeon.models.*;
 import com.codeon.repositories.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,8 @@ import java.util.List;
 
 @Controller
 public class UserController {
+    @Value("${filestack.api.key}")
+    private String filestackKey;
     private UserRepo userDao;
     private PasswordEncoder passwordEncoder;
     private SecurityRoleRepo securityRoleDao;
@@ -42,6 +45,7 @@ public class UserController {
             return "redirect:/profile";
         }
         model.addAttribute("user", new User());
+        model.addAttribute("filestackKey", filestackKey);
         return "users/register";
     }
 

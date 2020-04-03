@@ -3,6 +3,7 @@ package com.codeon.controllers;
 import com.codeon.models.*;
 import com.codeon.repositories.*;
 import com.codeon.services.EmailService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,9 @@ import java.util.List;
 
 @Controller
 public class MentorshipPostsController {
+
+    @Value("${filestack.api.key}")
+    private String filestackKey;
     private PostRepo postDao;
     private UserRepo userDao;
     private PostTypeRepo postTypeDao;
@@ -50,6 +54,7 @@ public class MentorshipPostsController {
     public String getPostCreateForm(Model model, Principal principal) {
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("post", new Post());
+        model.addAttribute("filestackKey", filestackKey);
         return "mentorship-posts/create";
     }
     @PostMapping("/mentorship-posts/create")

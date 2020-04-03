@@ -2,6 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
+    <th:block th:include="fragments/header.html :: header(title = 'Whiteboard')"/>
+    <meta class="firebaseKey" th:content="${firebaseKey}"/>
     <title>Whiteboard</title>
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/5.5.4/firebase.js"></script>
@@ -30,7 +32,7 @@
 <script>
     function init() {
         //// Initialize Firebase.
-        firebase.initializeApp(firebaseConfig);
+        firebase.initializeApp(document.querySelector('meta.firebaseKey').content);
 
         //// Get Firebase Database reference.
         var firepadRef = getExampleRef();

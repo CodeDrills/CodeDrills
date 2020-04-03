@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header.html :: header(title = 'Create a Post')"></head>
+<head>
+    <th:block th:include="fragments/header.html :: header(title = 'Create Mentorship Post')"/>
+    <meta class="filestackKey" th:content="${filestackKey}"/>
+</head>
 <body>
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
 <form th:action="@{/mentorship-posts/create}" th:method="post" th:object="${post}">

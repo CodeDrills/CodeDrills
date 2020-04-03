@@ -177,7 +177,7 @@ const attachAddSkillEventListener = function() {
             e.preventDefault();
             let newDiv = document.createElement("div");
             // and give it some content
-            newDiv.innerHTML = `<input type="text" id="skills-param-${i}" name="skills-param" placeholder="Please input a skill.">`
+            newDiv.innerHTML = `<input class = "form-control" type="text" id="skills-param-${i}" name="skills-param" placeholder="Please input a skill.">`
             // add the text node to the newly created div
             document.querySelector("#skills-div").appendChild(newDiv);
             i++;

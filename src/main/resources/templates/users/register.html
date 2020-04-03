@@ -3,61 +3,77 @@
 
 <head>
     <th:block th:include="fragments/header.html :: header(title = 'Register Account')"/>
-    <meta class="filestackKey" th:content="${filestackKey}"/>
+    <meta class="filestackKey" th:content="${filestackKey}  "/>
 </head>
 
 <body>
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
 
-
-
-
 <form th:action="@{/register}" method="POST" th:object="${user}">
-
     <div class="card register-mainBox">
         <div class="card-body box-box">
+<!--            input name email username password and bio-->
             <h1 class="text-center" >Register your account</h1>
-    <label for="firstName">First Name</label>
-    <input  id="firstName" class="form-control" th:field="*{firstName}"/>
-    <br/>
-    <label for="lastName">Last Name</label>
-    <input id="lastName" class="form-control" th:field="*{lastName}"/>
-    <br/>
-    <label for="username">Username</label>
-    <input id="username" class="form-control" th:field="*{username}"/>
-    <br/>
-    <label for="email">Email</label>
-    <input id="email" class="form-control" placeholder="Enter email" th:field="*{email}"/>
-    <br/>
-    <label for="password">Password</label>
-    <input id="password" type="password" class="form-control" th:field="*{password}"/>
-    <br/>
-    <label for="bio">Personal Bio</label>
-    <textarea class="form-control" id="bio" th:field="*{bio}" cols="30" rows="10" maxlength="250" placeholder="Please type a brief summary that is less than 250 words."></textarea>
-    <br/>
-    <button class="btn btn-dark" type="button" id="photo-picker">Upload Profile Image</button>
-    <input type="hidden" class="" id="photo-upload" name="photoURL">
-    <button class="btn btn-dark button photo-upload" type="button" id="resume-picker">Upload Resume Image</button>
-    <input type="hidden"  class="" id="resume-upload" name="resumeURL">
-    <br/>
-    <input id="is-admin" type="checkbox" value="ADMIN" name="admin">
-            <label for="is-admin">Admin</label>
-    <br/>
-    <input id="is-instructor" type="checkbox" value="INSTRUCTOR" name="instructor">
-            <label for="is-instructor">Instructor</label>
-    <br/>
-    <input id="is-alum" type="checkbox" value="ALUMNUS" name="alumnus">
-            <label for="is-alum">Alum</label>
-    <br/>
-    <input id="is-student" type="checkbox" value="STUDENT" name="student">
-            <label for="is-student">Student</label>
-    <br/>
-    <div class="skills-div" id="skills-div">
-        <input class="form-control" type="text" id="skills-param-0" name="skills-param" placeholder="Please input a skill.">
-    </div>
-    <button class="btn btn-dark add-skill-button" id="add-skill-button">Add Another Skill</button>
-    <input class="form-control" value="Sign me up!" type="submit" />
-    </div>
+            <label for="firstName">First Name</label>
+            <input  id="firstName" class="form-control" th:field="*{firstName}"/>
+            <label for="lastName">Last Name</label>
+            <input id="lastName" class="form-control" th:field="*{lastName}"/>
+            <label for="username">Username</label>
+            <input id="username" class="form-control" th:field="*{username}"/>
+            <label for="email">Email</label>
+            <input id="email" class="form-control" placeholder="Enter email. Must contain @" th:field="*{email}"/>
+            <label for="password">Password</label>
+            <input id="password" type="password" class="form-control" th:field="*{password}"/>
+            <label for="bio">Personal Bio</label>
+            <textarea class="form-control" id="bio" th:field="*{bio}" cols="30" rows="5" maxlength="250" placeholder="Please type a brief summary that is less than 250 words."></textarea>
+            <br>
+<!--            upload resume and picture-->
+            <form>
+                <div class="form-row">
+                    <div class ="col">
+                        <button class="btn btn-dark form-control" type="button" id="photo-picker">Upload Profile Image</button>
+                        <input type="hidden" class="" id="photo-upload" name="photoURL">
+                    </div>
+                    <div class ="col">
+                        <button class="btn btn-dark button form-control" type="button" id="resume-picker">Upload Resume Image</button>
+                        <input type="hidden"  class="" id="resume-upload" name="resumeURL">
+                 </div>
+                </div>
+            </form>
+<br>
+<!--            check your boxes as to wht your role is -->
+        <form>
+            <div class="form-row">
+                <div class="col form-check form-check-inline">
+                    <input class="form-check-input" id="is-admin" type="checkbox" value="ADMIN" name="admin">
+                    <label class="form-check-label" for="is-admin">Admin</label>
+                </div>
+                <div class="col form-check form-check-inline">
+                    <input class="form-check-input" id="is-instructor" type="checkbox" value="INSTRUCTOR" name="instructor">
+                    <label class="form-check-label" for="is-instructor"> Instructor</label>
+                </div>
+                <div class="col form-check form-check-inline">
+                    <input class="form-check-input" id="is-alum" type="checkbox" value="ALUMNUS" name="alumnus">
+                    <label class="form-check-label" for="is-alum">Alum</label>
+                </div>
+                <div class="col form-check form-check-inline">
+                    <input class="form-check-input" id="is-student" type="checkbox" value="STUDENT" name="student">
+                    <label class="form-check-label" for="is-student">Student</label>
+                </div>
+            </div>
+        </form>
+<br>
+<!--            Enter your programming skills  -->
+        <form>
+            <button class="btn btn-dark form-control" id="add-skill-button">Add Another Skill</button>
+                <div class="skills-div" id="skills-div">
+                        <br>
+                <input class="form-control" type="text" id="skills-param-0" name="skills-param" placeholder="Please input your programming skills.">
+                    </div>
+        </form>
+<br>
+                <input class="form-control" value="Sign me up!" type="submit" />
+         </div>
     </div>
 </form>
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>

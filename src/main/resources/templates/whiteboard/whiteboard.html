@@ -21,15 +21,20 @@
            For demo purposes, we make firepad fill the entire browser. */
         #firepad-container {
             width: 100%;
-            height: 100%;
+            height: 90%;
         }
     </style>
 </head>
 <body onload="init()">
 <div id="firepad-container"></div>
+<div th:each="post : ${questionsList}">
+    <input th:id="'question-' + ${post.id}" type="hidden" th:value="${post.body}">
+    <button th:text="'Question' + ${post.id}" class="question-button" th:id="'question-button-' + ${post.id}"></button>
+</div>
 <script type="text/javascript" th:src="@{~/js/keys.js}"></script>
 
 <script>
+    let firepad;
     function init() {
         //// Initialize Firebase.
         const config = {
@@ -40,26 +45,26 @@
         firebase.initializeApp(config);
 
         //// Get Firebase Database reference.
-        const firepadRef = getExampleRef();
+        let firepadRef = getExampleRef();
 
         //// Create ACE
-        const editor = ace.edit("firepad-container");
+        let editor = ace.edit("firepad-container");
         editor.setTheme("ace/theme/textmate");
-        const session = editor.getSession();
+        let session = editor.getSession();
         session.setUseWrapMode(true);
         session.setUseWorker(false);
         session.setMode("ace/mode/javascript");
 
         //// Create Firepad.
-        const firepad = Firepad.fromACE(firepadRef, editor, {
+        firepad = Firepad.fromACE(firepadRef, editor, {
             defaultText: 'Welcome to CodeOn WhiteBoard. Please wait for your facilitator.'
         });
     }
 
     // Helper to get hash from end of URL or generate a random one.
     function getExampleRef() {
-        var ref = firebase.database().ref();
-        var hash = window.location.hash.replace(/#/g, '');
+        let ref = firebase.database().ref();
+        let hash = window.location.hash.replace(/#/g, '');
         if (hash) {
             ref = ref.child(hash);
         } else {
@@ -71,6 +76,25 @@
         }
         return ref;
     }
+    function loadQuestion() {
+        firepad.setText("");
+        let id = this.getAttribute("id").split("-")[2];
+        console.log(id);
+        fetch(`/api/questions/${id}`, {
+            method: 'GET'
+        })
+            .then(response => {
+                return response.json();
+            })
+            .then(res => {
+                console.log(res);
+                firepad.setText(res.body);
+            })
+    }
+    document.querySelectorAll(".question-button").forEach(button => {
+        button.addEventListener("click", loadQuestion);
+    })
+
 </script>
 </body>
 </html>

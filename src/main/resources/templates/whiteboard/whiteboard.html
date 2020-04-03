@@ -4,47 +4,65 @@
     <meta charset="UTF-8">
     <title>Whiteboard</title>
     <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase.js"></script>
-    <!-- CodeMirror -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.css" />
+    <script src="https://www.gstatic.com/firebasejs/5.5.4/firebase.js"></script>
+    <!-- ACE and its JavaScript mode and theme files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.5/ace.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.5/mode-javascript.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.5/theme-textmate.js"></script>
     <!-- Firepad -->
     <link rel="stylesheet" href="https://firepad.io/releases/v1.5.9/firepad.css" />
     <script src="https://firepad.io/releases/v1.5.9/firepad.min.js"></script>
+    <style>
+        html { height: 100%; }
+        body { margin: 0; height: 100%; position: relative; }
+        /* Height / width / positioning can be customized for your use case.
+           For demo purposes, we make firepad fill the entire browser. */
+        #firepad-container {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 <body onload="init()">
-<div id="firepad"></div>
+<div id="firepad-container"></div>
 <script type="text/javascript" th:src="@{~/js/keys.js}"></script>
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="/__/firebase/7.13.2/firebase-app.js"></script>
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="/__/firebase/7.13.2/firebase-analytics.js"></script>
-<!-- Initialize Firebase -->
-<script src="/__/firebase/init.js"></script>
+
 <script>
     function init() {
-        // Initialize Firebase.
-        // TODO: replace with your Firebase project configuration.
-        const config = {
-            apiKey: "<API_KEY>",
-            authDomain: "<AUTH_DOMAIN>.firebaseapp.com",
-            databaseURL: "https://<DATABASE_NAME>.firebaseio.com"
-        };
-        firebase.initializeApp(config);
+        //// Initialize Firebase.
+        firebase.initializeApp(firebaseConfig);
 
-        // Get Firebase Database reference.
-        const firepadRef = firebase.database().ref();
+        //// Get Firebase Database reference.
+        var firepadRef = getExampleRef();
 
-        // Create CodeMirror (with lineWrapping on).
-        const codeMirror = CodeMirror(document.getElementById('firepad'), { lineWrapping: true });
+        //// Create ACE
+        var editor = ace.edit("firepad-container");
+        editor.setTheme("ace/theme/textmate");
+        var session = editor.getSession();
+        session.setUseWrapMode(true);
+        session.setUseWorker(false);
+        session.setMode("ace/mode/javascript");
 
-        // Create Firepad (with rich text toolbar and shortcuts enabled).
-        const firepad = Firepad.fromCodeMirror(firepadRef, codeMirror, {
-            richTextShortcuts: true,
-            richTextToolbar: true,
-            defaultText: 'Hello, World!'
+        //// Create Firepad.
+        var firepad = Firepad.fromACE(firepadRef, editor, {
+            defaultText: '// JavaScript Editing with Firepad!\nfunction go() {\n  var message = "Hello, world.";\n  console.log(message);\n}'
         });
+    }
+
+    // Helper to get hash from end of URL or generate a random one.
+    function getExampleRef() {
+        var ref = firebase.database().ref();
+        var hash = window.location.hash.replace(/#/g, '');
+        if (hash) {
+            ref = ref.child(hash);
+        } else {
+            ref = ref.push(); // generate unique location.
+            window.location = window.location + '#' + ref.key; // add it as a hash to the URL.
+        }
+        if (typeof console !== 'undefined') {
+            console.log('Firebase data: ', ref.toString());
+        }
+        return ref;
     }
 </script>
 </body>

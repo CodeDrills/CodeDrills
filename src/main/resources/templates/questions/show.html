@@ -6,40 +6,5 @@
 <button class="start-button" id="start-button">Start Question Round</button>
 <div id="fill-this"></div>
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>
-<script>
-    const getQuestion = function() {
-        fetch(`http://localhost:8080/api/questions/show-one`, {
-            method: 'GET',
-        })
-            .then(response => {
-                return response.json()
-            })
-            .then(res => {
-                if(document.getElementById("start-button") !== null) {
-                    document.getElementById("start-button").parentNode.removeChild(document.getElementById("start-button"));
-                }
-                fill.innerHTML= "";
-                fill.innerHTML = `
-                    <div id="question-${res.id}">
-                        <p>Question Title: ${res.title}</p>
-                        <p>Question: ${res.body}</p>
-                        <div id="answer-${res.id}"><p>Answer: ${res.answer}</p></div>
-                        <button id="answer-button-${res.id}">Show Answer</button>
-                        <button id="question-button-${res.id}">Get Another Question</button>
-                    </div>`;
-                document.getElementById(`answer-${res.id}`).style.display = "none";
-                document.getElementById(`answer-button-${res.id}`).addEventListener("click", function () {
-                    document.getElementById(`answer-${res.id}`).style.display = "block";
-                });
-                document.getElementById(`question-button-${res.id}`).addEventListener("click", function () {
-                    getQuestion();
-                })
-            })
-    }
-    document.getElementById("start-button").addEventListener("click", function() {
-        getQuestion();
-    });
-    let fill = document.getElementById("fill-this");
-</script>
 </body>
 </html>

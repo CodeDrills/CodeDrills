@@ -22,23 +22,24 @@ public class RatingController {
     private PostRatingRepo postRatingDao;
     private PostTypeRepo postTypeDao;
     private PostCommentRepo postCommentDao;
+    private PostCommentRatingRepo postCommentRatingDao;
 
-    public RatingController(PostRepo postDao, UserRepo userDao, PostRatingRepo postRatingDao, PostTypeRepo postTypeDao, PostCommentRepo postCommentDao, ImageURLRepo imageURLDao, EmailService emailService) {
+    public RatingController(PostRepo postDao, UserRepo userDao, PostRatingRepo postRatingDao, PostCommentRatingRepo postCommentRatingDao, PostTypeRepo postTypeDao, PostCommentRepo postCommentDao, ImageURLRepo imageURLDao, EmailService emailService) {
         this.postDao = postDao;
         this.userDao = userDao;
         this.postRatingDao = postRatingDao;
         this.postTypeDao = postTypeDao;
         this.postCommentDao = postCommentDao;
+        this.postCommentRatingDao = postCommentRatingDao;
     }
 
     /*If a user has already upvoted the post and they click upvote again it will set rating to 0
       If they have not rated the post yet, a new rating will be created and set to 1. */
     @PostMapping("/upvote/{id}")
     @ResponseBody
-    public String createUpvote(@PathVariable Long id, Model model) {
+    public String upvote(@PathVariable Long id) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Post post = postDao.findPostById(id);
-        String returnString = "redirect:/" + post.getPostType().getType() + "/show";
         for(PostRating rating : post.getRatingList()) {
             if(rating.getUser().getId() == user.getId()) {
                 if(rating.getRating() == 0 || rating.getRating() == -1) {
@@ -48,7 +49,7 @@ public class RatingController {
                 }
                 postRatingDao.save(rating);
                 post.setRatingTotal(post.getRatingList());
-                return returnString;
+                return "id";
             }
         }
         PostRating newRating = new PostRating();
@@ -57,17 +58,16 @@ public class RatingController {
         newRating.setUser(user);
         postRatingDao.save(newRating);
         post.setRatingTotal(post.getRatingList());
-        return returnString;
+        return "id";
     }
 
     /*If a user has already downvoted the post and they click downvote again it will set rating to 0
       If they have not rated the post yet, a new rating will be created and set to -1. */
     @PostMapping("/downvote/{id}")
     @ResponseBody
-    public String createDownvote(@PathVariable Long id) {
+    public String downvote(@PathVariable Long id) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Post post = postDao.findPostById(id);
-        String returnString = "redirect:/" + post.getPostType().getType() + "/show";
         for(PostRating rating : post.getRatingList()) {
             if(rating.getUser().getId() == user.getId()) {
                 if(rating.getRating() == 0 || rating.getRating() == 1) {
@@ -77,7 +77,7 @@ public class RatingController {
                 }
                 postRatingDao.save(rating);
                 post.setRatingTotal(post.getRatingList());
-                return returnString;
+                return "id";
             }
         }
         PostRating newRating = new PostRating();
@@ -86,6 +86,61 @@ public class RatingController {
         newRating.setUser(user);
         postRatingDao.save(newRating);
         post.setRatingTotal(post.getRatingList());
-        return returnString;
+        return "id";
+    }
+
+    @PostMapping("/upvote/comment/{id}")
+    @ResponseBody
+    public String commentUpvote(@PathVariable Long id) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        PostComment postComment = postCommentDao.findPostCommentById(id);
+        for(PostCommentRating rating : postComment.getCommentRatingList()) {
+            if(rating.getUser().getId() == user.getId()) {
+                if(rating.getRating() == 0 || rating.getRating() == -1) {
+                    rating.setRating(1);
+                } else {
+                    rating.setRating(0);
+                }
+                postCommentRatingDao.save(rating);
+                postComment.setRatingTotal(postComment.getCommentRatingList());
+                System.out.println(postComment.getRatingTotal());
+                return "id";
+            }
+        }
+        PostCommentRating newRating = new PostCommentRating();
+        newRating.setRating(1);
+        newRating.setPostComment(postComment);
+        newRating.setUser(user);
+        postCommentRatingDao.save(newRating);
+        postComment.setRatingTotal(postComment.getCommentRatingList());
+        System.out.println(postComment.getRatingTotal());
+        return "id";
+    }
+
+    @PostMapping("/downvote/comment/{id}")
+    @ResponseBody
+    public String commentDownvote(@PathVariable Long id) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        PostComment postComment = postCommentDao.findPostCommentById(id);
+        for(PostCommentRating rating : postComment.getCommentRatingList()) {
+            if(rating.getUser().getId() == user.getId()) {
+                if(rating.getRating() == 0 || rating.getRating() == 1) {
+                    rating.setRating(-1);
+                } else {
+                    rating.setRating(0);
+                }
+                postCommentRatingDao.save(rating);
+                postComment.setRatingTotal(postComment.getCommentRatingList());
+                System.out.println(postComment.getRatingTotal());
+                return "id";
+            }
+        }
+        PostCommentRating newRating = new PostCommentRating();
+        newRating.setRating(-1);
+        newRating.setPostComment(postComment);
+        newRating.setUser(user);
+        postCommentRatingDao.save(newRating);
+        postComment.setRatingTotal(postComment.getCommentRatingList());
+        return "id";
     }
 }

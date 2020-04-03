@@ -54,7 +54,7 @@ public class PostCommentsController {
         SimpleDateFormat formatter = new SimpleDateFormat(pattern);
         String date = formatter.format(now);
         postComment.setDateTime(date);
-//        postComment.setRatingTotal(0);
+        postComment.setRatingTotal(0);
         postCommentDao.save(postComment);
         return String.format("%d", id);
     }

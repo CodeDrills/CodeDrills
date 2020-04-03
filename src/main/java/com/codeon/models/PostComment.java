@@ -97,4 +97,20 @@ public class PostComment {
     public void setRatingTotal(Integer ratingTotal) {
         this.ratingTotal = ratingTotal;
     }
+
+    public void setRatingTotal(List<PostCommentRating> ratingList) {
+        Integer total = 0;
+        for(PostCommentRating postCommentRating : ratingList) {
+            total += postCommentRating.getRating();
+        }
+        this.ratingTotal = total;
+    }
+
+    public Integer getRatingTotal(List<PostCommentRating> ratingList) {
+        Integer total = 0;
+        for(PostCommentRating postCommentRating : ratingList) {
+            total += postCommentRating.getRating();
+        }
+        return total;
+    }
 }

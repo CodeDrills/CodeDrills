@@ -34,23 +34,20 @@ public class APIQuestionsController {
     @ResponseBody
     public Post getQuestion(@PathVariable Long id) {
         return postDao.findPostById(id);
-
     }
 
 
     @GetMapping("/api/questions/show-one")
     @ResponseBody
     public Post getQuestion() {
-        List<Post> interviewQuestions = postDao.findAllByPostTypeId_Type("interview_question");
+        List<Post> interviewQuestions = postDao.findAllByPostTypeId_Type("interview-questions");
         Post selectedPost = null;
         Integer pickQuestion, questionRoll, selectedPostRating;
         boolean determiningPost = true;
         while(determiningPost) {
             pickQuestion = random.nextInt(interviewQuestions.size());
-            System.out.println("Selecting Question: " + pickQuestion);
             selectedPost = interviewQuestions.get(pickQuestion);
             selectedPostRating = selectedPost.getRatingTotal(selectedPost.getRatingList());
-            System.out.println(selectedPostRating);
             questionRoll = random.nextInt(31) -10;
             if(selectedPostRating >= questionRoll) {
                 determiningPost = false;

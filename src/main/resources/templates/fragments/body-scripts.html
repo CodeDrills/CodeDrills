@@ -17,76 +17,7 @@
             crossorigin="anonymous"></script>
     <script src="//static.filestackapi.com/filestack-js/1.x.x/filestack.min.js"></script>
     <script type="text/javascript" th:src="@{~/js/keys.js}"></script>
-    <script type="text/javascript" th:src="@{~/js/comment.js}" th:inline="javascript"></script>
-    <script type="text/javascript" th:src="@{~/js/delete.js}" th:inline="javascript"></script>
-    <script type="text/javascript" th:src="@{~/js/ratings.js}" th:inline="javascript"></script>
-<!--    add skill used in register and add comment used in all show pages-->
-    <script>
-        if (document.getElementById("add-skill-button") !== null) {
-            let i = 0;
-            document.getElementById("add-skill-button").addEventListener("click", function (e) {
-                e.preventDefault();
-                let newDiv = document.createElement("div");
-                // and give it some content
-                newDiv.innerHTML = `<input type="text" id="skills-param-${i}" name="skills-param" placeholder="Please input a skill.">`
-                // add the text node to the newly created div
-                document.querySelector("#skills-div").appendChild(newDiv);
-                i++;
-            })
-        }
-    </script>
-    <script>
-        // Set up the picker
-        const client = filestack.init(FILESTACK_API_KEY);
-        const photoOptions = {
-            onUploadDone: updatePhotoForm,
-            maxSize: 10 * 1024 * 1024,
-            accept: 'image/*',
-            uploadInBackground: false,
-        };
-        const resumeOptions = {
-            onUploadDone: updateResumeForm,
-            maxSize: 10 * 1024 * 1024,
-            accept: 'image/*',
-            uploadInBackground: false,
-        };
-        const photoPicker = client.picker(photoOptions);
-        const resumePicker = client.picker(resumeOptions);
-        // Get references to the DOM elements
-        const photoInput = document.getElementById('photo-upload');
-        const photoBtn = document.getElementById('photo-picker');
-        const resumeInput = document.getElementById('resume-upload');
-        const resumeBtn = document.getElementById('resume-picker');
-
-
-        // Add our event listeners
-
-        if (photoBtn != null && resumeBtn != null) {
-            photoBtn.addEventListener('click', function (e) {
-                e.preventDefault();
-                photoPicker.open();
-            });
-
-            resumeBtn.addEventListener('click', function (e) {
-                e.preventDefault();
-                resumePicker.open();
-            });
-        }
-
-        function updatePhotoForm(result) {
-            const fileData = result.filesUploaded[0];
-            photoInput.value = fileData.url; //this is the good part
-            console.log(fileData.url);
-            console.log(photoInput.value);
-        };
-
-        function updateResumeForm(result) {
-            const fileData = result.filesUploaded[0];
-            resumeInput.value = fileData.url; //this is the good part
-            console.log(fileData.url);
-            console.log(resumeInput.value);
-        };
-    </script>
+    <script type="text/javascript" th:src="@{~/js/scripts.js}" th:inline="javascript"></script>
 </th:block>
 </body>
 </html>

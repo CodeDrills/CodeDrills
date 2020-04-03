@@ -68,6 +68,6 @@ public class TestController {
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("otherUser", userDao.findUserById(otherUserId));
         model.addAttribute("firebaseKey", firebaseKey);
-        return new ModelAndView("redirect: https://codeon-capstone.com/test/whiteboard#-M40Al3zn-5wmh_f_lkj");
+        return new ModelAndView("redirect: /https://codeon-capstone.com/test/whiteboard#-M40Al3zn-5wmh_f_lkj");
     }
 }

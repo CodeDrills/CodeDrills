@@ -3,7 +3,7 @@
 <head th:replace="fragments/header.html :: header(title='Login')"></head>
 <body>
 
-<h1>Log In</h1>
+<h1>CodeOn</h1>
 <div th:if="${param.error}">
     Invalid Username and Password.
 </div>
@@ -11,13 +11,21 @@
     You have been logged out.
 </div>
 
+
+<div class="login-frame">
+    <h1 class="text-center">Login</h1>
 <form th:action="@{/login}" method="post">
     <label for="username">Username</label>
-    <input id="username" name="username" type="text" />
+    <input  class="form-control"  id="username" name="username" type="text" />
     <label for="password">Password</label>
-    <input id="password" name="password" type="password" />
-    <input type="submit" value="Log In" />
+    <input  class="form-control"  id="password" name="password" type="password" />
+    <br>
+    <input  class="form-control"  type="submit" value="Log In" />
+    <br>
 </form>
-<a href="/register"><button>Register For An Account</button></a>
+    <div class="text-center">
+   <p>Not registered with us yet?  <a href="/register"><button type="button" class="btn btn-dark">Register For An Account</button></a></p>
+    </div>
+</div>
 </body>
 </html>

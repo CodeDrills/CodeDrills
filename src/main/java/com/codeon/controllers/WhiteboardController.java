@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Random;
 
 @Controller
-public class InterviewQuestionController {
+public class WhiteboardController {
 
     @Value("${filestack.api.key}")
     private String filestackKey;
@@ -32,7 +32,7 @@ public class InterviewQuestionController {
     private ImageURLRepo imageURLDao;
     private EmailService emailService;
 
-    public InterviewQuestionController(PostRepo postDao, UserRepo userDao, PostTypeRepo postTypeDao, PostCommentRepo postCommentDao, ImageURLRepo imageURLDao, EmailService emailService) {
+    public WhiteboardController(PostRepo postDao, UserRepo userDao, PostTypeRepo postTypeDao, PostCommentRepo postCommentDao, ImageURLRepo imageURLDao, EmailService emailService) {
         this.postDao = postDao;
         this.userDao = userDao;
         this.postTypeDao = postTypeDao;
@@ -42,15 +42,15 @@ public class InterviewQuestionController {
     }
 
     //SHOW IT JUST AS JSON.
-    @GetMapping("/interview-questions")
+    @GetMapping("/whiteboard")
     @ResponseBody
-    public List<Post> showInterviewQuestionsAsJSON() {
-        return postDao.findAllByPostTypeId_Type("interview-questions");
+    public List<Post> showWhiteboardAsJSON() {
+        return postDao.findAllByPostTypeId_Type("whiteboard");
     }
 
-    @GetMapping("/interview-questions/show")
-    public String showAllInterviewQuestions(Model model, Principal principal) {
-        List<Post> interviewQuestions = postDao.findAllByPostTypeId_Type("interview-questions");
+    @GetMapping("/whiteboard/show")
+    public String showAllWhiteboard(Model model, Principal principal) {
+        List<Post> Whiteboard = postDao.findAllByPostTypeId_Type("whiteboard");
         String username = "";
         User user = new User();
         if(principal != null) {
@@ -58,19 +58,19 @@ public class InterviewQuestionController {
             user = userDao.findUserByUsername(username);
         }
         model.addAttribute("user", user);
-        model.addAttribute("postList", interviewQuestions);
-        return "interview-questions/show";
+        model.addAttribute("postList", Whiteboard);
+        return "whiteboard/show";
     }
 
-    @GetMapping("/interview-questions/show-one")
+    @GetMapping("/whiteboard/show-one")
     public String showOneInterviewQuestion(Model model, Principal principal) {
-        List<Post> interviewQuestions = postDao.findAllByPostTypeId_Type("interview-questions");
+        List<Post> Whiteboard = postDao.findAllByPostTypeId_Type("whiteboard");
         Post selectedPost = null;
         Integer pickQuestion, questionRoll, selectedPostRating;
         boolean determiningPost = true;
         while(determiningPost) {
-            pickQuestion = random.nextInt(interviewQuestions.size());
-            selectedPost = interviewQuestions.get(pickQuestion);
+            pickQuestion = random.nextInt(Whiteboard.size());
+            selectedPost = Whiteboard.get(pickQuestion);
             selectedPostRating = selectedPost.getRatingTotal(selectedPost.getRatingList());
             questionRoll = random.nextInt(31) -10;
             if(selectedPostRating >= questionRoll) {
@@ -85,17 +85,17 @@ public class InterviewQuestionController {
         }
         model.addAttribute("user", user);
         model.addAttribute("post", selectedPost);
-        return "/interview-questions/show-one";
+        return "/whiteboard/show-one";
     }
 
-    @GetMapping("/interview-questions/create")
+    @GetMapping("/whiteboard/create")
     public String getPostCreateForm(Model model) {
         model.addAttribute("post", new Post());
         model.addAttribute("filestackKey", filestackKey);
-        return "interview-questions/create";
+        return "whiteboard/create";
     }
 
-    @PostMapping("/interview-questions/create")
+    @PostMapping("/whiteboard/create")
     public String createPost(@RequestParam Long postTypeId, @ModelAttribute Post post) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
@@ -107,10 +107,10 @@ public class InterviewQuestionController {
         post.setRatingTotal(0);
         post.setPostType(postTypeDao.getPostTypeById(postTypeId));
         postDao.save(post);
-        return "redirect:/interview-questions/show";
+        return "redirect:/whiteboard/show";
     }
 
-    @GetMapping("/interview-questions/{id}")
+    @GetMapping("/whiteboard/{id}")
     public String getPost(@PathVariable Long id, Model model, Principal principal){
         String username;
         User user = new User();
@@ -122,35 +122,35 @@ public class InterviewQuestionController {
         }
         model.addAttribute("user", user);
         model.addAttribute("postList", postList);
-        return "interview-questions/show";
+        return "whiteboard/show";
     }
 
-    @GetMapping("/interview-questions/edit/{id}")
+    @GetMapping("/whiteboard/edit/{id}")
     public String getEditPostForm(@PathVariable Long id, Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Post post = postDao.findPostById(id);
         if(user.getId() != post.getUser().getId()) {
-            return "redirect:/interview-questions/show";
+            return "redirect:/whiteboard/show";
         }
         model.addAttribute("post", post);
-        return "interview-questions/edit";
+        return "whiteboard/edit";
     }
 
-    @PostMapping("/interview-questions/edit/{id}")
+    @PostMapping("/whiteboard/edit/{id}")
     public String updatePost(@PathVariable Long id, @ModelAttribute Post post) {
         Post dbPost = postDao.findPostById(id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if(user.getId() != dbPost.getUser().getId()) {
-            return "redirect:/interview-questions/show";
+            return "redirect:/whiteboard/show";
         }
         dbPost.setTitle(post.getTitle());
         dbPost.setBody(post.getBody());
         dbPost.setAnswer(post.getAnswer());
         postDao.save(dbPost);
-        return "redirect:/interview-questions/show";
+        return "redirect:/whiteboard/show";
     }
 
-    @DeleteMapping("/interview-questions/delete")
+    @DeleteMapping("/whiteboard/delete")
     @ResponseBody
     public String deletePost(@RequestParam Long id, Model model, Principal principal){
         Post post = postDao.findPostById(id);

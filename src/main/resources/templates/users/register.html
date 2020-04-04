@@ -69,7 +69,7 @@
 </head>
 
 <body>
-<nav th:replace="fragments/navbar.html :: navbar"></nav>
+    <nav th:replace="fragments/navbar.html :: navbar"></nav>
 
 <form th:action="@{/register}" method="POST" th:object="${user}">
     <div class="card register-mainBox">

@@ -2,25 +2,30 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/header.html :: header(title = 'Codeon')"></head>
 <body>
-<nav th:replace="fragments/navbar.html :: navbar"></nav>
-Interview Questions:
-<a th:href="@{|/interview-questions/show|}"><button>Interview Questions</button></a>
-<a th:href="@{|/interview-questions/create|}"><button>Interview Create</button></a>
-<br>
-<br>
-<br>
-Mentorship Posts:
-<a th:href="@{|/mentorship-posts/show|}"><button>Mentorship Posts</button></a>
-<a th:href="@{|/mentorship-posts/create|}"><button>Mentorship Create</button></a>
-<br>
-<br>
-<br>
-Job Postings:
-<a th:href="@{|/job-postings/show|}"><button>Job Postings</button></a>
-<a th:href="@{|/job-postings/create|}"><button>Job Postings Create</button></a>
-<br>
-<br>
-<br>
+
+<h1>Welcome to CodeOn</h1>
+<!--this is the page the will see when they get to CodeOn.com this is where
+the parallax will go -->
+
+<!--<nav th:replace="fragments/navbar.html :: navbar"></nav>-->
+<!--Interview Questions:-->
+<!--<a th:href="@{|/interview-questions/show|}"><button>Interview Questions</button></a>-->
+<!--<a th:href="@{|/interview-questions/create|}"><button>Interview Create</button></a>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--Mentorship Posts:-->
+<!--<a th:href="@{|/mentorship-posts/show|}"><button>Mentorship Posts</button></a>-->
+<!--<a th:href="@{|/mentorship-posts/create|}"><button>Mentorship Create</button></a>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
+<!--Job Postings:-->
+<!--<a th:href="@{|/job-postings/show|}"><button>Job Postings</button></a>-->
+<!--<a th:href="@{|/job-postings/create|}"><button>Job Postings Create</button></a>-->
+<!--<br>-->
+<!--<br>-->
+<!--<br>-->
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>
 </body>
 </html>

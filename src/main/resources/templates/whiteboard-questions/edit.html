@@ -3,7 +3,7 @@
 <head th:replace="fragments/header.html :: header(title = 'Edit a Whiteboard Question')"></head>
 <body>
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
-<form th:action="@{|/whiteboard/edit/${post.id}|}" th:method="post" th:object="${post}">
+<form th:action="@{|/whiteboard-questions/edit/${post.id}|}" th:method="post" th:object="${post}">
     Title:
     <input th:field="*{title}" th:value="*{title}"/>
     <br />

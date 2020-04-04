@@ -30,7 +30,7 @@
     <button class="add-comment-button" th:id="'add-comment-button-' + ${post.id}">Comment</button>
     <div sec:authorize = "isAuthenticated()">
         <div th:if="${user.id == post.user.id}">
-            <a th:href="@{|/whiteboard/edit/${post.id}|}"><button>Edit Post</button></a>
+            <a th:href="@{|/whiteboard-questions/edit/${post.id}|}"><button>Edit Post</button></a>
             <button class="delete-button" th:id="${post.postType.type} + '-' + ${post.id}">Delete Post</button>
         </div>
     </div>

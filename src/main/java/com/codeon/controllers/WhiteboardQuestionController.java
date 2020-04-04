@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Random;
 
 @Controller
-public class WhiteboardController {
+public class WhiteboardQuestionController {
 
     @Value("${filestack.api.key}")
     private String filestackKey;
@@ -32,7 +32,7 @@ public class WhiteboardController {
     private ImageURLRepo imageURLDao;
     private EmailService emailService;
 
-    public WhiteboardController(PostRepo postDao, UserRepo userDao, PostTypeRepo postTypeDao, PostCommentRepo postCommentDao, ImageURLRepo imageURLDao, EmailService emailService) {
+    public WhiteboardQuestionController(PostRepo postDao, UserRepo userDao, PostTypeRepo postTypeDao, PostCommentRepo postCommentDao, ImageURLRepo imageURLDao, EmailService emailService) {
         this.postDao = postDao;
         this.userDao = userDao;
         this.postTypeDao = postTypeDao;
@@ -42,15 +42,15 @@ public class WhiteboardController {
     }
 
     //SHOW IT JUST AS JSON.
-    @GetMapping("/whiteboard")
+    @GetMapping("/whiteboard-questions")
     @ResponseBody
-    public List<Post> showWhiteboardAsJSON() {
-        return postDao.findAllByPostTypeId_Type("whiteboard");
+    public List<Post> showWhiteboardQuestionsAsJSON() {
+        return postDao.findAllByPostTypeId_Type("whiteboard-questions");
     }
 
-    @GetMapping("/whiteboard/show")
-    public String showAllWhiteboard(Model model, Principal principal) {
-        List<Post> Whiteboard = postDao.findAllByPostTypeId_Type("whiteboard");
+    @GetMapping("/whiteboard-questions/show")
+    public String showAllWhiteboardQuestions(Model model, Principal principal) {
+        List<Post> whiteboardQuestions = postDao.findAllByPostTypeId_Type("whiteboard-questions");
         String username = "";
         User user = new User();
         if(principal != null) {
@@ -58,19 +58,19 @@ public class WhiteboardController {
             user = userDao.findUserByUsername(username);
         }
         model.addAttribute("user", user);
-        model.addAttribute("postList", Whiteboard);
-        return "whiteboard/show";
+        model.addAttribute("postList", whiteboardQuestions);
+        return "whiteboard-questions/show";
     }
 
-    @GetMapping("/whiteboard/show-one")
-    public String showOneInterviewQuestion(Model model, Principal principal) {
-        List<Post> Whiteboard = postDao.findAllByPostTypeId_Type("whiteboard");
+    @GetMapping("/whiteboard-questions/show-one")
+    public String showOneWhiteboardQuestion(Model model, Principal principal) {
+        List<Post> whiteboardQuestions = postDao.findAllByPostTypeId_Type("whiteboard-questions");
         Post selectedPost = null;
         Integer pickQuestion, questionRoll, selectedPostRating;
         boolean determiningPost = true;
         while(determiningPost) {
-            pickQuestion = random.nextInt(Whiteboard.size());
-            selectedPost = Whiteboard.get(pickQuestion);
+            pickQuestion = random.nextInt(whiteboardQuestions.size());
+            selectedPost = whiteboardQuestions.get(pickQuestion);
             selectedPostRating = selectedPost.getRatingTotal(selectedPost.getRatingList());
             questionRoll = random.nextInt(31) -10;
             if(selectedPostRating >= questionRoll) {
@@ -85,18 +85,18 @@ public class WhiteboardController {
         }
         model.addAttribute("user", user);
         model.addAttribute("post", selectedPost);
-        return "/whiteboard/show-one";
+        return "/whiteboard-questions/show-one";
     }
 
-    @GetMapping("/whiteboard/create")
-    public String getPostCreateForm(Model model) {
+    @GetMapping("/whiteboard-questions/create")
+    public String getWhiteboardQuestionCreateForm(Model model) {
         model.addAttribute("post", new Post());
         model.addAttribute("filestackKey", filestackKey);
-        return "whiteboard/create";
+        return "whiteboard-questions/create";
     }
 
-    @PostMapping("/whiteboard/create")
-    public String createPost(@RequestParam Long postTypeId, @ModelAttribute Post post) {
+    @PostMapping("/whiteboard-questions/create")
+    public String createWhiteboardQuestion(@RequestParam Long postTypeId, @ModelAttribute Post post) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         post.setUser(user);
         Date now = new Date();
@@ -107,11 +107,11 @@ public class WhiteboardController {
         post.setRatingTotal(0);
         post.setPostType(postTypeDao.getPostTypeById(postTypeId));
         postDao.save(post);
-        return "redirect:/whiteboard/show";
+        return "redirect:/whiteboard-questions/show";
     }
 
-    @GetMapping("/whiteboard/{id}")
-    public String getPost(@PathVariable Long id, Model model, Principal principal){
+    @GetMapping("/whiteboard-questions/{id}")
+    public String getWhiteboardQuestion(@PathVariable Long id, Model model, Principal principal){
         String username;
         User user = new User();
         List<Post> postList = new ArrayList<>();
@@ -122,37 +122,37 @@ public class WhiteboardController {
         }
         model.addAttribute("user", user);
         model.addAttribute("postList", postList);
-        return "whiteboard/show";
+        return "whiteboard-questions/show";
     }
 
-    @GetMapping("/whiteboard/edit/{id}")
-    public String getEditPostForm(@PathVariable Long id, Model model){
+    @GetMapping("/whiteboard-questions/edit/{id}")
+    public String getEditWhiteboardQuestionForm(@PathVariable Long id, Model model){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Post post = postDao.findPostById(id);
         if(user.getId() != post.getUser().getId()) {
-            return "redirect:/whiteboard/show";
+            return "redirect:/whiteboard-questions/show";
         }
         model.addAttribute("post", post);
-        return "whiteboard/edit";
+        return "whiteboard-questions/edit";
     }
 
-    @PostMapping("/whiteboard/edit/{id}")
-    public String updatePost(@PathVariable Long id, @ModelAttribute Post post) {
+    @PostMapping("/whiteboard-questions/edit/{id}")
+    public String updateWhiteboardQuestion(@PathVariable Long id, @ModelAttribute Post post) {
         Post dbPost = postDao.findPostById(id);
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if(user.getId() != dbPost.getUser().getId()) {
-            return "redirect:/whiteboard/show";
+            return "redirect:/whiteboard-questions/show";
         }
         dbPost.setTitle(post.getTitle());
         dbPost.setBody(post.getBody());
         dbPost.setAnswer(post.getAnswer());
         postDao.save(dbPost);
-        return "redirect:/whiteboard/show";
+        return "redirect:/whiteboard-questions/show";
     }
 
-    @DeleteMapping("/whiteboard/delete")
+    @DeleteMapping("/whiteboard-questions/delete")
     @ResponseBody
-    public String deletePost(@RequestParam Long id, Model model, Principal principal){
+    public String deleteWhiteboardQuestion(@RequestParam Long id, Model model, Principal principal){
         Post post = postDao.findPostById(id);
         User user = userDao.findUserByUsername(principal.getName());
         if(user.getId() != post.getUser().getId()) {

@@ -6,7 +6,7 @@
 </head>
 <body>
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
-<form th:action="@{/whiteboard/create}" th:method="post" th:object="${post}">
+<form th:action="@{/whiteboard-questions/create}" th:method="post" th:object="${post}">
     Title:
     <input th:field="*{title}" />
     <br />

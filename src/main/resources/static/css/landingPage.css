@@ -1,41 +1,66 @@
+body, html {
+    height: 100%;
+}
+
+
+
+.parallax {
+    /* The image used */
+    background-image: url('/css/img/blur-close-up-code-computer-546819.jpg');
+
+    /* Full height */
+    height: 100%;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 #logo{
     font-family: 'Orbitron', sans-serif;
     color: white;
+    opacity: 0.25;
 }
-
+/*might need to make som adjustments to this but still early*/
 header {
     position: relative;
-    background-color: black;
-    height: 75vh;
+    height: 100vh;
     min-height: 25rem;
-    width: 100%;
     overflow: hidden;
 }
-header video {
+video {
     position: absolute;
     top: 50%;
     left: 50%;
     min-width: 100%;
     min-height: 100%;
     width: auto;
-    height: auto;
+    height: 100vh;
     z-index: 0;
     -ms-transform: translateX(-50%) translateY(-50%);
     -moz-transform: translateX(-50%) translateY(-50%);
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
 }
-header .container {
-    position: relative;
+    .container {
+        position: relative;
     z-index: 2;
 }
-header .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: black;
-    opacity: 0.5;
-    z-index: 1;
+    /*header .overlay {*/
+    /*    position: absolute;*/
+    /*    top: 0;*/
+    /*    left: 0;*/
+    /*    height: 100%;*/
+    /*    width: 100%;*/
+    /*    background-color: black;*/
+    /*    !*opacity: 0.5;*!*/
+    /*    z-index: 1;*/
+    /*}*/
+
+@media only screen and (max-device-width: 1366px) {
+    .parallax {
+        background-attachment: scroll;
+    }
 }

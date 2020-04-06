@@ -8,39 +8,47 @@
 <body>
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
 
-
+<!--The profile card at the top of the page -->
 <div class="card p-4 mt-5" id="profile-card">
     <h2 class="card-title text-center p-3 profile-header">Welcome to your profile, <span th:text="${user.username}">user</span>!
     </h2>
     <div class="container">
         <div class="row">
             <div class="col-sm">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inteviewModal">
                 Interview Questions Create
             </button>
             </div>
             <div class="col-sm">
-                <a th:href="@{|/mentorship-posts/create|}"><button class="btn btn-primary">Mentorship Create</button></a>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mentorshipModal">
+                    Mentorship Create
+                </button>
+<!--                <a th:href="@{|/mentorship-posts/create|}"><button class="btn btn-primary">Mentorship Create</button></a>-->
             </div>
             <div class="col-sm">
-                <a th:href="@{|/job-postings/create|}"><button class="btn btn-primary">Job Postings Create</button></a>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#jobsModal">
+                    Job Postings Create
+                </button>
+<!--                <a th:href="@{|/job-postings/create|}"><button class="btn btn-primary">Job Postings Create</button></a>-->
             </div>
         </div>
     </div>
 </div><br><br>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<!--                    Interview Modal-->
+<div class="modal fade" id="inteviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="interviewModalLabel">Interview Question</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="form-group">
             <div class="modal-body">
-                <form th:action="@{/interview-questions/create}" th:method="post" th:object="${post}">
+                <form th:action="@{/interview-questions/create}" th:method="post" th:object="${interviewPost}">
                     <div class="form-group">
                         <label for="title" class="col-form-label">Title:</label>
                         <input type="text" class="form-control" id="title" th:field="*{title}">
@@ -62,7 +70,78 @@
             </div>
             </div>
         </div>
-
+    </div>
+</div>
+<!--                        Mentorship modal-->
+<div class="modal fade" id="mentorshipModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mentorshipModalLabel">Mentorship Post</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="form-group">
+                <div class="modal-body">
+                    <form th:action="@{/mentorship-posts/create}" th:method="post" th:object="${mentorshipPost}">
+                        <div class="form-group">
+                            <label for="title" class="col-form-label">Title:</label>
+                            <input type="text" class="form-control" id="title" th:field="*{title}">
+                        </div>
+                        <div class="form-group">
+                            <label for="body" class="col-form-label">Body:</label>
+                            <input type="text" class="form-control" id="body" th:field="*{body}">
+                        </div>
+                        <div class="form-group">
+                            <label for="answer" class="col-form-label"> Answer:</label>
+                            <input type="text" class="form-control" id="answer" th:field="*{answer}">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-secondary">create post</button>
+                            <input type="hidden" class="" id="postTypeId" name="postTypeId" value="1">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--                            jobCreate Modal-->
+<div class="modal fade" id="jobsModal" tabindex="-1" role="dialog" aria-labelledby="jobsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="jobcreateModalLabel">Jobs Post</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="form-group">
+                <div class="modal-body">
+                    <form th:action="@{/job-postings/create}" th:method="post" th:object="${jobcreatePost}">
+                        <div class="form-group">
+                            <label for="title" class="col-form-label">Title:</label>
+                            <input type="text" class="form-control" id="title" th:field="*{title}">
+                        </div>
+                        <div class="form-group">
+                            <label for="body" class="col-form-label">Body:</label>
+                            <input type="text" class="form-control" id="body" th:field="*{body}">
+                        </div>
+                        <div class="form-group">
+                            <label for="answer" class="col-form-label"> Answer:</label>
+                            <input type="text" class="form-control" id="answer" th:field="*{answer}">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-secondary">Create post</button>
+                            <input type="hidden" class="" id="postTypeId" name="postTypeId" value="1">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

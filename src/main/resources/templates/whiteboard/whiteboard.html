@@ -27,11 +27,14 @@
 </head>
 <body onload="init()">
 <h3>CodeOn Whiteboard Environment. Click "Get Question" to begin.</h3>
-<button class="get-question-button" id="get-question-button">Get Question</button>
+<div id="button-div">
+    <button class="get-question-button" id="get-question-button">Get Question</button>
+</div>
 <div id="firepad-container"></div>
 <script type="text/javascript" th:src="@{~/js/keys.js}"></script>
 <script>
     let firepad;
+    let currentQuestion;
     function init() {
         //// Initialize Firebase.
         const config = {
@@ -56,7 +59,6 @@
         firepad = Firepad.fromACE(firepadRef, editor, {
             defaultText: 'Welcome to CodeOn WhiteBoard. Please wait for your facilitator.'
         });
-        firepad.on('ready', refreshRoom);
     }
 
     // Helper to get hash from end of URL or generate a random one.
@@ -83,8 +85,15 @@
                 return response.json();
             })
             .then(res => {
-                console.log(res);
+                currentQuestion = res;
                 firepad.setText(res.body);
+                if(document.querySelector("#reset-question-button") == null) {
+                    let resetButton = document.createElement("button");
+                    resetButton.innerText = "Reset Question.";
+                    resetButton.setAttribute("id", "reset-question-button");
+                    document.querySelector("#button-div").append(resetButton);
+                    document.querySelector("#reset-question-button").addEventListener("click", resetQuestion);
+                }
             })
     }
     function loadQuestion() {
@@ -101,10 +110,8 @@
                 firepad.setText(res.body);
             })
     }
-    function refreshRoom() {
-        if(location.href.includes("#-M40Al3zn-5wmh_f_lkj") || location.href.includes("#-M40BUW1hibtddE4IqWj") || location.href.includes("#-M40BsnppLXBgzKJOdOl") || location.href.includes("#-M4FMmqvgFrQy9fJzYTj")) {
-            firepad.setText("Welcome.");
-        }
+    function resetQuestion() {
+        firepad.setText(currentQuestion.body);
     }
     document.querySelectorAll(".question-button").forEach(button => {
         button.addEventListener("click", loadQuestion);

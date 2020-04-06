@@ -27,6 +27,12 @@ public class PostCommentRating {
 
     public PostCommentRating() {}
 
+    public PostCommentRating(PostComment postComment, User user, Integer rating) {
+        this.postComment = postComment;
+        this.user = user;
+        this.rating = rating;
+    }
+
     public Long getId() {
         return id;
     }

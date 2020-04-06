@@ -6,6 +6,7 @@ import com.codeon.models.User;
 import com.codeon.repositories.*;
 import com.codeon.services.EmailService;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -57,5 +58,18 @@ public class PostCommentsController {
         postComment.setRatingTotal(0);
         postCommentDao.save(postComment);
         return String.format("%d", id);
+    }
+
+    @PostMapping("/comments/edit/{id}")
+    public String updatePost(@PathVariable Long id, @RequestParam String body) {
+        PostComment dbComment = postCommentDao.findPostCommentById(id);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(user.getId() != dbComment.getUser().getId()) {
+            return "-1";
+        }
+        System.out.println(body);
+        dbComment.setBody(body);
+        postCommentDao.save(dbComment);
+        return "id";
     }
 }

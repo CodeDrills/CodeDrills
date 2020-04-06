@@ -69,69 +69,76 @@
 <!--This is right above the questions create and takes you to the specific page-->
 <div class="container">
         <div class="row">
-            <div class="col-sm">
+            <div class="col-4">
                 <a th:href="@{|/interview-questions/show|}"><button class="btn btn-primary">Interview Questions</button></a>
 <!--                <a th:href="@{|/interview-questions/create|}"><button class="btn btn-primary">Interview Create</button></a>-->
             </div>
-            <div class="col-sm">
+            <div class="col-4">
                 <a th:href="@{|/mentorship-posts/show|}"><button class="btn btn-primary">Mentorship Posts</button></a>
-                <a th:href="@{|/mentorship-posts/create|}"><button class="btn btn-primary">Mentorship Create</button></a>
+<!--                <a th:href="@{|/mentorship-posts/create|}"><button class="btn btn-primary">Mentorship Create</button></a>-->
             </div>
-            <div class="col-sm">
+            <div class="col-4">
                 <a th:href="@{|/job-postings/show|}"><button class="btn btn-primary">Job Postings</button></a>
-                <a th:href="@{|/job-postings/create|}"><button class="btn btn-primary">Job Postings Create</button></a>
+<!--                <a th:href="@{|/job-postings/create|}"><button class="btn btn-primary">Job Postings Create</button></a>-->
             </div>
         </div>
 </div>
 
 <!--each of the columns are here for each type of questions-->
 <!--    Interview-->
-    <div class="row">
+        <div class="row">
                 <div class="col-sm">
                     <h3>Most Recent Interview Questions</h3>
-                    <div th:each="post : ${interviewQuestionsList}">
-                        <div th:id="'post-' + ${post.id}">
-                            <h4 th:text = "${post.title}"></h4>
-                            <p th:text = "${post.dateTime}"></p>
-                            <p th:text = "${post.body}"></p>
-                            <p th:text = "${post.user.username}"></p>
-                            <div  th:if="${post.imageURLList.size() > 0 && post.imageURLList[0].url.length() > 8}" >
-                                <img th:src="${post.imageURLList[0].url}" alt="post-image">
+                    <hr>
+                        <div th:each="post : ${interviewQuestionsList}">
+                            <div th:id="'post-' + ${post.id}">
+                                <h4 th:text = "${post.title}"></h4>
+<!--                                <p th:text = "${post.dateTime}"></p>-->
+                                <p th:text = "${post.body}"></p>
+                                <p th:text = "${post.answer}"></p>
+                                <p>Asked by: <span th:text="${post.user.username}"></span> On: <span th:text = "${post.dateTime}"></span>  </p>
+                                <div  th:if="${post.imageURLList.size() > 0 && post.imageURLList[0].url.length() > 8}" >
+                                    <img th:src="${post.imageURLList[0].url}" alt="post-image">
                             </div>
 
-                            <div sec:authorize = "isAuthenticated()">
-                                <button class="upvote-button" th:id="'upvote-' + ${post.id}">Upvote JS</button>
-                                <button class="downvote-button" th:id="'downvote-' + ${post.id}">Downvote JS</button>
-                                <p>Rating Total: <span th:text = "${post.getRatingTotal()}"></span></p>
-                            </div>
-                            <div th:each="comment : ${post.commentList}">
-                                <p th:text = "${comment.body}"></p>
-                            </div>
-                            <div class="create-comment-div" th:id="'create-comment-div-' + ${post.id}"></div>
-                            <button class="add-comment-button" th:id="'add-comment-button-' + ${post.id}">Comment</button>
-                            <div th:if="${user.id == post.user.id}">
-                                <a th:href="@{|/mentorship-posts/edit/${post.id}|}"><button>Edit Post</button></a>
-                                <button class="delete-button" th:id="${post.postType.type} + '-' + ${post.id}">Delete Post</button>
-                            </div>
+                                <div sec:authorize = "isAuthenticated()">
+                                    <button class="upvote-button" th:id="'upvote-' + ${post.id}"><i class="fas fa-arrow-up"></i></button>
+                                    <br>
+                                    <button class="downvote-button" th:id="'downvote-' + ${post.id}"><i class="fas fa-arrow-down"></i></button>
+                                    <p>Rating Total: <span th:text = "${post.getRatingTotal()}"></span></p>
+                                </div>
+                                <div th:each="comment : ${post.commentList}">
+                                    <p th:text = "${comment.body}"></p>
+                                </div>
+                                <div class="create-comment-div" th:id="'create-comment-div-' + ${post.id}"></div>
+                                <button class="add-comment-button" th:id="'add-comment-button-' + ${post.id}">Comment</button>
+                                    <div th:if="${user.id == post.user.id}">
+                                        <a th:href="@{|/mentorship-posts/edit/${post.id}|}"><button>Edit my post</button></a>
+                                        <button class="delete-button" th:id="${post.postType.type} + '-' + ${post.id}">Delete my Post</button>
+                                    </div>
+                                <hr>
                         </div>
-                    </div>
                 </div>
+        </div>
             <!--    End Interview-->
             <!--    Mentorship-->
                 <div class="col-sm">
                     <h3>Most Recent Mentorship Posts</h3>
+                    <hr>
                     <div th:each="post : ${mentorshipPostsList}">
                         <div th:id="'post-' + ${post.id}">
                             <h4 th:text = "${post.title}"></h4>
                             <p th:text = "${post.dateTime}"></p>
                             <p th:text = "${post.body}"></p>
+                            <p th:text = "${post.answer}"></p>
                             <p th:text = "${post.user.username}"></p>
                             <div  th:if="${post.imageURLList.size() > 0 && post.imageURLList[0].url.length() > 8}" >
                                 <img th:src="${post.imageURLList[0].url}" alt="post-image">
                             </div>
                             <div sec:authorize = "isAuthenticated()">
-                                <button class="upvote-button" th:id="'upvote-' + ${post.id}">Upvote JS</button>
-                                <button class="downvote-button" th:id="'downvote-' + ${post.id}">Downvote JS</button>
+                                <button class="upvote-button" th:id="'upvote-' + ${post.id}"><i class="fas fa-arrow-up"></i></button>
+                                <br>
+                                <button class="downvote-button" th:id="'downvote-' + ${post.id}"><i class="fas fa-arrow-down"></i></button>
                                 <p>Rating Total: <span th:text = "${post.getRatingTotal()}"></span></p>
                             </div>
                             <div th:each="comment : ${post.commentList}">
@@ -143,6 +150,7 @@
                                 <a th:href="@{|/mentorship-posts/edit/${post.id}|}"><button>Edit Post</button></a>
                                 <button class="delete-button" th:id="${post.postType.type} + '-' + ${post.id}">Delete Post</button>
                             </div>
+                            <hr>
                         </div>
                      </div>
                 </div>
@@ -150,18 +158,21 @@
 <!--    Job-->
                 <div class="col-sm">
                     <h3>Most Recent Job Postings</h3>
+                    <hr>
                     <div th:each="post : ${jobPostingsList}">
                         <div th:id="'post-' + ${post.id}">
                             <h4 th:text = "${post.title}"></h4>
                             <p th:text = "${post.dateTime}"></p>
                             <p th:text = "${post.body}"></p>
+                            <p th:text = "${post.answer}"></p>
                             <p th:text = "${post.user.username}"></p>
                             <div  th:if="${post.imageURLList.size() > 0 && post.imageURLList[0].url.length() > 8}" >
                                 <img th:src="${post.imageURLList[0].url}" alt="post-image">
                             </div>
                             <div sec:authorize = "isAuthenticated()">
-                                <button class="upvote-button" th:id="'upvote-' + ${post.id}">Upvote JS</button>
-                                <button class="downvote-button" th:id="'downvote-' + ${post.id}">Downvote JS</button>
+                                <button class="upvote-button" th:id="'upvote-' + ${post.id}"><i class="fas fa-arrow-up"></i></button>
+                                <br>
+                                <button class="downvote-button" th:id="'downvote-' + ${post.id}"><i class="fas fa-arrow-down"></i></button>
                                 <p>Rating Total: <span th:text = "${post.getRatingTotal()}"></span></p>
                             </div>
                             <div th:each="comment : ${post.commentList}">
@@ -173,6 +184,7 @@
                                 <a th:href="@{|/mentorship-posts/edit/${post.id}|}"><button>Edit Post</button></a>
                                 <button class="delete-button" th:id="${post.postType.type} + '-' + ${post.id}">Delete Post</button>
                             </div>
+                            <hr>
                         </div>
                     </div>
                 </div>

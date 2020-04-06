@@ -18,8 +18,12 @@
 <!-- END Will working on ratings -->
 
     <div th:each="comment : ${post.commentList}">
-        <p th:text = "${comment.body}"></p>
+        <p th:text = "${comment.body}" th:id="'comment-body-' + ${comment.id}"></p>
         <div sec:authorize = "isAuthenticated()">
+            <div th:if="${user.id == comment.user.id}">
+                <div class="edit-comment-div" th:id="'edit-comment-div-' + ${comment.id}"></div>
+                <button class="edit-comment-button" th:id="'edit-comment-button-' + ${comment.id}">Edit Comment</button>
+            </div>
             <button class="upvote-comment-button" th:id="'upvote-comment-' + ${comment.id}">Upvote JS</button>
             <button class="downvote-comment-button" th:id="'downvote-comment-' + ${comment.id}">Downvote JS</button>
         </div>

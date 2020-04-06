@@ -58,6 +58,43 @@ const attachAddCommentEventListener = function() {
         }))
     }
 };
+
+const attachEditCommentEventListener = function() {
+    if (document.querySelectorAll(".edit-comment-button") !== null) {
+        let i = 0;
+        document.querySelectorAll(".edit-comment-button").forEach(button => button.addEventListener("click", function (e) {
+            e.preventDefault();
+            let currentBody = document.querySelector(`#comment-body-${this.getAttribute("id").split("-")[3]}`).innerText;
+            document.querySelector(`#comment-body-${this.getAttribute("id").split("-")[3]}`).style.display = "none";
+            document.querySelector(`#edit-comment-div-${this.getAttribute("id").split("-")[3]}`).innerHTML = `<input type="text" id="edit-${this.getAttribute("id").split("-")[3]}" name="body"><button class="post-comment-button" id="submit-edit-comment-button-${this.getAttribute("id").split("-")[3]}">Submit.</button>`;
+            let editInput = document.getElementById(`edit-${this.getAttribute("id").split("-")[3]}`);
+            editInput.value = currentBody;
+            document.querySelector(`#submit-edit-comment-button-${this.getAttribute("id").split("-")[3]}`).addEventListener("click", function (e) {
+                e.preventDefault();
+                let body = editInput.value;
+                let idSplit = this.getAttribute("id").split("-");
+                let commentId = idSplit[4];
+                fetch(`/comments/edit/${commentId}?body=${body}`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': token
+                    }
+                })
+                    .then(res => {
+                        if(!window.location.href.includes("/api")) {
+                            location.reload(true);
+                            return res;
+                        }
+                        this.style.display = "none";
+                        editInput.style.display = "none";
+                        document.querySelector(`#comment-body-${this.getAttribute("id").split("-")[3]}`).value = body;
+                        attachGetQuestionEventListener();
+                    })
+            })
+        }))
+    }
+};
+
 //used alot
 const attachRatingsEventListener = function() {
     let upvoteButtonClass = document.querySelectorAll(".upvote-button");
@@ -273,6 +310,7 @@ const attachFilestack = function() {
 
 //begin main
 attachAddCommentEventListener();
+attachEditCommentEventListener();
 attachAddSkillEventListener();
 attachDeletePostEventListener();
 attachFilestack();

@@ -170,6 +170,7 @@ public class UserController {
         model.addAttribute("interviewQuestionsList", interviewQuestionsList);
         model.addAttribute("mentorshipPostsList", mentorshipPostsList);
         model.addAttribute("jobPostingsList", jobPostingsList);
+        model.addAttribute("post", new Post());
         return "users/dashboard";
     }
     @PostMapping("users/edit{id}/")

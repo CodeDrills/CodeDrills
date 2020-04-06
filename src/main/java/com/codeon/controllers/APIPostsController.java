@@ -42,14 +42,14 @@ public class APIPostsController {
     @ResponseBody
     public Object getPost(@PathVariable String postType, @PathVariable Long id) {
         List <Post> postList = new ArrayList<>();
-        if(postType.equals("interview-question")) {
+        if(postType.equals("interview-questions")) {
             postList = postDao.findAllByPostTypeId_Type("interview-questions");
             for(Post post: postList) {
                 if(post.getId() == id) {
                     return postDao.findPostById(id);
                 }
             }
-        } else if(postType.equals("whiteboard-question")) {
+        } else if(postType.equals("whiteboard-questions")) {
             postList = postDao.findAllByPostTypeId_Type("whiteboard-questions");
             for(Post post: postList) {
                 if(post.getId() == id) {
@@ -80,7 +80,7 @@ public class APIPostsController {
                 postList = postDao.findAllByPostTypeId_Type("job-postings");
                 break;
             default:
-                postList = postDao.findAllByPostTypeId_Type("whiteboard-posts");
+                postList = postDao.findAllByPostTypeId_Type("whiteboard-questions");
                 break;
         }
         Post selectedPost = null;

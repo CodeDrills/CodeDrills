@@ -21,6 +21,10 @@ public class SecurityRole {
 //    private User user;
     @ManyToMany(mappedBy = "roleList")
     private List<User> userList;
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn (name = "approved_email_id")
+    private ApprovedEmail approvedEmail;
 
     public SecurityRole() {}
 
@@ -46,5 +50,13 @@ public class SecurityRole {
 
     public void setUserList(List<User> userList) {
         this.userList = userList;
+    }
+
+    public ApprovedEmail getApprovedEmail() {
+        return approvedEmail;
+    }
+
+    public void setApprovedEmail(ApprovedEmail approvedEmail) {
+        this.approvedEmail = approvedEmail;
     }
 }

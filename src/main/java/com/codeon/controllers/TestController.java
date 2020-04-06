@@ -42,20 +42,5 @@ public class TestController {
         model.addAttribute("userList", userDao.findAll());
         return "talkjs/user-select";
     }
-    @GetMapping("/test/whiteboard")
-    public String getWhiteboard(Model model, Principal principal, @RequestParam(required = false) Long otherUserId) {
-        model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
-        model.addAttribute("otherUser", userDao.findUserById(otherUserId));
-        model.addAttribute("questionsList", postDao.findAllByPostTypeId_Type("interview-questions"));
-        model.addAttribute("firebaseKey", firebaseKey);
-        return "whiteboard/whiteboard";
-    }
-    @GetMapping("/room/1")
-    public String getRoomOne(Model model, Principal principal, @RequestParam(required = false) Long otherUserId) {
-        model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
-        model.addAttribute("otherUser", userDao.findUserById(otherUserId));
-        model.addAttribute("questionsList", postDao.findAllByPostTypeId_Type("interview-questions"));
-        model.addAttribute("firebaseKey", firebaseKey);
-        return "redirect:/test/whiteboard#-M40Al3zn-5wmh_f_lkj";
-    }
+
 }

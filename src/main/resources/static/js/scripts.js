@@ -174,7 +174,7 @@ const attachAddSkillEventListener = function() {
 }
 const getQuestion = function() {
     let fill = document.getElementById("fill-this");
-    fetch(`/api/questions/show-one`, {
+    fetch(`/api/interview-questions/show-one`, {
         method: 'GET'
     })
         .then(response => {

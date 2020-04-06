@@ -3,11 +3,7 @@
 <head th:replace="fragments/header.html :: header(title = 'Codeon')"></head>
 <body>
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
-<h1>Welcome to CodeOn</h1>
-<!--this is the page the will see when they get to CodeOn.com this is where
-the parallax will go -->
 <header class="d-none d-lg-block">
-    <div class="overlay"></div>
     <video autoplay="autoplay" muted="muted" loop="loop">
         <source src="https://www.videvo.net/videvo_files/converted/2016_04/preview/160330_1_Typing1_Mpeg4_4K.mov32174.webm" type="video/webm">
     </video>
@@ -15,11 +11,21 @@ the parallax will go -->
         <div class="d-flex h-100 text-center align-items-center">
             <div class="w-100 text-white">
                 <h1 class="display-3" id ="logo" style="font-size: 12em">CodeOn</h1>
+                <p>something great we can say about why to use codeon and how great the site is </p>
+
             </div>
         </div>
     </div>
 </header>
+<div class="parallax"></div>
+<!--this is the page the will see when they get to CodeOn.com this is where
+the parallax will go -->
 
+<div style="height:1000px;background-color:steelblue;font-size:36px">
+some other stuff goes here
+</div>
+
+<div class="parallax"></div>
 <!--<nav th:replace="fragments/navbar.html :: navbar"></nav>-->
 <!--Interview Questions:-->
 <!--<a th:href="@{|/interview-questions/show|}"><button>Interview Questions</button></a>-->

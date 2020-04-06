@@ -26,15 +26,15 @@
     </style>
 </head>
 <body onload="init()">
-<div id="firepad-container"></div>
-<div th:each="post : ${questionsList}">
-    <input th:id="'question-' + ${post.id}" type="hidden" th:value="${post.body}">
-    <button th:text="'Question' + ${post.id}" class="question-button" th:id="'question-button-' + ${post.id}"></button>
+<h3>CodeOn Whiteboard Environment. Click "Get Question" to begin.</h3>
+<div id="button-div">
+    <button class="get-question-button" id="get-question-button">Get Question</button>
 </div>
+<div id="firepad-container"></div>
 <script type="text/javascript" th:src="@{~/js/keys.js}"></script>
-
 <script>
     let firepad;
+    let currentQuestion;
     function init() {
         //// Initialize Firebase.
         const config = {
@@ -49,11 +49,11 @@
 
         //// Create ACE
         let editor = ace.edit("firepad-container");
-        editor.setTheme("ace/theme/textmate");
+        editor.setTheme("ace/theme/chaos");
         let session = editor.getSession();
         session.setUseWrapMode(true);
         session.setUseWorker(false);
-        session.setMode("ace/mode/javascript");
+        session.setMode("ace/mode/text");
 
         //// Create Firepad.
         firepad = Firepad.fromACE(firepadRef, editor, {
@@ -76,11 +76,30 @@
         }
         return ref;
     }
+    function getQuestion() {
+        firepad.setText("");
+        fetch(`/api/whiteboard-questions/show-one`, {
+            method: 'GET'
+        })
+            .then(response => {
+                return response.json();
+            })
+            .then(res => {
+                currentQuestion = res;
+                firepad.setText(res.body);
+                if(document.querySelector("#reset-question-button") == null) {
+                    let resetButton = document.createElement("button");
+                    resetButton.innerText = "Reset Question.";
+                    resetButton.setAttribute("id", "reset-question-button");
+                    document.querySelector("#button-div").append(resetButton);
+                    document.querySelector("#reset-question-button").addEventListener("click", resetQuestion);
+                }
+            })
+    }
     function loadQuestion() {
         firepad.setText("");
         let id = this.getAttribute("id").split("-")[2];
-        console.log(id);
-        fetch(`/api/questions/${id}`, {
+        fetch(`/api/whiteboard-questions/${id}`, {
             method: 'GET'
         })
             .then(response => {
@@ -91,9 +110,14 @@
                 firepad.setText(res.body);
             })
     }
+    function resetQuestion() {
+        firepad.setText(currentQuestion.body);
+    }
     document.querySelectorAll(".question-button").forEach(button => {
         button.addEventListener("click", loadQuestion);
-    })
+    });
+    document.querySelector("#get-question-button").addEventListener("click", getQuestion);
+
 
 </script>
 </body>

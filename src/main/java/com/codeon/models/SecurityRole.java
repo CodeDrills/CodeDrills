@@ -15,16 +15,10 @@ public class SecurityRole {
 
     @Column(nullable = false)
     private String role;
-//    @JsonBackReference
-//    @ManyToOne
-//    @JoinColumn (name = "user_id")
-//    private User user;
     @ManyToMany(mappedBy = "roleList")
     private List<User> userList;
-    @JsonBackReference
-    @ManyToOne
-    @JoinColumn (name = "approved_email_id")
-    private ApprovedEmail approvedEmail;
+    @ManyToMany(mappedBy = "roleList")
+    private List<ApprovedEmail> approvedEmailList;
 
     public SecurityRole() {}
 
@@ -52,11 +46,11 @@ public class SecurityRole {
         this.userList = userList;
     }
 
-    public ApprovedEmail getApprovedEmail() {
-        return approvedEmail;
+    public List<ApprovedEmail> getApprovedEmailList() {
+        return approvedEmailList;
     }
 
-    public void setApprovedEmail(ApprovedEmail approvedEmail) {
-        this.approvedEmail = approvedEmail;
+    public void setApprovedEmailList(List<ApprovedEmail> approvedEmailList) {
+        this.approvedEmailList = approvedEmailList;
     }
 }

@@ -1,9 +1,12 @@
+DROP DATABASE codeon_db;
+
+
 use codeon_db;
 
 insert into post_types (type) values ('interview-questions'), ('mentorship-posts'), ('job-postings'), ('whiteboard-questions');
 
 insert into skills (name) values ('Java'), ('HTML'), ('CSS'), ('JavaScript'), ('Thymeleaf'),
-                                  ('MySql'), ('Git'), ('Ruby'), ('Python');
+                                 ('MySql'), ('Git'), ('Ruby'), ('Python');
 
 insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (1,  true,'User-centric user-facing approach', 'trumford0@merriam-webster.com', 'Tonnie', 'Rumford', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'http://dummyimage.com/100x221.bmp/ff4444/ffffff', 'http://dummyimage.com/227x175.bmp/ff4444/ffffff', 'trumford0');
 insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (2,  true,'User-centric static paradigm', 'amatteau1@joomla.org', 'Alicea','Matteau', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'http://dummyimage.com/237x214.jpg/ff4444/ffffff', 'http://dummyimage.com/182x153.jpg/5fa2dd/ffffff', 'amatteau1');
@@ -219,6 +222,24 @@ insert into post_comment_ratings (user_id, post_comment_id, rating) values (6, 1
 insert into post_comment_ratings (user_id, post_comment_id, rating) values (7, 7, 1);
 insert into post_comment_ratings (user_id, post_comment_id, rating) values (7, 9, 1);
 insert into post_comment_ratings (user_id, post_comment_id, rating) values (8, 2, 1);
+
+insert into security_roles (role) values ('ADMIN');
+insert into security_roles (role) values ('INSTRUCTOR');
+insert into security_roles (role) values ('ALUMNUS');
+insert into security_roles (role) values ('STUDENT');
+
+insert into approved_emails (email) values ('superadmin@example.com');
+insert into approved_emails (email) values ('admininstructor@example.com');
+insert into approved_emails (email) values ('admininstructoralum@example.com');
+insert into approved_emails (email) values ('student@example.com');
+
+insert into approved_emails_security_roles (approved_email_id, role_id) values (1, 1);
+insert into approved_emails_security_roles (approved_email_id, role_id) values (2, 1);
+insert into approved_emails_security_roles (approved_email_id, role_id) values (2, 2);
+insert into approved_emails_security_roles (approved_email_id, role_id) values (3, 1);
+insert into approved_emails_security_roles (approved_email_id, role_id) values (3, 2);
+insert into approved_emails_security_roles (approved_email_id, role_id) values (3, 3);
+insert into approved_emails_security_roles (approved_email_id, role_id) values (4, 4);
 
 # insert into image_urls (post_id, url) values (16, 'http://dummyimage.com/115x178.png/ff4444/ffffff');
 # insert into image_urls (post_id, url) values (11, 'http://dummyimage.com/217x105.bmp/5fa2dd/ffffff');

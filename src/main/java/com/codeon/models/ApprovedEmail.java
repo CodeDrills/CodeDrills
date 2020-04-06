@@ -12,10 +12,14 @@ public class ApprovedEmail {
     private long id;
     @Column
     String email;
-    @JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "approvedEmail")
-    private List<SecurityRole> roleList;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name="approved_emails_security_roles",
+            joinColumns={@JoinColumn(name="approved_email_id")},
+            inverseJoinColumns={@JoinColumn(name="role_id")}
+    )
+    private List<SecurityRole> roleList;
     public ApprovedEmail() {
     }
 

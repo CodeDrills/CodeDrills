@@ -150,7 +150,7 @@ const attachRatingsEventListener = function() {
 //
 //used in api/questions
 const attachGetQuestionEventListener = function() {
-    if(document.getElementById("start-button") != null) {
+    if(document.getElementById("start-button") !== null) {
         document.getElementById("start-button").addEventListener("click", function(e) {
             console.log("firing");
             e.preventDefault();

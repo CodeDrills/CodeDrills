@@ -32,7 +32,8 @@ const attachAddCommentEventListener = function() {
             document.querySelector(`#create-comment-div-${this.getAttribute("id").split("-")[3]}`).innerHTML = `<input type="text" id="comment-${this.getAttribute("id").split("-")[3]}" name="body" placeholder="Comment."><button class="post-comment-button" id="post-comment-button-${this.getAttribute("id").split("-")[3]}">Submit.</button>`;
             document.querySelector(`#post-comment-button-${this.getAttribute("id").split("-")[3]}`).addEventListener("click", function (e) {
                 e.preventDefault();
-                let body = document.querySelector(`#comment-${this.getAttribute("id").split("-")[3]}`).value;
+                let commentInput = document.querySelector(`#comment-${this.getAttribute("id").split("-")[3]}`);
+                let body = commentInput.value;
                 let idSplit = this.getAttribute("id").split("-");
                 let postId = idSplit[3];
                 fetch(`/comments/create/${postId}?body=${body}`, {
@@ -42,7 +43,16 @@ const attachAddCommentEventListener = function() {
                     }
                 })
                     .then(res => {
-                        location.reload(true);
+                        if(!window.location.href.includes("/api")) {
+                            location.reload(true);
+                            return res;
+                        }
+                        // commentInput.parent.parent.appendChild(document.createElement("div").innerHTML = body);
+                        let newDiv = document.createElement("div").innerHTML = `<p>Comment Added:</p><p>${body}</p>`;
+                        this.style.display = "none";
+                        commentInput.style.display = "none";
+                        this.parentElement.innerHTML = this.parentElement.innerHTML + newDiv;
+                        attachGetQuestionEventListener();
                     })
             })
         }))
@@ -66,8 +76,15 @@ const attachRatingsEventListener = function() {
                         'X-CSRF-TOKEN': token
                     }
                 })
+                    .then(response => {
+                        return response.text();
+                    })
                     .then(res => {
-                        location.reload(true);
+                        if(!window.location.href.includes("/api")) {
+                            location.reload(true);
+                            return res;
+                        }
+                        document.getElementById("total-rating").innerHTML = `Rating Total: ${res}`;
                     })
             })
         });
@@ -82,8 +99,15 @@ const attachRatingsEventListener = function() {
                         'X-CSRF-TOKEN': token
                     }
                 })
+                    .then(response => {
+                        return response.text();
+                    })
                     .then(res => {
-                        location.reload(true);
+                        if(!window.location.href.includes("/api")) {
+                            location.reload(true);
+                            return res;
+                        }
+                        document.getElementById("total-rating").innerHTML = `Rating Total: ${res}`;
                     })
             })
         });
@@ -127,47 +151,11 @@ const attachRatingsEventListener = function() {
 //used in api/questions
 const attachGetQuestionEventListener = function() {
     if(document.getElementById("start-button") != null) {
-        document.getElementById("start-button").addEventListener("click", function() {
-            attachGetQuestionEventListener();
+        document.getElementById("start-button").addEventListener("click", function(e) {
+            console.log("firing");
+            e.preventDefault();
+            getQuestion();
         });
-        let fill = document.getElementById("fill-this");
-
-        fetch(`/api/questions/show-one`, {
-            method: 'GET'
-        })
-        .then(response => {
-            return response.json()
-        })
-        .then(res => {
-            if (document.getElementById("start-button") !== null) {
-                document.getElementById("start-button").parentNode.removeChild(document.getElementById("start-button"));
-            }
-            fill.innerHTML = "";
-            fill.innerHTML = `
-                    <div id="question-${res.id}">
-                        <p>Question Title: ${res.title}</p>
-                        <p>Rating Total: ${res.ratingTotal}</p>
-                        <p>Question: ${res.body}</p>
-                        <div id="answer-${res.id}">
-                        <p>Answer: ${res.answer}</p>
-                        <button class="upvote-button" id="upvote-${res.id}">Upvote JS</button>
-                        <button class="downvote-button" id="downvote-${res.id}">Downvote JS</button>
-                        <div class="create-comment-div" id="create-comment-div-${res.id}"></div>
-                        <button class="add-comment-button" id="add-comment-button-${res.id}">Comment</button>
-                        </div>
-                        <button id="answer-button-${res.id}">Show Answer</button>
-                        <button id="question-button-${res.id}">Get Another Question</button>
-                    </div>`;
-            document.getElementById(`answer-${res.id}`).style.display = "none";
-            document.getElementById(`answer-button-${res.id}`).addEventListener("click", function () {
-                document.getElementById(`answer-${res.id}`).style.display = "block";
-            });
-            document.getElementById(`question-button-${res.id}`).addEventListener("click", function () {
-                attachGetQuestionEventListener();
-            })
-            attachAddCommentEventListener();
-            attachRatingsEventListener();
-        })
     }
 };
 const attachAddSkillEventListener = function() {
@@ -183,6 +171,47 @@ const attachAddSkillEventListener = function() {
             i++;
         })
     }
+}
+const getQuestion = function() {
+    let fill = document.getElementById("fill-this");
+    fetch(`/api/questions/show-one`, {
+        method: 'GET'
+    })
+        .then(response => {
+            return response.json()
+        })
+        .then(res => {
+            if (document.getElementById("start-button") !== null) {
+                document.getElementById("start-button").parentNode.removeChild(document.getElementById("start-button"));
+            }
+            fill.innerHTML = "";
+            fill.innerHTML = `
+                    <div id="question-${res.id}">
+                        <p>Question Title: ${res.title}</p>
+                        <p id="total-rating">Rating Total: ${res.ratingTotal}</p>
+                        <p>Question: ${res.body}</p>
+                        <div id="answer-${res.id}">
+                        <p>Answer: ${res.answer}</p>
+                        <button class="upvote-button" id="upvote-${res.id}">Upvote JS</button>
+                        <button class="downvote-button" id="downvote-${res.id}">Downvote JS</button>
+                        <div class="create-comment-div" id="create-comment-div-${res.id}"></div>
+                        <button class="add-comment-button" id="add-comment-button-${res.id}">Comment</button>
+                        </div>
+                        <button id="answer-button-${res.id}">Show Answer</button>
+                        <button id="question-button-${res.id}">Get Another Question</button>
+                    </div>`;
+            document.getElementById(`answer-${res.id}`).style.display = "none";
+            document.getElementById(`answer-button-${res.id}`).addEventListener("click", function (e) {
+                e.preventDefault();
+                document.getElementById(`answer-${res.id}`).style.display = "block";
+            });
+            document.getElementById(`question-button-${res.id}`).addEventListener("click", function (e) {
+                e.preventDefault();
+                getQuestion();
+            })
+            attachAddCommentEventListener();
+            attachRatingsEventListener();
+        })
 }
 const attachFilestack = function() {
     if (document.querySelector('meta.filestackKey') !== null && document.querySelector('meta.filestackKey').content !== "") {

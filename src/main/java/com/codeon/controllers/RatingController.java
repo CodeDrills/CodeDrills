@@ -49,7 +49,7 @@ public class RatingController {
                 }
                 postRatingDao.save(rating);
                 post.setRatingTotal(post.getRatingList());
-                return "id";
+                return String.format("%d", post.getRatingTotal());
             }
         }
         PostRating newRating = new PostRating();
@@ -58,7 +58,7 @@ public class RatingController {
         newRating.setUser(user);
         postRatingDao.save(newRating);
         post.setRatingTotal(post.getRatingList());
-        return "id";
+        return String.format("%d", post.getRatingTotal());
     }
 
     /*If a user has already downvoted the post and they click downvote again it will set rating to 0
@@ -77,7 +77,7 @@ public class RatingController {
                 }
                 postRatingDao.save(rating);
                 post.setRatingTotal(post.getRatingList());
-                return "id";
+                return String.format("%d", post.getRatingTotal());
             }
         }
         PostRating newRating = new PostRating();
@@ -86,7 +86,7 @@ public class RatingController {
         newRating.setUser(user);
         postRatingDao.save(newRating);
         post.setRatingTotal(post.getRatingList());
-        return "id";
+        return String.format("%d", post.getRatingTotal());
     }
 
     @PostMapping("/upvote/comment/{id}")
@@ -104,7 +104,7 @@ public class RatingController {
                 postCommentRatingDao.save(rating);
                 postComment.setRatingTotal(postComment.getCommentRatingList());
                 System.out.println(postComment.getRatingTotal());
-                return "id";
+                return String.format("%d", postComment.getRatingTotal());
             }
         }
         PostCommentRating newRating = new PostCommentRating();
@@ -114,7 +114,7 @@ public class RatingController {
         postCommentRatingDao.save(newRating);
         postComment.setRatingTotal(postComment.getCommentRatingList());
         System.out.println(postComment.getRatingTotal());
-        return "id";
+        return String.format("%d", postComment.getRatingTotal());
     }
 
     @PostMapping("/downvote/comment/{id}")
@@ -132,7 +132,7 @@ public class RatingController {
                 postCommentRatingDao.save(rating);
                 postComment.setRatingTotal(postComment.getCommentRatingList());
                 System.out.println(postComment.getRatingTotal());
-                return "id";
+                return String.format("%d", postComment.getRatingTotal());
             }
         }
         PostCommentRating newRating = new PostCommentRating();
@@ -141,6 +141,6 @@ public class RatingController {
         newRating.setUser(user);
         postCommentRatingDao.save(newRating);
         postComment.setRatingTotal(postComment.getCommentRatingList());
-        return "id";
+        return String.format("%d", postComment.getRatingTotal());
     }
 }

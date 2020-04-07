@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.security.Principal;
 
 @Controller
-public class TalkJSController {
+public class ChatController {
 
     @Value("${talkjs.app.id}")
     private String talkJSAppId;
@@ -19,22 +19,22 @@ public class TalkJSController {
     private UserRepo userDao;
 
 
-    public TalkJSController(UserRepo userDao) {
+    public ChatController(UserRepo userDao) {
         this.userDao = userDao;
     }
 
-    @GetMapping("/test/{otherUserId}")
+    @GetMapping("/chat/{otherUserId}")
     public String getTestHtml(Model model, Principal principal, @PathVariable Long otherUserId) {
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("otherUser", userDao.findUserById(otherUserId));
         model.addAttribute("talkJSAppId", talkJSAppId);
-        return "talkjs/test";
+        return "chat/test";
     }
-    @GetMapping("/test/user-select")
+    @GetMapping("/chat/user-select")
     public String showAllUsers(Model model, Principal principal) {
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("userList", userDao.findAll());
-        return "talkjs/user-select";
+        return "chat/user-select";
     }
 
 }

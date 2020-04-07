@@ -1,19 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <meta charset="UTF-8">
-<head th:replace="fragments/header.html :: header(title = 'Profile')"></head>
+<head th:replace="fragments/header.html :: header(title = 'Admin Dashboard')"></head>
 <title>Title</title>
 </head>
 <body>
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
-<h2>Metrics:</h2>
-<p>Total users: </p>
-<p>Total users with Admin role: </p>
-<p>Total users with Instructor role: </p>
-<p>Total users with Alumnus role: </p>
-<p>Total users with Student role: </p>
-<p>Total users awaiting activation: </p>
-<p>Total posts (do this by type later): </p>
+<div class="row">
+    <h2>Metrics:</h2>
+    <div class="col-2">
+        <p>Total users: </p>
+    </div>
+    <div class="col-2">
+        <p th:text="'Users with Admin Role: ' + ${adminList.size()}"></p>
+        <button class="btn btn-primary show-user-role-button" id="show-admin">Show Admin Users</button>
+    </div>
+    <div class="col-2">
+        <p th:text="'Users with Instructor Role: ' + ${instructorList.size()}"></p>
+        <button class="btn btn-primary show-user-role-button" id="show-instructor">Show Instructor Users</button>
+    </div>
+    <div class="col-2">
+        <p th:text="'Users with Alum Role: ' + ${alumnusList.size()}"></p>
+        <button class="btn btn-primary show-user-role-button" id="show-alumnus">Show Alumnus Users</button>
+    </div>
+    <div class="col-2">
+        <p th:text="'Users with Student Role: ' + ${studentList.size()}"></p>
+        <button class="btn btn-primary show-user-role-button" id="show-student">Show Student Users</button>
+    </div>
+    <div class="col-2">
+        <p>Users awaiting activation: </p>
+    </div>
+</div>
+
 <div th:each="user : ${adminList}">
     <h1 th:text = "${user.username}"></h1>
 </div>

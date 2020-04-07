@@ -34,8 +34,8 @@
     </div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="all-users-modal" tabindex="-1" role="dialog" aria-labelledby="the-modal-title" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal fade" id="the-modal" tabindex="-1" role="dialog" aria-labelledby="the-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <!--                        Set this with JS-->
@@ -44,7 +44,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body" id="fill-modal-body">
+            <div class="modal-body row" id="fill-modal-body">
 
             </div>
             <div class="modal-footer">
@@ -67,8 +67,19 @@
                 return response.json();
             })
             .then(res => {
+                fillThis.innerHTML = "";
+                fillTitle.innerHTML = "";
                 fillTitle.innerText = `All ${userRole}`;
-                console.log(res);
+                for(let i = 0; i < res.length; i++) {
+                    fillThis.innerHTML += `
+                    <div class="col-3 card p-2 mx-auto mt-2 mb-2 ${userRole}-${res[i].id}">
+                        <p id="account-status-${res[i].id}">Account Active: ${res[i].active}</p>
+                        <p id="username-${res[i].id}">Username: ${res[i].username}</p>
+                        <p id="email-${res[i].id}">Email: ${res[i].email}</p>
+                        <button class="btn btn-danger" id="deactivate-${res[i].id}">Toggle User Account Status</button>
+                    </div>
+                    `;
+                }
                 return res;
             })
         })

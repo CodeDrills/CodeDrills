@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.security.Principal;
 
 @Controller
-public class TestController {
+public class TalkJSController {
 
     @Value("${talkjs.app.id}")
     private String talkJSAppId;
@@ -21,7 +21,7 @@ public class TestController {
     private UserRepo userDao;
 
 
-    public TestController(UserRepo userDao) {
+    public TalkJSController(UserRepo userDao) {
         this.userDao = userDao;
     }
 

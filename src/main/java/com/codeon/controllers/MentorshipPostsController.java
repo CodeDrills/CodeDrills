@@ -27,14 +27,16 @@ public class MentorshipPostsController {
     private PostCommentRepo postCommentDao;
     private ImageURLRepo imageURLDao;
     private EmailService emailService;
+    private PostRatingRepo postRatingDao;
 
-    public MentorshipPostsController(PostRepo postDao, UserRepo userDao, PostTypeRepo postTypeDao, PostCommentRepo postCommentDao, ImageURLRepo imageURLDao, EmailService emailService) {
+    public MentorshipPostsController(PostRepo postDao, PostRatingRepo postRatingDao, UserRepo userDao, PostTypeRepo postTypeDao, PostCommentRepo postCommentDao, ImageURLRepo imageURLDao, EmailService emailService) {
         this.postDao = postDao;
         this.userDao = userDao;
         this.postTypeDao = postTypeDao;
         this.postCommentDao = postCommentDao;
         this.imageURLDao = imageURLDao;
         this.emailService = emailService;
+        this.postRatingDao = postRatingDao;
     }
 
 
@@ -74,6 +76,7 @@ public class MentorshipPostsController {
         imageURL.setUrl(photoURL);
         imageURL.setPost(post);
         imageURL = imageURLDao.save(imageURL);
+        postRatingDao.save(new PostRating(post, user, 0));
 //        imageURLList.add(imageURL);
 //        post.setImageURLList(imageURLList);
         return "redirect:/mentorship-posts/show";

@@ -27,6 +27,12 @@ public class PostRating {
 
     public PostRating() {}
 
+    public PostRating(Post post, User user, Integer rating) {
+        this.post = post;
+        this.user = user;
+        this.rating = rating;
+    }
+
     public Long getId() {
         return id;
     }

@@ -2,6 +2,7 @@ package com.codeon.controllers;
 
 import com.codeon.models.Post;
 import com.codeon.models.PostComment;
+import com.codeon.models.PostCommentRating;
 import com.codeon.models.User;
 import com.codeon.repositories.*;
 import com.codeon.services.EmailService;
@@ -23,14 +24,16 @@ public class PostCommentsController {
     private PostCommentRepo postCommentDao;
     private ImageURLRepo imageURLDao;
     private EmailService emailService;
+    private PostCommentRatingRepo postCommentRatingDao;
 
-    public PostCommentsController(PostRepo postDao, UserRepo userDao, PostTypeRepo postTypeDao, PostCommentRepo postCommentDao, ImageURLRepo imageURLDao, EmailService emailService) {
+    public PostCommentsController(PostRepo postDao, PostCommentRatingRepo postCommentRatingDao, UserRepo userDao, PostTypeRepo postTypeDao, PostCommentRepo postCommentDao, ImageURLRepo imageURLDao, EmailService emailService) {
         this.postDao = postDao;
         this.userDao = userDao;
         this.postTypeDao = postTypeDao;
         this.postCommentDao = postCommentDao;
         this.imageURLDao = imageURLDao;
         this.emailService = emailService;
+        this.postCommentRatingDao = postCommentRatingDao;
     }
 
 
@@ -57,6 +60,7 @@ public class PostCommentsController {
         postComment.setDateTime(date);
         postComment.setRatingTotal(0);
         postCommentDao.save(postComment);
+        postCommentRatingDao.save(new PostCommentRating(postComment, user, 0));
         return String.format("%d", id);
     }
 

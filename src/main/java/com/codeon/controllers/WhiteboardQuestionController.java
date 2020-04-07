@@ -1,9 +1,6 @@
 package com.codeon.controllers;
 
-import com.codeon.models.ImageURL;
-import com.codeon.models.Post;
-import com.codeon.models.PostComment;
-import com.codeon.models.User;
+import com.codeon.models.*;
 import com.codeon.repositories.*;
 import com.codeon.services.EmailService;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,14 +28,16 @@ public class WhiteboardQuestionController {
     private PostCommentRepo postCommentDao;
     private ImageURLRepo imageURLDao;
     private EmailService emailService;
+    private PostRatingRepo postRatingDao;
 
-    public WhiteboardQuestionController(PostRepo postDao, UserRepo userDao, PostTypeRepo postTypeDao, PostCommentRepo postCommentDao, ImageURLRepo imageURLDao, EmailService emailService) {
+    public WhiteboardQuestionController(PostRepo postDao, PostRatingRepo postRatingDao, UserRepo userDao, PostTypeRepo postTypeDao, PostCommentRepo postCommentDao, ImageURLRepo imageURLDao, EmailService emailService) {
         this.postDao = postDao;
         this.userDao = userDao;
         this.postTypeDao = postTypeDao;
         this.postCommentDao = postCommentDao;
         this.imageURLDao = imageURLDao;
         this.emailService = emailService;
+        this.postRatingDao = postRatingDao;
     }
 
     //SHOW IT JUST AS JSON.
@@ -107,6 +106,7 @@ public class WhiteboardQuestionController {
         post.setRatingTotal(0);
         post.setPostType(postTypeDao.getPostTypeById(postTypeId));
         postDao.save(post);
+        postRatingDao.save(new PostRating(post, user, 0));
         return "redirect:/whiteboard-questions/show";
     }
 

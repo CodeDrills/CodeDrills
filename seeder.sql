@@ -1,9 +1,12 @@
+DROP DATABASE codeon_db;
+
+
 use codeon_db;
 
 insert into post_types (type) values ('interview-questions'), ('mentorship-posts'), ('job-postings'), ('whiteboard-questions');
 
 insert into skills (name) values ('Java'), ('HTML'), ('CSS'), ('JavaScript'), ('Thymeleaf'),
-                                  ('MySql'), ('Git'), ('Ruby'), ('Python');
+                                 ('MySql'), ('Git'), ('Ruby'), ('Python');
 
 insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (1,  true,'User-centric user-facing approach', 'trumford0@merriam-webster.com', 'Tonnie', 'Rumford', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'http://dummyimage.com/100x221.bmp/ff4444/ffffff', 'http://dummyimage.com/227x175.bmp/ff4444/ffffff', 'trumford0');
 insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (2,  true,'User-centric static paradigm', 'amatteau1@joomla.org', 'Alicea','Matteau', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'http://dummyimage.com/237x214.jpg/ff4444/ffffff', 'http://dummyimage.com/182x153.jpg/5fa2dd/ffffff', 'amatteau1');
@@ -127,6 +130,31 @@ insert into posts (user_id, post_type_id, title, body, answer, date_time, employ
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (20, 3, 'Accenture','Federal - Entry Level Java Developer Associate [April 2020 Start]','Eager to learn about technology’s role in a real-world setting. You are already passionate about technology and know its potential. Now you are ready to work on a team, use your skills, and deliver innovative solutions that help our federal clients improve the services they provide to the American Public.','2019-08-04', 'Accenture');
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (1, 3, 'ERP', 'Java Developer - Entry Level- Apply now!','ERP is currently seeking a Java Developer with at least 1-2 years experience in Java Software Development for a full-time position supporting a federal client in San Antonio, TX.', '2019-08-14', 'ERP');
 
+
+# whiteboard-questions
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (1, 4, 'Maximum Stock Profit', 'Given a array of numbers representing the stock prices of a company in chronological order, write a function that calculates the maximum profit you could have made from buying and selling that stock once. You must buy before you can sell it.
+
+For example, given [9, 11, 8, 5, 7, 10], you should return 5, since you could buy the stock at 5 dollars and sell it at 10 dollars.','Whitboard Host Provided', '2020-04-06', 'Facebook');
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (1, 4, 'Longest Palindromic Substring', 'Given a string, find the longest palindromic contiguous substring. If there are more than one with the maximum length, return any one.
+
+For example, the longest palindromic substring of "aabcdcb" is "bcdcb". The longest palindromic substring of "bananas" is "anana".','Whitboard Host Provided', '2020-04-06', 'Amazon');
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (1, 4, 'Inversion Count', 'We can determine how "out of order" an array A is by counting the number of inversions it has. Two elements A[i] and A[j] form an inversion if A[i] > A[j] but i < j. That is, a smaller element appears after a larger element.
+
+Given an array, count the number of inversions it has. Do this faster than O(N^2) time.
+
+You may assume each element in the array is distinct.
+
+For example, a sorted list has zero inversions. The array [2, 4, 1, 3, 5] has three inversions: (2, 1), (4, 1), and (4, 3). The array [5, 4, 3, 2, 1] has ten inversions: every distinct pair forms an inversion.','Whitboard Host Provided', '2020-04-06', 'Google');
+
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (1, 4, 'Push It, Pop It, Max It', 'Implement a stack that has the following methods:
+
+push(val), which pushes an element onto the stack
+pop(), which pops off and returns the topmost element of the stack. If there are no elements in the stack, then it should throw an error or return null.
+max(), which returns the maximum value in the stack currently. If there are no elements in the stack, then it should throw an error or return null.
+Each method should run in constant time.','Whitboard Host Provided', '2020-04-06', 'Amazon');
+
+
+
 insert into post_ratings (user_id, post_id, rating) values (1, 1, 1);
 insert into post_ratings (user_id, post_id, rating) values (2, 1, 1);
 insert into post_ratings (user_id, post_id, rating) values (3, 1, 1);
@@ -147,8 +175,13 @@ insert into post_ratings (user_id, post_id, rating) values (11, 5, 0);
 insert into post_ratings (user_id, post_id, rating) values (12, 5, -1);
 insert into post_ratings (user_id, post_id, rating) values (13, 5, 1);
 insert into post_ratings (user_id, post_id, rating) values (14, 5, 1);
-
-
+insert into post_ratings (user_id, post_id, rating) values (1, 20, 1);
+insert into post_ratings (user_id, post_id, rating) values (2, 20, 1);
+insert into post_ratings (user_id, post_id, rating) values (1, 21, 1);
+insert into post_ratings (user_id, post_id, rating) values (1, 22, 1);
+insert into post_ratings (user_id, post_id, rating) values (1, 23, 1);
+insert into post_ratings (user_id, post_id, rating) values (2, 23, 1);
+insert into post_ratings (user_id, post_id, rating) values (3, 23, 1);
 insert into post_comments (body, date_time, post_id, user_id) values ('This is where the comments go', '2019-09-01', 3, 13);
 insert into post_comments (body, date_time, post_id, user_id) values ('What a great comment', '2019-09-01', 15, 2);
 insert into post_comments (body, date_time, post_id, user_id) values ('This is where the comments go', '2019-09-01', 1, 6);
@@ -189,6 +222,24 @@ insert into post_comment_ratings (user_id, post_comment_id, rating) values (6, 1
 insert into post_comment_ratings (user_id, post_comment_id, rating) values (7, 7, 1);
 insert into post_comment_ratings (user_id, post_comment_id, rating) values (7, 9, 1);
 insert into post_comment_ratings (user_id, post_comment_id, rating) values (8, 2, 1);
+
+insert into security_roles (role) values ('ADMIN');
+insert into security_roles (role) values ('INSTRUCTOR');
+insert into security_roles (role) values ('ALUMNUS');
+insert into security_roles (role) values ('STUDENT');
+
+insert into approved_emails (email) values ('superadmin@example.com');
+insert into approved_emails (email) values ('admininstructor@example.com');
+insert into approved_emails (email) values ('admininstructoralum@example.com');
+insert into approved_emails (email) values ('student@example.com');
+
+insert into approved_emails_security_roles (approved_email_id, role_id) values (1, 1);
+insert into approved_emails_security_roles (approved_email_id, role_id) values (2, 1);
+insert into approved_emails_security_roles (approved_email_id, role_id) values (2, 2);
+insert into approved_emails_security_roles (approved_email_id, role_id) values (3, 1);
+insert into approved_emails_security_roles (approved_email_id, role_id) values (3, 2);
+insert into approved_emails_security_roles (approved_email_id, role_id) values (3, 3);
+insert into approved_emails_security_roles (approved_email_id, role_id) values (4, 4);
 
 # insert into image_urls (post_id, url) values (16, 'http://dummyimage.com/115x178.png/ff4444/ffffff');
 # insert into image_urls (post_id, url) values (11, 'http://dummyimage.com/217x105.bmp/5fa2dd/ffffff');

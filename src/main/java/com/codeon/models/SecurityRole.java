@@ -15,8 +15,10 @@ public class SecurityRole {
 
     @Column(nullable = false)
     private String role;
+    @JsonBackReference
     @ManyToMany(mappedBy = "roleList")
     private List<User> userList;
+    @JsonBackReference
     @ManyToMany(mappedBy = "roleList")
     private List<ApprovedEmail> approvedEmailList;
 

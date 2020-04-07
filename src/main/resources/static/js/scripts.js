@@ -189,7 +189,6 @@ const attachRatingsEventListener = function() {
 const attachGetQuestionEventListener = function() {
     if(document.getElementById("start-button") !== null) {
         document.getElementById("start-button").addEventListener("click", function(e) {
-            console.log("firing");
             e.preventDefault();
             getQuestion();
         });

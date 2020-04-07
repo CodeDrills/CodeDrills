@@ -27,10 +27,12 @@ public class AdminController {
 
     @GetMapping("admin/dashboard")
     public String getDashboard(Model model){
-        model.addAttribute("adminList", userDao.findAllByRoleList_Role("ADMIN"));
-        model.addAttribute("instructorList", userDao.findAllByRoleList_Role("INSTRUCTOR"));
-        model.addAttribute("alumnusList", userDao.findAllByRoleList_Role("ALUMNUS"));
-        model.addAttribute("studentList", userDao.findAllByRoleList_Role("STUDENT"));
+        model.addAttribute("userCount", userDao.findAll().size());
+        model.addAttribute("adminCount", userDao.findAllByRoleList_Role("ADMIN").size());
+        model.addAttribute("instructorCount", userDao.findAllByRoleList_Role("INSTRUCTOR").size());
+        model.addAttribute("alumnusCount", userDao.findAllByRoleList_Role("ALUMNUS").size());
+        model.addAttribute("studentCount", userDao.findAllByRoleList_Role("STUDENT").size());
+        model.addAttribute("deactivatedCount", userDao.findAllByIsActive(false).size());
         return "admin/dashboard";
     }
 
@@ -42,7 +44,7 @@ public class AdminController {
         return postList;
     }
 
-    @GetMapping("/admin/{postType}/all")
+    @GetMapping("/admin/posts/{postType}")
     @ResponseBody
     public List<Post> getPostByType(@PathVariable String postType) {
         List <Post> postList;
@@ -67,11 +69,11 @@ public class AdminController {
         return postList;
     }
 
-    @GetMapping("/admin/{userRole}/all")
+    @GetMapping("/admin/users/{userRole}")
     @ResponseBody
-    public List<User> getUsersByRole(@PathVariable String postType) {
+    public List<User> getUsersByRole(@PathVariable String userRole) {
         List <User> userList;
-        switch(postType) {
+        switch(userRole) {
             case "admin":
                 userList = userDao.findAllByRoleList_Role("ADMIN");
                 break;
@@ -83,6 +85,12 @@ public class AdminController {
                 break;
             case "student":
                 userList = userDao.findAllByRoleList_Role("STUDENT");
+                break;
+            case "deactivated":
+                userList = userDao.findAllByIsActive(false);
+                break;
+            case "user":
+                userList = userDao.findAll();
                 break;
             default:
                 userList = userDao.findAll();

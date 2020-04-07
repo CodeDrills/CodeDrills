@@ -1,5 +1,6 @@
 package com.codeon.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -16,6 +17,7 @@ public class Skill {
     @Column(nullable = false)
     private String name;
 
+    @JsonBackReference
     @ManyToMany(mappedBy = "skillList")
     private List<User> userList;
 

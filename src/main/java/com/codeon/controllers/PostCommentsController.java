@@ -5,13 +5,8 @@ import com.codeon.models.PostComment;
 import com.codeon.models.PostCommentRating;
 import com.codeon.models.User;
 import com.codeon.repositories.*;
-import com.codeon.services.EmailService;
-
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;

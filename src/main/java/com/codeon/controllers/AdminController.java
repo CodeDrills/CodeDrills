@@ -28,11 +28,11 @@ public class AdminController {
     @GetMapping("admin/dashboard")
     public String getDashboard(Model model){
         model.addAttribute("userCount", userDao.findAll().size());
+        model.addAttribute("deactivatedCount", userDao.findAllByIsActive(false).size());
         model.addAttribute("adminCount", userDao.findAllByRoleList_Role("ADMIN").size());
         model.addAttribute("instructorCount", userDao.findAllByRoleList_Role("INSTRUCTOR").size());
         model.addAttribute("alumnusCount", userDao.findAllByRoleList_Role("ALUMNUS").size());
         model.addAttribute("studentCount", userDao.findAllByRoleList_Role("STUDENT").size());
-        model.addAttribute("deactivatedCount", userDao.findAllByIsActive(false).size());
         return "admin/dashboard";
     }
 

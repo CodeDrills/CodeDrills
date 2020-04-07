@@ -1,4 +1,4 @@
-DROP DATABASE codeon_db;
+# DROP DATABASE codeon_db;
 
 
 use codeon_db;
@@ -102,42 +102,61 @@ insert into users_skills (user_id, skill_id) values (20, 9);
 
 # mentorship questions
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (3, 2, 'Java,JS','Whats the difference between Java and Javascript', 'Java applications are run in a virtual machine or web browser while JavaScript is run on a web browser. Java code is compiled whereas while JavaScript code is in text and in a web page. JavaScript is an OOP scripting language, whereas Java is an OOP programming language', '2019-05-19', 'codeup student');
+insert into post_ratings (user_id, post_id, rating) values (3, 1, 0);
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (6, 2, 'Imposter syndrome', 'How do you guys Imposter Syndrome','Heres a link:https://medium.com/better-programming/how-to-overcome-imposter-syndrome-as-a-programmer-ba3138090737' ,'2019-05-21', 'codeup student');
+insert into post_ratings (user_id, post_id, rating) values (6, 2, 0);
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (12, 2,  'Java', 'Anyone need a mentor in Java','I am a Java programmer and have been for the last 3 years if there is anyone that needs help or has questions let me know if i can help', '2019-05-23', 'alumnus working for Accenture');
+insert into post_ratings (user_id, post_id, rating) values (12, 3, 0);
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (4, 2, 'Java,JS','Whats the difference between Java and Javascript', 'Java applications are run in a virtual machine or web browser while JavaScript is run on a web browser. Java code is compiled whereas while JavaScript code is in text and in a web page. JavaScript is an OOP scripting language, whereas Java is an OOP programming language', '2019-05-30', 'codeup student');
-
+insert into post_ratings (user_id, post_id, rating) values (4, 4, 0);
 
 # interview questions
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (25, 1, 'They asked A question about OOP', 'What are OOP concepts?','They are an abstraction, encapsulation, inheritance, and polymorphism. Grasping them is key to understanding how Java works. Basically, Java OOP concepts let us create working methods and variables, then re-use all or part of them without compromising security', '2019-06-05', 'Accenture');
+insert into post_ratings (user_id, post_id, rating) values (25, 5, 0);
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (2, 1, 'I got asked about arrays ','How do you find the missing number in a given integer array of 1 to 100?', '1) Calculate the sum of all numbers stored in the array of size 51. 2) Subtract the sum from (52 * 53)/2 ---- Formula : n * (n + 1) / 2.', '2019-06-12', 'Amazon');
+insert into post_ratings (user_id, post_id, rating) values (2, 6, 0);
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (5, 1, 'Saw this question on LinkedIn', 'Explain encapsulation, inheritance, polymorphism and abstraction', 'Encapsulation is the mechanism of hiding of data implementation by restricting access to public methods. Instance variables are kept private and accessor methods are made public to achieve this. Abstract means a concept or an Idea which is not associated with any particular instance. Inheritances expresses “is-a” and/or “has-a” relationship between two objects. Using Inheritance, In derived classes we can reuse the code of existing super classes. In Java, concept of “is-a” is based on class inheritance (using extends) or interface implementation (using implements). Polymorphism: It means one name many forms. It is further of two types — static and dynamic. Static polymorphism is achieved using method overloading and dynamic polymorphism using method overriding. It is closely related to inheritance. We can write a code that works on the superclass, and it will work with any subclass type as well.','2019-06-13', 'Aivee');
+insert into post_ratings (user_id, post_id, rating) values (5, 7, 0);
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (17, 1,  'Interview question about Spring Boot', 'Can you explain what happens in the background when a Spring Boot Application is “Run as Java Application','When a Spring Boot application is executed as “Run as Java application”, then it automatically launches up the tomcat server as soon as it sees, that you are developing a web application.', '2019-06-14', 'Intuit');
+insert into post_ratings (user_id, post_id, rating) values (17, 8, 0);
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (19, 1, 'I got interviewed by SWBC, this is what they asked', 'Tell me about some software projects you have worked on.','I just told them about my projects from Codeup and the projects i did at home', '2019-06-16', 'SWBC');
+insert into post_ratings (user_id, post_id, rating) values (19, 9, 0);
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (8, 1,  'Just a question i though of in case your applying at a job that uses MySQL','What is a join in MySQL?','Services', '2019-06-17', 'Alumnus');
+insert into post_ratings (user_id, post_id, rating) values (8, 10, 0);
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (8, 1,  'Just a question i though of in case your applying at a job that uses MySQL','What is a join in MySQL?','Services', '2019-06-17', 'Alumnus');
+insert into post_ratings (user_id, post_id, rating) values (8, 11, 0);
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (8, 1,  'Just a question i though of in case your applying at a job that uses MySQL','What is a join in MySQL?','Services', '2019-06-17', 'Alumnus');
+insert into post_ratings (user_id, post_id, rating) values (8, 12, 0);
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (8, 1,  'Just a question i though of in case your applying at a job that uses MySQL','What is a join in MySQL?','Services', '2019-06-17', 'Alumnus');
-
+insert into post_ratings (user_id, post_id, rating) values (8, 13, 0);
 
 
 
 
 # job postings
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (10, 3, 'Enhance IT', 'Entry Level Software Engineer','You will be joining our cutting-edge development team as it grows. We want individuals who are comfortable asking “why?” The ideal candidate for this role is motivated, energized and has a creative thought process. They are a team player possessing strong analytical as well as technical skills and are able to communicate the logic behind technical decisions to non-tech stakeholders. They must be comfortable working in an agile environment and have the ability to “take the wheel” when necessary.', '2019-07-04', 'Enhance IT');
+insert into post_ratings (user_id, post_id, rating) values (10, 14, 0);
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (15, 3, 'Raytheon', 'Software Developer I','Description: The Software Developer will provide software development in support of custom software design and development of CNO tools and techniques. Candidate will be required to Provide/author documentation, participate in design, code, and software readiness reviews as prescribed by the customers software development procedures and processes.', '2019-07-04', 'Raytheon');
+insert into post_ratings (user_id, post_id, rating) values (15, 15, 0);
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (7, 3, 'Labatt Food Service','Entry Level Full Stack Software Developer','As a software developer at Labatt, you will take on projects approximately 6 months in length, iterate on a small team of 3-5, test thoroughly, design clean & modular code, experiment, learn, be challenged, and serve the needs of the business. All developers are expected to contribute to the team''s success by solving non-trivial problems and sharing lessons learned with the group. Developers are also expected to follow the group''s established coding and process best practices as established by the group to ensure quality and consistent code - code that will last for many years. That said, developers have a significant amount of freedom over their projects and the ability to experiment with newer technologies and practices that may help the group overall.', '2019-07-12', 'Labatt Food Service');
+insert into post_ratings (user_id, post_id, rating) values (7, 16, 0);
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (22, 3, 'uncle bob''s', 'Entry Level Software Developer','• College degree (Associates or Bachelors)• Must be authorized to work in the US • Strong desire to learn to code - No prior professional experience required. • A natural problem solver • Strong communication and interpersonal skills• Willing to relocate anywhere in the US - Relocation assistance provided','2019-08-01', 'uncle bob''s');
+insert into post_ratings (user_id, post_id, rating) values (22, 17, 0);
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (20, 3, 'Accenture','Federal - Entry Level Java Developer Associate [April 2020 Start]','Eager to learn about technology’s role in a real-world setting. You are already passionate about technology and know its potential. Now you are ready to work on a team, use your skills, and deliver innovative solutions that help our federal clients improve the services they provide to the American Public.','2019-08-04', 'Accenture');
+insert into post_ratings (user_id, post_id, rating) values (20, 18, 0);
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (1, 3, 'ERP', 'Java Developer - Entry Level- Apply now!','ERP is currently seeking a Java Developer with at least 1-2 years experience in Java Software Development for a full-time position supporting a federal client in San Antonio, TX.', '2019-08-14', 'ERP');
-
+insert into post_ratings (user_id, post_id, rating) values (1, 19, 0);
 
 # whiteboard-questions
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (1, 4, 'Maximum Stock Profit', 'Given a array of numbers representing the stock prices of a company in chronological order, write a function that calculates the maximum profit you could have made from buying and selling that stock once. You must buy before you can sell it.
-
 For example, given [9, 11, 8, 5, 7, 10], you should return 5, since you could buy the stock at 5 dollars and sell it at 10 dollars.','Whitboard Host Provided', '2020-04-06', 'Facebook');
+insert into post_ratings (user_id, post_id, rating) values (1, 20, 0);
+
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (1, 4, 'Longest Palindromic Substring', 'Given a string, find the longest palindromic contiguous substring. If there are more than one with the maximum length, return any one.
 
 For example, the longest palindromic substring of "aabcdcb" is "bcdcb". The longest palindromic substring of "bananas" is "anana".','Whitboard Host Provided', '2020-04-06', 'Amazon');
+insert into post_ratings (user_id, post_id, rating) values (1, 21, 0);
+
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (1, 4, 'Inversion Count', 'We can determine how "out of order" an array A is by counting the number of inversions it has. Two elements A[i] and A[j] form an inversion if A[i] > A[j] but i < j. That is, a smaller element appears after a larger element.
 
 Given an array, count the number of inversions it has. Do this faster than O(N^2) time.
@@ -145,6 +164,7 @@ Given an array, count the number of inversions it has. Do this faster than O(N^2
 You may assume each element in the array is distinct.
 
 For example, a sorted list has zero inversions. The array [2, 4, 1, 3, 5] has three inversions: (2, 1), (4, 1), and (4, 3). The array [5, 4, 3, 2, 1] has ten inversions: every distinct pair forms an inversion.','Whitboard Host Provided', '2020-04-06', 'Google');
+insert into post_ratings (user_id, post_id, rating) values (1, 22, 0);
 
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (1, 4, 'Push It, Pop It, Max It', 'Implement a stack that has the following methods:
 
@@ -152,7 +172,7 @@ push(val), which pushes an element onto the stack
 pop(), which pops off and returns the topmost element of the stack. If there are no elements in the stack, then it should throw an error or return null.
 max(), which returns the maximum value in the stack currently. If there are no elements in the stack, then it should throw an error or return null.
 Each method should run in constant time.','Whitboard Host Provided', '2020-04-06', 'Amazon');
-
+insert into post_ratings (user_id, post_id, rating) values (1, 23, 0);
 
 
 insert into post_ratings (user_id, post_id, rating) values (1, 1, 1);
@@ -182,29 +202,53 @@ insert into post_ratings (user_id, post_id, rating) values (1, 22, 1);
 insert into post_ratings (user_id, post_id, rating) values (1, 23, 1);
 insert into post_ratings (user_id, post_id, rating) values (2, 23, 1);
 insert into post_ratings (user_id, post_id, rating) values (3, 23, 1);
+
 insert into post_comments (body, date_time, post_id, user_id) values ('This is where the comments go', '2019-09-01', 3, 13);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (13, 1, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('What a great comment', '2019-09-01', 15, 2);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (2, 2, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('This is where the comments go', '2019-09-01', 1, 6);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (6, 3, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('This is where the comments go', '2019-09-21', 15, 14);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (14, 4, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('This is where the comments go', '2019-09-23', 6, 5);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (5, 5, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('This is where the comments go', '2019-09-23', 10, 19);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (19, 6, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('This is where the comments go', '2019-09-23', 2, 19);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (19, 7, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('This is where the comments go', '2019-10-01', 9, 15);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (15, 8, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('What a great comment', '2019-10-01', 4, 9);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (9, 9, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('What a great comment', '2019-10-09', 12, 6);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (6, 10, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('What a great comment', '2019-10-09', 13, 18);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (18, 11, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('What a great comment', '2019-10-09', 5, 6);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (6, 12, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('What a great comment', '2019-10-11', 9, 20);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (20, 13, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('Comments are a great tool', '2019-10-19', 16, 16);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (16, 14, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('Comments are a great tool', '2019-11-01', 14, 11);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (11, 15, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('Comments are a great tool', '2019-11-19', 12, 14);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (14, 16, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('Comments are a great tool', '2019-12-07', 8, 7);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (7, 17, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('Comments are a great tool', '2019-12-09', 11, 2);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (2, 18, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('Comments are a great tool', '2020-01-01', 13, 4);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (4, 19, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('Comments are a great tool', '2020-01-19', 7, 13);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (13, 20, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('Comments are a great tool', '2020-01-19', 12, 6);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (6, 21, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('Comments are a great tool', '2020-01-19', 6, 17);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (17, 22, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('Comments are a great tool', '2020-01-19', 3, 12);
+insert into post_comment_ratings (user_id, post_comment_id, rating) values (12, 23, 0);
 
 insert into post_comment_ratings (user_id, post_comment_id, rating) values (1, 1, 1);
 insert into post_comment_ratings (user_id, post_comment_id, rating) values (1, 3, 1);

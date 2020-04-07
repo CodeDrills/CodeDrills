@@ -3,7 +3,6 @@ package com.codeon.controllers;
 import com.codeon.models.*;
 import com.codeon.repositories.*;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,8 +25,9 @@ public class UserController {
     private PostRepo postDao;
     private PostCommentRepo postCommentDao;
     private PostTypeRepo postTypeDao;
+    private ApprovedEmailRepo approvedEmailDao;
 
-    public UserController(UserRepo userDao, PasswordEncoder passwordEncoder, SecurityRoleRepo securityRoleDao, SkillRepo skillDao, PostRepo postDao, PostCommentRepo postCommentDao, PostTypeRepo postTypeDao) {
+    public UserController(UserRepo userDao, PasswordEncoder passwordEncoder, SecurityRoleRepo securityRoleDao, SkillRepo skillDao, PostRepo postDao, PostCommentRepo postCommentDao, PostTypeRepo postTypeDao, ApprovedEmailRepo approvedEmailDao) {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
         this.securityRoleDao = securityRoleDao;
@@ -35,6 +35,7 @@ public class UserController {
         this.postDao = postDao;
         this.postCommentDao = postCommentDao;
         this.postTypeDao = postTypeDao;
+        this.approvedEmailDao = approvedEmailDao;
     }
 
     @GetMapping("/register")
@@ -57,7 +58,7 @@ public class UserController {
             //which controller should this go to? profile?
             return "redirect:/profile";
         }
-        if((userDao.findUserByUsername(user.getUsername()) != null) || (userDao.findUserByEmail(user.getEmail()) != null) || photoURL == null || resumeURL == null) {
+        if((userDao.findUserByUsername(user.getUsername()) != null) || (userDao.findUserByEmail(user.getEmail()) != null) || (approvedEmailDao.findApprovedEmailByEmail(user.getEmail()) == null)) {
             //THIS SHOULD BE REPLACED WITH SOME TYPE OF ERROR MESSAGE ABOVE FORM THAT TELLS THEM TO CHOOSE A DIFFERENT USERNAME OR EMAIL, etc
             return "redirect:/register";
         }
@@ -68,70 +69,73 @@ public class UserController {
         user = userDao.save(user);
         List<SecurityRole> userRoleList = new ArrayList<>();
         List<Skill> userSkillList = new ArrayList<>();
-        if(admin != null) {
-            if(securityRoleDao.findSecurityRoleByRole("ADMIN") == null) {
-                SecurityRole addRole = new SecurityRole();
-                addRole.setRole("ADMIN");
-                List<User> userList = new ArrayList<>();
-                userList.add(user);
-                addRole.setUserList(userList);
-                userRoleList.add(securityRoleDao.save(addRole));
-            } else {
-                SecurityRole updateRole = securityRoleDao.findSecurityRoleByRole("ADMIN");
-                List<User> userList = updateRole.getUserList();
-                userList.add(user);
-                updateRole.setUserList(userList);
-                userRoleList.add(securityRoleDao.save(updateRole));
-            }
+        for(SecurityRole role : securityRoleDao.findAllByApprovedEmailList_Email(user.getEmail())) {
+            userRoleList.add(securityRoleDao.findSecurityRoleByRole(role.getRole()));
         }
-        if(instructor != null) {
-            if(securityRoleDao.findSecurityRoleByRole("INSTRUCTOR") == null) {
-                SecurityRole addRole = new SecurityRole();
-                addRole.setRole("INSTRUCTOR");
-                List<User> userList = new ArrayList<>();
-                userList.add(user);
-                addRole.setUserList(userList);
-                userRoleList.add(securityRoleDao.save(addRole));
-            } else {
-                SecurityRole updateRole = securityRoleDao.findSecurityRoleByRole("INSTRUCTOR");
-                List<User> userList = updateRole.getUserList();
-                userList.add(user);
-                updateRole.setUserList(userList);
-                userRoleList.add(securityRoleDao.save(updateRole));
-            }
-        }
-        if(alumnus != null) {
-            if(securityRoleDao.findSecurityRoleByRole("ALUMNUS") == null) {
-                SecurityRole addRole = new SecurityRole();
-                addRole.setRole("ALUMNUS");
-                List<User> userList = new ArrayList<>();
-                userList.add(user);
-                addRole.setUserList(userList);
-                userRoleList.add(securityRoleDao.save(addRole));
-            } else {
-                SecurityRole updateRole = securityRoleDao.findSecurityRoleByRole("ALUMNUS");
-                List<User> userList = updateRole.getUserList();
-                userList.add(user);
-                updateRole.setUserList(userList);
-                userRoleList.add(securityRoleDao.save(updateRole));
-            }
-        }
-        if(student != null) {
-            if(securityRoleDao.findSecurityRoleByRole("STUDENT") == null) {
-                SecurityRole addRole = new SecurityRole();
-                addRole.setRole("STUDENT");
-                List<User> userList = new ArrayList<>();
-                userList.add(user);
-                addRole.setUserList(userList);
-                userRoleList.add(securityRoleDao.save(addRole));
-            } else {
-                SecurityRole updateRole = securityRoleDao.findSecurityRoleByRole("STUDENT");
-                List<User> userList = updateRole.getUserList();
-                userList.add(user);
-                updateRole.setUserList(userList);
-                userRoleList.add(securityRoleDao.save(updateRole));
-            }
-        }
+//        if(admin != null) {
+//            if(securityRoleDao.findSecurityRoleByRole("ADMIN") == null) {
+//                SecurityRole addRole = new SecurityRole();
+//                addRole.setRole("ADMIN");
+//                List<User> userList = new ArrayList<>();
+//                userList.add(user);
+//                addRole.setUserList(userList);
+//                userRoleList.add(securityRoleDao.save(addRole));
+//            } else {
+//                SecurityRole updateRole = securityRoleDao.findSecurityRoleByRole("ADMIN");
+//                List<User> userList = updateRole.getUserList();
+//                userList.add(user);
+//                updateRole.setUserList(userList);
+//                userRoleList.add(securityRoleDao.save(updateRole));
+//            }
+//        }
+//        if(instructor != null) {
+//            if(securityRoleDao.findSecurityRoleByRole("INSTRUCTOR") == null) {
+//                SecurityRole addRole = new SecurityRole();
+//                addRole.setRole("INSTRUCTOR");
+//                List<User> userList = new ArrayList<>();
+//                userList.add(user);
+//                addRole.setUserList(userList);
+//                userRoleList.add(securityRoleDao.save(addRole));
+//            } else {
+//                SecurityRole updateRole = securityRoleDao.findSecurityRoleByRole("INSTRUCTOR");
+//                List<User> userList = updateRole.getUserList();
+//                userList.add(user);
+//                updateRole.setUserList(userList);
+//                userRoleList.add(securityRoleDao.save(updateRole));
+//            }
+//        }
+//        if(alumnus != null) {
+//            if(securityRoleDao.findSecurityRoleByRole("ALUMNUS") == null) {
+//                SecurityRole addRole = new SecurityRole();
+//                addRole.setRole("ALUMNUS");
+//                List<User> userList = new ArrayList<>();
+//                userList.add(user);
+//                addRole.setUserList(userList);
+//                userRoleList.add(securityRoleDao.save(addRole));
+//            } else {
+//                SecurityRole updateRole = securityRoleDao.findSecurityRoleByRole("ALUMNUS");
+//                List<User> userList = updateRole.getUserList();
+//                userList.add(user);
+//                updateRole.setUserList(userList);
+//                userRoleList.add(securityRoleDao.save(updateRole));
+//            }
+//        }
+//        if(student != null) {
+//            if(securityRoleDao.findSecurityRoleByRole("STUDENT") == null) {
+//                SecurityRole addRole = new SecurityRole();
+//                addRole.setRole("STUDENT");
+//                List<User> userList = new ArrayList<>();
+//                userList.add(user);
+//                addRole.setUserList(userList);
+//                userRoleList.add(securityRoleDao.save(addRole));
+//            } else {
+//                SecurityRole updateRole = securityRoleDao.findSecurityRoleByRole("STUDENT");
+//                List<User> userList = updateRole.getUserList();
+//                userList.add(user);
+//                updateRole.setUserList(userList);
+//                userRoleList.add(securityRoleDao.save(updateRole));
+//            }
+//        }
         for(String skill : skillsStringList) {
             if(skill != "") {
                 if(skillDao.findSkillByName(skill) == null) {

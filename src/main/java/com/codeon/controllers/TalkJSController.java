@@ -1,7 +1,5 @@
 package com.codeon.controllers;
 
-
-import com.codeon.repositories.PostRepo;
 import com.codeon.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;

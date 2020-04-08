@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/header.html :: header(title='Login')"></head>
-<body>
+<body class ="back">
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
 
 <div th:if="${param.error}">
@@ -27,5 +27,6 @@
    <p>Not registered with us yet?  <a href="/register"><button type="button" class="btn btn-dark">Register For An Account</button></a></p>
     </div>
 </div>
+<div th:replace="fragments/body-scripts.html :: body-scripts"></div>
 </body>
 </html>

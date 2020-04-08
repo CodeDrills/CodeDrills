@@ -5,7 +5,7 @@
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
 <div th:each="user : ${userList}">
     <h1 th:text = "${user.username}"></h1>
-    <a th:href="@{|/test/${user.id}|}"><button>Chat</button></a>
+    <a th:href="@{|/chat/${user.id}|}"><button>Chat</button></a>
 </div>
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>
 </body>

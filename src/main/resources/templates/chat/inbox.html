@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/header.html :: header(title = 'Test Talk JS')"/>
+    <meta class="talkJSAppId" th:content="${talkJSAppId}"/>
+
+</head>
+
+<body>
+<div id="talkjs-container" style="width: 90%; margin: 30px; height: 500px"><i>Loading Chat...</i></div>
+<div th:replace="fragments/body-scripts.html :: body-scripts"></div>
+<script>
+    (function(t,a,l,k,j,s){
+        s=a.createElement('script');s.async=1;s.src="https://cdn.talkjs.com/talk.js";a.head.appendChild(s)
+        ;k=t.Promise;t.Talk={v:3,ready:{then:function(f){if(k)return new k(function(r,e){l.push([f,r,e])});l
+                    .push([f])},catch:function(){return k&&new k()},c:l}};})(window,document,[]);
+</script>
+<script th:inline="javascript">
+
+    let userId = /*[[${user.id}]]*/;
+    let userUsername = /*[[${user.username}]]*/;
+    let userEmail = /*[[${user.email}]]*/;
+    let otherUser = /*[[${otherUser}]]*/
+    Talk.ready.then(function() {
+        const me = new Talk.User({
+            id: userId,
+            name: userUsername,
+            email: userEmail,
+            // photoUrl: document.getElementById("photo-url").value,
+        });
+        window.talkSession = new Talk.Session({
+            appId: document.querySelector('meta.talkJSAppId').content,
+            me: me
+        });
+        let inbox;
+        if (otherUser !== null) {
+            let otherUserId = /*[[${otherUser.id}]]*/;
+            let otherUsername = /*[[${otherUser.username}]]*/;
+            let otherUserEmail = /*[[${otherUser.email}]]*/;
+            const other = new Talk.User({
+                id: otherUserId,
+                name: otherUsername,
+                email: otherUserEmail,
+                // photoUrl: document.getElementById("other-photo-url").value,
+            });
+            const conversation = talkSession.getOrCreateConversation(Talk.oneOnOneId(me, other))
+            conversation.setParticipant(me);
+            conversation.setParticipant(other);
+            inbox = talkSession.createInbox({selected: conversation});
+        } else {
+            // const conversation = talkSession.getOrCreateConversation(Talk.oneOnOneId(me, other))
+            // conversation.setParticipant(me);
+            inbox = talkSession.createInbox();
+        }
+        inbox.mount(document.getElementById("talkjs-container"));
+
+    });
+</script>
+</body>
+</html>

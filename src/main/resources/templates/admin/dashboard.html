@@ -1,23 +1,89 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <meta charset="UTF-8">
-<head th:replace="fragments/header.html :: header(title = 'Profile')"></head>
+<head th:replace="fragments/header.html :: header(title = 'Admin Dashboard')"></head>
 <title>Title</title>
 </head>
 <body>
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
-<h2>Metrics:</h2>
-<p>Total users: </p>
-<p>Total users with Admin role: </p>
-<p>Total users with Instructor role: </p>
-<p>Total users with Alumnus role: </p>
-<p>Total users with Student role: </p>
-<p>Total users awaiting activation: </p>
-<p>Total posts (do this by type later): </p>
-<div th:each="user : ${adminList}">
-    <h1 th:text = "${user.username}"></h1>
+<div class="row">
+    <h2 class="col-12 mx-auto">Metrics:</h2>
+    <div class="col-2">
+        <p th:text="'Total Users: ' + ${userCount}"></p>
+        <button class="btn btn-primary show-user-role-button" id="show-user" data-toggle="modal" data-target="#the-modal">Show All Users</button>
+    </div>
+    <div class="col-2">
+        <p th:text="'Deactivated Users: ' + ${deactivatedCount}"></p>
+        <button class="btn btn-primary show-user-role-button" id="show-deactivated" data-toggle="modal" data-target="#the-modal">Show Deactivated Users</button>
+    </div>
+    <div class="col-2">
+        <p th:text="'Users with Admin Role: ' + ${adminCount}"></p>
+        <button class="btn btn-primary show-user-role-button" id="show-admin" data-toggle="modal" data-target="#the-modal">Show Admin Users</button>
+    </div>
+    <div class="col-2">
+        <p th:text="'Users with Instructor Role: ' + ${instructorCount}"></p>
+        <button class="btn btn-primary show-user-role-button" id="show-instructor" data-toggle="modal" data-target="#the-modal">Show Instructor Users</button>
+    </div>
+    <div class="col-2">
+        <p th:text="'Users with Alum Role: ' + ${alumnusCount}"></p>
+        <button class="btn btn-primary show-user-role-button" id="show-alumnus" data-toggle="modal" data-target="#the-modal">Show Alumnus Users</button>
+    </div>
+    <div class="col-2">
+        <p th:text="'Users with Student Role: ' + ${studentCount}"></p>
+        <button class="btn btn-primary show-user-role-button" id="show-student" data-toggle="modal" data-target="#the-modal">Show Student Users</button>
+    </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="the-modal" tabindex="-1" role="dialog" aria-labelledby="the-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--                        Set this with JS-->
+                <h5 class="modal-title" id="the-modal-title"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body row" id="fill-modal-body">
 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>
+<script>
+    document.querySelectorAll(".show-user-role-button").forEach(button => {
+        button.addEventListener("click", function() {
+            let fillThis = document.querySelector("#fill-modal-body");
+            let fillTitle = document.querySelector('#the-modal-title');
+            let userRole = this.getAttribute("id").split("-")[1];
+            fetch(`/admin/users/${userRole}`, {
+                method: 'GET'
+            })
+            .then(response => {
+                return response.json();
+            })
+            .then(res => {
+                fillThis.innerHTML = "";
+                fillTitle.innerHTML = "";
+                fillTitle.innerText = `All ${userRole}`;
+                for(let i = 0; i < res.length; i++) {
+                    fillThis.innerHTML += `
+                    <div class="col-3 card p-2 mx-auto mt-2 mb-2 ${userRole}-${res[i].id}">
+                        <p id="account-status-${res[i].id}">Account Active: ${res[i].active}</p>
+                        <p id="username-${res[i].id}">Username: ${res[i].username}</p>
+                        <p id="email-${res[i].id}">Email: ${res[i].email}</p>
+                        <button class="btn btn-danger" id="deactivate-${res[i].id}">Toggle User Account Status</button>
+                    </div>
+                    `;
+                }
+                return res;
+            })
+        })
+    })
+</script>
 </body>
 </html>

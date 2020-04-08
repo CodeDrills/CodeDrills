@@ -1,4 +1,4 @@
-DROP DATABASE codeon_db;
+# DROP DATABASE codeon_db;
 
 
 use codeon_db;

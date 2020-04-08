@@ -1,6 +1,3 @@
-#profile-card {
-    background-color: #ff6347
-}
 
 .fancy-header{
     font-family: 'Raleway', sans-serif;
@@ -13,4 +10,9 @@
 
 .answer{
     margin-bottom: 0;
+}
+
+.logo{
+    font-family: 'Orbitron', sans-serif;
+    color: #00727F;
 }

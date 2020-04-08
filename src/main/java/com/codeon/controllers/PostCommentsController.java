@@ -5,13 +5,8 @@ import com.codeon.models.PostComment;
 import com.codeon.models.PostCommentRating;
 import com.codeon.models.User;
 import com.codeon.repositories.*;
-import com.codeon.services.EmailService;
-
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,30 +15,16 @@ import java.util.Date;
 public class PostCommentsController {
     private PostRepo postDao;
     private UserRepo userDao;
-    private PostTypeRepo postTypeDao;
     private PostCommentRepo postCommentDao;
-    private ImageURLRepo imageURLDao;
-    private EmailService emailService;
     private PostCommentRatingRepo postCommentRatingDao;
 
-    public PostCommentsController(PostRepo postDao, PostCommentRatingRepo postCommentRatingDao, UserRepo userDao, PostTypeRepo postTypeDao, PostCommentRepo postCommentDao, ImageURLRepo imageURLDao, EmailService emailService) {
+    public PostCommentsController(PostRepo postDao, UserRepo userDao, PostCommentRepo postCommentDao, PostCommentRatingRepo postCommentRatingDao) {
         this.postDao = postDao;
         this.userDao = userDao;
-        this.postTypeDao = postTypeDao;
         this.postCommentDao = postCommentDao;
-        this.imageURLDao = imageURLDao;
-        this.emailService = emailService;
         this.postCommentRatingDao = postCommentRatingDao;
     }
 
-
-//    @GetMapping("/comments/create/{id}")
-//    public String getPostCommentForm(@PathVariable Long id, Model model){
-//        Post post = postDao.findPostById(id);
-//        model.addAttribute("post", post);
-//        model.addAttribute("postComment", new PostComment());
-//        return "comments/create";
-//    }
     @PostMapping("/comments/create/{id}")
     @ResponseBody
     public String createPostComment(@PathVariable Long id, @RequestParam String body, Principal principal) {
@@ -65,15 +46,15 @@ public class PostCommentsController {
     }
 
     @PostMapping("/comments/edit/{id}")
-    public String updatePost(@PathVariable Long id, @RequestParam String body) {
+    @ResponseBody
+    public String updatePost(@PathVariable Long id, @RequestParam String body, Principal principal) {
         PostComment dbComment = postCommentDao.findPostCommentById(id);
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.findUserByUsername(principal.getName());
         if(user.getId() != dbComment.getUser().getId()) {
             return "-1";
         }
-        System.out.println(body);
         dbComment.setBody(body);
         postCommentDao.save(dbComment);
-        return "id";
+        return String.format("&d", id);
     }
 }

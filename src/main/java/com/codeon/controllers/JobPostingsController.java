@@ -2,7 +2,6 @@ package com.codeon.controllers;
 
 import com.codeon.models.*;
 import com.codeon.repositories.*;
-import com.codeon.services.EmailService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -14,29 +13,21 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 @Controller
 public class JobPostingsController {
 
     @Value("${filestack.api.key}")
     private String filestackKey;
-    private Random random = new Random();
     private PostRepo postDao;
     private UserRepo userDao;
     private PostTypeRepo postTypeDao;
-    private PostCommentRepo postCommentDao;
-    private ImageURLRepo imageURLDao;
-    private EmailService emailService;
     private PostRatingRepo postRatingDao;
 
-    public JobPostingsController(PostRepo postDao, PostRatingRepo postRatingDao, UserRepo userDao, PostTypeRepo postTypeDao, PostCommentRepo postCommentDao, ImageURLRepo imageURLDao, EmailService emailService) {
+    public JobPostingsController(PostRepo postDao, PostRatingRepo postRatingDao, UserRepo userDao, PostTypeRepo postTypeDao) {
         this.postDao = postDao;
         this.userDao = userDao;
         this.postTypeDao = postTypeDao;
-        this.postCommentDao = postCommentDao;
-        this.imageURLDao = imageURLDao;
-        this.emailService = emailService;
         this.postRatingDao = postRatingDao;
     }
 
@@ -121,13 +112,13 @@ public class JobPostingsController {
 
     @DeleteMapping("/job-postings/delete")
     @ResponseBody
-    public String deletePost(@RequestParam Long id, Model model, Principal principal){
+    public String deletePost(@RequestParam Long id, Principal principal){
         Post post = postDao.findPostById(id);
         User user = userDao.findUserByUsername(principal.getName());
         if(user.getId() != post.getUser().getId()) {
             return "-1";
         }
         postDao.deleteById(id);
-        return "id";
+        return String.format("&d", id);
     }
 }

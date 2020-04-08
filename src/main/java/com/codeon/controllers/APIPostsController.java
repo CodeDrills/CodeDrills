@@ -6,7 +6,6 @@ import com.codeon.repositories.PostRepo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.*;
@@ -23,7 +22,7 @@ public class APIPostsController {
     public APIPostsController(PostRepo postDao) {
         this.postDao = postDao;
     }
-    //CHANGE BELOW THIS TO interview-questions
+
     @GetMapping("/api/interview-questions")
     public String getInterviewQuestionsView() {
         return "questions/show";
@@ -59,12 +58,6 @@ public class APIPostsController {
         }
         return "-1";
     }
-
-//    @GetMapping("/api/whiteboard-questions")
-//    public String getWhiteBoardQuestionView() {
-//        return "questions/show";
-//    }
-
     @GetMapping("/api/{postType}/show-one")
     @ResponseBody
     public Post getPostAlg(@PathVariable String postType) {

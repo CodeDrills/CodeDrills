@@ -44,6 +44,7 @@ public class Post {
 
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
+    @OrderBy(value = "ratingTotal DESC")
     private List<PostComment> commentList;
 
     @JsonManagedReference

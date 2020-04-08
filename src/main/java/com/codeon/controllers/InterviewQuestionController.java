@@ -26,17 +26,11 @@ public class InterviewQuestionController {
     private UserRepo userDao;
     private PostTypeRepo postTypeDao;
     private PostRatingRepo postRatingDao;
-    private PostCommentRepo postCommentDao;
-    private ImageURLRepo imageURLDao;
-    private EmailService emailService;
 
-    public InterviewQuestionController(PostRepo postDao, PostRatingRepo postRatingDao, UserRepo userDao, PostTypeRepo postTypeDao, PostCommentRepo postCommentDao, ImageURLRepo imageURLDao, EmailService emailService) {
+    public InterviewQuestionController(PostRepo postDao, PostRatingRepo postRatingDao, UserRepo userDao, PostTypeRepo postTypeDao) {
         this.postDao = postDao;
         this.userDao = userDao;
         this.postTypeDao = postTypeDao;
-        this.postCommentDao = postCommentDao;
-        this.imageURLDao = imageURLDao;
-        this.emailService = emailService;
         this.postRatingDao = postRatingDao;
     }
 
@@ -49,15 +43,8 @@ public class InterviewQuestionController {
 
     @GetMapping("/interview-questions/show")
     public String showAllInterviewQuestions(Model model, Principal principal) {
-        List<Post> interviewQuestions = postDao.findAllByPostTypeId_Type("interview-questions");
-        String username = "";
-        User user = new User();
-        if(principal != null) {
-            username = principal.getName();
-            user = userDao.findUserByUsername(username);
-        }
-        model.addAttribute("user", user);
-        model.addAttribute("postList", interviewQuestions);
+        model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
+        model.addAttribute("postList", postDao.findAllByPostTypeId_Type("interview-questions"));
         return "interview-questions/show";
     }
 
@@ -159,6 +146,6 @@ public class InterviewQuestionController {
             return "-1";
         }
         postDao.deleteById(id);
-        return "id";
+        return String.format("%d", id);
     }
 }

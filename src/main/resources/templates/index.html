@@ -2,7 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/header.html :: header(title = 'Codeon')"></head>
 <body>
-<nav th:replace="fragments/navbar.html :: navbar"></nav>
 <header class="d-none d-lg-block">
     <video autoplay="autoplay" muted="muted" loop="loop">
         <source src="https://www.videvo.net/videvo_files/converted/2016_04/preview/160330_1_Typing1_Mpeg4_4K.mov32174.webm" type="video/webm">
@@ -11,8 +10,10 @@
         <div class="d-flex h-100 text-center align-items-center">
             <div class="w-100 text-white">
                 <h1 class="display-3" id ="logo" style="font-size: 12em">CodeOn</h1>
-                <p>something great we can say about why to use codeon and how great the site is </p>
-
+                <div class="d-flex justify-content-center">
+                    <a id="index-login" th:href="@{|/login|}">Login</a>
+                    <a id="index-register" th:href="@{|/register|}">Register</a>
+                </div>
             </div>
         </div>
     </div>

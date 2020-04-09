@@ -95,7 +95,7 @@ public class APIPostsController {
 
     @GetMapping("/job-postings/show/by-rating")
     public String showAllJobPostingsByRating(Model model, Principal principal) {
-        model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
+//        model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         List<Post> jobPostings = postDao.findAllByPostTypeId_Type("job-postings");
         jobPostings.sort(Collections.reverseOrder(Comparator.comparing(Post::getRatingTotal)));
         model.addAttribute("postList", jobPostings);

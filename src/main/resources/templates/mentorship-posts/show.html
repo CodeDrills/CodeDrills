@@ -8,15 +8,16 @@
 
     <!--    PROFILE CARD    -->
     <div class="card p-5 mt-5 blue-font" id="profile-card">
-        <h2 class="card-title text-center p-3 profile-header">Mentorship</h2>
+        <h1 class="card-title text-center p-3 profile-header">Mentorship</h1>
         <div class="card-text media">
-
+            <p>We as a </p>
         </div>
 
         <p class="align-self-end profile-btns">
 <!--                maybe add some buttons to the front-->
         </p>
-    </div><br><br>
+    </div>
+</div>
 
 
 <div class="container">
@@ -32,8 +33,8 @@
                 <div class="col-11">
                             <div th:id="'post-' + ${post.id}"></div>
                     <p class="m-r mb-0 userprint">Posted on: <span class="userinfo" th:text = "${post.dateTime}"></span> by <span class="userinfo" th:text="${post.user.username}"></span>    </p>
-                                <h1 th:text = "${post.title}"></h1>
-                                <p th:text = "${post.body}"></p>
+                                <h1 th:text = "${post.body}"></h1>
+                                <p th:text = "${post.title}"></p>
                                 <p th:text = "${post.answer}"></p>
                             <div th:each="comment : ${post.commentList}">
                                 <div class="row">

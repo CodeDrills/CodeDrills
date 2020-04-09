@@ -3,6 +3,7 @@
 <head>
     <th:block th:include="fragments/header.html :: header(title = 'Create Interview Question')"/>
     <meta class="filestackKey" th:content="${filestackKey}"/>
+    <meta class="talkJSAppId" th:content="${talkJSAppId}"/>
 </head>
 <body>
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
@@ -19,6 +20,8 @@
     <input type="hidden" class="" id="postTypeId" name="postTypeId" value="1">
     <input type="submit" />
 </form>
+<div th:replace="fragments/chat-box.html :: chat-box"></div>
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>
+<div th:replace="fragments/chat-scripts.html :: chat-scripts"></div>
 </body>
 </html>

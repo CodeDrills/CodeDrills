@@ -3,6 +3,8 @@ package com.codeon.controllers;
 import com.codeon.models.Post;
 
 import com.codeon.repositories.PostRepo;
+import com.codeon.repositories.UserRepo;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,21 +14,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.security.Principal;
 import java.util.*;
 
-
-//Probably could trim this down to a few getMappings by using {post-type} and then switch statement
-
 @Controller
 public class APIPostsController {
+    @Value("${talkjs.app.id}")
+    private String talkJSAppId;
 
     private Random random = new Random();
     private PostRepo postDao;
+    private UserRepo userDao;
 
-    public APIPostsController(PostRepo postDao) {
+    public APIPostsController(PostRepo postDao, UserRepo userDao) {
         this.postDao = postDao;
+        this.userDao = userDao;
     }
 
     @GetMapping("/api/interview-questions")
-    public String getInterviewQuestionsView() {
+    public String getInterviewQuestionsView(Model model, Principal principal) {
+        model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
+        model.addAttribute("talkJSAppId", talkJSAppId);
         return "questions/show";
     }
 

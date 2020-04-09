@@ -17,6 +17,8 @@ import java.util.List;
 public class UserController {
     @Value("${filestack.api.key}")
     private String filestackKey;
+    @Value("${talkjs.app.id}")
+    private String talkJSAppId;
     private UserRepo userDao;
     private PasswordEncoder passwordEncoder;
     private SecurityRoleRepo securityRoleDao;
@@ -105,6 +107,7 @@ public class UserController {
         List<Post> jobPostingsList = postDao.findAllByPostTypeId_Type("job-postings").subList(postDao.findAllByPostTypeId_Type("job-postings").size() - 2, postDao.findAllByPostTypeId_Type("job-postings").size());
         jobPostingsList.sort(Collections.reverseOrder(Comparator.comparing(Post::getId)));
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
+        model.addAttribute("talkJSAppId", talkJSAppId);
         model.addAttribute("interviewQuestionsList", interviewQuestionsList);
         model.addAttribute("mentorshipPostsList", mentorshipPostsList);
         model.addAttribute("jobPostingsList", jobPostingsList);

@@ -13,4 +13,5 @@ public interface UserRepo extends JpaRepository<User, Long> {
     List<User> findAllByRoleList_Role(String role);
     List<User> findAllBySkillList_Name(String skill);
     List<User> findAllByIsActive(boolean isActive);
+    List<User> findByUsernameContaining(String username);
 }

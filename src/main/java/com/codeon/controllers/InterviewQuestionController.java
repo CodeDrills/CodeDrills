@@ -20,6 +20,9 @@ public class InterviewQuestionController {
 
     @Value("${filestack.api.key}")
     private String filestackKey;
+    @Value("${talkjs.app.id}")
+    private String talkJSAppId;
+
     private Random random = new Random();
     private PostRepo postDao;
     private UserRepo userDao;
@@ -43,6 +46,7 @@ public class InterviewQuestionController {
     @GetMapping("/interview-questions/show")
     public String showAllInterviewQuestions(Model model, Principal principal) {
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
+        model.addAttribute("talkJSAppId", talkJSAppId);
         model.addAttribute("postList", postDao.findAllByPostTypeId_Type("interview-questions"));
         return "interview-questions/show";
     }
@@ -62,20 +66,17 @@ public class InterviewQuestionController {
                 determiningPost = false;
             }
         }
-        String username = "";
-        User user = new User();
-        if (principal != null) {
-            username = principal.getName();
-            user = userDao.findUserByUsername(username);
-        }
-        model.addAttribute("user", user);
+        model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
+        model.addAttribute("talkJSAppId", talkJSAppId);
         model.addAttribute("post", selectedPost);
         return "/interview-questions/show-one";
     }
 
     @GetMapping("/interview-questions/create")
-    public String getPostCreateForm(Model model) {
+    public String getPostCreateForm(Model model, Principal principal) {
         model.addAttribute("post", new Post());
+        model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
+        model.addAttribute("talkJSAppId", talkJSAppId);
         model.addAttribute("filestackKey", filestackKey);
         return "interview-questions/create";
     }
@@ -98,26 +99,23 @@ public class InterviewQuestionController {
 
     @GetMapping("/interview-questions/{id}")
     public String getPost(@PathVariable Long id, Model model, Principal principal){
-        String username;
-        User user = new User();
         List<Post> postList = new ArrayList<>();
         postList.add(postDao.getOne(id));
-        if(principal != null) {
-            username = principal.getName();
-            user = userDao.findUserByUsername(username);
-        }
-        model.addAttribute("user", user);
+        model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
+        model.addAttribute("talkJSAppId", talkJSAppId);
         model.addAttribute("postList", postList);
         return "interview-questions/show";
     }
 
     @GetMapping("/interview-questions/edit/{id}")
-    public String getEditPostForm(@PathVariable Long id, Model model){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public String getEditPostForm(@PathVariable Long id, Model model, Principal principal){
+        User user = userDao.findUserByUsername(principal.getName());
         Post post = postDao.findPostById(id);
         if(user.getId() != post.getUser().getId()) {
             return "redirect:/interview-questions/show";
         }
+        model.addAttribute("user", user);
+        model.addAttribute("talkJSAppId", talkJSAppId);
         model.addAttribute("post", post);
         return "interview-questions/edit";
     }

@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="fragments/header.html :: header(title = 'Interview Questions')"></head>
+<head>
+    <th:block th:include="fragments/header.html :: header(title = 'Interview Question Practice')"/>
+    <meta class="talkJSAppId" th:content="${talkJSAppId}"/>
+</head>
 <body>
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
 <button class="start-button" id="start-button">Start Question Round</button>
 <div id="fill-this"></div>
+
+<div th:replace="fragments/chat-box.html :: chat-box"></div>
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>
+<div th:replace="fragments/chat-scripts.html :: chat-scripts"></div>
 </body>
 </html>

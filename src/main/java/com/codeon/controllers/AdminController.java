@@ -4,6 +4,7 @@ import com.codeon.models.Post;
 import com.codeon.models.User;
 import com.codeon.repositories.PostRepo;
 import com.codeon.repositories.UserRepo;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,9 @@ import java.util.List;
 
 @Controller
 public class AdminController {
+    @Value("${talkjs.app.id}")
+    private String talkJSAppId;
+
     private UserRepo userDao;
     private PostRepo postDao;
 
@@ -26,7 +30,9 @@ public class AdminController {
     }
 
     @GetMapping("admin/dashboard")
-    public String getDashboard(Model model){
+    public String getDashboard(Model model, Principal principal){
+        model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
+        model.addAttribute("talkJSAppId", talkJSAppId);
         model.addAttribute("userCount", userDao.findAll().size());
         model.addAttribute("deactivatedCount", userDao.findAllByIsActive(false).size());
         model.addAttribute("adminCount", userDao.findAllByRoleList_Role("ADMIN").size());

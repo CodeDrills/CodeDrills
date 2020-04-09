@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="fragments/header.html :: header(title = 'One Sorted Interview Question')"></head>
+<head>
+    <th:block th:include="fragments/header.html :: header(title = 'Interview Question Practice')"/>
+    <meta class="talkJSAppId" th:content="${talkJSAppId}"/>
+</head>
 <body>
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
     <h1 th:text = "${post.title}"></h1>
@@ -27,6 +30,8 @@
             <a th:href="@{|/posts/${post.id}/delete|}"><button>Delete Post</button></a>
         </div>
     </div>
+<div th:replace="fragments/chat-box.html :: chat-box"></div>
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>
+<div th:replace="fragments/chat-scripts.html :: chat-scripts"></div>
 </body>
 </html>

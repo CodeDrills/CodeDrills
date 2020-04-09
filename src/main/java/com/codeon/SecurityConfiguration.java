@@ -53,7 +53,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
 //                need to add the "/" to the ant matcher to access just home page without logging in
-                .antMatchers("/","/register", "/js/**", "/css/**", "/img/**", "/webfonts/**") // anyone can see the home and the ads pages
+                .antMatchers("/", "/login" ,"/register", "/js/**", "/css/**", "/img/**", "/webfonts/**") // anyone can see the home and the ads pages
                 .permitAll()
                 /* Pages that require authentication */
                 .and()

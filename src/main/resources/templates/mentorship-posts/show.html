@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="fragments/header.html :: header(title = 'Latest Posts')"></head>
+<head>
+    <th:block th:include="fragments/header.html :: header(title = 'Mentorship Posts')"/>
+    <meta class="talkJSAppId" th:content="${talkJSAppId}"/>
+</head>
 <body class="back">
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
 
@@ -18,11 +21,9 @@
         </p>
     </div>
 </div>
-
-
 <div class="container">
     <div th:each="post : ${postList}">
-            <div class="card mb-2">
+        <div class="card mb-2">
             <div class="card-body">
             <div class="row">
                 <div class="col-1">
@@ -65,10 +66,9 @@
                 </div>
              </div>
         </div>
-
-
-
+<div th:replace="fragments/chat-box.html :: chat-box"></div>
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>
+<div th:replace="fragments/chat-scripts.html :: chat-scripts"></div>
 
 </body>
 </html>

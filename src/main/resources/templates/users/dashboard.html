@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
       xmlns:sec="http://www.w3.org/1999/xhtml">
-    <meta charset="UTF-8">
-    <head th:replace="fragments/header.html :: header(title = 'Profile')"></head>
-    <title>Title</title>
+<head>
+    <th:block th:include="fragments/header.html :: header(title = 'Dashboard')"/>
+    <meta class="talkJSAppId" th:content="${talkJSAppId}"/>
 </head>
 <body class="back">
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
@@ -362,6 +362,8 @@
 
 <!--container div-->
 <!--</div>-->
+<div th:replace="fragments/chat-box.html :: chat-box"></div>
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>
+<div th:replace="fragments/chat-scripts.html :: chat-scripts"></div>
 </body>
 </html>

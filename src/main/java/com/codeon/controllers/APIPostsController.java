@@ -4,12 +4,10 @@ import com.codeon.models.Post;
 
 import com.codeon.repositories.PostRepo;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.security.Principal;
 import java.util.*;
 
 
@@ -93,6 +91,7 @@ public class APIPostsController {
         return selectedPost;
     }
 
+
     @GetMapping("/job-postings/show/by-rating")
     public String showAllJobPostingsByRating(Model model, Principal principal) {
 //        model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
@@ -101,4 +100,5 @@ public class APIPostsController {
         model.addAttribute("postList", jobPostings);
         return "job-postings/show";
     }
+
 }

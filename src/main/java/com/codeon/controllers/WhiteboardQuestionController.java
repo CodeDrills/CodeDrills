@@ -2,7 +2,6 @@ package com.codeon.controllers;
 
 import com.codeon.models.*;
 import com.codeon.repositories.*;
-import com.codeon.services.EmailService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -25,18 +24,12 @@ public class WhiteboardQuestionController {
     private PostRepo postDao;
     private UserRepo userDao;
     private PostTypeRepo postTypeDao;
-    private PostCommentRepo postCommentDao;
-    private ImageURLRepo imageURLDao;
-    private EmailService emailService;
     private PostRatingRepo postRatingDao;
 
-    public WhiteboardQuestionController(PostRepo postDao, PostRatingRepo postRatingDao, UserRepo userDao, PostTypeRepo postTypeDao, PostCommentRepo postCommentDao, ImageURLRepo imageURLDao, EmailService emailService) {
+    public WhiteboardQuestionController(PostRepo postDao, PostRatingRepo postRatingDao, UserRepo userDao, PostTypeRepo postTypeDao) {
         this.postDao = postDao;
         this.userDao = userDao;
         this.postTypeDao = postTypeDao;
-        this.postCommentDao = postCommentDao;
-        this.imageURLDao = imageURLDao;
-        this.emailService = emailService;
         this.postRatingDao = postRatingDao;
     }
 
@@ -49,15 +42,8 @@ public class WhiteboardQuestionController {
 
     @GetMapping("/whiteboard-questions/show")
     public String showAllWhiteboardQuestions(Model model, Principal principal) {
-        List<Post> whiteboardQuestions = postDao.findAllByPostTypeId_Type("whiteboard-questions");
-        String username = "";
-        User user = new User();
-        if(principal != null) {
-            username = principal.getName();
-            user = userDao.findUserByUsername(username);
-        }
-        model.addAttribute("user", user);
-        model.addAttribute("postList", whiteboardQuestions);
+        model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
+        model.addAttribute("postList", postDao.findAllByPostTypeId_Type("whiteboard-questions"));
         return "whiteboard-questions/show";
     }
 
@@ -159,6 +145,6 @@ public class WhiteboardQuestionController {
             return "-1";
         }
         postDao.deleteById(id);
-        return "id";
+        return String.format("%d", id);
     }
 }

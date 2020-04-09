@@ -1,8 +1,18 @@
-body, html {
-    height: 100%;
+
+/*changes upvote-downvote buttons*/
+.btn-link{
+    color: #0c5460;
+}
+h1{
+    font-family: 'Montserrat', sans-serif;
 }
 
 
+
+/*parallax*/
+body, html {
+    height: 100%;
+}
 
 .parallax {
     /* The image used */
@@ -19,12 +29,52 @@ body, html {
     background-repeat: no-repeat;
     background-size: cover;
 }
+@media only screen and (max-device-width: 1366px) {
+    .parallax {
+        background-attachment: scroll;
+    }
+}
 
+
+
+/*landing page*/
+.fancy-header{
+    font-family: 'Raleway', sans-serif;
+    /*font-family: 'Roboto', sans-serif;  */
+}
+
+.comment{
+    font-family: 'Dosis', sans-serif;
+}
+
+.answer{
+    margin-bottom: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.logo{
+    font-family: 'Orbitron', sans-serif;
+    color: #00727F;
+}
+
+.card-body{
+    background-color: white;
+}
+
+.back{
+    background-color: #95A3B3;
+}
+
+
+
+/*this is the video portion*/
 #logo{
     font-family: 'Orbitron', sans-serif;
     color: #A9ACA9;
     opacity: 0.25;
 }
+
+
 /*might need to make som adjustments to this but still early*/
 header {
     position: relative;
@@ -46,23 +96,17 @@ video {
     -webkit-transform: translateX(-50%) translateY(-50%);
     transform: translateX(-50%) translateY(-50%);
 }
-    .container {
-        position: relative;
+.container {
+    position: relative;
     z-index: 2;
 }
-    /*header .overlay {*/
-    /*    position: absolute;*/
-    /*    top: 0;*/
-    /*    left: 0;*/
-    /*    height: 100%;*/
-    /*    width: 100%;*/
-    /*    background-color: black;*/
-    /*    !*opacity: 0.5;*!*/
-    /*    z-index: 1;*/
-    /*}*/
-
-@media only screen and (max-device-width: 1366px) {
-    .parallax {
-        background-attachment: scroll;
-    }
-}
+/*header .overlay {*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    height: 100%;*/
+/*    width: 100%;*/
+/*    background-color: black;*/
+/*    !*opacity: 0.5;*!*/
+/*    z-index: 1;*/
+/*}*/

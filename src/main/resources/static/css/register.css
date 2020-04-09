@@ -1,6 +1,10 @@
-h1 {
-    color:  black;
 
+
+.userprint{
+    font-size:small;
+}
+.userinfo{
+    font-weight: bold;
 }
 .register-mainBox{
     border: none !important;
@@ -28,9 +32,7 @@ h1 {
 }
 
 /*login page*/
-body{
-    background-color: #E3E7D3;
-}
+
 
 .login-frame{
     background-color: #00727F;

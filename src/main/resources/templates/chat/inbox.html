@@ -3,100 +3,12 @@
 <head>
     <th:block th:include="fragments/header.html :: header(title = 'Test Talk JS')"/>
     <meta class="talkJSAppId" th:content="${talkJSAppId}"/>
-
 </head>
-
 <body>
 <div class="new-chat-div" id="new-chat-div"></div>
 <button class="new-chat-button" id="new-chat-button">New Chat</button>
 <div id="talkjs-container" style="width: 90%; margin: 30px; height: 500px"><i>Loading Chat...</i></div>
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>
-<script>
-    (function(t,a,l,k,j,s){
-        s=a.createElement('script');s.async=1;s.src="https://cdn.talkjs.com/talk.js";a.head.appendChild(s)
-        ;k=t.Promise;t.Talk={v:3,ready:{then:function(f){if(k)return new k(function(r,e){l.push([f,r,e])});l
-                    .push([f])},catch:function(){return k&&new k()},c:l}};})(window,document,[]);
-</script>
-<script th:inline="javascript">
-
-    let userId = /*[[${user.id}]]*/;
-    let userUsername = /*[[${user.username}]]*/;
-    let userEmail = /*[[${user.email}]]*/;
-    Talk.ready.then(function() {
-        const me = new Talk.User({
-            id: userId,
-            name: userUsername,
-            email: userEmail,
-            // photoUrl: document.getElementById("photo-url").value,
-        });
-        window.talkSession = new Talk.Session({
-            appId: document.querySelector('meta.talkJSAppId').content,
-            me: me
-        });
-
-        const inbox = talkSession.createInbox();
-        inbox.mount(document.getElementById("talkjs-container"));
-        function attachChatWithEventListener(response) {
-            document.querySelectorAll(".chat-with-button").forEach(button => {
-                button.addEventListener("click", function(e) {
-                    e.preventDefault();
-                    let otherId = this.getAttribute("id").split("-")[2];
-                    let otherUserObj = {};
-                    for(let i = 1; i < response.length; i++) {
-                        if(response[i].id == otherId) {
-                            otherUserObj.id = response[i].id;
-                            otherUserObj.name = response[i].username;
-                            otherUserObj.email = response[i].email;
-                        }
-                    }
-                    const other = new Talk.User(otherUserObj);
-                    const conversation = talkSession.getOrCreateConversation(Talk.oneOnOneId(me, other))
-                    conversation.setParticipant(me);
-                    conversation.setParticipant(other);
-                    const newInbox = talkSession.createInbox({selected: conversation});
-                    newInbox.mount(document.getElementById("talkjs-container"));
-                    setTimeout(function() {
-                        document.querySelector("#new-chat-div").innerHTML = "";
-                    }, 1000)
-                })
-            })
-        }
-        function attachChatEventListeners() {
-            document.querySelector("#new-chat-button").addEventListener("click", function (e) {
-                e.preventDefault();
-                document.querySelector(`#new-chat-div`).innerHTML = `<input type="text" id="chat-user-search-input" name="username" placeholder="Search by username"><button class="chat-user-search-button" id="chat-user-search-button">Search.</button>`;
-                document.querySelector(`#chat-user-search-button`).addEventListener("click", function (e) {
-                    e.preventDefault();
-                    let username = document.querySelector(`#chat-user-search-input`).value;
-                    fetch(`/chat?username=${username}`, {
-                        method: 'GET',
-                        headers: {
-                            'X-CSRF-TOKEN': token
-                        }
-                    })
-                        .then(response => {
-                            return response.json();
-                        })
-                        .then(response => {
-                            let newDivHTML = `<p>Search Results:</p>`;
-                            for(let i = 1; i < response.length; i++) {
-                                newDivHTML += `<p>Username: ${response[i].username}</p><button class="chat-with-button" id="chat-with-${response[i].id}">Chat</button>`;
-                            }
-                            let newDiv = document.createElement("div").innerHTML = newDivHTML;
-                            this.style.display = "none";
-                            document.querySelector("#chat-user-search-input").style.display = "none";
-                            this.parentElement.innerHTML = this.parentElement.innerHTML + newDiv;
-                            attachChatEventListeners();
-                            return response;
-                        })
-                        .then(response => {
-                            attachChatWithEventListener(response);
-                        })
-                })
-            })
-        }
-        attachChatEventListeners();
-    });
-</script>
+<div th:replace="fragments/chat-scripts.html :: chat-scripts"></div>
 </body>
 </html>

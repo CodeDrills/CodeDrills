@@ -68,12 +68,12 @@
     <meta class="filestackKey" th:content="${filestackKey}  "/>
 </head>
 
-<body>
+<body class="back">
     <nav th:replace="fragments/navbar.html :: navbar"></nav>
 
 <form th:action="@{/register}" method="POST" th:object="${user}">
     <div class="card register-mainBox">
-        <div class="card-body box-box">
+        <div class="card-body" id="box">
             <!--            input name email username password and bio-->
             <h1 class="text-center">Register your account</h1>
             <label for="firstName">First Name</label>

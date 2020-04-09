@@ -29,6 +29,18 @@ body, html {
     background-repeat: no-repeat;
     background-size: cover;
 }
+.parallax2 {
+    /* The image used */
+    background-image: url('/img/whiteboard.jpg');
+    /* Full height */
+    height: 100%;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 @media only screen and (max-device-width: 1366px) {
     .parallax {
         background-attachment: scroll;
@@ -70,7 +82,7 @@ body, html {
 /*this is the video portion*/
 #logo{
     font-family: 'Orbitron', sans-serif;
-    color: #A9ACA9;
+    color: #00727F;
     opacity: 0.25;
 }
 
@@ -82,7 +94,7 @@ header {
     min-height: 25rem;
     overflow: hidden;
 }
-video {
+#myVideo {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -98,15 +110,15 @@ video {
 }
 .container {
     position: relative;
-    z-index: 2;
+    z-index: 1;
 }
-/*header .overlay {*/
-/*    position: absolute;*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*    height: 100%;*/
-/*    width: 100%;*/
-/*    background-color: black;*/
-/*    !*opacity: 0.5;*!*/
-/*    z-index: 1;*/
-/*}*/
+header .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 1;
+}

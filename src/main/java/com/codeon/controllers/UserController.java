@@ -101,11 +101,11 @@ public class UserController {
     @GetMapping("/users/dashboard")
     public String profileView(Model model, Principal principal){
         List<Post> interviewQuestionsList = postDao.findAllByPostTypeId_Type("interview-questions").subList(postDao.findAllByPostTypeId_Type("interview-questions").size() - 2, postDao.findAllByPostTypeId_Type("interview-questions").size());
-        interviewQuestionsList.sort(Collections.reverseOrder(Comparator.comparing((Post::getId))));
+        interviewQuestionsList.sort(Collections.reverseOrder(Comparator.comparing(Post::getId)));
         List<Post> mentorshipPostsList = postDao.findAllByPostTypeId_Type("mentorship-posts").subList(postDao.findAllByPostTypeId_Type("mentorship-posts").size() - 2, postDao.findAllByPostTypeId_Type("mentorship-posts").size());
-        mentorshipPostsList.sort(Collections.reverseOrder(Comparator.comparing((Post::getId))));
+        mentorshipPostsList.sort(Collections.reverseOrder(Comparator.comparing(Post::getId)));
         List<Post> jobPostingsList = postDao.findAllByPostTypeId_Type("job-postings").subList(postDao.findAllByPostTypeId_Type("job-postings").size() - 2, postDao.findAllByPostTypeId_Type("job-postings").size());
-        jobPostingsList.sort(Collections.reverseOrder(Comparator.comparing((Post::getId))));
+        jobPostingsList.sort(Collections.reverseOrder(Comparator.comparing(Post::getId)));
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("talkJSAppId", talkJSAppId);
         model.addAttribute("interviewQuestionsList", interviewQuestionsList);

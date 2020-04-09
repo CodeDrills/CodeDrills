@@ -2,33 +2,21 @@ package com.codeon.controllers;
 
 import com.codeon.models.*;
 import com.codeon.repositories.*;
-import com.codeon.services.EmailService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.security.Principal;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 @Controller
 public class RatingController {
 
     private PostRepo postDao;
-    private UserRepo userDao;
     private PostRatingRepo postRatingDao;
-    private PostTypeRepo postTypeDao;
     private PostCommentRepo postCommentDao;
     private PostCommentRatingRepo postCommentRatingDao;
 
-    public RatingController(PostRepo postDao, UserRepo userDao, PostRatingRepo postRatingDao, PostCommentRatingRepo postCommentRatingDao, PostTypeRepo postTypeDao, PostCommentRepo postCommentDao, ImageURLRepo imageURLDao, EmailService emailService) {
+    public RatingController(PostRepo postDao, PostRatingRepo postRatingDao, PostCommentRatingRepo postCommentRatingDao, PostCommentRepo postCommentDao) {
         this.postDao = postDao;
-        this.userDao = userDao;
         this.postRatingDao = postRatingDao;
-        this.postTypeDao = postTypeDao;
         this.postCommentDao = postCommentDao;
         this.postCommentRatingDao = postCommentRatingDao;
     }

@@ -26,21 +26,16 @@ public class MentorshipPostsController {
     private PostRepo postDao;
     private UserRepo userDao;
     private PostTypeRepo postTypeDao;
-    private PostCommentRepo postCommentDao;
     private ImageURLRepo imageURLDao;
-    private EmailService emailService;
     private PostRatingRepo postRatingDao;
 
-    public MentorshipPostsController(PostRepo postDao, PostRatingRepo postRatingDao, UserRepo userDao, PostTypeRepo postTypeDao, PostCommentRepo postCommentDao, ImageURLRepo imageURLDao, EmailService emailService) {
+    public MentorshipPostsController(PostRepo postDao, PostRatingRepo postRatingDao, UserRepo userDao, PostTypeRepo postTypeDao, ImageURLRepo imageURLDao) {
         this.postDao = postDao;
         this.userDao = userDao;
         this.postTypeDao = postTypeDao;
-        this.postCommentDao = postCommentDao;
         this.imageURLDao = imageURLDao;
-        this.emailService = emailService;
         this.postRatingDao = postRatingDao;
     }
-
 
     @GetMapping("/mentorship")
     public String mentorshipHomeView(Model model, Principal principal) {
@@ -124,7 +119,7 @@ public class MentorshipPostsController {
 
     @DeleteMapping("/mentorship-posts/delete")
     @ResponseBody
-    public String deletePost(@RequestParam Long id, Model model, Principal principal){
+    public String deletePost(@RequestParam Long id, Principal principal){
         Post post = postDao.findPostById(id);
         User user = userDao.findUserByUsername(principal.getName());
         if(user.getId() != post.getUser().getId()) {

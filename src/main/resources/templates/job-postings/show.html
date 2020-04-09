@@ -34,6 +34,20 @@
 <!--    <button class="add-comment-button" th:id="'add-comment-button-' + ${post.id}">Comment</button>-->
 <!--    <div sec:authorize = "isAuthenticated()">-->
 
+<div class="container profile-container">
+
+    <!--    PROFILE CARD    -->
+    <div class="card p-5 mt-5 blue-font" id="profile-card">
+        <h2 class="card-title text-center p-3 profile-header">Jobs</h2>
+        <div class="card-text media">
+
+        </div>
+
+        <p class="align-self-end profile-btns">
+            <!--                maybe add some buttons to the front-->
+        </p>
+    </div><br><br>
+
 <div class="container">
     <div th:each="post : ${postList}">
         <div class="card mb-2">

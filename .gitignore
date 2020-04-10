@@ -34,4 +34,4 @@ src/main/resources/application.properties
 src/main/resources/static/js/keys.js
 src/main/resources/public/js/keys.js
 
-.DS_STORE
+**/.DS_STORE

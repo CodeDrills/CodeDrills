@@ -1,44 +1,71 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="fragments/header.html :: header(title = 'All Interview Questions')"></head>
-<body>
+
+<head>
+    <th:block th:include="fragments/header.html :: header(title = 'Interview Questions')"/>
+    <meta class="talkJSAppId" th:content="${talkJSAppId}"/>
+</head>
+<body class="back">
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
-<div th:each="post : ${postList}">
-    <h1 th:text = "${post.title}"></h1>
-    <p th:text = "${post.body}"></p>
-    <p th:text = "${post.answer}"></p>
-    <p th:text = "${post.user.email}"></p>
 
-<!-- Will working on ratings -->
-    <div sec:authorize = "isAuthenticated()">
-        <button class="upvote-button" th:id="'upvote-' + ${post.id}">Upvote JS</button>
-        <button class="downvote-button" th:id="'downvote-' + ${post.id}">Downvote JS</button>
-    </div>
-    <p>Rating Total: <span th:text = "${post.getRatingTotal()}"></span></p>
-<!-- END Will working on ratings -->
+<div class="container profile-container">
 
-    <div th:each="comment : ${post.commentList}">
-        <p th:text = "${comment.body}" th:id="'comment-body-' + ${comment.id}"></p>
-        <div sec:authorize = "isAuthenticated()">
-            <div th:if="${user.id == comment.user.id}">
-                <div class="edit-comment-div" th:id="'edit-comment-div-' + ${comment.id}"></div>
-                <button class="edit-comment-button" th:id="'edit-comment-button-' + ${comment.id}">Edit Comment</button>
-            </div>
-            <button class="upvote-comment-button" th:id="'upvote-comment-' + ${comment.id}">Upvote JS</button>
-            <button class="downvote-comment-button" th:id="'downvote-comment-' + ${comment.id}">Downvote JS</button>
+    <!--    PROFILE CARD    -->
+    <div class="card p-5 mt-5 blue-font" id="profile-card">
+        <h2 class="card-title text-center p-3 profile-header">Interview</h2>
+        <div class="card-text media">
+
         </div>
-        <p>Comment Rating Total: <span th:text = "${comment.getRatingTotal()}"></span></p>
-    </div>
-
-    <div class="create-comment-div" th:id="'create-comment-div-' + ${post.id}"></div>
-    <button class="add-comment-button" th:id="'add-comment-button-' + ${post.id}">Comment</button>
-    <div sec:authorize = "isAuthenticated()">
+        <p class="align-self-end profile-btns">
+            <!--                maybe add some buttons to the front-->
+        </p>
+    </div><br><br>
+<div class="container">
+    <div th:each="post : ${postList}">
+        <div class="card mb-2">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-1">
+                        <i class="upvote-button fas fa-arrow-up btn btn-link"  th:id="'upvote-' + ${post.id}"></i>
+                        <p class="mb-0 ml-3">  <span th:text = "${post.getRatingTotal()}"></span></p>
+                        <i class="downvote-button fas fa-arrow-down btn btn-link" th:id="'downvote-' + ${post.id}"></i>
+                    </div>
+                    <div class="col-11">
+                        <div th:id="'post-' + ${post.id}"></div>
+                        <p class="m-r mb-0 userprint">Posted on: <span class="userinfo" th:text = "${post.dateTime}"></span> by <span class="userinfo" th:text="${post.user.username}"></span>    </p>
+                        <h1 th:text = "${post.title}"></h1>
+                        <p th:text = "${post.body}"></p>
+                        <p th:text = "${post.answer}"></p>
+                        <div th:each="comment : ${post.commentList}">
+                            <div class="row">
+                                <div class="col-1">
+                                    <i class="upvote-comment-button fas fa-arrow-up btn btn-link" th:id="'upvote-comment-' + ${comment.id}"> </i>
+                                    <p class="mb-0 ml-3"><span th:text = "${comment.getRatingTotal()}"></span></p>
+                                    <i class="downvote-comment-button fas fa-arrow-down btn btn-link" th:id="'downvote-comment-' + ${comment.id}"></i>
+                                </div>
+                                <div class="col-11 align-self-center">
+                                    <p class="mb-0 mt-1" th:text = "${comment.body}" th:id="'comment-body-' + ${comment.id}"></p>
+                                    <div th:if="${user.id == comment.user.id}">
+                                        <div class="edit-comment-div" th:id="'edit-comment-div-' + ${comment.id}"></div>
+                                        <button class="edit-comment-button btn-sm float-right p-0" th:id="'edit-comment-button-' + ${comment.id}">Edit your comment</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="create-comment-div" th:id="'create-comment-div-' + ${post.id}"></div>
+                        <button class="add-comment-button btn btn-link" th:id="'add-comment-button-' + ${post.id}">Comment</button>
         <div th:if="${user.id == post.user.id}">
             <a th:href="@{|/interview-questions/edit/${post.id}|}"><button>Edit Post</button></a>
             <button class="delete-button" th:id="${post.postType.type} + '-' + ${post.id}">Delete Post</button>
         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+<div th:replace="fragments/chat-box.html :: chat-box"></div>
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>
+<div th:replace="fragments/chat-scripts.html :: chat-scripts"></div>
 </body>
 </html>

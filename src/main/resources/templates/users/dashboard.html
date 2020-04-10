@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
       xmlns:sec="http://www.w3.org/1999/xhtml">
-    <meta charset="UTF-8">
-    <head th:replace="fragments/header.html :: header(title = 'Profile')"></head>
-    <title>Title</title>
+<head>
+    <th:block th:include="fragments/header.html :: header(title = 'Dashboard')"/>
+    <meta class="talkJSAppId" th:content="${talkJSAppId}"/>
 </head>
 <body class="back">
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
 
 <!--The profile card at the top of the page -->
 <!--<div class="container">-->
-<div class="jumbotron">
-<!--    <h2 class="card-title text-center p-3 profile-header">Welcome to your profile, <span th:text="${user.username}">user</span>!-->
-        <h1 class="text-center logo" style="font-size: 12em">CodeOn</h1>
-        <p>something great we can say about why to use codeon and how great the site is </p>
-    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#inteviewModal">
-        Interview Questions Create
-    </button>
+<div class="container profile-container">
+
+    <!--    PROFILE CARD    -->
+    <div class="card p-5 mt-5 blue-font" id="profile-card">
+        <h2 class="card-title text-center p-3 profile-header">CodeOn</h2>
+        <p class="text-center"> Here at CodeOn we as a community strive build a community of developers that can help change the world  </p>
+        <p class="align-self-end profile-btns">
+            <!--                maybe add some buttons to the front-->
+        </p>
+    </div>
 </div>
 
 
@@ -359,6 +362,8 @@
 
 <!--container div-->
 <!--</div>-->
+<div th:replace="fragments/chat-box.html :: chat-box"></div>
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>
+<div th:replace="fragments/chat-scripts.html :: chat-scripts"></div>
 </body>
 </html>

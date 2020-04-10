@@ -14,6 +14,8 @@ import java.security.Principal;
 public class WhiteboardController {
     @Value("${firebase.api.config}")
     private String firebaseKey;
+    @Value("${talkjs.app.id}")
+    private String talkJSAppId;
     private UserRepo userDao;
     private PostRepo postDao;
 
@@ -25,6 +27,7 @@ public class WhiteboardController {
     @GetMapping("/whiteboard")
     public String getWhiteboard(Model model, Principal principal, @RequestParam(required = false) Long otherUserId) {
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
+        model.addAttribute("talkJSAppId", talkJSAppId);
         model.addAttribute("otherUser", userDao.findUserById(otherUserId));
         model.addAttribute("questionsList", postDao.findAllByPostTypeId_Type("interview-questions"));
         model.addAttribute("firebaseKey", firebaseKey);
@@ -33,6 +36,7 @@ public class WhiteboardController {
     @GetMapping("/whiteboard/1")
     public String getRoomOne(Model model, Principal principal, @RequestParam(required = false) Long otherUserId) {
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
+        model.addAttribute("talkJSAppId", talkJSAppId);
         model.addAttribute("otherUser", userDao.findUserById(otherUserId));
         model.addAttribute("questionsList", postDao.findAllByPostTypeId_Type("whiteboard-questions"));
         model.addAttribute("firebaseKey", firebaseKey);
@@ -41,6 +45,7 @@ public class WhiteboardController {
     @GetMapping("/whiteboard/2")
     public String getRoomTwo(Model model, Principal principal, @RequestParam(required = false) Long otherUserId) {
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
+        model.addAttribute("talkJSAppId", talkJSAppId);
         model.addAttribute("otherUser", userDao.findUserById(otherUserId));
         model.addAttribute("questionsList", postDao.findAllByPostTypeId_Type("whiteboard-questions"));
         model.addAttribute("firebaseKey", firebaseKey);
@@ -49,6 +54,7 @@ public class WhiteboardController {
     @GetMapping("/whiteboard/3")
     public String getRoomThree(Model model, Principal principal, @RequestParam(required = false) Long otherUserId) {
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
+        model.addAttribute("talkJSAppId", talkJSAppId);
         model.addAttribute("otherUser", userDao.findUserById(otherUserId));
         model.addAttribute("questionsList", postDao.findAllByPostTypeId_Type("whiteboard-questions"));
         model.addAttribute("firebaseKey", firebaseKey);
@@ -57,6 +63,7 @@ public class WhiteboardController {
     @GetMapping("/whiteboard/4")
     public String getRoomFour(Model model, Principal principal, @RequestParam(required = false) Long otherUserId) {
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
+        model.addAttribute("talkJSAppId", talkJSAppId);
         model.addAttribute("otherUser", userDao.findUserById(otherUserId));
         model.addAttribute("questionsList", postDao.findAllByPostTypeId_Type("whiteboard-questions"));
         model.addAttribute("firebaseKey", firebaseKey);

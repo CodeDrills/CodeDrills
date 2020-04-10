@@ -14,18 +14,38 @@
 <input id="other-username" type="hidden" th:value="${otherUser.username}">
 <input id="other-email" type="hidden" th:value="${otherUser.email}">
 <input id="other-photo-url" type="hidden" th:value="${otherUser.profileImageURL}">
-<!-- minified snippet to load TalkJS without delaying your page -->
+
+<div class="col-2">
+    <button class="btn btn-primary show-user-role-button" id="show-student" data-toggle="modal" data-target="#the-modal">Chat</button>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="the-modal" tabindex="-1" role="dialog" aria-labelledby="the-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!--                        Set this with JS-->
+                <h5 class="modal-title" id="the-modal-title">Chat</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body row" id="fill-modal-body">
+                <div id="talkjs-container" style="width: 90%; margin: 30px; height: 500px"><i>Loading chat...</i></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/body-scripts.html :: body-scripts"></div>
 <script>
     (function(t,a,l,k,j,s){
         s=a.createElement('script');s.async=1;s.src="https://cdn.talkjs.com/talk.js";a.head.appendChild(s)
         ;k=t.Promise;t.Talk={v:3,ready:{then:function(f){if(k)return new k(function(r,e){l.push([f,r,e])});l
                     .push([f])},catch:function(){return k&&new k()},c:l}};})(window,document,[]);
 </script>
-
-<!-- container element in which TalkJS will display a chat UI -->
-<div id="talkjs-container" style="width: 90%; margin: 30px; height: 500px"><i>Loading chat...</i></div>
-
-<!-- TalkJS initialization code, which we'll customize in the next steps -->
 <script>
     Talk.ready.then(function() {
         const me = new Talk.User({
@@ -48,10 +68,6 @@
         const conversation = talkSession.getOrCreateConversation(Talk.oneOnOneId(me, other))
         conversation.setParticipant(me);
         conversation.setParticipant(other);
-        // subject is optional
-        // conversation.setAttributes({
-        //     subject: `${document.getElementById("username").value} and ${document.getElementById("other-username").value}`
-        // });
         const inbox = talkSession.createInbox({selected: conversation});
         inbox.mount(document.getElementById("talkjs-container"));
     });

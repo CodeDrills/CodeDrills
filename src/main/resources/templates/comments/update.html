@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/header.html :: header(title = 'Update Post')"></head>
+<head>
+    <th:block th:include="fragments/header.html :: header(title = 'Update Comment')"/>
+    <meta class="talkJSAppId" th:content="${talkJSAppId}"/>
+</head>
 <body>
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
 <form action="/posts/update" method="post">
@@ -12,6 +15,8 @@
     <input type="text" id="body" name="body" value='Cats fight bad guys using lemons.'><br><br>
     <input type="submit" value="Submit">
 </form>
+<div th:replace="fragments/chat-box.html :: chat-box"></div>
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>
+<div th:replace="fragments/chat-scripts.html :: chat-scripts"></div>
 </body>
 </html>

@@ -29,6 +29,18 @@ body, html {
     background-repeat: no-repeat;
     background-size: cover;
 }
+.parallax2 {
+    /* The image used */
+    background-image: url('/img/whiteboard.jpg');
+    /* Full height */
+    height: 100%;
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 @media only screen and (max-device-width: 1366px) {
     .parallax {
         background-attachment: scroll;
@@ -97,7 +109,7 @@ header {
     min-height: 25rem;
     overflow: hidden;
 }
-video {
+#myVideo {
     position: absolute;
     top: 50%;
     left: 50%;

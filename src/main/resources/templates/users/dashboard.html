@@ -176,18 +176,19 @@
                         <div class="card-body">
                             <div th:each="post : ${interviewQuestionsList}">
                                 <div class="row">
-                                    <div class="col-2">
-                                                        <i class="upvote-button fas fa-arrow-up btn btn-link"  th:id="'upvote-' + ${post.id}"></i>
-                                                <p class="mb-0 ml-3">  <span th:text = "${post.getRatingTotal()}"></span></p>
-                                                <i class="downvote-button fas fa-arrow-down btn btn-link" th:id="'downvote-' + ${post.id}"></i>
+                                    <div class="col-1">
+                                            <i class="upvote-button fas fa-arrow-up btn btn-link"  th:id="'upvote-' + ${post.id}"></i>
+                                            <p class="mb-0 ml-3">  <span th:text = "${post.getRatingTotal()}"></span></p>
+                                            <i class="downvote-button fas fa-arrow-down btn btn-link" th:id="'downvote-' + ${post.id}"></i>
                                     </div>
-                                    <div class="col-10">
+                                    <div class="col-11">
                                                     <div th:id="'post-' + ${post.id}">
+                                                        <p class="m-r mb-0 userprint">Posted on: <span class="userinfo" th:text = "${post.dateTime}"></span> by <span class="userinfo" th:text="${post.user.username}"></span></p>
                                                         <h4 th:text = "${post.title}"></h4>
                                                         <p th:text = "${post.body}"></p>
                                                         <p class="answer" >Answers:</p>
                                                         <p th:text = "${post.answer}"></p>
-                                                        <p class="m-r mb-0">Asked by: <span th:text="${post.user.username}"></span> On: <span th:text = "${post.dateTime}"></span>  </p>
+<!--                                                        <p class="m-r mb-0">Asked by: <span th:text="${post.user.username}"></span> On: <span th:text = "${post.dateTime}"></span>  </p>-->
                                                         <div  th:if="${post.imageURLList.size() > 0 && post.imageURLList[0].url.length() > 8}" >
                                                             <img th:src="${post.imageURLList[0].url}" alt="post-image">
                                                         </div>
@@ -196,7 +197,6 @@
                                                     <button class="add-comment-button btn btn-link" th:id="'add-comment-button-' + ${post.id}">Comment</button>
                                                     <div th:each="comment : ${post.commentList}">
                                                         <p class="comment mb-0" > <span th:text = "${comment.body}"></span></p>
-                                                        <p class="comment" > <span th:text = "${comment.body}"></span></p>
                                                         <p th:text = "${comment.body}" th:id="'comment-body-' + ${comment.id}"></p>
                                                         <div sec:authorize = "isAuthenticated()">
                                                             <div th:if="${user.id == comment.user.id}">

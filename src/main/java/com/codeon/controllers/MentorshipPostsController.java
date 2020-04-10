@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 @Controller
@@ -48,7 +46,9 @@ public class MentorshipPostsController {
     public String showAllPosts(Model model, Principal principal) {
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("talkJSAppId", talkJSAppId);
-        model.addAttribute("postList", postDao.findAllByPostTypeId_Type("mentorship-posts"));
+        List<Post> mentorshipPosts = postDao.findAllByPostTypeId_Type("mentorship-posts");
+        mentorshipPosts.sort(Collections.reverseOrder(Comparator.comparing((Post::getRatingTotal))));
+        model.addAttribute("postList", mentorshipPosts);
         return "mentorship-posts/show";
     }
     @GetMapping("/mentorship-posts/create")

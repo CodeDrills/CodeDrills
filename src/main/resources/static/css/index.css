@@ -1,7 +1,11 @@
+html {
+    scroll-behavior: smooth;
 
+}
 i:hover{
     text-decoration: none;
     color: #0c5460;
+
 }
 /*changes upvote-downvote buttons*/
 .btn-link{
@@ -14,7 +18,7 @@ button{
     background: none;
     border: none;
 }
-h1{
+h1,h2,h3,h4{
     font-family: 'Montserrat', sans-serif;
 }
 p{
@@ -150,8 +154,10 @@ header {
 /*    !*opacity: 0.5;*!*/
 /*    z-index: 1;*/
 /*}*/
-
-
+/*splashpage text in front*/
+.splash{
+    color: white;
+}
 /*for all the comments*/
 .commentrow{
     /*background-color: #cde6ff;*/
@@ -165,4 +171,19 @@ header {
     font-family: 'Orbitron', sans-serif;
     font-size: xx-large;
     color: #E3E7D3;
+}
+.show-chat-modal-button {
+    position: fixed;
+    right: 0;
+    border: 0;
+    z-index: 50000;
+    bottom: 77px;
+    width: 190px;
+    font-size: 100px;
+}
+
+@media only screen and (max-width: 600px) {
+.parallax2{
+    display: none;
+}
 }

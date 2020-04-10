@@ -9,7 +9,9 @@
 <div th:fragment="chat-box">
     <footer>
         <div class="col-2">
-            <button class="btn btn-primary show-chat-modal-button" id="show-chat-modal-button" data-toggle="modal" data-target="#chat-modal">Chat</button>
+<!--            <button class="btn btn-primary show-chat-modal-button" id="show-chat-modal-button" data-toggle="modal" data-target="#chat-modal">Chat</button>-->
+            <i class="show-chat-modal-button fas fa-comment-dots btn-link" id="show-chat-modal-button" data-toggle="modal" data-target="#chat-modal"></i>
+<!--            <i class="downvote-button fas fa-arrow-down btn btn-link" th:id="'downvote-' + ${post.id}"></i>-->
         </div>
         <!-- Modal -->
         <div class="modal fade" id="chat-modal" tabindex="-1" role="dialog" aria-labelledby="chat-modal-title" aria-hidden="true">

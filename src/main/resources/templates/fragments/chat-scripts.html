@@ -52,14 +52,18 @@
                         newInbox.mount(document.getElementById("talkjs-container"));
                         setTimeout(function() {
                             document.querySelector("#new-chat-div").innerHTML = "";
-                        }, 1000)
+                            document.querySelector("#search-results-para").remove();
+                            document.querySelector("#search-results-card").remove();
+                            document.querySelector("#new-chat-button").style.display = "block";
+                        }, 0)
                     })
                 })
             }
             function attachChatEventListeners() {
                 document.querySelector("#new-chat-button").addEventListener("click", function (e) {
                     e.preventDefault();
-                    document.querySelector(`#new-chat-div`).innerHTML = `<input type="text" id="chat-user-search-input" name="username" placeholder="Search by username"><button class="chat-user-search-button" id="chat-user-search-button">Search.</button>`;
+                    document.querySelector("#new-chat-button").style.display = "none";
+                    document.querySelector(`#new-chat-div`).innerHTML = `<input class="mr-2" type="text" id="chat-user-search-input" name="username" style="width: 13rem;" placeholder="Search by username"><button class="chat-user-search-button ml-2" id="chat-user-search-button">Search.</button>`;
                     document.querySelector(`#chat-user-search-button`).addEventListener("click", function (e) {
                         e.preventDefault();
                         let username = document.querySelector(`#chat-user-search-input`).value;
@@ -73,14 +77,16 @@
                                 return response.json();
                             })
                             .then(response => {
-                                let newDivHTML = `<p>Search Results:</p>`;
+
+                                let newDivHTML = `<h3 id="search-results-para" class="col-12 text-center">Results</h3><div class="card overflow-auto col-12" id="search-results-card" style="width: 18rem; height: 18rem"><ul class="list-group list-group-flush">`;
                                 for(let i = 1; i < response.length; i++) {
-                                    newDivHTML += `<p>Username: ${response[i].username}</p><button class="chat-with-button" id="chat-with-${response[i].id}">Chat</button>`;
+                                    newDivHTML += `<li class="list-group-item"><span class="mr-auto">Username: ${response[i].username}</span><button class="chat-with-button ml-auto" id="chat-with-${response[i].id}">Chat</button></li>`;
                                 }
+                                newDivHTML += `</ul></div>`;
                                 let newDiv = document.createElement("div").innerHTML = newDivHTML;
                                 this.style.display = "none";
                                 document.querySelector("#chat-user-search-input").style.display = "none";
-                                this.parentElement.innerHTML = this.parentElement.innerHTML + newDiv;
+                                document.querySelector("#chat-modal-body").innerHTML = newDiv + document.querySelector("#chat-modal-body").innerHTML;
                                 attachChatEventListeners();
                                 return response;
                             })

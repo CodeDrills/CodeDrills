@@ -306,18 +306,6 @@ const attachFilestack = function() {
         };
     }
 }
-const attachNavCreateButtonEventListener = function() {
-    let navCreateButtonList = document.querySelectorAll(".nav-create-button")
-    if(navCreateButtonList !== null) {
-        navCreateButtonList.forEach(button => {
-            button.addEventListener("click", function(e) {
-                e.preventDefault();
-                let idSplit = this.getAttribute("id").split("-");
-                let url = `${idSplit[1]}-${idSplit[2]}/create`;
-            })
-        })
-    }
-}
 //begin main
 attachAddCommentEventListener();
 attachEditCommentEventListener();
@@ -326,4 +314,3 @@ attachDeletePostEventListener();
 attachFilestack();
 attachRatingsEventListener();
 attachGetQuestionEventListener();
-attachNavCreateButtonEventListener();

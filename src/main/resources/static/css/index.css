@@ -2,15 +2,28 @@ html{
     scroll-behavior: smooth;
 
 
+i:hover{
+    text-decoration: none;
+    color: #0c5460;
+
 }
 /*changes upvote-downvote buttons*/
 .btn-link{
     color: #0c5460;
+    text-decoration: none;
+}
+button{
+    color: #0c5460;
+    text-decoration: none;
+    background: none;
+    border: none;
 }
 h1,h2,h3,h4{
     font-family: 'Montserrat', sans-serif;
 }
-
+p{
+    font-family: 'Montserrat', sans-serif;
+}
 
 
 /*parallax*/

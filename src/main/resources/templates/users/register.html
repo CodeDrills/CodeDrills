@@ -7,11 +7,11 @@
     <meta class="filestackKey" th:content="${filestackKey}  "/>
 </head>
 
-<body class="back">
+<body class="pic">
     <nav th:replace="fragments/navbar.html :: navbar"></nav>
 
 <form th:action="@{/register}" method="POST" th:object="${user}">
-    <div class="card register-mainBox">
+<!--    <div class="card register-mainBox">-->
         <div class="card-body" id="box">
             <!--            input name email username password and bio-->
             <h1 class="text-center">Register your account</h1>
@@ -55,7 +55,7 @@
             <br>
             <input class="form-control" value="Sign me up!" type="submit"/>
         </div>
-    </div>
+<!--    </div>-->
 </form>
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>
 </body>

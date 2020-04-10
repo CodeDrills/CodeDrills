@@ -1,4 +1,6 @@
-
+.pic{
+    background-image: url("/img/blue-wallpaper.jpg");
+}
 
 .userprint{
     font-size:small;
@@ -10,20 +12,24 @@
     border: none !important;
     margin-right: 15% !important;
     margin-left: 15% !important;
-    background-color: #A9ACA9;
+    background-color: #95A3B3;
 }
+
 
 .register-box{
+    background-color: rgb(235, 235, 235);
     margin-top: 5%;
     box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+
 }
 
-.box-box{
+#box{
     margin-top: 2%;
-    background-color: #00727F;
+    background-color: #E3E7D3;
     border: none !important;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 30%;
+    margin-right: 30%;
+
 
 }
 #logo{
@@ -32,14 +38,12 @@
 }
 
 /*login page*/
-
-
 .login-frame{
-    background-color: #00727F;
+    background-color: #E3E7D3;
     padding: 1%;
     padding-left: -5%;
     margin-left: 25%;
     margin-right: 25%;
-    margin-top: 10%;
+    margin-top: 15%;
     box-shadow: 0px 7px 29px 10px rgba(0,0,0,1);
 }

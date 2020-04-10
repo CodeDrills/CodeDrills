@@ -182,8 +182,20 @@ header {
     font-size: 100px;
 }
 
-@media only screen and (max-width: 600px) {
-.parallax2{
-    display: none;
+.nav-create-button, .logout-button {
+    color: rgba(255,255,255,.5) !important;
 }
+
+.nav-link:hover, .nav-create-button:hover, .logout-button:hover{
+    color: #0f6674 !important;
+    text-decoration: none !important;
+}
+/*.logout-button:hover{*/
+/*    text-decoration: none;*/
+/*    color: #0c5460 !important;*/
+/*}*/
+@media only screen and (max-width: 600px) {
+    .parallax2{
+        display: none;
+    }
 }

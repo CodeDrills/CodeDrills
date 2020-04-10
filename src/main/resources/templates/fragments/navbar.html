@@ -1,99 +1,93 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <nav class="navbar-expand-lg navbar-dark bg-dark" th:fragment="navbar">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-            <a class="navbar-brand" id="logo" href="/users/dashboard">CodeOn</a>
-        </li>
-        <ul th:if="${#httpServletRequest.requestURI.contains('interview-questions')}" class="navbar-nav ml-auto">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" th:href="@{|/users/dashboard|}">Dashboard</a>
+                <a class="navbar-brand" id="logo" href="/users/dashboard">CodeOn</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{|/interview-questions/show|}">View Interview Questions</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{|/interview-questions/create|}">Create Interview Questions</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{|/mentorship-posts/show|}">Mentorship Posts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{|/job-postings/show|}">Job Postings</a>
-            </li>
-            <li class="nav-item">
-                <form th:action="@{~/logout_app}" th:method="post">
-                    <button class="btn-link btn">Logout</button>
-                </form>
-            </li>
+            <ul th:if="${#httpServletRequest.requestURI.contains('interview-questions')}" class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{|/users/dashboard|}">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <button class="btn nav-create-button" id="nav-interview-questions-create">Create Interview
+                        Question
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{|/mentorship-posts/show|}">Mentorship Posts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{|/job-postings/show|}">Job Postings</a>
+                </li>
+                <li class="nav-item">
+                    <form th:action="@{~/logout_app}" th:method="post">
+                        <button class="btn-link btn logout-button">Logout</button>
+                    </form>
+                </li>
+            </ul>
+            <ul th:if="${#httpServletRequest.requestURI.contains('mentorship-posts')}" class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{|/users/dashboard|}">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <button class="btn nav-create-button" id="nav-mentorship-posts-create">Create Mentorship Post
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{|/interview-questions/show|}">Interview Questions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{|/job-postings/show|}">Job Postings</a>
+                </li>
+                <li class="nav-item">
+                    <form th:action="@{~/logout_app}" th:method="post">
+                        <button class="nav-item btn logout-button">Logout</button>
+                    </form>
+                </li>
+            </ul>
+            <ul th:if="${#httpServletRequest.requestURI.contains('job-postings')}" class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{|/users/dashboard|}">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <button class="btn nav-create-button" id="nav-job-postings-create">Create Job Post</button>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{|/interview-questions/show|}">Interview Questions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{|/mentorship-posts/show|}">Mentorship Posts</a>
+                </li>
+                <li class="nav-item">
+                    <form th:action="@{~/logout_app}" th:method="post">
+                        <button class="btn-link btn logout-button">Logout</button>
+                    </form>
+                </li>
+            </ul>
+            <ul th:if="${#httpServletRequest.requestURI.contains('users/dashboard')}" class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{|/interview-questions/show|}">Interview Questions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{|/mentorship-posts/show|}">Mentorship Posts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{|/job-postings/show|}">Job Postings</a>
+                </li>
+                <li class="nav-item">
+                    <form th:action="@{~/logout_app}" th:method="post">
+                        <button class="btn-link btn logout-button">Logout</button>
+                    </form>
+                </li>
+            </ul>
         </ul>
-        <ul th:if="${#httpServletRequest.requestURI.contains('mentorship-posts')}" class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{|/users/dashboard|}">Dashboard</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{|/mentorship-posts/show|}">View Mentorship Posts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{|/mentorship-posts/create|}">Create Mentorship Posts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{|/interview-questions/show|}">Interview Questions</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{|/job-postings/show|}">Job Postings</a>
-            </li>
-            <li class="nav-item">
-                <form th:action="@{~/logout_app}" th:method="post">
-                    <button class="nav-item btn">Logout</button>
-                </form>
-            </li>
-        </ul>
-        <ul th:if="${#httpServletRequest.requestURI.contains('job-postings')}" class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{|/users/dashboard|}">Dashboard</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{|/job-postings/show|}">View Job Postings</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{|/job-postings/create|}">Create Job Postings</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{|/interview-questions/show|}">Interview Questions</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{|/mentorship-posts/show|}">Mentorship Posts</a>
-            </li>
-            <li class="nav-item">
-                <form th:action="@{~/logout_app}" th:method="post">
-                    <button class="btn-link btn">Logout</button>
-                </form>
-            </li>
-        </ul>
-        <ul th:if="${#httpServletRequest.requestURI.contains('users/dashboard')}" class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{|/interview-questions/show|}">Interview Questions</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{|/mentorship-posts/show|}">Mentorship Posts</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{|/job-postings/show|}">Job Postings</a>
-            </li>
-            <li class="nav-item">
-                <form th:action="@{~/logout_app}" th:method="post">
-                    <button class="btn-link btn">Logout</button>
-                </form>
-            </li>
-        </ul>
-    </ul>
-
     </div>
 </nav>
 </html>

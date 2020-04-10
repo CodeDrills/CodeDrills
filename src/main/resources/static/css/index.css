@@ -37,6 +37,7 @@ body, html {
     background-image: url('/img/background-computer.jpg');
 
 
+
     /* Full height */
     height: 100%;
 
@@ -109,13 +110,16 @@ a:hover {
     background-color: #95A3B3;
 }
 
+.op{
+    opacity: .25;
+}
+
 
 
 /*this is the video portion*/
 #logo{
     font-family: 'Orbitron', sans-serif;
     color: #0f6674;
-    opacity: 0.95;
 }
 
 
@@ -157,6 +161,7 @@ header {
 /*splashpage text in front*/
 .splash{
     color: white;
+    font-weight: bold;
 }
 /*for all the comments*/
 .commentrow{

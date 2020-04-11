@@ -66,6 +66,17 @@ public class Post {
         this.dateTime = dateTime;
     }
 
+    public Post(String title, String employer, String body, String answer, User user, PostType postType, Integer ratingTotal, String dateTime) {
+        this.title = title;
+        this.employer = employer;
+        this.body = body;
+        this.answer = answer;
+        this.user = user;
+        this.postType = postType;
+        this.ratingTotal = ratingTotal;
+        this.dateTime = dateTime;
+    }
+
     public Long getId() {
         return id;
     }

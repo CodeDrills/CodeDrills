@@ -32,6 +32,7 @@
                         <div th:id="'post-' + ${post.id}"></div>
                         <p class="m-r mb-0 userprint">Posted on: <span class="userinfo" th:text = "${post.dateTime}"></span> by <span class="userinfo" th:text="${post.user.username}"></span></p>
                         <h1 th:text = "${post.title}"></h1>
+                        <h3 th:text = "${post.employer}"></h3>
                         <p th:text = "${post.body}"></p>
                         <hr class="m-0">
                         <div th:each="comment : ${post.commentList}">

@@ -23,7 +23,14 @@
         </p>
     </div>
 </div>
-    <br><br>
+<br>
+
+<div class="d-flex justify-content-sm-around">
+    <a id="interview-whiteboard-button" th:href="@{|/whiteboard|}">Whiteboard</a>
+    <a id="interview-question-round-button" th:href="@{|/api/interview-questions|}">Question Round</a>
+</div>
+
+<br>
 <div class="container">
     <div th:each="post : ${postList}">
         <div class="card mb-2">

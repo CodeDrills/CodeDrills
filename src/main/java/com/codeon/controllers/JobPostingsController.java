@@ -43,7 +43,9 @@ public class JobPostingsController {
         model.addAttribute("filestackKey", filestackKey);
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("talkJSAppId", talkJSAppId);
-        model.addAttribute("postList", postDao.findAllByPostTypeId_Type("job-postings"));
+        List<Post> jobPostings = postDao.findAllByPostTypeId_Type("job-postings");
+        jobPostings.sort(Collections.reverseOrder(Comparator.comparing((Post::getRatingTotal))));
+        model.addAttribute("postList", jobPostings);
         return "job-postings/show";
     }
 

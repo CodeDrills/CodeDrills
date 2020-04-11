@@ -26,37 +26,23 @@
     <div th:each="post : ${postList}">
         <div class="card mb-2">
             <div class="card-body">
-                <div class="row">
-                    <div class="col-1">
-                        <i class="upvote-button fas fa-arrow-up btn btn-link" th:id="'upvote-' + ${post.id}"></i>
-                        <p class="mb-0 ml-3"><span th:text="${post.getRatingTotal()}"></span></p>
-                        <i class="downvote-button fas fa-arrow-down btn btn-link" th:id="'downvote-' + ${post.id}"></i>
-                    </div>
-                    <div class="col-11">
-                        <div th:id="'post-' + ${post.id}"></div>
-                        <p class="m-r mb-0 userprint">Posted on: <span class="userinfo"
-                                                                       th:text="${post.dateTime}"></span> by <span
-                                class="userinfo" th:text="${post.user.username}"></span></p>
-                        <h1 th:text="${post.body}"></h1>
-                        <p th:text="${post.title}"></p>
-                        <p th:text="${post.answer}"></p>
-                        <div th:each="comment : ${post.commentList}">
-                            <div class="row">
-                                <div class="col-1">
-                                    <i class="upvote-comment-button fas fa-arrow-up btn btn-link"
-                                       th:id="'upvote-comment-' + ${comment.id}"> </i>
-                                    <p class="mb-0 ml-3"><span th:text="${comment.getRatingTotal()}"></span></p>
-                                    <i class="downvote-comment-button fas fa-arrow-down btn btn-link"
-                                       th:id="'downvote-comment-' + ${comment.id}"></i>
-                                </div>
-                                <div class="col-11 align-self-center">
-                                    <p class="mb-0 mt-1" th:text="${comment.body}"
-                                       th:id="'comment-body-' + ${comment.id}"></p>
-                                    <div th:if="${user.id == comment.user.id}">
-                                        <div class="edit-comment-div" th:id="'edit-comment-div-' + ${comment.id}"></div>
-                                        <button class="edit-comment-button btn-sm float-right p-0"
-                                                th:id="'edit-comment-button-' + ${comment.id}">Edit your comment
-                                        </button>
+            <div class="row">
+                <div class="col-1">
+                    <i class="upvote-button fas fa-arrow-up btn btn-link"  th:id="'upvote-' + ${post.id}"></i>
+                    <p class="mb-0 ml-3">  <span th:text = "${post.getRatingTotal()}"></span></p>
+                    <i class="downvote-button fas fa-arrow-down btn btn-link" th:id="'downvote-' + ${post.id}"></i>
+                </div>
+                <div class="col-11">
+                            <div th:id="'post-' + ${post.id}"></div>
+                    <p class="m-r mb-0 userprint">Posted on: <span class="userinfo" th:text = "${post.dateTime}"></span> by <span class="userinfo" th:text="${post.user.username}"></span>    </p>
+                                <h1 th:text = "${post.title}"></h1>
+                                <p th:text = "${post.body}"></p>
+                            <div th:each="comment : ${post.commentList}">
+                                <div class="row">
+                                    <div class="col-1">
+                                        <i class="upvote-comment-button fas fa-arrow-up btn btn-link" th:id="'upvote-comment-' + ${comment.id}"> </i>
+                                        <p class="mb-0 ml-3"><span th:text = "${comment.getRatingTotal()}"></span></p>
+                                        <i class="downvote-comment-button fas fa-arrow-down btn btn-link" th:id="'downvote-comment-' + ${comment.id}"></i>
                                     </div>
                                 </div>
                             </div>

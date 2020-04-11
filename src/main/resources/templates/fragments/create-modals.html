@@ -15,25 +15,24 @@
             <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="interview-questions-modal-title">Create Mentorship Post</h5>
+                        <h5 class="modal-title" id="interview-questions-modal-title">Create Interview Question</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body row" id="interview-questions-create-modal-body">
-                        <form th:action="@{/interview-questions/create}" th:method="post" th:object="${post}">
+                        <div>
                             Title:
-                            <input th:field="*{title}"/>
+                            <input name="interview-questions-title" id="interview-questions-title"/>
                             <br/>
                             Body:
-                            <input th:field="*{body}"/>
+                            <input name="interview-questions-body" id="interview-questions-body"/>
                             <br/>
                             Answer:
-                            <input th:field="*{answer}"/>
+                            <input name="interview-questions-answer" id="interview-questions-answer"/>
                             <br/>
-                            <input type="hidden" class="" id="interview-questions-type" name="postTypeId" value="1">
-                            <input type="submit"/>
-                        </form>
+                            <button class="btn submit-button" id="interview-questions-submit-button" data-dismiss="modal">Submit</button>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -43,112 +42,112 @@
         </div>
     </div>
     <!-- Mentorship Create Modal -->
-    <div th:if="${#httpServletRequest.requestURI.contains('mentorship-posts') || #httpServletRequest.requestURI.contains('users/dashboard')}">
-        <div class="modal fade" id="mentorship-posts-create-modal" tabindex="-1" role="dialog"
-             aria-labelledby="mentorship-create-modal-title"
-             aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="mentorship-create-modal-title">Create Mentorship Post</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body row" id="mentorship-posts-create-modal-body">
-                        <form th:action="@{/mentorship-posts/create}" th:method="post" th:object="${post}">
-                            Title:
-                            <input th:field="*{title}"/>
-                            <br/>
-                            Employer:
-                            <input th:field="*{employer}"/>
-                            <br/>
-                            Description:
-                            <input th:field="*{body}"/>
-                            <br/>
-                            <button class="button photo-upload" type="button" id="photo-picker">Upload Profile Image
-                            </button>
-                            <input type="hidden" class="" id="photo-upload" name="photoURL">
-                            <input type="submit"/>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Job Create Modal -->
-    <div th:if="${#httpServletRequest.requestURI.contains('job-postings') || #httpServletRequest.requestURI.contains('users/dashboard')}">
-        <div class="modal fade" id="job-postings-create-modal" tabindex="-1" role="dialog"
-             aria-labelledby="job-postings-create-modal-title"
-             aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="job-postings-create-modal-title">Create Mentorship Post</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body row" id="job-postings-create-modal-body">
-                        <form th:action="@{/job-postings/create}" th:method="post" th:object="${post}">
-                            Title:
-                            <input th:field="*{title}" />
-                            <br />
-                            Employer:
-                            <input th:field="*{employer}" />
-                            <br />
-                            Body:
-                            <input th:field="*{body}" />
-                            <br />
-                            <input type="hidden" class="" id="job-postings-type" name="postTypeId" value="3">
-                            <input type="submit" />
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Job Create Modal -->
-    <div th:if="${#httpServletRequest.requestURI.contains('whiteboard-questions') || #httpServletRequest.requestURI.contains('users/dashboard')}">
-        <div class="modal fade" id="whiteboard-questions-create-modal" tabindex="-1" role="dialog"
-             aria-labelledby="job-postings-create-modal-title"
-             aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="whiteboard-questions-create-modal-title">Create Mentorship Post</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body row" id="whiteboard-questions-create-modal-body">
-                        <form th:action="@{/whiteboard-questions/create}" th:method="post" th:object="${post}">
-                            Title:
-                            <input th:field="*{title}" />
-                            <br />
-                            Body:
-                            <input th:field="*{body}" />
-                            <br />
-                            Answer:
-                            <input th:field="*{answer}" />
-                            <br />
-                            <input type="hidden" class="" id="whitboard-questions-type" name="postTypeId" value="4">
-                            <input type="submit" />
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--    <div th:if="${#httpServletRequest.requestURI.contains('mentorship-posts') || #httpServletRequest.requestURI.contains('users/dashboard')}">-->
+<!--        <div class="modal fade" id="mentorship-posts-create-modal" tabindex="-1" role="dialog"-->
+<!--             aria-labelledby="mentorship-create-modal-title"-->
+<!--             aria-hidden="true">-->
+<!--            <div class="modal-dialog modal-dialog-centered modal-md" role="document">-->
+<!--                <div class="modal-content">-->
+<!--                    <div class="modal-header">-->
+<!--                        <h5 class="modal-title" id="mentorship-create-modal-title">Create Mentorship Post</h5>-->
+<!--                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                            <span aria-hidden="true">&times;</span>-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                    <div class="modal-body row" id="mentorship-posts-create-modal-body">-->
+<!--                        <form th:action="@{/mentorship-posts/create}" th:method="post" th:object="${post}">-->
+<!--                            Title:-->
+<!--                            <input th:field="*{title}"/>-->
+<!--                            <br/>-->
+<!--                            Employer:-->
+<!--                            <input th:field="*{employer}"/>-->
+<!--                            <br/>-->
+<!--                            Description:-->
+<!--                            <input th:field="*{body}"/>-->
+<!--                            <br/>-->
+<!--                            <button class="button photo-upload" type="button" id="photo-picker">Upload Profile Image-->
+<!--                            </button>-->
+<!--                            <input type="hidden" class="" id="photo-upload" name="photoURL">-->
+<!--                            <input type="submit"/>-->
+<!--                        </form>-->
+<!--                    </div>-->
+<!--                    <div class="modal-footer">-->
+<!--                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash; Job Create Modal &ndash;&gt;-->
+<!--    <div th:if="${#httpServletRequest.requestURI.contains('job-postings') || #httpServletRequest.requestURI.contains('users/dashboard')}">-->
+<!--        <div class="modal fade" id="job-postings-create-modal" tabindex="-1" role="dialog"-->
+<!--             aria-labelledby="job-postings-create-modal-title"-->
+<!--             aria-hidden="true">-->
+<!--            <div class="modal-dialog modal-dialog-centered modal-md" role="document">-->
+<!--                <div class="modal-content">-->
+<!--                    <div class="modal-header">-->
+<!--                        <h5 class="modal-title" id="job-postings-create-modal-title">Create Job Posting</h5>-->
+<!--                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                            <span aria-hidden="true">&times;</span>-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                    <div class="modal-body row" id="job-postings-create-modal-body">-->
+<!--                        <form th:action="@{/job-postings/create}" th:method="post" th:object="${post}">-->
+<!--                            Title:-->
+<!--                            <input th:field="*{title}" />-->
+<!--                            <br />-->
+<!--                            Employer:-->
+<!--                            <input th:field="*{employer}" />-->
+<!--                            <br />-->
+<!--                            Body:-->
+<!--                            <input th:field="*{body}" />-->
+<!--                            <br />-->
+<!--                            <input type="hidden" class="" id="job-postings-type" name="postTypeId" value="3">-->
+<!--                            <input type="submit" />-->
+<!--                        </form>-->
+<!--                    </div>-->
+<!--                    <div class="modal-footer">-->
+<!--                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash; Job Create Modal &ndash;&gt;-->
+<!--    <div th:if="${#httpServletRequest.requestURI.contains('whiteboard-questions') || #httpServletRequest.requestURI.contains('users/dashboard')}">-->
+<!--        <div class="modal fade" id="whiteboard-questions-create-modal" tabindex="-1" role="dialog"-->
+<!--             aria-labelledby="job-postings-create-modal-title"-->
+<!--             aria-hidden="true">-->
+<!--            <div class="modal-dialog modal-dialog-centered modal-md" role="document">-->
+<!--                <div class="modal-content">-->
+<!--                    <div class="modal-header">-->
+<!--                        <h5 class="modal-title" id="whiteboard-questions-create-modal-title">Create Whiteboard Question</h5>-->
+<!--                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                            <span aria-hidden="true">&times;</span>-->
+<!--                        </button>-->
+<!--                    </div>-->
+<!--                    <div class="modal-body row" id="whiteboard-questions-create-modal-body">-->
+<!--                        <form th:action="@{/whiteboard-questions/create}" th:method="post" th:object="${post}">-->
+<!--                            Title:-->
+<!--                            <input th:field="*{title}" />-->
+<!--                            <br />-->
+<!--                            Body:-->
+<!--                            <input th:field="*{body}" />-->
+<!--                            <br />-->
+<!--                            Answer:-->
+<!--                            <input th:field="*{answer}" />-->
+<!--                            <br />-->
+<!--                            <input type="hidden" class="" id="whitboard-questions-type" name="postTypeId" value="4">-->
+<!--                            <input type="submit" />-->
+<!--                        </form>-->
+<!--                    </div>-->
+<!--                    <div class="modal-footer">-->
+<!--                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 </div>
 </body>
 </html>

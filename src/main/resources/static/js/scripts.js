@@ -94,7 +94,6 @@ const attachEditCommentEventListener = function() {
         }))
     }
 };
-
 //used alot
 const attachRatingsEventListener = function() {
     let upvoteButtonClass = document.querySelectorAll(".upvote-button");
@@ -183,7 +182,7 @@ const attachRatingsEventListener = function() {
             })
         });
     }
-}
+};
 //
 //used in api/questions
 const attachGetQuestionEventListener = function() {
@@ -207,7 +206,7 @@ const attachAddSkillEventListener = function() {
             i++;
         })
     }
-}
+};
 const getQuestion = function() {
     let fill = document.getElementById("fill-this");
     fetch(`/api/interview-questions/show-one`, {
@@ -248,7 +247,7 @@ const getQuestion = function() {
             attachAddCommentEventListener();
             attachRatingsEventListener();
         })
-}
+};
 const attachFilestack = function() {
     if (document.querySelector('meta.filestackKey') !== null && document.querySelector('meta.filestackKey').content !== "") {
         // Set up the picker
@@ -305,7 +304,35 @@ const attachFilestack = function() {
             console.log(resumeInput.value);
         };
     }
-}
+};
+const attachCreatePostSubmitButtonListener = function() {
+    if(document.querySelectorAll(".submit-button") !== null) {
+        document.querySelectorAll(".submit-button").forEach(button => {
+            button.addEventListener("click", function(e) {
+                e.preventDefault();
+                let idSplit = this.getAttribute("id").split("-");
+                let type = `${idSplit[0]}-${idSplit[1]}`;
+                let title = document.querySelector(`#${type}-title`).value;
+                let body = document.querySelector(`#${type}-body`).value;
+                let answer = document.querySelector(`#${type}-answer`) ? document.querySelector(`#${type}-answer`).value : "";
+                fetch(`/${type}/create?title=${title}&body=${body}&answer=${answer}`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': token
+                    }
+                })
+                    .then(response => {
+                        location.reload(true);
+                    })
+            })
+        })
+    }
+};
+const attachCreateModalEventListener = function() {
+    document.querySelectorAll(".nav-create-button").forEach(button => {
+        button.addEventListener("click", attachCreatePostSubmitButtonListener);
+    })
+};
 //begin main
 attachAddCommentEventListener();
 attachEditCommentEventListener();
@@ -314,3 +341,4 @@ attachDeletePostEventListener();
 attachFilestack();
 attachRatingsEventListener();
 attachGetQuestionEventListener();
+attachCreateModalEventListener();

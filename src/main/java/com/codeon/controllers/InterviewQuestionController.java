@@ -81,20 +81,33 @@ public class InterviewQuestionController {
         return "interview-questions/create";
     }
 
+//    @PostMapping("/interview-questions/create")
+//    public String createPost(@RequestParam Long postTypeId, @ModelAttribute Post post) {
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        post.setUser(user);
+//        Date now = new Date();
+//        String pattern = "yyyy-MM-dd";
+//        SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+//        String date = formatter.format(now);
+//        post.setDateTime(date);
+//        post.setRatingTotal(0);
+//        post.setPostType(postTypeDao.getPostTypeById(postTypeId));
+//        postDao.save(post);
+//        postRatingDao.save(new PostRating(post, user, 0));
+//        return "redirect:/interview-questions/show";
+//    }
     @PostMapping("/interview-questions/create")
-    public String createPost(@RequestParam Long postTypeId, @ModelAttribute Post post) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        post.setUser(user);
+    @ResponseBody
+    public Post createPost(Principal principal, @RequestParam String title, @RequestParam String body, @RequestParam String answer) {
+        User user = userDao.findUserByUsername(principal.getName());
         Date now = new Date();
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat formatter = new SimpleDateFormat(pattern);
         String date = formatter.format(now);
-        post.setDateTime(date);
-        post.setRatingTotal(0);
-        post.setPostType(postTypeDao.getPostTypeById(postTypeId));
-        postDao.save(post);
+        Post post = new Post(title, "", body, answer, user, postTypeDao.getPostTypeByType("interview-questions"), 0, date);
+        post = postDao.save(post);
         postRatingDao.save(new PostRating(post, user, 0));
-        return "redirect:/interview-questions/show";
+        return post;
     }
 
     @GetMapping("/interview-questions/{id}")

@@ -44,6 +44,7 @@ public class WhiteboardQuestionController {
 
     @GetMapping("/whiteboard-questions/show")
     public String showAllWhiteboardQuestions(Model model, Principal principal) {
+        model.addAttribute("filestackKey", filestackKey);
         List<Post> whiteboardQuestions = postDao.findAllByPostTypeId_Type("whiteboard-questions");
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("talkJSAppId", talkJSAppId);
@@ -81,20 +82,33 @@ public class WhiteboardQuestionController {
         return "whiteboard-questions/create";
     }
 
+//    @PostMapping("/whiteboard-questions/create")
+//    public String createWhiteboardQuestion(@RequestParam Long postTypeId, @ModelAttribute Post post) {
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        post.setUser(user);
+//        Date now = new Date();
+//        String pattern = "yyyy-MM-dd";
+//        SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+//        String date = formatter.format(now);
+//        post.setDateTime(date);
+//        post.setRatingTotal(0);
+//        post.setPostType(postTypeDao.getPostTypeById(postTypeId));
+//        postDao.save(post);
+//        postRatingDao.save(new PostRating(post, user, 0));
+//        return "redirect:/whiteboard-questions/show";
+//    }
     @PostMapping("/whiteboard-questions/create")
-    public String createWhiteboardQuestion(@RequestParam Long postTypeId, @ModelAttribute Post post) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        post.setUser(user);
+    @ResponseBody
+    public Post createPost(Principal principal, @RequestParam String title, @RequestParam String body, @RequestParam String answer, @RequestParam String employer) {
+        User user = userDao.findUserByUsername(principal.getName());
         Date now = new Date();
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat formatter = new SimpleDateFormat(pattern);
         String date = formatter.format(now);
-        post.setDateTime(date);
-        post.setRatingTotal(0);
-        post.setPostType(postTypeDao.getPostTypeById(postTypeId));
-        postDao.save(post);
+        Post post = new Post(title, employer, body, answer, user, postTypeDao.getPostTypeByType("whiteboard-questions"), 0, date);
+        post = postDao.save(post);
         postRatingDao.save(new PostRating(post, user, 0));
-        return "redirect:/whiteboard-questions/show";
+        return post;
     }
 
     @GetMapping("/whiteboard-questions/{id}")

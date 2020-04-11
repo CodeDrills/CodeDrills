@@ -46,7 +46,7 @@ public class MentorshipPostsController {
     }
     @GetMapping("/mentorship-posts/show")
     public String showAllPosts(Model model, Principal principal) {
-        model.addAttribute("post", new Post());
+        model.addAttribute("filestackKey", filestackKey);
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("talkJSAppId", talkJSAppId);
         model.addAttribute("postList", postDao.findAllByPostTypeId_Type("mentorship-posts"));

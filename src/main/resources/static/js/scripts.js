@@ -325,6 +325,12 @@ const attachCreatePostSubmitButtonListener = function() {
                     case "mentorship-posts":
                         addParams = `photoURL=${photoURL}`;
                         break;
+                    case "job-postings":
+                        addParams = `employer=${employer}`;
+                        break;
+                    case "whiteboard-questions":
+                        addParams = `answer=${answer}&employer=${employer}`;
+                        break;
                     default:
                         break;
                 }

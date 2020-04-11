@@ -45,6 +45,7 @@ public class InterviewQuestionController {
 
     @GetMapping("/interview-questions/show")
     public String showAllInterviewQuestions(Model model, Principal principal) {
+        model.addAttribute("filestackKey", filestackKey);
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("talkJSAppId", talkJSAppId);
         model.addAttribute("postList", postDao.findAllByPostTypeId_Type("interview-questions"));

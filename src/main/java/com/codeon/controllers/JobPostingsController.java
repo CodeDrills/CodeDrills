@@ -40,6 +40,7 @@ public class JobPostingsController {
 
     @GetMapping("/job-postings/show")
     public String showAllJobPostings(Model model, Principal principal) {
+        model.addAttribute("filestackKey", filestackKey);
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("talkJSAppId", talkJSAppId);
         model.addAttribute("postList", postDao.findAllByPostTypeId_Type("job-postings"));

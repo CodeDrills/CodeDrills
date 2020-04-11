@@ -17,7 +17,8 @@ import java.util.List;
 
 @Controller
 public class ChatController {
-
+    @Value("${filestack.api.key}")
+    private String filestackKey;
     @Value("${talkjs.app.id}")
     private String talkJSAppId;
 
@@ -44,6 +45,7 @@ public class ChatController {
 
     @GetMapping("/chat/inbox")
     public String getInbox(Model model, Principal principal) {
+        model.addAttribute("filestackKey", filestackKey);
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("talkJSAppId", talkJSAppId);
         return "chat/inbox";

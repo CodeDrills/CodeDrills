@@ -12,6 +12,8 @@ import java.security.Principal;
 
 @Controller
 public class WhiteboardController {
+    @Value("${filestack.api.key}")
+    private String filestackKey;
     @Value("${firebase.api.config}")
     private String firebaseKey;
     @Value("${talkjs.app.id}")
@@ -26,6 +28,7 @@ public class WhiteboardController {
 
     @GetMapping("/whiteboard")
     public String getWhiteboard(Model model, Principal principal, @RequestParam(required = false) Long otherUserId) {
+        model.addAttribute("filestackKey", filestackKey);
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("talkJSAppId", talkJSAppId);
         model.addAttribute("otherUser", userDao.findUserById(otherUserId));
@@ -35,6 +38,7 @@ public class WhiteboardController {
     }
     @GetMapping("/whiteboard/1")
     public String getRoomOne(Model model, Principal principal, @RequestParam(required = false) Long otherUserId) {
+        model.addAttribute("filestackKey", filestackKey);
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("talkJSAppId", talkJSAppId);
         model.addAttribute("otherUser", userDao.findUserById(otherUserId));
@@ -44,6 +48,7 @@ public class WhiteboardController {
     }
     @GetMapping("/whiteboard/2")
     public String getRoomTwo(Model model, Principal principal, @RequestParam(required = false) Long otherUserId) {
+        model.addAttribute("filestackKey", filestackKey);
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("talkJSAppId", talkJSAppId);
         model.addAttribute("otherUser", userDao.findUserById(otherUserId));
@@ -53,6 +58,7 @@ public class WhiteboardController {
     }
     @GetMapping("/whiteboard/3")
     public String getRoomThree(Model model, Principal principal, @RequestParam(required = false) Long otherUserId) {
+        model.addAttribute("filestackKey", filestackKey);
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("talkJSAppId", talkJSAppId);
         model.addAttribute("otherUser", userDao.findUserById(otherUserId));
@@ -62,6 +68,7 @@ public class WhiteboardController {
     }
     @GetMapping("/whiteboard/4")
     public String getRoomFour(Model model, Principal principal, @RequestParam(required = false) Long otherUserId) {
+        model.addAttribute("filestackKey", filestackKey);
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("talkJSAppId", talkJSAppId);
         model.addAttribute("otherUser", userDao.findUserById(otherUserId));

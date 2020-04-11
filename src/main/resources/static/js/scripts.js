@@ -94,7 +94,6 @@ const attachEditCommentEventListener = function() {
         }))
     }
 };
-
 //used alot
 const attachRatingsEventListener = function() {
     let upvoteButtonClass = document.querySelectorAll(".upvote-button");
@@ -183,7 +182,7 @@ const attachRatingsEventListener = function() {
             })
         });
     }
-}
+};
 //
 //used in api/questions
 const attachGetQuestionEventListener = function() {
@@ -207,7 +206,7 @@ const attachAddSkillEventListener = function() {
             i++;
         })
     }
-}
+};
 const getQuestion = function() {
     let fill = document.getElementById("fill-this");
     fetch(`/api/interview-questions/show-one`, {
@@ -248,7 +247,7 @@ const getQuestion = function() {
             attachAddCommentEventListener();
             attachRatingsEventListener();
         })
-}
+};
 const attachFilestack = function() {
     if (document.querySelector('meta.filestackKey') !== null && document.querySelector('meta.filestackKey').content !== "") {
         // Set up the picker
@@ -305,8 +304,54 @@ const attachFilestack = function() {
             console.log(resumeInput.value);
         };
     }
-}
-
+};
+const attachCreatePostSubmitButtonListener = function() {
+    if(document.querySelectorAll(".submit-button") !== null) {
+        document.querySelectorAll(".submit-button").forEach(button => {
+            button.addEventListener("click", function(e) {
+                e.preventDefault();
+                let idSplit = this.getAttribute("id").split("-");
+                let type = `${idSplit[0]}-${idSplit[1]}`;
+                let title = document.querySelector(`#${type}-title`).value;
+                let body = document.querySelector(`#${type}-body`).value;
+                let answer = document.querySelector(`#${type}-answer`) ? document.querySelector(`#${type}-answer`).value : null;
+                let employer = document.querySelector(`#${type}-employer`) ? document.querySelector(`#${type}-employer`).value : null;
+                let photoURL = document.querySelector(`.${type}-photo-url`) ? document.querySelector(`.${type}-photo-url`).value : null;
+                let addParams;
+                switch(`${type}`) {
+                    case "interview-questions":
+                        addParams = `answer=${answer}&employer=${employer}`;
+                        break;
+                    case "mentorship-posts":
+                        addParams = `photoURL=${photoURL}`;
+                        break;
+                    case "job-postings":
+                        addParams = `employer=${employer}`;
+                        break;
+                    case "whiteboard-questions":
+                        addParams = `answer=${answer}&employer=${employer}`;
+                        break;
+                    default:
+                        break;
+                }
+                fetch(`/${type}/create?title=${title}&body=${body}&${addParams}`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': token
+                    }
+                })
+                    .then(response => {
+                        location.reload(true);
+                    })
+            })
+        })
+    }
+};
+const attachCreateModalEventListener = function() {
+    document.querySelectorAll(".nav-create-button").forEach(button => {
+        button.addEventListener("click", attachCreatePostSubmitButtonListener, attachFilestack);
+    })
+};
 //begin main
 attachAddCommentEventListener();
 attachEditCommentEventListener();
@@ -315,3 +360,4 @@ attachDeletePostEventListener();
 attachFilestack();
 attachRatingsEventListener();
 attachGetQuestionEventListener();
+attachCreateModalEventListener();

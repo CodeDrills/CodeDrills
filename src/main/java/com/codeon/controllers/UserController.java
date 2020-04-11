@@ -106,6 +106,8 @@ public class UserController {
         mentorshipPostsList.sort(Collections.reverseOrder(Comparator.comparing(Post::getId)));
         List<Post> jobPostingsList = postDao.findAllByPostTypeId_Type("job-postings").subList(postDao.findAllByPostTypeId_Type("job-postings").size() - 2, postDao.findAllByPostTypeId_Type("job-postings").size());
         jobPostingsList.sort(Collections.reverseOrder(Comparator.comparing(Post::getId)));
+        model.addAttribute("filestackKey", filestackKey);
+        model.addAttribute("post", new Post());
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("talkJSAppId", talkJSAppId);
         model.addAttribute("interviewQuestionsList", interviewQuestionsList);

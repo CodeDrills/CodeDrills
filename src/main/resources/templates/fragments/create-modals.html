@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div th:fragment="create-modals">
+    <!-- Interview Create Modal -->
+    <div th:if="${#httpServletRequest.requestURI.contains('interview-questions') || #httpServletRequest.requestURI.contains('users/dashboard')}">
+        <div class="modal fade" id="interview-questions-create-modal" tabindex="-1" role="dialog"
+             aria-labelledby="mentorship-create-modal-title"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="interview-questions-modal-title">Create Interview Question</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body row" id="interview-questions-create-modal-body">
+                        <div>
+                            Title:
+                            <input name="interview-questions-title" id="interview-questions-title"/>
+                            <br/>
+                            Employer:
+                            <input name="interview-questions-employer" id="interview-questions-employer"/>
+                            <br/>
+                            Body:
+                            <input name="interview-questions-body" id="interview-questions-body"/>
+                            <br/>
+                            Answer:
+                            <input name="interview-questions-answer" id="interview-questions-answer"/>
+                            <br/>
+                            <button class="btn submit-button" id="interview-questions-submit-button" data-dismiss="modal">Submit</button>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--     Mentorship Create Modal -->
+    <div th:if="${#httpServletRequest.requestURI.contains('mentorship-posts') || #httpServletRequest.requestURI.contains('users/dashboard')}">
+        <div class="modal fade" id="mentorship-posts-create-modal" tabindex="-1" role="dialog"
+             aria-labelledby="mentorship-create-modal-title"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="mentorship-create-modal-title">Create Mentorship Post</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body row" id="mentorship-posts-create-modal-body">
+                        <div>
+                            Title:
+                            <input name="mentorship-posts-title" id="mentorship-posts-title"/>
+                            <br/>
+                            Body/Question:
+                            <input name="mentorship-posts-body" id="mentorship-posts-body"/>
+                            <br/>
+                            <button class="button photo-upload" type="button" id="photo-picker">Upload An Image</button>
+                            <input type="hidden" class="mentorship-posts-photo-url" id="photo-upload" name="mentorship-posts-photo-url"/>
+                            <button class="btn submit-button" id="mentorship-posts-submit-button" data-dismiss="modal">Submit</button>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Job Create Modal -->
+    <div th:if="${#httpServletRequest.requestURI.contains('job-postings') || #httpServletRequest.requestURI.contains('users/dashboard')}">
+        <div class="modal fade" id="job-postings-create-modal" tabindex="-1" role="dialog"
+             aria-labelledby="job-postings-create-modal-title"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="job-postings-create-modal-title">Create Job Posting</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body row" id="job-postings-create-modal-body">
+                        <div>
+                            Title:
+                            <input name="interview-questions-title" id="job-postings-title"/>
+                            <br/>
+                            Employer:
+                            <input name="interview-questions-employer" id="job-postings-employer"/>
+                            <br/>
+                            Body:
+                            <input name="interview-questions-body" id="job-postings-body"/>
+                            <br/>
+                            <button class="btn submit-button" id="job-postings-submit-button" data-dismiss="modal">Submit</button>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Whiteboard Create Modal -->
+    <div th:if="${#httpServletRequest.requestURI.contains('whiteboard-questions') || #httpServletRequest.requestURI.contains('users/dashboard')}">
+        <div class="modal fade" id="whiteboard-questions-create-modal" tabindex="-1" role="dialog"
+             aria-labelledby="job-postings-create-modal-title"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="whiteboard-questions-create-modal-title">Create Whiteboard Question</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body row" id="whiteboard-questions-create-modal-body">
+                        <div>
+                            Title:
+                            <input name="interview-questions-title" id="whiteboard-questions-title"/>
+                            <br/>
+                            Employer:
+                            <input name="interview-questions-employer" id="whiteboard-questions-employer"/>
+                            <br/>
+                            Body:
+                            <input name="interview-questions-body" id="whiteboard-questions-body"/>
+                            <br/>
+                            Answer:
+                            <input name="interview-questions-answer" id="whiteboard-questions-answer"/>
+                            <br/>
+                            <button class="btn submit-button" id="whiteboard-questions-submit-button" data-dismiss="modal">Submit</button>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

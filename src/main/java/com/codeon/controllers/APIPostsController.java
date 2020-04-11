@@ -16,6 +16,8 @@ import java.util.*;
 
 @Controller
 public class APIPostsController {
+    @Value("${filestack.api.key}")
+    private String filestackKey;
     @Value("${talkjs.app.id}")
     private String talkJSAppId;
 
@@ -30,6 +32,7 @@ public class APIPostsController {
 
     @GetMapping("/api/interview-questions")
     public String getInterviewQuestionsView(Model model, Principal principal) {
+        model.addAttribute("filestackKey", filestackKey);
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("talkJSAppId", talkJSAppId);
         return "questions/show";

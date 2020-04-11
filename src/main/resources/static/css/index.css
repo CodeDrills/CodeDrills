@@ -212,4 +212,7 @@ header {
     .parallax2{
         display: none;
     }
+    .col-3{
+        display: none;
+    }
 }

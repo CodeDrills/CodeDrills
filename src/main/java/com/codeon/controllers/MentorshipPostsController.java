@@ -60,27 +60,46 @@ public class MentorshipPostsController {
         model.addAttribute("filestackKey", filestackKey);
         return "mentorship-posts/create";
     }
+//    @PostMapping("/mentorship-posts/create")
+//    public String createPost(Principal principal, @RequestParam String photoURL, @ModelAttribute Post post) {
+//        User user = userDao.findUserByUsername(principal.getName());
+//        post.setUser(user);
+//        Date now = new Date();
+//        String pattern = "yyyy-MM-dd";
+//        SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+//        String date = formatter.format(now);
+//        post.setDateTime(date);
+//        post.setRatingTotal(0);
+//        post.setPostType(postTypeDao.getPostTypeById(2L));
+//        post = postDao.save(post);
+////        List<ImageURL> imageURLList = new ArrayList<>();
+//        ImageURL imageURL = new ImageURL();
+//        imageURL.setUrl(photoURL);
+//        imageURL.setPost(post);
+//        imageURL = imageURLDao.save(imageURL);
+//        postRatingDao.save(new PostRating(post, user, 0));
+////        imageURLList.add(imageURL);
+////        post.setImageURLList(imageURLList);
+//        return "redirect:/mentorship-posts/show";
+//    }
     @PostMapping("/mentorship-posts/create")
-    public String createPost(Principal principal, @RequestParam String photoURL, @ModelAttribute Post post) {
+    @ResponseBody
+    public Post createPost(Principal principal, @RequestParam String title, @RequestParam String body, @RequestParam(required = false) String photoURL) {
         User user = userDao.findUserByUsername(principal.getName());
-        post.setUser(user);
         Date now = new Date();
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat formatter = new SimpleDateFormat(pattern);
         String date = formatter.format(now);
-        post.setDateTime(date);
-        post.setRatingTotal(0);
-        post.setPostType(postTypeDao.getPostTypeById(2L));
+        Post post = new Post(title, null, body, null, user, postTypeDao.getPostTypeByType("mentorship-posts"), 0, date);
+        if(!photoURL.equals("")) {
+            ImageURL imageURL = new ImageURL();
+            imageURL.setUrl(photoURL);
+            imageURL.setPost(post);
+            imageURLDao.save(imageURL);
+        }
         post = postDao.save(post);
-//        List<ImageURL> imageURLList = new ArrayList<>();
-        ImageURL imageURL = new ImageURL();
-        imageURL.setUrl(photoURL);
-        imageURL.setPost(post);
-        imageURL = imageURLDao.save(imageURL);
         postRatingDao.save(new PostRating(post, user, 0));
-//        imageURLList.add(imageURL);
-//        post.setImageURLList(imageURLList);
-        return "redirect:/mentorship-posts/show";
+        return post;
     }
     @GetMapping("/mentorship-posts/{id}")
     public String getPost(@PathVariable Long id, Model model, Principal principal){

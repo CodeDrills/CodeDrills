@@ -55,20 +55,33 @@ public class JobPostingsController {
         return "job-postings/create";
     }
 
+//    @PostMapping("/job-postings/create")
+//    public String createJobPosting(@RequestParam Long postTypeId, @ModelAttribute Post post) {
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        post.setUser(user);
+//        Date now = new Date();
+//        String pattern = "yyyy-MM-dd";
+//        SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+//        String date = formatter.format(now);
+//        post.setDateTime(date);
+//        post.setRatingTotal(0);
+//        post.setPostType(postTypeDao.getPostTypeById(postTypeId));
+//        postDao.save(post);
+//        postRatingDao.save(new PostRating(post, user, 0));
+//        return "redirect:/job-postings/show";
+//    }
     @PostMapping("/job-postings/create")
-    public String createJobPosting(@RequestParam Long postTypeId, @ModelAttribute Post post) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        post.setUser(user);
+    @ResponseBody
+    public Post createPost(Principal principal, @RequestParam String title, @RequestParam String body, @RequestParam String employer) {
+        User user = userDao.findUserByUsername(principal.getName());
         Date now = new Date();
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat formatter = new SimpleDateFormat(pattern);
         String date = formatter.format(now);
-        post.setDateTime(date);
-        post.setRatingTotal(0);
-        post.setPostType(postTypeDao.getPostTypeById(postTypeId));
-        postDao.save(post);
+        Post post = new Post(title, employer, body, null, user, postTypeDao.getPostTypeByType("job-postings"), 0, date);
+        post = postDao.save(post);
         postRatingDao.save(new PostRating(post, user, 0));
-        return "redirect:/job-postings/show";
+        return post;
     }
 
     @GetMapping("/job-postings/{id}")

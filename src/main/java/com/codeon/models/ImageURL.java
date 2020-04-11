@@ -16,7 +16,7 @@ public class ImageURL {
     private String url;
 
     @JsonBackReference
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn (name = "post_id")
     private Post post;
 

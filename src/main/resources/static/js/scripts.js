@@ -314,8 +314,21 @@ const attachCreatePostSubmitButtonListener = function() {
                 let type = `${idSplit[0]}-${idSplit[1]}`;
                 let title = document.querySelector(`#${type}-title`).value;
                 let body = document.querySelector(`#${type}-body`).value;
-                let answer = document.querySelector(`#${type}-answer`) ? document.querySelector(`#${type}-answer`).value : "";
-                fetch(`/${type}/create?title=${title}&body=${body}&answer=${answer}`, {
+                let answer = document.querySelector(`#${type}-answer`) ? document.querySelector(`#${type}-answer`).value : null;
+                let employer = document.querySelector(`#${type}-employer`) ? document.querySelector(`#${type}-employer`).value : null;
+                let photoURL = document.querySelector(`.${type}-photo-url`) ? document.querySelector(`.${type}-photo-url`).value : null;
+                let addParams;
+                switch(`${type}`) {
+                    case "interview-questions":
+                        addParams = `answer=${answer}&employer=${employer}`;
+                        break;
+                    case "mentorship-posts":
+                        addParams = `photoURL=${photoURL}`;
+                        break;
+                    default:
+                        break;
+                }
+                fetch(`/${type}/create?title=${title}&body=${body}&${addParams}`, {
                     method: 'POST',
                     headers: {
                         'X-CSRF-TOKEN': token
@@ -330,7 +343,7 @@ const attachCreatePostSubmitButtonListener = function() {
 };
 const attachCreateModalEventListener = function() {
     document.querySelectorAll(".nav-create-button").forEach(button => {
-        button.addEventListener("click", attachCreatePostSubmitButtonListener);
+        button.addEventListener("click", attachCreatePostSubmitButtonListener, attachFilestack);
     })
 };
 //begin main

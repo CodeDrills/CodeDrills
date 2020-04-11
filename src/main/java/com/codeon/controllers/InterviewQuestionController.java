@@ -98,13 +98,13 @@ public class InterviewQuestionController {
 //    }
     @PostMapping("/interview-questions/create")
     @ResponseBody
-    public Post createPost(Principal principal, @RequestParam String title, @RequestParam String body, @RequestParam String answer) {
+    public Post createPost(Principal principal, @RequestParam String title, @RequestParam String body, @RequestParam String answer, @RequestParam String employer) {
         User user = userDao.findUserByUsername(principal.getName());
         Date now = new Date();
         String pattern = "yyyy-MM-dd";
         SimpleDateFormat formatter = new SimpleDateFormat(pattern);
         String date = formatter.format(now);
-        Post post = new Post(title, "", body, answer, user, postTypeDao.getPostTypeByType("interview-questions"), 0, date);
+        Post post = new Post(title, employer, body, answer, user, postTypeDao.getPostTypeByType("interview-questions"), 0, date);
         post = postDao.save(post);
         postRatingDao.save(new PostRating(post, user, 0));
         return post;

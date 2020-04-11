@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Controller
 public class InterviewQuestionController {
@@ -47,7 +44,9 @@ public class InterviewQuestionController {
     public String showAllInterviewQuestions(Model model, Principal principal) {
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("talkJSAppId", talkJSAppId);
-        model.addAttribute("postList", postDao.findAllByPostTypeId_Type("interview-questions"));
+        List<Post> interviewQuestions = postDao.findAllByPostTypeId_Type("interview-questions");
+        interviewQuestions.sort(Collections.reverseOrder(Comparator.comparing((Post::getRatingTotal))));
+        model.addAttribute("postList", interviewQuestions);
         return "interview-questions/show";
     }
 

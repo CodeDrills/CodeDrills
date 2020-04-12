@@ -120,7 +120,7 @@ const attachRatingsEventListener = function() {
                             location.reload(true);
                             return res;
                         }
-                        document.getElementById("total-rating").innerHTML = `Rating Total: ${res}`;
+                        document.getElementById("total-rating").innerHTML = `${res}`;
                     })
             })
         });
@@ -143,7 +143,7 @@ const attachRatingsEventListener = function() {
                             location.reload(true);
                             return res;
                         }
-                        document.getElementById("total-rating").innerHTML = `Rating Total: ${res}`;
+                        document.getElementById("total-rating").innerHTML = `${res}`;
                     })
             })
         });
@@ -230,8 +230,8 @@ const getQuestion = function() {
                             <div class="card col-12">
                                 <div class="row">
                                     <div class="col-1 p-4">
-                                        <i class="upvote-button fas fa-arrow-up btn btn-link"  id="upvote-${res.id}"></i>
-                                        <p class="mb-0 ml-3">  <span>${res.ratingTotal}</span></p>
+                                        <i class="upvote-button fas fa-arrow-up btn btn-link" id="upvote-${res.id}"></i>
+                                        <p class="mb-0 ml-3">  <span id="total-rating">${res.ratingTotal}</span></p>
                                         <i class="downvote-button fas fa-arrow-down btn btn-link" id="downvote-${res.id}"></i>
                                     </div>
                                     <div class="col-11 p-4">

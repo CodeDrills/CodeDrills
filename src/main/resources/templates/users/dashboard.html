@@ -13,26 +13,23 @@
 <!--<div class="container">-->
 <div class="row m-5">
     <div class="col-3">
-        <div class="card text-center">
+        <div class="card text-center" >
+            <div class="embed-responsive embed-responsive-4by3">
+                <img th:src="${user.profileImageURL}" alt="profile" class="card-img-top embed-responsive-item">
+            </div>
+            <div class="card-body">
                 <h4>Welcome, <span th:text="${user.username}">user</span>!</h4>
-            <img th:src="${user.profileImageURL}" alt="profile"class="img-fluid align-self-center rounded-circle" style="width:60px;">
-        <div class="media-body">
-            <h4>soemthing here</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
         </div>
     </div>
-
     <div class="col-9">
-        <div class="card mb-2">
-            <div class="card-body">
-                <h2 class="display-1 text-center p-3 profile-header">CodeOn</h2>
-                <p class="text-center"> Here at CodeOn we as a community strive build a community of developers that can help
-                    change the world </p>
+        <div class="card p-5 blue-font" id="profile-card">
+            <h2 class="display-1 text-center p-3 profile-header">CodeOn</h2>
+                <p class="text-center" id="label-text"> Here at CodeOn we as a community strive build a community of developers that can help
+                    the world. Select one of our post types and help another developer. Need help connect with one of our developers </p>
             </div>
         </div>
     </div>
-</div>
 
 
 
@@ -179,7 +176,7 @@
 <!--        interview question description card-->
         <div class="card text-center">
             <div class="card-body">
-                <h1>Most Recent Interview Questions</h1>
+                <h3>Most Recent Interview Questions</h3>
                 <p class="card-text">This page is connect within the CodeOn community and help one another. Whether it be studying, collaborating, needing a mentor or just a place to see how others experiences were. The mentorship page is the place to start. </p>
                 <button type="button" class="btn btn-link" data-toggle="modal" data-target="#inteviewModal">
                     Interview Questions Create

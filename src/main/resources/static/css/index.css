@@ -170,7 +170,7 @@ header {
 /*    background-color: black;*/
 /*    !*opacity: 0.5;*!*/
 /*    z-index: 1;*/
-/*}*/
+ /*}*/
 /*splashpage text in front*/
 .splash{
     color: white;
@@ -184,6 +184,10 @@ header {
 /*for each job post type*/
 #profile-card{
     background-image: url("/img/blue-wallpaper.jpg");
+
+}
+#label-text{
+    color: white;
 }
 .profile-header{
     font-family: 'Orbitron', sans-serif;
@@ -203,10 +207,13 @@ header {
     color: rgba(255,255,255,.5) !important;
 }
 
+
+
 .nav-link:hover, .nav-create-button:hover, .logout-button:hover, .drop:hover {
     color: #0f6674 !important;
     text-decoration: none !important;
 }
+
 
 @media only screen and (max-width: 600px) {
     .parallax2{

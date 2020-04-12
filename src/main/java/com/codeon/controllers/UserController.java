@@ -39,6 +39,11 @@ public class UserController {
         this.approvedEmailDao = approvedEmailDao;
     }
 
+    @GetMapping("/about-us")
+    public String showAboutUs() {
+        return "about-us";
+    }
+
     @GetMapping("/register")
     public String showRegisterForm(Model model, Principal principal) {
         //This prinicipal logic may be redundant or need to be deleted if spring security covers keeping logged in users away from this

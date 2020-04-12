@@ -239,7 +239,8 @@ const getQuestion = function() {
                                         <!-- <p id="total-rating">Rating Total: ${res.ratingTotal}</p> -->
                                         <h5>${res.body}</h5>
                                         <div id="answer-${res.id}">
-                                        <h5>Answer: ${res.answer}</h5>
+                                        <br>
+                                        <h5><b>Answer:</b>   ${res.answer}</h5>
                                         <!--
                                         <button class="upvote-button" id="upvote-${res.id}">Upvote JS</button>
                                         <button class="downvote-button" id="downvote-${res.id}">Downvote JS</button>

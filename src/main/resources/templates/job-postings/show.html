@@ -13,7 +13,7 @@
     <!--    PROFILE CARD    -->
     <div class="card p-5 mt-5 blue-font" id="profile-card">
         <h2 class="card-title text-center p-3 profile-header">Jobs</h2>
-        <p> </p>
+        <p></p>
         <p class="align-self-end profile-btns">
             <!--                maybe add some buttons to the front-->
         </p>
@@ -26,34 +26,41 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-1">
-                        <i class="upvote-button fas fa-arrow-up btn btn-link"  th:id="'upvote-' + ${post.id}"></i>
-                        <p class="mb-0 ml-3">  <span th:text = "${post.getRatingTotal()}"></span></p>
+                        <i class="upvote-button fas fa-arrow-up btn btn-link" th:id="'upvote-' + ${post.id}"></i>
+                        <p class="mb-0 ml-3"><span th:text="${post.getRatingTotal()}"></span></p>
                         <i class="downvote-button fas fa-arrow-down btn btn-link" th:id="'downvote-' + ${post.id}"></i>
                     </div>
                     <div class="col-11">
                         <div th:id="'post-' + ${post.id}"></div>
-                        <p class="m-r mb-0 userprint">Posted on: <span class="userinfo" th:text = "${post.dateTime}"></span> by <span class="userinfo" th:text="${post.user.username}"></span></p>
-                        <h1 th:text = "${post.title}"></h1>
-                        <h3 th:text = "${post.employer}"></h3>
-                        <p th:text = "${post.body}"></p>
+                        <p class="m-r mb-0 userprint">Posted on:<span class="userinfo" th:text="${post.dateTime} + 'by' + ${post.user.username}"></span></p>
+                        <h1 th:text="${post.title}"></h1>
+                        <h3 th:text="${post.employer}"></h3>
+                        <p th:text="${post.body}"></p>
                         <hr class="m-0">
                         <div th:each="comment : ${post.commentList}">
                             <div class="row">
                                 <!--                                    THis is where the comment ratings are -->
                                 <div class="col-1">
-                                    <i class="upvote-comment-button fas fa-arrow-up btn btn-link" th:id="'upvote-comment-' + ${comment.id}"> </i>
-                                    <p class="mb-0 ml-3"><span th:text = "${comment.getRatingTotal()}"></span></p>
-                                    <i class="downvote-comment-button fas fa-arrow-down btn btn-link" th:id="'downvote-comment-' + ${comment.id}"></i>
+                                    <i class="upvote-comment-button fas fa-arrow-up btn btn-link"
+                                       th:id="'upvote-comment-' + ${comment.id}"> </i>
+                                    <p class="mb-0 ml-3"><span th:text="${comment.getRatingTotal()}"></span></p>
+                                    <i class="downvote-comment-button fas fa-arrow-down btn btn-link"
+                                       th:id="'downvote-comment-' + ${comment.id}"></i>
                                 </div>
                                 <!--                                    This is where the comment body goes-->
                                 <div class="col-11 align-self-center p- commentrow">
                                     <div class="media">
-                                        <img th:src="${comment.user.profileImageURL}" alt="profile"class="mr-3 rounded-circle" style="width:60px;">
+                                        <img th:src="${comment.user.profileImageURL}" alt="profile"
+                                             class="mr-3 rounded-circle" style="width:60px;">
                                         <div class="media-body">
-                                            <p class="m-r mb-0 userprint">Posted on: <span class="userinfo" th:text = "${comment.dateTime}"></span> by <span class="userinfo" th:text="${comment.user.username}"></span></p>
-                                            <p class="mb-0" th:text = "${comment.body}" th:id="'comment-body-' + ${comment.id}"></p>
+                                            <p class="m-r mb-0 userprint">Posted on: <span class="userinfo"
+                                                                                           th:text="${comment.dateTime}"></span>
+                                                by <span class="userinfo" th:text="${comment.user.username}"></span></p>
+                                            <p class="mb-0" th:text="${comment.body}"
+                                               th:id="'comment-body-' + ${comment.id}"></p>
                                             <div th:if="${user.id == comment.user.id}">
-                                                <div class="edit-comment-div" th:id="'edit-comment-div-' + ${comment.id}"></div>
+                                                <div class="edit-comment-div"
+                                                     th:id="'edit-comment-div-' + ${comment.id}"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -62,18 +69,23 @@
                             </div>
                         </div>
                         <div class="create-comment-div" th:id="'create-comment-div-' + ${post.id}"></div>
-                        <button class="add-comment-button btn btn-link" th:id="'add-comment-button-' + ${post.id}">Comment</button>
+                        <button class="add-comment-button btn btn-link" th:id="'add-comment-button-' + ${post.id}">
+                            Comment
+                        </button>
 
-                            <div th:if="${user.id == post.user.id}">
-                                <a th:href="@{|/job-postings/edit/${post.id}|}"><button>Edit Post</button></a>
-                                <button class="delete-button" th:id="${post.postType.type} + '-' + ${post.id}">Delete Post</button>
-                            </div>
+                        <div th:if="${user.id == post.user.id}">
+                            <a th:href="@{|/job-postings/edit/${post.id}|}">
+                                <button>Edit Post</button>
+                            </a>
+                            <button class="delete-button" th:id="${post.postType.type} + '-' + ${post.id}">Delete Post
+                            </button>
                         </div>
                     </div>
                 </div>
-             </div>
+            </div>
         </div>
     </div>
+</div>
 </div>
 <div th:replace="fragments/chat-box.html :: chat-box"></div>
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>

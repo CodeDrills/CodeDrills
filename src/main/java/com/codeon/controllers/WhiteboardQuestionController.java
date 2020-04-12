@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Controller
 public class WhiteboardQuestionController {
@@ -43,11 +44,11 @@ public class WhiteboardQuestionController {
     }
 
     @GetMapping("/whiteboard-questions/show")
-    public String showAllJobPostings(Model model, Principal principal, @RequestParam(required = false) String by) {
+    public String showAllJobPostings(Model model, Principal principal, @RequestParam(required = false) String by, @RequestParam(required = false) String searchString) {
         model.addAttribute("filestackKey", filestackKey);
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("talkJSAppId", talkJSAppId);
-        List<Post> postList = new ArrayList<>();
+        List<Post> postList;
         if(by != null) {
             switch (by) {
                 case "titleAsc":
@@ -66,10 +67,21 @@ public class WhiteboardQuestionController {
                     postList = postDao.findAllByPostTypeId_TypeOrderByRatingTotalAsc("whiteboard-questions");
                     break;
                 default:
+                    postList = postDao.findAllByPostTypeId_TypeOrderByRatingTotalDesc("whiteboard-questions");
                     break;
             }
         } else {
             postList = postDao.findAllByPostTypeId_TypeOrderByRatingTotalDesc("whiteboard-questions");
+        }
+        if (searchString != null && !searchString.equals("")) {
+            //filter for body containing
+            //filter for title containing
+            //filter for username containing
+            //case insensitive
+            postList = postList
+                    .stream()
+                    .filter(post -> post.getBody().toLowerCase().contains(searchString.toLowerCase()) || post.getTitle().toLowerCase().contains(searchString.toLowerCase()) || post.getUser().getUsername().toLowerCase().contains(searchString.toLowerCase()))
+                    .collect(Collectors.toList());
         }
         model.addAttribute("postList", postList);
         return "whiteboard-questions/show";

@@ -29,7 +29,31 @@
     <a id="interview-whiteboard-button" th:href="@{|/whiteboard|}">Whiteboard</a>
     <a id="interview-question-round-button" th:href="@{|/api/interview-questions|}">Question Round</a>
 </div>
-
+<div class="d-flex justify-content-sm-around dropdown btn">
+    <a class="dropdown-toggle" href="#" id="sort-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Sort By
+    </a>
+    <div class="dropdown-menu bg-dark" aria-labelledby="whiteboard-dropdown">
+        <a class="drop" th:href="@{/interview-questions/show(by=titleAsc)}">Title Ascending</a>
+        <a class="drop" th:href="@{/interview-questions/show(by=titleDesc)}">Title Descending</a>
+        <a class="drop" th:href="@{/interview-questions/show(by=newest)}">Most Recent</a>
+        <a class="drop" th:href="@{/interview-questions/show(by=oldest)}">Oldest</a>
+        <a class="drop" th:href="@{/interview-questions/show}">Highest Rating</a>
+        <a class="drop" th:href="@{/interview-questions/show(by=lowestRating)}">Lowest Rating</a>
+    </div>
+</div>
+<form class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-sm-2" type="search" name="searchString" placeholder="Search" aria-label="Search">
+    <select class="custom-select" id="select-sort" name="by">
+        <option selected value="highestRating">Highest Rating</option>
+        <option value="lowestRating">Lowest Rating</option>
+        <option value="titleAsc">Title Ascending</option>
+        <option value="titleDesc">Title Descending</option>
+        <option value="newest">Most Recent</option>
+        <option value="oldest">Oldest</option>
+    </select>
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+</form>
 <br>
 <div class="container post-container">
     <!--    POST FILLING BEGINS HERE-->

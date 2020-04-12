@@ -2,6 +2,7 @@ package com.codeon.repositories;
 
 import com.codeon.models.Post;
 import com.codeon.models.PostType;
+import com.codeon.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

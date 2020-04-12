@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 public class JobPostingsController {
@@ -39,7 +40,7 @@ public class JobPostingsController {
     }
 
     @GetMapping("/job-postings/show")
-    public String showAllJobPostings(Model model, Principal principal, @RequestParam(required = false) String by) {
+    public String showAllJobPostings(Model model, Principal principal, @RequestParam(required = false) String by, @RequestParam(required = false) String searchString) {
         model.addAttribute("filestackKey", filestackKey);
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("talkJSAppId", talkJSAppId);
@@ -66,6 +67,16 @@ public class JobPostingsController {
             }
         } else {
             postList = postDao.findAllByPostTypeId_TypeOrderByRatingTotalDesc("job-postings");
+        }
+        if (searchString != null) {
+            //filter for body containing
+            //filter for title containing
+            //filter for username containing
+            //case insensitive
+            postList = postList
+                    .stream()
+                    .filter(post -> post.getBody().toLowerCase().contains(searchString.toLowerCase()) || post.getTitle().toLowerCase().contains(searchString.toLowerCase()) || post.getUser().getUsername().toLowerCase().contains(searchString.toLowerCase()))
+                    .collect(Collectors.toList());
         }
         model.addAttribute("postList", postList);
         return "job-postings/show";

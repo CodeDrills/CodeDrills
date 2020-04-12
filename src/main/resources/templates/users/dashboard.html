@@ -15,8 +15,7 @@
     <div class="col-3">
         <div class="card text-center">
                 <h4>Welcome, <span th:text="${user.username}">user</span>!</h4>
-                <img th:src="${user.profileImageURL}" alt="profile" class="img-fluid align-self-center" width="15%" height="5%">
-
+            <img th:src="${user.profileImageURL}" alt="profile"class="img-fluid align-self-center rounded-circle" style="width:60px;">
         <div class="media-body">
             <h4>soemthing here</h4>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -202,8 +201,8 @@
     <div class="col-11">
         <div th:id="'post-' + ${post.id}">
             <p class="m-r mb-0 userprint">Posted on: <span class="userinfo" th:text = "${post.dateTime}"></span> by <span class="userinfo" th:text="${post.user.username}"></span></p>
-            <h1 th:text = "${post.body}"></h1>
-            <p th:text = "${post.title}"></p>
+            <h1 th:text = "${post.title}"></h1>
+            <p th:text = "${post.body}"></p>
             <p class = "mb-0" th:text = "${post.answer}"></p>
             <hr>
             <div  th:if="${post.imageURLList.size() > 0 && post.imageURLList[0].url.length() > 8}" >
@@ -278,8 +277,8 @@
                         <div class="col-11">
                             <div th:id="'post-' + ${post.id}">
                                 <p class="m-r mb-0 userprint">Posted on: <span class="userinfo" th:text = "${post.dateTime}"></span> by <span class="userinfo" th:text="${post.user.username}"></span></p>
-                                <h1 th:text = "${post.body}"></h1>
-                                <p th:text = "${post.title}"></p>
+                                <h1 th:text = "${post.title}"></h1>
+                                <p th:text = "${post.body}"></p>
                                 <p class = "mb-0" th:text = "${post.answer}"></p>
                                 <hr class="m-0">
                                 <!--                                                        <p class="m-r mb-0">Asked by: <span th:text="${post.user.username}"></span> On: <span th:text = "${post.dateTime}"></span>  </p>-->
@@ -358,8 +357,8 @@
                         <div class="col-11">
                             <div th:id="'post-' + ${post.id}">
                                 <p class="m-r mb-0 userprint">Posted on: <span class="userinfo" th:text = "${post.dateTime}"></span> by <span class="userinfo" th:text="${post.user.username}"></span></p>
-                                <h1 th:text = "${post.body}"></h1>
-                                <p th:text = "${post.title}"></p>
+                                <h1 th:text = "${post.title}"></h1>
+                                <p th:text = "${post.body}"></p>
                                 <p class = "mb-0" th:text = "${post.answer}"></p>
                                 <hr class="m-0">
                                 <!--                                                        <p class="m-r mb-0">Asked by: <span th:text="${post.user.username}"></span> On: <span th:text = "${post.dateTime}"></span>  </p>-->

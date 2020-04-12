@@ -187,7 +187,6 @@ header {
 }
 .profile-header{
     font-family: 'Orbitron', sans-serif;
-    font-size: xx-large;
     color: #E3E7D3;
 }
 .show-chat-modal-button {
@@ -211,6 +210,9 @@ header {
 
 @media only screen and (max-width: 600px) {
     .parallax2{
+        display: none;
+    }
+    .col-3{
         display: none;
     }
 }

@@ -44,7 +44,7 @@ public class JobPostingsController {
         model.addAttribute("filestackKey", filestackKey);
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("talkJSAppId", talkJSAppId);
-        List<Post> postList = new ArrayList<>();
+        List<Post> postList;
         if(by != null) {
             switch (by) {
                 case "titleAsc":
@@ -63,12 +63,13 @@ public class JobPostingsController {
                     postList = postDao.findAllByPostTypeId_TypeOrderByRatingTotalAsc("job-postings");
                     break;
                 default:
+                    postList = postDao.findAllByPostTypeId_TypeOrderByRatingTotalDesc("job-postings");
                     break;
             }
         } else {
             postList = postDao.findAllByPostTypeId_TypeOrderByRatingTotalDesc("job-postings");
         }
-        if (searchString != null) {
+        if (searchString != null && !searchString.equals("")) {
             //filter for body containing
             //filter for title containing
             //filter for username containing

@@ -196,7 +196,13 @@ header {
 .commentrow{
     /*background-color: #cde6ff;*/
 }
-
+/*links on dashboard*/
+.takeme{
+    color: #00727F;
+}
+.takethem{
+    color: #373E40;
+}
 /*for each job post type*/
 #profile-card{
     background-image: url("/img/blue-wallpaper.jpg");
@@ -206,6 +212,10 @@ header {
     color: white;
 }
 .profile-header{
+    font-family: 'Orbitron', sans-serif;
+    color: #E3E7D3;
+}
+.profile-header:hover{
     font-family: 'Orbitron', sans-serif;
     color: #E3E7D3;
 }

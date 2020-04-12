@@ -19,6 +19,11 @@
             </div>
             <div class="card-body">
                 <h4>Welcome, <span th:text="${user.username}">user</span>!</h4>
+                <p class="mb-0">take me to the most recent:</p>
+                <a class="takeme" href="#interview-questions">Interview questions</a>
+                <a class="takethem" href="#mentorship-post">Mentorship Post</a>
+                <a class="takethem" href="#job-posting">Job Postings</a>
+                <a class="takeme" href="#whiteboard-questions">Whiteboard questions</a>
         </div>
         </div>
     </div>
@@ -27,6 +32,25 @@
             <h2 class="display-1 text-center p-3 profile-header">CodeOn</h2>
                 <p class="text-center" id="label-text"> Here at CodeOn we as a community strive build a community of developers that can help
                     the world. Select one of our post types and help another developer. Need help connect with one of our developers </p>
+            <div class="row">
+                <div class="col-3">
+                    <a class ="profile-header" th:href="@{|/interview-questions/show|}">Interview Questions</a>
+                    <!--                <a th:href="@{|/interview-questions/create|}"><button class="btn btn-primary">Interview Create</button></a>-->
+                </div>
+                <div class="col-3">
+                    <a class ="profile-header" th:href="@{|/mentorship-posts/show|}">Mentorship Posts</a>
+                    <!--                <a th:href="@{|/mentorship-posts/create|}"><button class="btn btn-primary">Mentorship Create</button></a>-->
+                </div>
+                <div class="col-3">
+                    <a class ="profile-header" th:href="@{|/job-postings/show|}">Job Postings</a>
+                    <!--                <a th:href="@{|/job-postings/create|}"><button class="btn btn-primary">Job Postings Create</button></a>-->
+                </div>
+                <div class="col-3">
+                    <a class ="profile-header" th:href="@{|/whiteboard-questions/show|}">Whiteboard questions</a>
+                    <!--                <a th:href="@{|/job-postings/create|}"><button class="btn btn-primary">Job Postings Create</button></a>-->
+
+                </div>
+            </div>
             </div>
         </div>
     </div>
@@ -148,30 +172,11 @@
 <!--        </div>-->
 <!--    </div>-->
 <!--</div>-->
-
-<!--This is right above the questions create and takes you to the specific page-->
-<!--<div class="container">-->
-<!--        <div class="row">-->
-<!--            <div class="col-4">-->
-<!--                <a th:href="@{|/interview-questions/show|}"><button class="btn btn-primary">Interview Questions</button></a>-->
-<!--&lt;!&ndash;                <a th:href="@{|/interview-questions/create|}"><button class="btn btn-primary">Interview Create</button></a>&ndash;&gt;-->
-<!--            </div>-->
-
-<!--            <div class="col-4">-->
-<!--                <a th:href="@{|/mentorship-posts/show|}"><button class="btn btn-primary">Mentorship Posts</button></a>-->
-<!--&lt;!&ndash;                <a th:href="@{|/mentorship-posts/create|}"><button class="btn btn-primary">Mentorship Create</button></a>&ndash;&gt;-->
-<!--            </div>-->
-<!--            <div class="col-4">-->
-<!--                <a th:href="@{|/job-postings/show|}"><button class="btn btn-primary">Job Postings</button></a>-->
-<!--&lt;!&ndash;                <a th:href="@{|/job-postings/create|}"><button class="btn btn-primary">Job Postings Create</button></a>&ndash;&gt;-->
-<!--            </div>-->
-<!--        </div>-->
-<!--</div>-->
-
 <!--each of the columns are here for each type of questions-->
 
 <!--    Interview-->
 <div class="row m-5">
+    <a id="interview-questions"></a>
     <div class="col-3">
 <!--        interview question description card-->
         <div class="card text-center">
@@ -250,6 +255,7 @@
 <!--    <div th:each="post : ${mentorshipPostsList}">-->
 <!--        <a th:href="@{|/mentorship-posts/edit/${post.id}|}"><button>Edit my post</button></a>-->
 <div class="row m-5">
+    <a id="mentorship-post"></a>
     <div class="col-3">
         <div class="card text-center">
             <div class="card-body">
@@ -325,6 +331,7 @@
 <!--    End Mentorship-->
 <!--    Job-->
 <div class="row m-5">
+    <a id="job-posting"></a>
     <!--    side card and link to post to jobs-->
     <div class="col-3">
         <div class="card text-center">
@@ -401,12 +408,14 @@
 </div>
 <!--    End Job-->
 <div class="row m-5">
+    <a id="whiteboard-questions"></a>
     <div class="col-3">
         <!--        interview question description card-->
         <div class="card text-center">
             <div class="card-body">
                 <h3>Most Recent Whiteboard Questions</h3>
                 <p class="card-text">This page is connect within the CodeOn community and help one another. Whether it be studying, collaborating, needing a mentor or just a place to see how others experiences were. The mentorship page is the place to start. </p>
+
                 <button type="button" class="btn btn-link" data-toggle="modal" data-target="#inteviewModal">
                     Interview Questions Create
                 </button>

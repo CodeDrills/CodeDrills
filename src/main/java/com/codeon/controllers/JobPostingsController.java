@@ -39,16 +39,37 @@ public class JobPostingsController {
     }
 
     @GetMapping("/job-postings/show")
-    public String showAllJobPostings(Model model, Principal principal) {
+    public String showAllJobPostings(Model model, Principal principal, @RequestParam(required = false) String by) {
         model.addAttribute("filestackKey", filestackKey);
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("talkJSAppId", talkJSAppId);
-        List<Post> jobPostings = postDao.findAllByPostTypeId_Type("job-postings");
-        jobPostings.sort(Collections.reverseOrder(Comparator.comparing((Post::getRatingTotal))));
-        model.addAttribute("postList", jobPostings);
+        List<Post> postList = new ArrayList<>();
+        if(by != null) {
+            switch (by) {
+                case "titleAsc":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByTitleAsc("job-postings");
+                    break;
+                case "titleDesc":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByTitleDesc("job-postings");
+                    break;
+                case "newest":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByIdAsc("job-postings");
+                    break;
+                case "oldest":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByIdDesc("job-postings");
+                    break;
+                case "lowestRating":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByRatingTotalAsc("job-postings");
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            postList = postDao.findAllByPostTypeId_TypeOrderByRatingTotalDesc("job-postings");
+        }
+        model.addAttribute("postList", postList);
         return "job-postings/show";
     }
-
     @GetMapping("/job-postings/create")
     public String jobPostingsCreateForm(Model model, Principal principal) {
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));

@@ -41,13 +41,35 @@ public class InterviewQuestionController {
     }
 
     @GetMapping("/interview-questions/show")
-    public String showAllInterviewQuestions(Model model, Principal principal) {
+    public String showAllJobPostings(Model model, Principal principal, @RequestParam(required = false) String by) {
         model.addAttribute("filestackKey", filestackKey);
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("talkJSAppId", talkJSAppId);
-        List<Post> interviewQuestions = postDao.findAllByPostTypeId_Type("interview-questions");
-        interviewQuestions.sort(Collections.reverseOrder(Comparator.comparing((Post::getRatingTotal))));
-        model.addAttribute("postList", interviewQuestions);
+        List<Post> postList = new ArrayList<>();
+        if(by != null) {
+            switch (by) {
+                case "titleAsc":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByTitleAsc("interview-questions");
+                    break;
+                case "titleDesc":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByTitleDesc("interview-questions");
+                    break;
+                case "newest":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByIdAsc("interview-questions");
+                    break;
+                case "oldest":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByIdDesc("interview-questions");
+                    break;
+                case "lowestRating":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByRatingTotalAsc("interview-questions");
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            postList = postDao.findAllByPostTypeId_TypeOrderByRatingTotalDesc("interview-questions");
+        }
+        model.addAttribute("postList", postList);
         return "interview-questions/show";
     }
 

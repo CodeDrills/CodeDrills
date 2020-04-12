@@ -43,13 +43,35 @@ public class MentorshipPostsController {
         return "mentorship-posts/show";
     }
     @GetMapping("/mentorship-posts/show")
-    public String showAllPosts(Model model, Principal principal) {
+    public String showAllJobPostings(Model model, Principal principal, @RequestParam(required = false) String by) {
         model.addAttribute("filestackKey", filestackKey);
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("talkJSAppId", talkJSAppId);
-        List<Post> mentorshipPosts = postDao.findAllByPostTypeId_Type("mentorship-posts");
-        mentorshipPosts.sort(Collections.reverseOrder(Comparator.comparing((Post::getRatingTotal))));
-        model.addAttribute("postList", mentorshipPosts);
+        List<Post> postList = new ArrayList<>();
+        if(by != null) {
+            switch (by) {
+                case "titleAsc":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByTitleAsc("mentorship-posts");
+                    break;
+                case "titleDesc":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByTitleDesc("mentorship-posts");
+                    break;
+                case "newest":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByIdAsc("mentorship-posts");
+                    break;
+                case "oldest":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByIdDesc("mentorship-posts");
+                    break;
+                case "lowestRating":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByRatingTotalAsc("mentorship-posts");
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            postList = postDao.findAllByPostTypeId_TypeOrderByRatingTotalDesc("mentorship-posts");
+        }
+        model.addAttribute("postList", postList);
         return "mentorship-posts/show";
     }
     @GetMapping("/mentorship-posts/create")

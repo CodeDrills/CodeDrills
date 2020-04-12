@@ -43,12 +43,35 @@ public class WhiteboardQuestionController {
     }
 
     @GetMapping("/whiteboard-questions/show")
-    public String showAllWhiteboardQuestions(Model model, Principal principal) {
+    public String showAllJobPostings(Model model, Principal principal, @RequestParam(required = false) String by) {
         model.addAttribute("filestackKey", filestackKey);
-        List<Post> whiteboardQuestions = postDao.findAllByPostTypeId_Type("whiteboard-questions");
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("talkJSAppId", talkJSAppId);
-        model.addAttribute("postList", whiteboardQuestions);
+        List<Post> postList = new ArrayList<>();
+        if(by != null) {
+            switch (by) {
+                case "titleAsc":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByTitleAsc("whiteboard-questions");
+                    break;
+                case "titleDesc":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByTitleDesc("whiteboard-questions");
+                    break;
+                case "newest":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByIdAsc("whiteboard-questions");
+                    break;
+                case "oldest":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByIdDesc("whiteboard-questions");
+                    break;
+                case "lowestRating":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByRatingTotalAsc("whiteboard-questions");
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            postList = postDao.findAllByPostTypeId_TypeOrderByRatingTotalDesc("whiteboard-questions");
+        }
+        model.addAttribute("postList", postList);
         return "whiteboard-questions/show";
     }
 

@@ -22,21 +22,21 @@
                     </div>
                             <div class="modal-body" id="interview-questions-create-modal-body">
                                 <div class="form-group">
-                                    <label for="interview-questions-title" class="col-form-label">What interview question were you asked:</label>
+                                    <label for="interview-questions-title" class="col-form-label">Question:</label>
                                     <input class="form-control" name="interview-questions-title" id="interview-questions-title"/>
                                 </div>
                                 <div class="form-group">
-                                     <label for="interview-questions-employer" class="col-form-label">Place you interviewed:</label>
-                                    <input class="form-control" name="interview-questions-employer" id="interview-questions-employer"/>
-                                </div>
-                                    <div class="form-group">
-                                        <label for="interview-questions-body" class="col-form-label">Subject(e.g. Java, Javascript):</label>
-                                        <input class="form-control" name="interview-questions-body" id="interview-questions-body"/>
-                                    </div>
-                                <div class="form-group">
-                                    <label for="interview-questions-answer" class="col-form-label">Whats the answer:</label>
+                                    <label for="interview-questions-answer" class="col-form-label">Answer:</label>
                                     <textarea class="form-control" name="interview-questions-answer" id="interview-questions-answer" cols="30" rows="5" maxlength="250"
                                               placeholder="Please type a brief summary that is less than 250 words."></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="interview-questions-body" class="col-form-label">Subject(e.g. Java, Javascript):</label>
+                                    <input class="form-control" name="interview-questions-body" id="interview-questions-body"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="interview-questions-employer" class="col-form-label">Interviewed At:</label>
+                                    <input class="form-control" name="interview-questions-employer" id="interview-questions-employer"/>
                                 </div>
                                 <div class="modal-footer">
                                     <button class="btn btn-secondary submit-button" id="interview-questions-submit-button" data-dismiss="modal">Submit</button>
@@ -64,11 +64,11 @@
                     </div>
                     <div class="modal-body" id="mentorship-posts-create-modal-body">
                         <div class="form-group">
-                            <label for="mentorship-posts-title" class="col-form-label">Wanna pay it forward or need a mentors help</label>
+                            <label for="mentorship-posts-title" class="col-form-label">Title:</label>
                             <input class="form-control" name="mentorship-posts-title" id="mentorship-posts-title"/>
                         </div>
                         <div class="form-group">
-                            <label for="mentorship-posts-body" class="col-form-label">How can you mentor?/whats your question?:</label>
+                            <label for="mentorship-posts-body" class="col-form-label">Question:</label>
                             <textarea class="form-control" name="mentorship-posts-body" id="mentorship-posts-body" cols="30" rows="5" maxlength="250"
                                       placeholder="Please type a brief summary that is less than 250 words."></textarea>
                         </div>
@@ -97,17 +97,17 @@
                     </div>
                     <div class="modal-body" id="job-postings-create-modal-body">
                         <div class="form-group">
-                            <label for="job-postings-title" class="col-form-label">Job-title:</label>
+                            <label for="job-postings-title" class="col-form-label">Job Title:</label>
                             <input class="form-control" name="job-postings-title" id="job-postings-title"/>
                         </div>
                         <div class="form-group">
-                            <label for="job-postings-employer" class="col-form-label">Employer hiring:</label>
-                            <input class="form-control" name="job-postings-employer" id="job-postings-employer"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="job-postings-body" class="col-form-label">Description of the job</label>
+                            <label for="job-postings-body" class="col-form-label">Job Description:</label>
                             <textarea class="form-control" name="job-postings-body" id="job-postings-body" cols="30" rows="5" maxlength="250"
                               placeholder="Please type a brief summary that is less than 250 words."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="job-postings-employer" class="col-form-label">Employer:</label>
+                            <input class="form-control" name="job-postings-employer" id="job-postings-employer"/>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -132,21 +132,21 @@
                     </div>
                     <div class="modal-body" id="whiteboard-questions-create-modal-body">
                         <div class="form-group">
-                            <label for="whiteboard-questions-title" class="col-form-label">What did they ask you to whiteboard</label>
+                            <label for="whiteboard-questions-title" class="col-form-label">Question:</label>
                             <input class="form-control" name="whiteboard-questions-title" id="whiteboard-questions-title"/>
                         </div>
                         <div class="form-group">
-                            <label for="whiteboard-questions-employer" class="col-form-label">Who was the employer:</label>
-                            <input class="form-control" name="whiteboard-questions-employer" id="whiteboard-questions-employer"/>
+                            <label for="whiteboard-questions-answer" class="col-form-label">Solution:</label>
+                            <textarea class="form-control" name="whiteboard-questions-answer" id="whiteboard-questions-answer" cols="30" rows="5" maxlength="250"
+                                  placeholder="Please type a brief summary that is less than 250 words."></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="whiteboard-questions-body" class="col-form-label">What was the subject:</label>
+                            <label for="whiteboard-questions-body" class="col-form-label">Subject:</label>
                             <input class="form-control" name="whiteboard-questions-body" id="whiteboard-questions-body"/>
                         </div>
                         <div class="form-group">
-                            <label for="whiteboard-questions-answer" class="col-form-label">How did you solve this:</label>
-                        <textarea class="form-control" name="whiteboard-questions-answer" id="whiteboard-questions-answer" cols="30" rows="5" maxlength="250"
-                                  placeholder="Please type a brief summary that is less than 250 words."></textarea>
+                            <label for="whiteboard-questions-employer" class="col-form-label">Interviewed At:</label>
+                            <input class="form-control" name="whiteboard-questions-employer" id="whiteboard-questions-employer"/>
                         </div>
                     </div>
                     <div class="modal-footer">

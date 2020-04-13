@@ -1,9 +1,5 @@
 # DROP DATABASE codeon_db;
 
-
-DROP DATABASE codeon_db;
-
-
 use codeon_db;
 
 insert into post_types (type) values ('interview-questions'), ('mentorship-posts'), ('job-postings'), ('whiteboard-questions');
@@ -102,7 +98,7 @@ insert into posts (user_id, post_type_id, title, body, answer, date_time, employ
 insert into post_ratings (user_id, post_id, rating) values (3, 1, 0);
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (6, 2, 'How do you guys deal with Imposter Syndrome', 'I feel like I don"t know enough to start applying for jobs.', '', '2019-05-21', 'codeup student');
 insert into post_ratings (user_id, post_id, rating) values (6, 2, 0);
-insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (12, 2, 'Anyone need a mentor in Java', 'I am a Java programmer and have been for the last 3 years if there is anyone that needs help or has questions let me know if i can help', '', '2019-03-23', 'alumnus working for Accenture');
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (12, 2, 'Anyone need a mentor in Java', 'I am a Java programmer and have been for the last 3 years if there is anyone that needs help or has questions let me know if i can help', '', '2019-05-23', 'alumnus working for Accenture');
 insert into post_ratings (user_id, post_id, rating) values (12, 3, 0);
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (4, 2, 'What is the (function() { } )() construct in JavaScript?', 'I used to know what this meant, but I''m struggling now... Is this basically saying document.onload?', '', '2019-05-30', 'codeup student');
 insert into post_ratings (user_id, post_id, rating) values (4, 4, 0);
@@ -176,11 +172,11 @@ Each method should run in constant time.','Whitboard Host Provided', '2020-04-06
 insert into post_ratings (user_id, post_id, rating) values (1, 23, 0);
 
 #More Mentorship Posts
-insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (8, 2, 'Difference between th:text and th:value in Thymeleaf', 'I just recently started using Thymeleaf through one of my projects. I have seen few examples where th:text=${example} is being used in some places th:value=${example}. I have gone through the Thymeleaf documentation but couldn''t find anything explicitly citing the difference, nor did any question on SO. Any help would be really appreciated! Thanks.', '', '2019-7-21', 'codeup student');
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (8, 2, 'Difference between th:text and th:value in Thymeleaf', 'I just recently started using Thymeleaf through one of my projects. I have seen few examples where th:text=${example} is being used in some places th:value=${example}. I have gone through the Thymeleaf documentation but couldn''t find anything explicitly citing the difference, nor did any question on SO. Any help would be really appreciated! Thanks.', '', '2020-04-10', 'codeup student');
 insert into post_ratings (user_id, post_id, rating) values (8, 24, 0);
-insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (14, 2, 'What''s the difference between JPA and Hibernate?', 'I understand that JPA 2 is a specification and Hibernate is a tool for ORM. Also, I understand that Hibernate has more features than JPA 2. But from a practical point of view, what really is the difference?', '', '2019-05-21', 'codeup student');
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (14, 2, 'What''s the difference between JPA and Hibernate?', 'I understand that JPA 2 is a specification and Hibernate is a tool for ORM. Also, I understand that Hibernate has more features than JPA 2. But from a practical point of view, what really is the difference?', '', '2020-04-11', 'codeup student');
 insert into post_ratings (user_id, post_id, rating) values (14, 25, 0);
-insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (2, 2, 'What does “!--” do in JavaScript?', 'I''m trying to follow it, and I think I understand everything except for near the end where it says !--pending. In this context, what does that command do?', '', '2019-02-02', 'codeup student');
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (2, 2, 'What does “!--” do in JavaScript?', 'I''m trying to follow it, and I think I understand everything except for near the end where it says !--pending. In this context, what does that command do?', '', '2020-04-11', 'codeup student');
 insert into post_ratings (user_id, post_id, rating) values (2, 26, 0);
 
 #Post Comments

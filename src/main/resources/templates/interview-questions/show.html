@@ -17,12 +17,13 @@
         <h2 class="display-1 card-title text-center p-3 profile-header">Interview</h2>
         <div class="row">
             <div class="col-4 text-center">
-                <a class ="profile-header" id="interview-whiteboard-button" th:href="@{|/whiteboard|}">Whiteboard</a>
+                <a class="profile-header" id="interview-whiteboard-button" th:href="@{|/whiteboard|}">Whiteboard</a>
                 <!--                <a th:href="@{|/interview-questions/create|}"><button class="btn btn-primary">Interview Create</button></a>-->
             </div>
             <div class="col-4">
                 <div class="d-flex justify-content-sm-around dropdown btn ml-5" id="sortbutton">
-                    <a class="dropdown-toggle profile-header" href="#" id="sort-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="dropdown-toggle profile-header" href="#" id="sort-dropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Sort By
                     </a>
                     <div class="dropdown-menu bg-dark" aria-labelledby="whiteboard-dropdown">
@@ -36,33 +37,53 @@
                 </div>
             </div>
             <div class="col-4 text-center">
-                <a class ="profile-header" id="interview-question-round-button" th:href="@{|/api/interview-questions|}">Question Round</a>
+                <a class="profile-header" id="interview-question-round-button" th:href="@{|/api/interview-questions|}">Question
+                    Round</a>
                 <!--                <a th:href="@{|/job-postings/create|}"><button class="btn btn-primary">Job Postings Create</button></a>-->
             </div>
+            <div class="mt-5 col-3"></div>
+            <div class=" mt-5 col-6">
+                <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="search" name="searchString" placeholder="Search"
+                           aria-label="Search">
+                    <select class="custom-select" id="select-sort" name="by">
+                        <option selected disabled value="highestRating">Sort Results By</option>
+                        <option value="highestRating">Highest Rating</option>
+                        <option value="lowestRating">Lowest Rating</option>
+                        <option value="titleAsc">Title Ascending</option>
+                        <option value="titleDesc">Title Descending</option>
+                        <option value="newest">Most Recent</option>
+                        <option value="oldest">Oldest</option>
+                    </select>
+                    <button class="btn my-2 my-sm-0 ml-2" id="search-button" type="submit">Search</button>
+                </form>
+            </div>
+            <div class="mt-5 col-3"></div>
         </div>
-
     </div>
 </div>
 <br>
-<div class="d-flex justify-content-sm-around">
-<!--    <a id="interview-whiteboard-button" th:href="@{|/whiteboard|}">Whiteboard</a>-->
-<!--    <a id="interview-question-round-button" th:href="@{|/api/interview-questions|}">Question Round</a>-->
-</div>
+<!--<div class="d-flex justify-content-sm-around">-->
+<!--&lt;!&ndash;    <a id="interview-whiteboard-button" th:href="@{|/whiteboard|}">Whiteboard</a>&ndash;&gt;-->
+<!--&lt;!&ndash;    <a id="interview-question-round-button" th:href="@{|/api/interview-questions|}">Question Round</a>&ndash;&gt;-->
+<!--</div>-->
+<!--<div class="d-flex">-->
+<!--    <form class="form-inline align-content-end">-->
+<!--        <input class="form-control mr-sm-2" type="search" name="searchString" placeholder="Search" aria-label="Search">-->
+<!--        <select class="custom-select" id="select-sort" name="by">-->
+<!--            <option selected disabled value="highestRating">Sort Results By</option>-->
+<!--            <option value="highestRating">Highest Rating</option>-->
+<!--            <option value="lowestRating">Lowest Rating</option>-->
+<!--            <option value="titleAsc">Title Ascending</option>-->
+<!--            <option value="titleDesc">Title Descending</option>-->
+<!--            <option value="newest">Most Recent</option>-->
+<!--            <option value="oldest">Oldest</option>-->
+<!--        </select>-->
+<!--        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+<!--    </form>-->
+<!--</div>-->
 
-<form class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2" type="search" name="searchString" placeholder="Search" aria-label="Search">
-    <select class="custom-select" id="select-sort" name="by">
-        <option selected disabled value="highestRating">Sort Results By</option>
-        <option value="highestRating">Highest Rating</option>
-        <option value="lowestRating">Lowest Rating</option>
-        <option value="titleAsc">Title Ascending</option>
-        <option value="titleDesc">Title Descending</option>
-        <option value="newest">Most Recent</option>
-        <option value="oldest">Oldest</option>
-    </select>
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-</form>
-<br>
+<!--<br>-->
 <div class="container post-container">
     <!--    POST FILLING BEGINS HERE-->
     <div th:each="post : ${postList}">
@@ -76,7 +97,9 @@
                     </div>
                     <div class="col-11">
                         <div th:id="'post-' + ${post.id}"></div>
-                        <p class="m-r mb-0 userprint">Posted on:<span class="userinfo" th:text="${post.dateTime} + 'by' + ${post.user.username}"></span></p>
+                        <p class="m-r mb-0 userprint">Posted on:<span class="userinfo"
+                                                                      th:text="${post.dateTime} + 'by' + ${post.user.username}"></span>
+                        </p>
                         <h1 th:text="${post.title}"></h1>
                         <p th:text="${post.body}"></p>
                         <p th:text="${post.answer}"></p>

@@ -5,218 +5,340 @@
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul th:if="${#httpServletRequest.requestURI.contains('interview-questions')}" class="navbar-nav mr-auto ml-3">
             <li class="nav-item">
                 <a class="navbar-brand" id="logo" href="/users/dashboard">CodeOn</a>
             </li>
-            <ul th:if="${#httpServletRequest.requestURI.contains('interview-questions')}" class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link active" th:href="@{|/users/dashboard|}">Dashboard</a>
-                </li>
-                <li class="nav-item active">
-                    <button class="btn nav-create-button active" id="nav-interview-questions-create" data-toggle="modal"
-                            data-target="#interview-questions-create-modal">Create Question
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{|/users/dashboard|}">Dashboard</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="interview-dropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Interview
+                </a>
+                <div class="dropdown-menu bg-dark" aria-labelledby="interview-dropdown">
+                    <a class="nav-link bg-dark drop" th:href="@{|/interview-questions/show|}">Interview Home</a>
+                    <button class="btn nav-create-button" id="nav-interview-questions-create" data-toggle="modal"
+                            data-target="#interview-questions-create-modal">Create
                     </button>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link active" th:href="@{|/api/interview-questions|}">Practice</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" th:href="@{|/mentorship-posts/show|}">Mentorship Posts</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link active" th:href="@{|/job-postings/show|}">Job Postings</a>
-                </li>
-                <li class="nav-item active dropdown">
-                    <a class="nav-link active dropdown-toggle" href="#" id="whiteboard-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Whiteboard Questions
-                    </a>
-                    <div class="dropdown-menu bg-dark" aria-labelledby="whiteboard-dropdown">
-                        <a class="nav-link active bg-dark drop" th:href="@{|/whiteboard-questions/show|}">Whiteboard Questions Home</a>
-                        <a class="nav-link active bg-dark drop" th:href="@{|/whiteboard/1|}">Environment 1</a>
-                        <a class="nav-link active bg-dark drop" th:href="@{|/whiteboard/2|}">Environment 2</a>
-                        <a class="nav-link active bg-dark drop" th:href="@{|/whiteboard/3|}">Environment 3</a>
-                        <a class="nav-link active bg-dark drop" th:href="@{|/whiteboard/4|}">Environment 4</a>
-                    </div>
-                </li>
-                <li class="nav-item active">
-                    <form th:action="@{~/logout_app}" th:method="post">
-                        <button class="btn-link btn logout-button">Logout</button>
-                    </form>
-                </li>
-            </ul>
-            <ul th:if="${#httpServletRequest.requestURI.contains('mentorship-posts')}" class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{|/users/dashboard|}">Dashboard</a>
-                </li>
-                <li class="nav-item">
+                    <a class="nav-link bg-dark drop" th:href="@{|/api/interview-questions|}">Practice</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{|/mentorship-posts/show|}">Mentorship</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{|/job-postings/show|}">Jobs</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="whiteboard-dropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Whiteboard Questions
+                </a>
+                <div class="dropdown-menu bg-dark" aria-labelledby="whiteboard-dropdown">
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard-questions/show|}">Whiteboard</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/1|}">Environment 1</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/2|}">Environment 2</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/3|}">Environment 3</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/4|}">Environment 4</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{|/about-us|}">About Us</a>
+            </li>
+            <li class="nav-item">
+                <form th:action="@{~/logout_app}" th:method="post">
+                    <button class="btn-link btn logout-button">Logout</button>
+                </form>
+            </li>
+        </ul>
+        <ul th:if="${#httpServletRequest.requestURI.contains('mentorship-posts')}" class="navbar-nav mr-auto ml-3">
+            <li class="nav-item">
+                <a class="navbar-brand" id="logo" href="/users/dashboard">CodeOn</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{|/users/dashboard|}">Dashboard</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="interview-dropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Interview
+                </a>
+                <div class="dropdown-menu bg-dark" aria-labelledby="interview-dropdown">
+                    <a class="nav-link bg-dark drop" th:href="@{|/interview-questions/show|}">Interview Home</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/api/interview-questions|}">Interview Practice</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="mentorship-dropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Mentorship
+                </a>
+                <div class="dropdown-menu bg-dark" aria-labelledby="interview-dropdown">
                     <button class="btn nav-create-button" id="nav-mentorship-posts-create" data-toggle="modal"
-                            data-target="#mentorship-posts-create-modal">Create Post
+                            data-target="#mentorship-posts-create-modal">Create
                     </button>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="interview-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Interview Questions
-                    </a>
-                    <div class="dropdown-menu bg-dark" aria-labelledby="interview-dropdown">
-                        <a class="nav-link bg-dark drop" th:href="@{|/interview-questions/show|}">Interview Questions Home</a>
-                        <a class="nav-link bg-dark drop" th:href="@{|/api/interview-questions|}">Interview Questions Practice</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{|/job-postings/show|}">Job Postings</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="whiteboard-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Whiteboard Questions
-                    </a>
-                    <div class="dropdown-menu bg-dark" aria-labelledby="whiteboard-dropdown">
-                        <a class="nav-link bg-dark drop" th:href="@{|/whiteboard-questions/show|}">Whiteboard Questions Home</a>
-                        <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/1|}">Environment 1</a>
-                        <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/2|}">Environment 2</a>
-                        <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/3|}">Environment 3</a>
-                        <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/4|}">Environment 4</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <form th:action="@{~/logout_app}" th:method="post">
-                        <button class="nav-item btn logout-button">Logout</button>
-                    </form>
-                </li>
-            </ul>
-            <ul th:if="${#httpServletRequest.requestURI.contains('job-postings')}" class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{|/users/dashboard|}">Dashboard</a>
-                </li>
-                <li class="nav-item">
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{|/job-postings/show|}">Job Postings</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="whiteboard-dropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Whiteboard
+                </a>
+                <div class="dropdown-menu bg-dark" aria-labelledby="whiteboard-dropdown">
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard-questions/show|}">Whiteboard Home</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/1|}">Environment 1</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/2|}">Environment 2</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/3|}">Environment 3</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/4|}">Environment 4</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{|/about-us|}">About Us</a>
+            </li>
+            <li class="nav-item">
+                <form th:action="@{~/logout_app}" th:method="post">
+                    <button class="nav-item btn logout-button">Logout</button>
+                </form>
+            </li>
+        </ul>
+        <ul th:if="${#httpServletRequest.requestURI.contains('job-postings')}" class="navbar-nav mr-auto ml-3">
+            <li class="nav-item">
+                <a class="navbar-brand" id="logo" href="/users/dashboard">CodeOn</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{|/users/dashboard|}">Dashboard</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="interview-dropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Interview
+                </a>
+                <div class="dropdown-menu bg-dark" aria-labelledby="interview-dropdown">
+                    <a class="nav-link bg-dark drop" th:href="@{|/interview-questions/show|}">Interview Home</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/api/interview-questions|}">Interview Practice</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{|/mentorship-posts/show|}">Mentorship</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="jobs-dropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Jobs
+                </a>
+                <div class="dropdown-menu bg-dark" aria-labelledby="interview-dropdown">
                     <button class="btn nav-create-button" id="nav-job-postings-create" data-toggle="modal"
-                            data-target="#job-postings-create-modal">Create Posting
+                            data-target="#job-postings-create-modal">Create
                     </button>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="interview-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Interview Questions
-                    </a>
-                    <div class="dropdown-menu bg-dark" aria-labelledby="interview-dropdown">
-                        <a class="nav-link bg-dark drop" th:href="@{|/interview-questions/show|}">Interview Questions Home</a>
-                        <a class="nav-link bg-dark drop" th:href="@{|/api/interview-questions|}">Interview Questions Practice</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{|/mentorship-posts/show|}">Mentorship Posts</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="whiteboard-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Whiteboard Questions
-                    </a>
-                    <div class="dropdown-menu bg-dark" aria-labelledby="whiteboard-dropdown">
-                        <a class="nav-link bg-dark drop" th:href="@{|/whiteboard-questions/show|}">Whiteboard Questions Home</a>
-                        <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/1|}">Environment 1</a>
-                        <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/2|}">Environment 2</a>
-                        <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/3|}">Environment 3</a>
-                        <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/4|}">Environment 4</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <form th:action="@{~/logout_app}" th:method="post">
-                        <button class="btn-link btn logout-button">Logout</button>
-                    </form>
-                </li>
-            </ul>
-            <ul th:if="${#httpServletRequest.requestURI.contains('whiteboard')}" class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{|/users/dashboard|}">Dashboard</a>
-                </li>
-                <li class="nav-item">
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="whiteboard-dropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Whiteboard
+                </a>
+                <div class="dropdown-menu bg-dark" aria-labelledby="whiteboard-dropdown">
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard-questions/show|}">Whiteboard Home</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/1|}">Environment 1</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/2|}">Environment 2</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/3|}">Environment 3</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/4|}">Environment 4</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{|/about-us|}">About Us</a>
+            </li>
+            <li class="nav-item">
+                <form th:action="@{~/logout_app}" th:method="post">
+                    <button class="btn-link btn logout-button">Logout</button>
+                </form>
+            </li>
+        </ul>
+        <ul th:if="${#httpServletRequest.requestURI.contains('whiteboard')}" class="navbar-nav mr-auto ml-3">
+            <li class="nav-item">
+                <a class="navbar-brand" id="logo" href="/users/dashboard">CodeOn</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{|/users/dashboard|}">Dashboard</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="interview-dropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Interview
+                </a>
+                <div class="dropdown-menu bg-dark" aria-labelledby="interview-dropdown">
+                    <a class="nav-link bg-dark drop" th:href="@{|/interview-questions/show|}">Interview Home</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/api/interview-questions|}">Interview Practice</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{|/mentorship-posts/show|}">Mentorship</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{|/job-postings/show|}">Jobs</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="whiteboard-dropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Whiteboard
+                </a>
+                <div class="dropdown-menu bg-dark" aria-labelledby="whiteboard-dropdown">
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard-questions/show|}">Whiteboard Home</a>
                     <button class="btn nav-create-button" id="nav-whiteboard-questions-create" data-toggle="modal"
-                            data-target="#whiteboard-questions-create-modal">Create Question
+                            data-target="#whiteboard-questions-create-modal">Create
                     </button>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="interview-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Interview Questions
-                    </a>
-                    <div class="dropdown-menu bg-dark" aria-labelledby="interview-dropdown">
-                        <a class="nav-link bg-dark drop" th:href="@{|/interview-questions/show|}">Interview Questions Home</a>
-                        <a class="nav-link bg-dark drop" th:href="@{|/api/interview-questions|}">Interview Questions Practice</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{|/mentorship-posts/show|}">Mentorship Posts</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="whiteboard-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Whiteboard Questions
-                    </a>
-                    <div class="dropdown-menu bg-dark" aria-labelledby="whiteboard-dropdown">
-                        <a class="nav-link bg-dark drop" th:href="@{|/whiteboard-questions/show|}">Whiteboard Questions Home</a>
-                        <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/1|}">Environment 1</a>
-                        <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/2|}">Environment 2</a>
-                        <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/3|}">Environment 3</a>
-                        <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/4|}">Environment 4</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <form th:action="@{~/logout_app}" th:method="post">
-                        <button class="btn-link btn logout-button">Logout</button>
-                    </form>
-                </li>
-            </ul>
-            <ul th:if="${#httpServletRequest.requestURI.contains('users/dashboard')}" class="navbar-nav ml-auto">
-                <li class="nav-item active dropdown ">
-                    <a class="nav-link dropdown-toggle" href="#" id="create-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Create
-                    </a>
-                    <div class="dropdown-menu bg-dark" aria-labelledby="create-dropdown">
-                        <button class="btn nav-create-button dropdown-item bg-dark" id="dash-nav-interview-questions-create" data-toggle="modal"
-                                data-target="#interview-questions-create-modal">Create Interview Question
-                        </button>
-                        <button class="btn nav-create-button dropdown-item bg-dark" id="dash-nav-mentorship-posts-create" data-toggle="modal"
-                                data-target="#mentorship-posts-create-modal">Create Mentorship Post
-                        </button>
-                        <button class="btn nav-create-button dropdown-item bg-dark" id="dash-nav-job-posts-create" data-toggle="modal"
-                                data-target="#job-postings-create-modal">Create Job Posting
-                        </button>
-                        <button class="btn nav-create-button dropdown-item bg-dark" id="dash-nav-whiteboard-questions-create" data-toggle="modal"
-                                data-target="#whiteboard-questions-create-modal">Create Whiteboard Question
-                        </button>
-                    </div>
-                </li>
-                <li class="nav-item active dropdown">
-                    <a class="nav-link active dropdown-toggle" href="#" id="interview-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Interview Questions
-                    </a>
-                    <div class="dropdown-menu bg-dark" aria-labelledby="interview-dropdown">
-                        <a class="nav-link active bg-dark drop" th:href="@{|/interview-questions/show|}">Interview Questions Home</a>
-                        <a class="nav-link active bg-dark drop" th:href="@{|/api/interview-questions|}">Interview Questions Practice</a>
-                    </div>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" th:href="@{|/mentorship-posts/show|}">Mentorship Posts</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" th:href="@{|/job-postings/show|}">Job Postings</a>
-                </li>
-                <li class="nav-item active dropdown">
-                    <a class="nav-link active dropdown-toggle" href="#" id="whiteboard-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Whiteboard Questions
-                    </a>
-                    <div class="dropdown-menu bg-dark" aria-labelledby="whiteboard-dropdown">
-                        <a class="nav-link active bg-dark drop" th:href="@{|/whiteboard-questions/show|}">Whiteboard Questions Home</a>
-                        <a class="nav-link active bg-dark drop" th:href="@{|/whiteboard/1|}">Environment 1</a>
-                        <a class="nav-link active bg-dark drop" th:href="@{|/whiteboard/2|}">Environment 2</a>
-                        <a class="nav-link active bg-dark drop" th:href="@{|/whiteboard/3|}">Environment 3</a>
-                        <a class="nav-link active bg-dark drop" th:href="@{|/whiteboard/4|}">Environment 4</a>
-                    </div>
-                </li>
-                <li class="nav-item active">
-                    <form th:action="@{~/logout_app}" th:method="post">
-                        <button class="btn-link btn logout-button">Logout</button>
-                    </form>
-                </li>
-            </ul>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/1|}">Environment 1</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/2|}">Environment 2</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/3|}">Environment 3</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/4|}">Environment 4</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{|/about-us|}">About Us</a>
+            </li>
+            <li class="nav-item">
+                <form th:action="@{~/logout_app}" th:method="post">
+                    <button class="btn-link btn logout-button">Logout</button>
+                </form>
+            </li>
+        </ul>
+        <ul th:if="${#httpServletRequest.requestURI.contains('users/dashboard')}" class="navbar-nav mr-auto ml-3">
+            <li class="nav-item">
+                <a class="navbar-brand" id="logo" href="/users/dashboard">CodeOn</a>
+            </li>
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" href="#" id="create-dropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Create
+                </a>
+                <div class="dropdown-menu bg-dark" aria-labelledby="create-dropdown">
+                    <button class="btn nav-create-button dropdown-item bg-dark" id="dash-nav-interview-questions-create"
+                            data-toggle="modal"
+                            data-target="#interview-questions-create-modal">Interview Question
+                    </button>
+                    <button class="btn nav-create-button dropdown-item bg-dark" id="dash-nav-mentorship-posts-create"
+                            data-toggle="modal"
+                            data-target="#mentorship-posts-create-modal">Mentorship Post
+                    </button>
+                    <button class="btn nav-create-button dropdown-item bg-dark" id="dash-nav-job-posts-create"
+                            data-toggle="modal"
+                            data-target="#job-postings-create-modal">Job Post
+                    </button>
+                    <button class="btn nav-create-button dropdown-item bg-dark"
+                            id="dash-nav-whiteboard-questions-create" data-toggle="modal"
+                            data-target="#whiteboard-questions-create-modal">Whiteboard Question
+                    </button>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="interview-dropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Interview
+                </a>
+                <div class="dropdown-menu bg-dark" aria-labelledby="interview-dropdown">
+                    <a class="nav-link bg-dark drop" th:href="@{|/interview-questions/show|}">Interview Home</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/api/interview-questions|}">Interview Practice</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{|/mentorship-posts/show|}">Mentorship</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{|/job-postings/show|}">Jobs</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="whiteboard-dropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Whiteboard
+                </a>
+                <div class="dropdown-menu bg-dark" aria-labelledby="whiteboard-dropdown">
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard-questions/show|}">Whiteboard Home</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/1|}">Environment 1</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/2|}">Environment 2</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/3|}">Environment 3</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/4|}">Environment 4</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{|/about-us|}">About Us</a>
+            </li>
+            <li class="nav-item">
+                <form th:action="@{~/logout_app}" th:method="post">
+                    <button class="btn-link btn logout-button">Logout</button>
+                </form>
+            </li>
+        </ul>
+        <ul th:if="${#httpServletRequest.requestURI.contains('/about-us')}" class="navbar-nav mr-auto ml-3">
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+                <a class="navbar-brand" id="logo" th:href="@{|/users/dashboard|}">CodeOn</a>
+            </li>
+            <li sec:authorize="!isAuthenticated()" class="nav-item">
+                <a class="navbar-brand" id="logo" th:href="@{|/|}">CodeOn</a>
+            </li>
+            <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="create-dropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Create
+                </a>
+                <div class="dropdown-menu bg-dark" aria-labelledby="create-dropdown">
+                    <button class="btn nav-create-button dropdown-item bg-dark" id="dash-nav-interview-questions-create"
+                            data-toggle="modal"
+                            data-target="#interview-questions-create-modal">Interview Question
+                    </button>
+                    <button class="btn nav-create-button dropdown-item bg-dark" id="dash-nav-mentorship-posts-create"
+                            data-toggle="modal"
+                            data-target="#mentorship-posts-create-modal">Mentorship Post
+                    </button>
+                    <button class="btn nav-create-button dropdown-item bg-dark" id="dash-nav-job-posts-create"
+                            data-toggle="modal"
+                            data-target="#job-postings-create-modal">Job Post
+                    </button>
+                    <button class="btn nav-create-button dropdown-item bg-dark"
+                            id="dash-nav-whiteboard-questions-create" data-toggle="modal"
+                            data-target="#whiteboard-questions-create-modal">Whiteboard Question
+                    </button>
+                </div>
+            </li>
+            <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="interview-dropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Interview
+                </a>
+                <div class="dropdown-menu bg-dark" aria-labelledby="interview-dropdown">
+                    <a class="nav-link bg-dark drop" th:href="@{|/interview-questions/show|}">Interview Home</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/api/interview-questions|}">Interview Practice</a>
+                </div>
+            </li>
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+                <a class="nav-link" th:href="@{|/mentorship-posts/show|}">Mentorship</a>
+            </li>
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+                <a class="nav-link" th:href="@{|/job-postings/show|}">Jobs</a>
+            </li>
+            <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="whiteboard-dropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Whiteboard
+                </a>
+                <div class="dropdown-menu bg-dark" aria-labelledby="whiteboard-dropdown">
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard-questions/show|}">Whiteboard Home</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/1|}">Environment 1</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/2|}">Environment 2</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/3|}">Environment 3</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/4|}">Environment 4</a>
+                </div>
+            </li>
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+                <form th:action="@{~/logout_app}" th:method="post">
+                    <button class="btn-link btn logout-button">Logout</button>
+                </form>
+            </li>
         </ul>
     </div>
 </nav>

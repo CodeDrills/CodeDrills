@@ -42,7 +42,13 @@ public class UserController {
     }
 
     @GetMapping("/about-us")
-    public String showAboutUs() {
+    public String showAboutUs(Model model, Principal principal) {
+        model.addAttribute("filestackKey", filestackKey);
+        model.addAttribute("quotesKey", theySaidSoKey);
+        model.addAttribute("talkJSAppId", talkJSAppId);
+        if(principal != null) {
+            model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
+        }
         return "about-us";
     }
 

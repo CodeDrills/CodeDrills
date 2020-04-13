@@ -212,7 +212,7 @@ insert into post_comments (body, date_time, post_id, user_id) values ('...', '20
 insert into post_comment_ratings (user_id, post_comment_id, rating) values (4, 19, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('There is a mythical 5th principal that no one knows about... yet. I''m from the future', '2020-01-19', 7, 13);
 insert into post_comment_ratings (user_id, post_comment_id, rating) values (13, 20, 0);
-insert into post_comments (body, date_time, post_id, user_id) values ('I would also like to know why you would use wrapper classes instead of primatives.', '2020-01-19', 12, 6);
+insert into post_comments (body, date_time, post_id, user_id) values ('I would also like to know why you would use wrapper classes instead of primitives.', '2020-01-19', 12, 6);
 insert into post_comment_ratings (user_id, post_comment_id, rating) values (6, 21, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('This would be easeier to understand with an example.', '2020-01-19', 6, 17);
 insert into post_comment_ratings (user_id, post_comment_id, rating) values (17, 22, 0);

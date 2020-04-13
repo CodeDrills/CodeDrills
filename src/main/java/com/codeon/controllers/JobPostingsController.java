@@ -53,10 +53,10 @@ public class JobPostingsController {
                 case "titleDesc":
                     postList = postDao.findAllByPostTypeId_TypeOrderByTitleDesc("job-postings");
                     break;
-                case "newest":
+                case "oldest":
                     postList = postDao.findAllByPostTypeId_TypeOrderByIdAsc("job-postings");
                     break;
-                case "oldest":
+                case "newest":
                     postList = postDao.findAllByPostTypeId_TypeOrderByIdDesc("job-postings");
                     break;
                 case "lowestRating":

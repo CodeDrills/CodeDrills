@@ -55,10 +55,10 @@ public class InterviewQuestionController {
                 case "titleDesc":
                     postList = postDao.findAllByPostTypeId_TypeOrderByTitleDesc("interview-questions");
                     break;
-                case "newest":
+                case "oldest":
                     postList = postDao.findAllByPostTypeId_TypeOrderByIdAsc("interview-questions");
                     break;
-                case "oldest":
+                case "newest":
                     postList = postDao.findAllByPostTypeId_TypeOrderByIdDesc("interview-questions");
                     break;
                 case "lowestRating":

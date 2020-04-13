@@ -15,26 +15,30 @@
                 <li class="nav-item active">
                     <a class="nav-link active" th:href="@{|/users/dashboard|}">Dashboard</a>
                 </li>
-                <li class="nav-item active">
-                    <button class="btn nav-create-button active" id="nav-interview-questions-create" data-toggle="modal"
-                            data-target="#interview-questions-create-modal">Create Question
-                    </button>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="interview-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Interview
+                    </a>
+                    <div class="dropdown-menu bg-dark" aria-labelledby="interview-dropdown">
+                        <a class="nav-link bg-dark drop" th:href="@{|/interview-questions/show|}">Interview Home</a>
+                        <button class="btn nav-create-button active" id="nav-interview-questions-create" data-toggle="modal"
+                                data-target="#interview-questions-create-modal">Create
+                        </button>
+                        <a class="nav-link bg-dark drop" th:href="@{|/api/interview-questions|}">Practice</a>
+                    </div>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link active" th:href="@{|/api/interview-questions|}">Practice</a>
+                    <a class="nav-link" th:href="@{|/mentorship-posts/show|}">Mentorship</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" th:href="@{|/mentorship-posts/show|}">Mentorship Posts</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link active" th:href="@{|/job-postings/show|}">Job Postings</a>
+                    <a class="nav-link active" th:href="@{|/job-postings/show|}">Jobs</a>
                 </li>
                 <li class="nav-item active dropdown">
                     <a class="nav-link active dropdown-toggle" href="#" id="whiteboard-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Whiteboard Questions
                     </a>
                     <div class="dropdown-menu bg-dark" aria-labelledby="whiteboard-dropdown">
-                        <a class="nav-link active bg-dark drop" th:href="@{|/whiteboard-questions/show|}">Whiteboard Questions Home</a>
+                        <a class="nav-link active bg-dark drop" th:href="@{|/whiteboard-questions/show|}">Whiteboard</a>
                         <a class="nav-link active bg-dark drop" th:href="@{|/whiteboard/1|}">Environment 1</a>
                         <a class="nav-link active bg-dark drop" th:href="@{|/whiteboard/2|}">Environment 2</a>
                         <a class="nav-link active bg-dark drop" th:href="@{|/whiteboard/3|}">Environment 3</a>
@@ -51,18 +55,23 @@
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{|/users/dashboard|}">Dashboard</a>
                 </li>
-                <li class="nav-item">
-                    <button class="btn nav-create-button" id="nav-mentorship-posts-create" data-toggle="modal"
-                            data-target="#mentorship-posts-create-modal">Create Post
-                    </button>
-                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="interview-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Interview Questions
+                        Interview
                     </a>
                     <div class="dropdown-menu bg-dark" aria-labelledby="interview-dropdown">
-                        <a class="nav-link bg-dark drop" th:href="@{|/interview-questions/show|}">Interview Questions Home</a>
-                        <a class="nav-link bg-dark drop" th:href="@{|/api/interview-questions|}">Interview Questions Practice</a>
+                        <a class="nav-link bg-dark drop" th:href="@{|/interview-questions/show|}">Interview Home</a>
+                        <a class="nav-link bg-dark drop" th:href="@{|/api/interview-questions|}">Interview Practice</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="mentorship-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Mentorship
+                    </a>
+                    <div class="dropdown-menu bg-dark" aria-labelledby="interview-dropdown">
+                        <button class="btn nav-create-button" id="nav-mentorship-posts-create" data-toggle="modal"
+                                data-target="#mentorship-posts-create-modal">Create
+                        </button>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -70,10 +79,10 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="whiteboard-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Whiteboard Questions
+                        Whiteboard
                     </a>
                     <div class="dropdown-menu bg-dark" aria-labelledby="whiteboard-dropdown">
-                        <a class="nav-link bg-dark drop" th:href="@{|/whiteboard-questions/show|}">Whiteboard Questions Home</a>
+                        <a class="nav-link bg-dark drop" th:href="@{|/whiteboard-questions/show|}">Whiteboard Home</a>
                         <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/1|}">Environment 1</a>
                         <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/2|}">Environment 2</a>
                         <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/3|}">Environment 3</a>
@@ -90,29 +99,34 @@
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{|/users/dashboard|}">Dashboard</a>
                 </li>
-                <li class="nav-item">
-                    <button class="btn nav-create-button" id="nav-job-postings-create" data-toggle="modal"
-                            data-target="#job-postings-create-modal">Create Posting
-                    </button>
-                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="interview-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Interview Questions
+                        Interview
                     </a>
                     <div class="dropdown-menu bg-dark" aria-labelledby="interview-dropdown">
-                        <a class="nav-link bg-dark drop" th:href="@{|/interview-questions/show|}">Interview Questions Home</a>
-                        <a class="nav-link bg-dark drop" th:href="@{|/api/interview-questions|}">Interview Questions Practice</a>
+                        <a class="nav-link bg-dark drop" th:href="@{|/interview-questions/show|}">Interview Home</a>
+                        <a class="nav-link bg-dark drop" th:href="@{|/api/interview-questions|}">Interview Practice</a>
                     </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{|/mentorship-posts/show|}">Mentorship Posts</a>
                 </li>
                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="jobs-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Jobs
+                    </a>
+                    <div class="dropdown-menu bg-dark" aria-labelledby="interview-dropdown">
+                        <button class="btn nav-create-button" id="nav-job-postings-create" data-toggle="modal"
+                                data-target="#job-postings-create-modal">Create
+                        </button>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="whiteboard-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Whiteboard Questions
+                        Whiteboard
                     </a>
                     <div class="dropdown-menu bg-dark" aria-labelledby="whiteboard-dropdown">
-                        <a class="nav-link bg-dark drop" th:href="@{|/whiteboard-questions/show|}">Whiteboard Questions Home</a>
+                        <a class="nav-link bg-dark drop" th:href="@{|/whiteboard-questions/show|}">Whiteboard Home</a>
                         <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/1|}">Environment 1</a>
                         <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/2|}">Environment 2</a>
                         <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/3|}">Environment 3</a>
@@ -129,29 +143,30 @@
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{|/users/dashboard|}">Dashboard</a>
                 </li>
-                <li class="nav-item">
-                    <button class="btn nav-create-button" id="nav-whiteboard-questions-create" data-toggle="modal"
-                            data-target="#whiteboard-questions-create-modal">Create Question
-                    </button>
-                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="interview-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Interview Questions
+                        Interview
                     </a>
                     <div class="dropdown-menu bg-dark" aria-labelledby="interview-dropdown">
-                        <a class="nav-link bg-dark drop" th:href="@{|/interview-questions/show|}">Interview Questions Home</a>
-                        <a class="nav-link bg-dark drop" th:href="@{|/api/interview-questions|}">Interview Questions Practice</a>
+                        <a class="nav-link bg-dark drop" th:href="@{|/interview-questions/show|}">Interview Home</a>
+                        <a class="nav-link bg-dark drop" th:href="@{|/api/interview-questions|}">Interview Practice</a>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{|/mentorship-posts/show|}">Mentorship Posts</a>
+                    <a class="nav-link" th:href="@{|/mentorship-posts/show|}">Mentorship</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link active" th:href="@{|/job-postings/show|}">Jobs</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="whiteboard-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Whiteboard Questions
+                        Whiteboard
                     </a>
                     <div class="dropdown-menu bg-dark" aria-labelledby="whiteboard-dropdown">
-                        <a class="nav-link bg-dark drop" th:href="@{|/whiteboard-questions/show|}">Whiteboard Questions Home</a>
+                        <a class="nav-link bg-dark drop" th:href="@{|/whiteboard-questions/show|}">Whiteboard Home</a>
+                        <button class="btn nav-create-button" id="nav-whiteboard-questions-create" data-toggle="modal"
+                                data-target="#whiteboard-questions-create-modal">Create
+                        </button>
                         <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/1|}">Environment 1</a>
                         <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/2|}">Environment 2</a>
                         <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/3|}">Environment 3</a>
@@ -171,44 +186,44 @@
                     </a>
                     <div class="dropdown-menu bg-dark" aria-labelledby="create-dropdown">
                         <button class="btn nav-create-button dropdown-item bg-dark" id="dash-nav-interview-questions-create" data-toggle="modal"
-                                data-target="#interview-questions-create-modal">Create Interview Question
+                                data-target="#interview-questions-create-modal">Interview Question
                         </button>
                         <button class="btn nav-create-button dropdown-item bg-dark" id="dash-nav-mentorship-posts-create" data-toggle="modal"
-                                data-target="#mentorship-posts-create-modal">Create Mentorship Post
+                                data-target="#mentorship-posts-create-modal">Mentorship Post
                         </button>
                         <button class="btn nav-create-button dropdown-item bg-dark" id="dash-nav-job-posts-create" data-toggle="modal"
-                                data-target="#job-postings-create-modal">Create Job Posting
+                                data-target="#job-postings-create-modal">Job Posting
                         </button>
                         <button class="btn nav-create-button dropdown-item bg-dark" id="dash-nav-whiteboard-questions-create" data-toggle="modal"
-                                data-target="#whiteboard-questions-create-modal">Create Whiteboard Question
+                                data-target="#whiteboard-questions-create-modal">Whiteboard Question
                         </button>
                     </div>
                 </li>
-                <li class="nav-item active dropdown">
-                    <a class="nav-link active dropdown-toggle" href="#" id="interview-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Interview Questions
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="interview-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Interview
                     </a>
                     <div class="dropdown-menu bg-dark" aria-labelledby="interview-dropdown">
-                        <a class="nav-link active bg-dark drop" th:href="@{|/interview-questions/show|}">Interview Questions Home</a>
-                        <a class="nav-link active bg-dark drop" th:href="@{|/api/interview-questions|}">Interview Questions Practice</a>
+                        <a class="nav-link bg-dark drop" th:href="@{|/interview-questions/show|}">Interview Home</a>
+                        <a class="nav-link bg-dark drop" th:href="@{|/api/interview-questions|}">Interview Practice</a>
                     </div>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" th:href="@{|/mentorship-posts/show|}">Mentorship Posts</a>
+                    <a class="nav-link" th:href="@{|/mentorship-posts/show|}">Mentorship</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" th:href="@{|/job-postings/show|}">Job Postings</a>
+                    <a class="nav-link" th:href="@{|/job-postings/show|}">Jobs</a>
                 </li>
-                <li class="nav-item active dropdown">
-                    <a class="nav-link active dropdown-toggle" href="#" id="whiteboard-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Whiteboard Questions
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="whiteboard-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Whiteboard
                     </a>
                     <div class="dropdown-menu bg-dark" aria-labelledby="whiteboard-dropdown">
-                        <a class="nav-link active bg-dark drop" th:href="@{|/whiteboard-questions/show|}">Whiteboard Questions Home</a>
-                        <a class="nav-link active bg-dark drop" th:href="@{|/whiteboard/1|}">Environment 1</a>
-                        <a class="nav-link active bg-dark drop" th:href="@{|/whiteboard/2|}">Environment 2</a>
-                        <a class="nav-link active bg-dark drop" th:href="@{|/whiteboard/3|}">Environment 3</a>
-                        <a class="nav-link active bg-dark drop" th:href="@{|/whiteboard/4|}">Environment 4</a>
+                        <a class="nav-link bg-dark drop" th:href="@{|/whiteboard-questions/show|}">Whiteboard Home</a>
+                        <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/1|}">Environment 1</a>
+                        <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/2|}">Environment 2</a>
+                        <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/3|}">Environment 3</a>
+                        <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/4|}">Environment 4</a>
                     </div>
                 </li>
                 <li class="nav-item active">

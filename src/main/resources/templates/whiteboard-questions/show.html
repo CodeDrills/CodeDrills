@@ -11,37 +11,32 @@
 
 
 <div class="container profile-container">
-<div class="card p-5 mt-5 blue-font" id="profile-card">
-    <h2 class="display-1 card-title text-center p-3 profile-header">Whiteboard</h2>
-    <div class="row">
-        <div class="col-4 text-center">
-            <a class ="profile-header" id="interview-whiteboard-button" th:href="@{|/whiteboard|}">Whiteboard</a>
-            <!--                <a th:href="@{|/interview-questions/create|}"><button class="btn btn-primary">Interview Create</button></a>-->
-        </div>
-        <div class="col-4">
-            <div class="d-flex justify-content-sm-around dropdown btn ml-5" id="sortbutton">
-                <a class="dropdown-toggle profile-header" href="#" id="sort-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Sort By
-                </a>
-                <div class="dropdown-menu bg-dark" aria-labelledby="whiteboard-dropdown">
-                    <a class="drop" th:href="@{/interview-questions/show(by=titleAsc)}">Title Ascending</a>
-                    <a class="drop" th:href="@{/interview-questions/show(by=titleDesc)}">Title Descending</a>
-                    <a class="drop" th:href="@{/interview-questions/show(by=newest)}">Most Recent</a>
-                    <a class="drop" th:href="@{/interview-questions/show(by=oldest)}">Oldest</a>
-                    <a class="drop" th:href="@{/interview-questions/show}">Highest Rating</a>
-                    <a class="drop" th:href="@{/interview-questions/show(by=lowestRating)}">Lowest Rating</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-4 text-center">
-            <a class ="profile-header" id="interview-question-round-button" th:href="@{|/api/interview-questions|}">Question Round</a>
-            <!--                <a th:href="@{|/job-postings/create|}"><button class="btn btn-primary">Job Postings Create</button></a>-->
-        </div>
+    <div class="card p-5 mt-5 blue-font" id="profile-card">
+        <h2 class="display-1 card-title text-center p-3 profile-header">Whiteboard</h2>
     </div>
-
 </div>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8 d-flex align-content-center justify-content-around">
+        <a class ="profile-button" th:href="@{|/whiteboard|}">Whiteboard</a>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" name="searchString" placeholder="Search"
+                   aria-label="Search">
+            <select class="custom-select" id="select-sort" name="by">
+                <option selected disabled value="highestRating">Sort Results By</option>
+                <option value="highestRating">Highest Rating</option>
+                <option value="lowestRating">Lowest Rating</option>
+                <option value="titleAsc">Title Ascending</option>
+                <option value="titleDesc">Title Descending</option>
+                <option value="newest">Most Recent</option>
+                <option value="oldest">Oldest</option>
+            </select>
+            <button class="btn my-2 my-sm-0 ml-2" id="search-button" type="submit">Search</button>
+        </form>
+        <a class ="profile-button" th:href="@{|/api/interview-questions|}">Question Round</a>
+    </div>
+    <div class="col-2"></div>
 </div>
-
 <div class="container post-container">
     <!--    POST FILLING BEGINS HERE-->
     <div th:each="post : ${postList}">
@@ -55,7 +50,9 @@
                     </div>
                     <div class="col-11">
                         <div th:id="'post-' + ${post.id}"></div>
-                        <p class="m-r mb-0 userprint">Posted on:<span class="userinfo" th:text="${post.dateTime} + 'by' + ${post.user.username}"></span></p>
+                        <p class="m-r mb-0 userprint">Posted on:<span class="userinfo"
+                                                                      th:text="${post.dateTime} + 'by' + ${post.user.username}"></span>
+                        </p>
                         <h1 th:text="${post.title}"></h1>
                         <p th:text="${post.body}"></p>
                         <p th:text="${post.answer}"></p>

@@ -26,13 +26,12 @@
     <div class="col-9">
         <div class="card p-5 blue-font" id="profile-card">
             <h2 class="display-1 text-center p-3 profile-header">CodeOn</h2>
-            <p class="text-center" id="label-text">View the most recent posts from each category.</p>
         </div>
         <div class="d-flex justify-content-around">
             <a class ="profile-button" th:href="@{|/interview-questions/show|}">Interview Questions</a>
-            <a class ="profile-button" th:href="@{|/mentorship-posts/show|}">Mentorship Posts</a>
-            <a class ="profile-button" th:href="@{|/job-postings/show|}">Job Postings</a>
             <a class ="profile-button" th:href="@{|/whiteboard-questions/show|}">Whiteboard</a>
+            <a class ="profile-button" th:href="@{|/mentorship-posts/show|}">Mentorship</a>
+            <a class ="profile-button" th:href="@{|/job-postings/show|}">Job Listings</a>
         </div>
     </div>
 </div>
@@ -151,8 +150,7 @@
                         </div>
                         <div class="col-11">
                             <div th:id="'post-' + ${post.id}">
-                                <p class="m-r mb-0 userprint">Posted on: <span class="userinfo"
-                                                                               th:text="${post.dateTime}"></span> by
+                                <p class="m-r mb-0 userprint">Posted on: <span class="userinfo" th:text="${post.dateTime}"></span> by
                                     <span class="userinfo" th:text="${post.user.username}"></span></p>
                                 <h1 th:text="${post.title}"></h1>
                                 <p th:text="${post.body}"></p>

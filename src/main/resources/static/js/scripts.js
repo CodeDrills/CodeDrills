@@ -29,7 +29,7 @@ const attachAddCommentEventListener = function() {
         let i = 0;
         document.querySelectorAll(".add-comment-button").forEach(button => button.addEventListener("click", function (e) {
             e.preventDefault();
-            document.querySelector(`#create-comment-div-${this.getAttribute("id").split("-")[3]}`).innerHTML = `<input type="text" id="comment-${this.getAttribute("id").split("-")[3]}" name="body" placeholder="Comment."><button class="post-comment-button" id="post-comment-button-${this.getAttribute("id").split("-")[3]}">Submit.</button>`;
+            document.querySelector(`#create-comment-div-${this.getAttribute("id").split("-")[3]}`).innerHTML = `<textarea class="form-control" cols="10" rows="5" maxlength="250" type="text" id="comment-${this.getAttribute("id").split("-")[3]}" name="body" placeholder="add your comment"></textarea><button class="post-comment-button" id="post-comment-button-${this.getAttribute("id").split("-")[3]}">Submit.</button>`;
             document.querySelector(`#post-comment-button-${this.getAttribute("id").split("-")[3]}`).addEventListener("click", function (e) {
                 e.preventDefault();
                 let commentInput = document.querySelector(`#comment-${this.getAttribute("id").split("-")[3]}`);

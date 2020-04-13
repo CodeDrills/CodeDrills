@@ -274,7 +274,72 @@
                 </form>
             </li>
         </ul>
-        <!--        </ul>-->
+        <ul th:if="${#httpServletRequest.requestURI.contains('/about-us')}" class="navbar-nav mr-auto ml-3">
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+                <a class="navbar-brand" id="logo" th:href="@{|/users/dashboard|}">CodeOn</a>
+            </li>
+            <li sec:authorize="!isAuthenticated()" class="nav-item">
+                <a class="navbar-brand" id="logo" th:href="@{|/|}">CodeOn</a>
+            </li>
+            <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="create-dropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Create
+                </a>
+                <div class="dropdown-menu bg-dark" aria-labelledby="create-dropdown">
+                    <button class="btn nav-create-button dropdown-item bg-dark" id="dash-nav-interview-questions-create"
+                            data-toggle="modal"
+                            data-target="#interview-questions-create-modal">Interview Question
+                    </button>
+                    <button class="btn nav-create-button dropdown-item bg-dark" id="dash-nav-mentorship-posts-create"
+                            data-toggle="modal"
+                            data-target="#mentorship-posts-create-modal">Mentorship Post
+                    </button>
+                    <button class="btn nav-create-button dropdown-item bg-dark" id="dash-nav-job-posts-create"
+                            data-toggle="modal"
+                            data-target="#job-postings-create-modal">Job Post
+                    </button>
+                    <button class="btn nav-create-button dropdown-item bg-dark"
+                            id="dash-nav-whiteboard-questions-create" data-toggle="modal"
+                            data-target="#whiteboard-questions-create-modal">Whiteboard Question
+                    </button>
+                </div>
+            </li>
+            <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="interview-dropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Interview
+                </a>
+                <div class="dropdown-menu bg-dark" aria-labelledby="interview-dropdown">
+                    <a class="nav-link bg-dark drop" th:href="@{|/interview-questions/show|}">Interview Home</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/api/interview-questions|}">Interview Practice</a>
+                </div>
+            </li>
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+                <a class="nav-link" th:href="@{|/mentorship-posts/show|}">Mentorship</a>
+            </li>
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+                <a class="nav-link" th:href="@{|/job-postings/show|}">Jobs</a>
+            </li>
+            <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="whiteboard-dropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Whiteboard
+                </a>
+                <div class="dropdown-menu bg-dark" aria-labelledby="whiteboard-dropdown">
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard-questions/show|}">Whiteboard Home</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/1|}">Environment 1</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/2|}">Environment 2</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/3|}">Environment 3</a>
+                    <a class="nav-link bg-dark drop" th:href="@{|/whiteboard/4|}">Environment 4</a>
+                </div>
+            </li>
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+                <form th:action="@{~/logout_app}" th:method="post">
+                    <button class="btn-link btn logout-button">Logout</button>
+                </form>
+            </li>
+        </ul>
     </div>
 </nav>
 </html>

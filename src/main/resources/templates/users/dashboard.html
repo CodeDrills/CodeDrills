@@ -12,7 +12,7 @@
 <div th:replace="fragments/create-modals.html :: create-modals"></div>
 <!--The profile card at the top of the page -->
 <!--<div class="container">-->
-<div class="row m-5">
+<div class="row mt-5 mr-5 ml-5 mb-0">
     <div class="col-3">
         <div class="card text-center">
             <div class="embed-responsive embed-responsive-4by3">
@@ -27,28 +27,17 @@
         <div class="card p-5 blue-font" id="profile-card">
             <h2 class="display-1 text-center p-3 profile-header">CodeOn</h2>
             <p class="text-center" id="label-text">View the most recent posts from each category.</p>
-            <div class="row">
-                <div class="col-md-3">
-                    <a class ="profile-header" th:href="@{|/interview-questions/show|}">Interview Questions</a>
-                </div>
-                <div class="col-md-3">
-                    <a class ="profile-header" th:href="@{|/mentorship-posts/show|}">Mentorship Posts</a>
-                </div>
-                <div class="col-md-3">
-                    <a class ="profile-header" th:href="@{|/job-postings/show|}">Job Postings</a>
-
-                </div>
-                <div class="col-md-3">
-                    <a class ="profile-header" th:href="@{|/whiteboard-questions/show|}">Whiteboard questions</a>
-
-                </div>
-            </div>
+        </div>
+        <div class="d-flex justify-content-around">
+            <a class ="profile-button" th:href="@{|/interview-questions/show|}">Interview Questions</a>
+            <a class ="profile-button" th:href="@{|/mentorship-posts/show|}">Mentorship Posts</a>
+            <a class ="profile-button" th:href="@{|/job-postings/show|}">Job Postings</a>
+            <a class ="profile-button" th:href="@{|/whiteboard-questions/show|}">Whiteboard</a>
         </div>
     </div>
-
 </div>
 <!--    Interview-->
-<div class="row m-5">
+<div class="row mr-5 ml-5 mb-5 mt-0">
     <a id="interview-questions"></a>
     <div class="col-3">
         <!--        interview question description card-->

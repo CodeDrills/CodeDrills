@@ -106,6 +106,7 @@ body, html {
 }
 
 .profile-button {
+    width: 188px;
     text-align: center;
     color: #E3E7D3;
     font-size: 20px;

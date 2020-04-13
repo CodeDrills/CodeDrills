@@ -11,8 +11,8 @@
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
 <div th:replace="fragments/create-modals.html :: create-modals"></div>
 <!--The profile card at the top of the page -->
-<!--<div class="container">-->
-<div class="row mt-5 mr-5 ml-5 mb-0">
+<div class="container-sm ">
+    <div class="row mt-5">
     <div class="col-3">
         <div class="card text-center">
             <div class="embed-responsive embed-responsive-4by3">
@@ -35,12 +35,10 @@
             <a class ="profile-button" th:href="@{|/mentorship-posts/show|}">Mentorship</a>
             <a class ="profile-button" th:href="@{|/job-postings/show|}">Job Listings</a>
         </div>
-
-
     </div>
-</div>
+    </div>
 <!--    Interview-->
-<div class="row mr-5 ml-5 mb-5 mt-0">
+<div class="row mb-5 mt-0">
     <a id="interview-questions"></a>
     <div class="col-3">
         <!--        interview question description card-->
@@ -130,7 +128,7 @@
 </div>
 <!--    End Interview-->
 <!--    Mentorship-->
-<div class="row m-5">
+<div class="row">
     <a id="mentorship-post"></a>
     <div class="col-3">
         <div class="card text-center">
@@ -220,7 +218,7 @@
 </div>
 <!--    End Mentorship-->
 <!--    Job-->
-<div class="row m-5">
+<div class="row">
     <a id="job-posting"></a>
     <!--    side card and link to post to jobs-->
     <div class="col-3">
@@ -311,7 +309,7 @@
     </div>
 </div>
 <!--    End Job-->
-<div class="row m-5">
+<div class="row">
     <a id="whiteboard-questions"></a>
     <div class="col-3">
         <!--        interview question description card-->
@@ -402,7 +400,7 @@
 
 
 <!--container div-->
-<!--</div>-->
+</div>
 <div th:replace="fragments/chat-box.html :: chat-box"></div>
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>
 <script type="text/javascript" th:src="@{~/js/quotes.js}"></script>

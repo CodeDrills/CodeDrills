@@ -47,3 +47,9 @@
     margin-top: 15%;
     box-shadow: 0px 7px 29px 10px rgba(0,0,0,1);
 }
+#index-end-register{
+    color: #0f6674;
+}
+#index-end-register:hover{
+    color: #189cb1;
+}

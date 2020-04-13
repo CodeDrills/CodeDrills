@@ -228,6 +228,9 @@ header {
     width: 190px;
     font-size: 100px;
 }
+.aboutus{
+    margin-top: 15%;
+}
 
 .nav-create-button, .logout-button, .drop {
     color: rgba(255,255,255,.5) !important;

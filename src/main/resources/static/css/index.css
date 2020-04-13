@@ -249,6 +249,10 @@ header {
     color: rgba(255,255,255,.5) !important;
 }
 
+.nav-create-button{
+    padding-right: 6rem;
+}
+
 
 
 .nav-link:hover, .nav-create-button:hover, .logout-button:hover, .drop:hover {

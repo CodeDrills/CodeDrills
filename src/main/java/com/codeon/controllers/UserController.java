@@ -19,6 +19,8 @@ public class UserController {
     private String filestackKey;
     @Value("${talkjs.app.id}")
     private String talkJSAppId;
+    @Value("${quote.key}")
+    private String theySaidSoKey;
     private UserRepo userDao;
     private PasswordEncoder passwordEncoder;
     private SecurityRoleRepo securityRoleDao;
@@ -39,9 +41,13 @@ public class UserController {
         this.approvedEmailDao = approvedEmailDao;
     }
 
+    @GetMapping("/about-us")
+    public String showAboutUs() {
+        return "about-us";
+    }
+
     @GetMapping("/register")
     public String showRegisterForm(Model model, Principal principal) {
-        //This prinicipal logic may be redundant or need to be deleted if spring security covers keeping logged in users away from this
         if(principal != null) {
             return "redirect:/users/dashboard";
         }
@@ -53,7 +59,6 @@ public class UserController {
     //this is going to need to be refactored MAKE IT ALL A MAP or something.
     @PostMapping("/register")
     public String registerUser(@RequestParam(name = "skills-param") List<String> skillsStringList, @RequestParam String photoURL, @RequestParam String resumeURL, @ModelAttribute User user, Principal principal) {
-        //This prinicipal logic may be redundant or need to be deleted if spring security covers keeping logged in users away from this
         if(principal != null) {
             //which controller should this go to? profile?
             return "redirect:/users/dashboard";
@@ -109,6 +114,7 @@ public class UserController {
         List<Post> whiteboardPostingsList = postDao.findAllByPostTypeId_Type("whiteboard-questions").subList(postDao.findAllByPostTypeId_Type("whiteboard-questions").size() - 2, postDao.findAllByPostTypeId_Type("whiteboard-questions").size());
         jobPostingsList.sort(Collections.reverseOrder(Comparator.comparing(Post::getId)));
         model.addAttribute("filestackKey", filestackKey);
+        model.addAttribute("quotesKey", theySaidSoKey);
         model.addAttribute("post", new Post());
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("talkJSAppId", talkJSAppId);
@@ -116,9 +122,11 @@ public class UserController {
         model.addAttribute("mentorshipPostsList", mentorshipPostsList);
         model.addAttribute("jobPostingsList", jobPostingsList);
         model.addAttribute("whiteboardPostingsList", whiteboardPostingsList);
+        //what is this below?
         model.addAttribute("interviewPost", new Post());
         model.addAttribute("mentorshipPost", new Post());
         model.addAttribute("jobcreatePost", new Post());
+        //what is this above?
         return "users/dashboard";
     }
     @PostMapping("users/edit{id}/")

@@ -5,11 +5,14 @@
     <meta class="talkJSAppId" th:content="${talkJSAppId}"/>
     <meta class="filestackKey" th:content="${filestackKey}"/>
 </head>
-<body>
+<body class="back">
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
 <div th:replace="fragments/create-modals.html :: create-modals"></div>
-<button class="start-button" id="start-button">Start Question Round</button>
-<div id="fill-this"></div>
+
+<div class="d-flex flex-column align-items-center">
+    <button class="start-button" id="start-button">Start Question Round</button>
+    <div id="fill-this"></div>
+</div>
 
 <div th:replace="fragments/chat-box.html :: chat-box"></div>
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>

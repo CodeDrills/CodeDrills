@@ -38,6 +38,10 @@ public class UserController {
         this.postTypeDao = postTypeDao;
         this.approvedEmailDao = approvedEmailDao;
     }
+    @GetMapping("about-us")
+    public String aboutUs(){
+        return "about-us";
+    }
 
     @GetMapping("/about-us")
     public String showAboutUs() {

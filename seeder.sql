@@ -175,7 +175,7 @@ insert into post_comments (body, date_time, post_id, user_id) values ('I"m looki
 insert into post_comment_ratings (user_id, post_comment_id, rating) values (13, 1, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('How many years of experience do I need?', '2019-09-01', 15, 2);
 insert into post_comment_ratings (user_id, post_comment_id, rating) values (2, 2, 0);
-insert into post_comments (body, date_time, post_id, user_id) values ('Were Java and JavaScript created by the same coffee company?', '2019-09-01', 1, 6);
+insert into post_comments (body, date_time, post_id, user_id) values ('They weren''t created by the same people?', '2019-09-01', 1, 6);
 insert into post_comment_ratings (user_id, post_comment_id, rating) values (6, 3, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('80 years.', '2019-09-21', 15, 14);
 insert into post_comment_ratings (user_id, post_comment_id, rating) values (14, 4, 0);

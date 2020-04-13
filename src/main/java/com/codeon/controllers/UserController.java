@@ -19,6 +19,8 @@ public class UserController {
     private String filestackKey;
     @Value("${talkjs.app.id}")
     private String talkJSAppId;
+    @Value("${quote.key}")
+    private String theySaidSoKey;
     private UserRepo userDao;
     private PasswordEncoder passwordEncoder;
     private SecurityRoleRepo securityRoleDao;
@@ -112,6 +114,7 @@ public class UserController {
         List<Post> whiteboardPostingsList = postDao.findAllByPostTypeId_Type("whiteboard-questions").subList(postDao.findAllByPostTypeId_Type("whiteboard-questions").size() - 2, postDao.findAllByPostTypeId_Type("whiteboard-questions").size());
         jobPostingsList.sort(Collections.reverseOrder(Comparator.comparing(Post::getId)));
         model.addAttribute("filestackKey", filestackKey);
+        model.addAttribute("quotesKey", theySaidSoKey);
         model.addAttribute("post", new Post());
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("talkJSAppId", talkJSAppId);

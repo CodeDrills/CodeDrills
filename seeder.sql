@@ -1,6 +1,9 @@
 # DROP DATABASE codeon_db;
 
 
+DROP DATABASE codeon_db;
+
+
 use codeon_db;
 
 insert into post_types (type) values ('interview-questions'), ('mentorship-posts'), ('job-postings'), ('whiteboard-questions');
@@ -58,6 +61,16 @@ insert into users (id, is_active, bio, email, first_name, last_name, password, p
 insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (48, true, 'Monitored multi-state function', 'smckerrow1b@alibaba.com', 'Saidee',  'McKerrow', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'https://picsum.photos/id/1019/5472/3648', 'http://dummyimage.com/234x134.png/cc0000/ffffff', 'smckerrow1b');
 insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (49, true, 'Multi-layered dedicated synergy', 'lleather1c@bigcartel.com', 'Lorens', 'Leather', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'https://picsum.photos/id/1018/3914/2935', 'http://dummyimage.com/107x234.png/cc0000/ffffff', 'lleather1c');
 insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (50, true, 'Ergonomic cohesive parallelism', 'gpauling1d@dell.com', 'Gerri','Pauling', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'https://picsum.photos/id/1016/3844/2563', 'http://dummyimage.com/149x106.jpg/cc0000/ffffff', 'gpauling1d');
+insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (51, true, 'Expanded mobile hardware', 'vocoy1a@macromedia.com', 'Vivie',   'O''Collopy', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'https://picsum.photos/id/102/4320/3240', 'http://dummyimage.com/201x103.jpg/ff4444/ffffff', 'vocol45lopy1a');
+insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (52, true, 'Monitored multi-state function', 'smcke451b@alibaba.com', 'Saidee',  'McKerrow', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'https://picsum.photos/id/1019/5472/3648', 'http://dummyimage.com/234x134.png/cc0000/ffffff', 'smcker68row1b');
+insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (53, true, 'Multi-layered dedicated synergy', 'llea12r1c@bigcartel.com', 'Lorens', 'Leather', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'https://picsum.photos/id/1018/3914/2935', 'http://dummyimage.com/107x234.png/cc0000/ffffff', 'lleather1c67');
+insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (54, true, 'Ergonomic cohesive parallelism', 'gsmur123f1d@dell.com', 'Gerri','Pauling', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'https://picsum.photos/id/1016/3844/2563', 'http://dummyimage.com/149x106.jpg/cc0000/ffffff', 'gpa4ling12smurf');
+insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (55, true, 'Monitored multi-state function', 'smc34k3e451b@alibaba.com', 'Saidee',  'McKerrow', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'https://picsum.photos/id/1019/5472/3648', 'http://dummyimage.com/234x134.png/cc0000/ffffff', 'smcker68ro6633w1b');
+insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (56, true, 'Multi-layered dedicated synergy', 'llea13233265r1c@bigcartel.com', 'Lorens', 'Leather', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'https://picsum.photos/id/1018/3914/2935', 'http://dummyimage.com/107x234.png/cc0000/ffffff', 'll12eather111c67');
+insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (57, true, 'Ergonomic cohesive parallelism', 'gsmurf33561d@dell.com', 'Gerri','Pauling', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'https://picsum.photos/id/1016/3844/2563', 'http://dummyimage.com/149x106.jpg/cc0000/ffffff', 'gpaul456in78gsmurf');
+insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (58, true, 'Multi-layered dedicated synergy', 'll223ea1265r1c@bigcartel.com', 'Lorens', 'Leather', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'https://picsum.photos/id/1018/3914/2935', 'http://dummyimage.com/107x234.png/cc0000/ffffff', 'lleath224er111c67');
+insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (59, true, 'Ergonomic cohesive parallelism', 'gsmur34343f561d@dell.com', 'Gerri','Pauling', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'https://picsum.photos/id/1016/3844/2563', 'http://dummyimage.com/149x106.jpg/cc0000/ffffff', 'gpaul456ingsmu56rf');
+
 
 insert into users_skills (user_id, skill_id) values (4, 8);
 insert into users_skills (user_id, skill_id) values (7, 7);
@@ -305,3 +318,5 @@ insert into approved_emails_security_roles (approved_email_id, role_id) values (
 # insert into image_urls (post_id, url) values (9, 'http://dummyimage.com/183x200.bmp/dddddd/000000');
 # insert into image_urls (post_id, url) values (17, 'http://dummyimage.com/191x238.png/cc0000/ffffff');
 # insert into image_urls (post_id, url) values (20, 'http://dummyimage.com/203x237.jpg/ff4444/ffffff');
+
+

@@ -18,25 +18,21 @@
     </div>
 </div>
 <br>
-<!--<div class="d-flex justify-content-sm-around">-->
-<!--&lt;!&ndash;    <a id="interview-whiteboard-button" th:href="@{|/whiteboard|}">Whiteboard</a>&ndash;&gt;-->
-<!--&lt;!&ndash;    <a id="interview-question-round-button" th:href="@{|/api/interview-questions|}">Question Round</a>&ndash;&gt;-->
-<!--</div>-->
-<!--<div class="d-flex">-->
-<!--    <form class="form-inline align-content-end">-->
-<!--        <input class="form-control mr-sm-2" type="search" name="searchString" placeholder="Search" aria-label="Search">-->
-<!--        <select class="custom-select" id="select-sort" name="by">-->
-<!--            <option selected disabled value="highestRating">Sort Results By</option>-->
-<!--            <option value="highestRating">Highest Rating</option>-->
-<!--            <option value="lowestRating">Lowest Rating</option>-->
-<!--            <option value="titleAsc">Title Ascending</option>-->
-<!--            <option value="titleDesc">Title Descending</option>-->
-<!--            <option value="newest">Most Recent</option>-->
-<!--            <option value="oldest">Oldest</option>-->
-<!--        </select>-->
-<!--        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-<!--    </form>-->
-<!--</div>-->
+
+<!--<form class="form-inline my-2 my-lg-0">-->
+<!--    <input class="form-control mr-sm-2" type="search" name="searchString" placeholder="Search" aria-label="Search">-->
+<!--    <select class="custom-select" id="select-sort" name="by">-->
+<!--        <option selected disabled value="highestRating">Sort Results By</option>-->
+<!--        <option value="highestRating">Highest Rating</option>-->
+<!--        <option value="lowestRating">Lowest Rating</option>-->
+<!--        <option value="titleAsc">Title Ascending</option>-->
+<!--        <option value="titleDesc">Title Descending</option>-->
+<!--        <option value="newest">Most Recent</option>-->
+<!--        <option value="oldest">Oldest</option>-->
+<!--    </select>-->
+<!--    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+<!--</form>-->
+<br>
 
 <!--<br>-->
 <!--<div class="mt-5 col-3"></div>-->
@@ -80,6 +76,7 @@
     </div>
     <div class="col-2"></div>
 </div>
+
 <div class="container post-container">
     <!--    POST FILLING BEGINS HERE-->
     <div th:each="post : ${postList}">

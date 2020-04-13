@@ -273,6 +273,10 @@ header {
     padding-bottom: 5px;
 }
 
+.post-image {
+    max-width: 90% !important;
+}
+
 
 @media only screen and (max-width: 600px) {
     .parallax2{

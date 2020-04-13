@@ -162,7 +162,7 @@
                                 <hr class="m-0">
                                 <!--                                                        <p class="m-r mb-0">Asked by: <span th:text="${post.user.username}"></span> On: <span th:text = "${post.dateTime}"></span>  </p>-->
                                 <div th:if="${post.imageURLList.size() > 0 && post.imageURLList[0].url.length() > 8}">
-                                    <img th:src="${post.imageURLList[0].url}" alt="post-image">
+                                    <img class="post-image" th:src="${post.imageURLList[0].url}" alt="post-image">
                                 </div>
                             </div>
 
@@ -344,7 +344,7 @@
                                 <p class="mb-0" th:text="${post.answer}"></p>
                                 <hr>
                                 <div th:if="${post.imageURLList.size() > 0 && post.imageURLList[0].url.length() > 8}">
-                                    <img th:src="${post.imageURLList[0].url}" alt="post-image">
+                                    <img class="post-image" th:src="${post.imageURLList[0].url}" alt="post-image">
                                 </div>
                             </div>
                             <div th:each="comment : ${post.commentList}">

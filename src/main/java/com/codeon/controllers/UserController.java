@@ -38,6 +38,10 @@ public class UserController {
         this.postTypeDao = postTypeDao;
         this.approvedEmailDao = approvedEmailDao;
     }
+    @GetMapping("about-us")
+    public String aboutUs(){
+        return "about-us";
+    }
 
     @GetMapping("/register")
     public String showRegisterForm(Model model, Principal principal) {

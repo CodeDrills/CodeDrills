@@ -199,6 +199,9 @@ header {
     width: 190px;
     font-size: 100px;
 }
+.aboutus{
+    margin-top: 15%;
+}
 
 @media only screen and (max-width: 600px) {
 .parallax2{

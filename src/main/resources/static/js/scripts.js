@@ -66,7 +66,7 @@ const attachEditCommentEventListener = function() {
             e.preventDefault();
             let currentBody = document.querySelector(`#comment-body-${this.getAttribute("id").split("-")[3]}`).innerText;
             document.querySelector(`#comment-body-${this.getAttribute("id").split("-")[3]}`).style.display = "none";
-            document.querySelector(`#edit-comment-div-${this.getAttribute("id").split("-")[3]}`).innerHTML = `<input type="text" id="edit-${this.getAttribute("id").split("-")[3]}" name="body"><button class="post-comment-button" id="submit-edit-comment-button-${this.getAttribute("id").split("-")[3]}">Submit.</button>`;
+            document.querySelector(`#edit-comment-div-${this.getAttribute("id").split("-")[3]}`).innerHTML = `<textarea class="form-control" cols="10" rows="5" maxlength="250" type="text" id="edit-${this.getAttribute("id").split("-")[3]}" name="body"></textarea><button class="post-comment-button" id="submit-edit-comment-button-${this.getAttribute("id").split("-")[3]}">Submit.</button>`;
             let editInput = document.getElementById(`edit-${this.getAttribute("id").split("-")[3]}`);
             editInput.value = currentBody;
             document.querySelector(`#submit-edit-comment-button-${this.getAttribute("id").split("-")[3]}`).addEventListener("click", function (e) {

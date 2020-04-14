@@ -57,10 +57,10 @@ public class MentorshipPostsController {
                 case "titleDesc":
                     postList = postDao.findAllByPostTypeId_TypeOrderByTitleDesc("mentorship-posts");
                     break;
-                case "newest":
+                case "oldest":
                     postList = postDao.findAllByPostTypeId_TypeOrderByIdAsc("mentorship-posts");
                     break;
-                case "oldest":
+                case "newest":
                     postList = postDao.findAllByPostTypeId_TypeOrderByIdDesc("mentorship-posts");
                     break;
                 case "lowestRating":

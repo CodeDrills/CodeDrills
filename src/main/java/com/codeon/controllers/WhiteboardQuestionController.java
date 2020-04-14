@@ -57,10 +57,10 @@ public class WhiteboardQuestionController {
                 case "titleDesc":
                     postList = postDao.findAllByPostTypeId_TypeOrderByTitleDesc("whiteboard-questions");
                     break;
-                case "newest":
+                case "oldest":
                     postList = postDao.findAllByPostTypeId_TypeOrderByIdAsc("whiteboard-questions");
                     break;
-                case "oldest":
+                case "newest":
                     postList = postDao.findAllByPostTypeId_TypeOrderByIdDesc("whiteboard-questions");
                     break;
                 case "lowestRating":

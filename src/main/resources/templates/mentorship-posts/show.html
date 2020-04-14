@@ -9,14 +9,30 @@
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
 <div th:replace="fragments/create-modals.html :: create-modals"></div>
 <div class="container profile-container">
-
     <!--    PROFILE CARD    -->
     <div class="card p-5 mt-5 blue-font" id="profile-card">
-        <h1 class="card-title text-center p-3 profile-header">Mentorship</h1>
-        <div class="card-text media">
-            <p>We as a </p>
-        </div>
+        <h2 class="display-1 card-title text-center p-3 profile-header">Mentorship</h2>
     </div>
+</div>
+<div class="row mt-3 mb-3">
+    <div class="col-2"></div>
+    <div class="col-8 d-flex align-content-center justify-content-around">
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" name="searchString" placeholder="Search"
+                   aria-label="Search">
+            <select class="custom-select" id="select-sort" name="by">
+                <option selected disabled value="highestRating">Sort Results By</option>
+                <option value="highestRating">Highest Rating</option>
+                <option value="lowestRating">Lowest Rating</option>
+                <option value="titleAsc">Title Ascending</option>
+                <option value="titleDesc">Title Descending</option>
+                <option value="newest">Most Recent</option>
+                <option value="oldest">Oldest</option>
+            </select>
+            <button class="btn my-2 my-sm-0 ml-2" id="search-button" type="submit">Search</button>
+        </form>
+    </div>
+    <div class="col-2"></div>
 </div>
 <div class="container">
     <div th:each="post : ${postList}">
@@ -33,6 +49,9 @@
                     <p class="m-r mb-0 userprint">Posted on: <span class="userinfo" th:text = "${post.dateTime}"></span> by <span class="userinfo" th:text="${post.user.username}"></span>    </p>
                                 <h1 th:text = "${post.title}"></h1>
                                 <p th:text = "${post.body}"></p>
+                    <div th:if="${post.imageURLList.size() > 0 && post.imageURLList[0].url.length() > 8}">
+                        <img class="post-image" th:src="${post.imageURLList[0].url}" alt="post-image">
+                    </div>
                     <div th:each="comment : ${post.commentList}">
                         <div class="row">
                             <!--                                    THis is where the comment ratings are -->

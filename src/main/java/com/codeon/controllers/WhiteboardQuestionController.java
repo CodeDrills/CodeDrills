@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 @Controller
 public class WhiteboardQuestionController {
@@ -43,12 +44,46 @@ public class WhiteboardQuestionController {
     }
 
     @GetMapping("/whiteboard-questions/show")
-    public String showAllWhiteboardQuestions(Model model, Principal principal) {
+    public String showAllJobPostings(Model model, Principal principal, @RequestParam(required = false) String by, @RequestParam(required = false) String searchString) {
         model.addAttribute("filestackKey", filestackKey);
-        List<Post> whiteboardQuestions = postDao.findAllByPostTypeId_Type("whiteboard-questions");
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("talkJSAppId", talkJSAppId);
-        model.addAttribute("postList", whiteboardQuestions);
+        List<Post> postList;
+        if(by != null) {
+            switch (by) {
+                case "titleAsc":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByTitleAsc("whiteboard-questions");
+                    break;
+                case "titleDesc":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByTitleDesc("whiteboard-questions");
+                    break;
+                case "oldest":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByIdAsc("whiteboard-questions");
+                    break;
+                case "newest":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByIdDesc("whiteboard-questions");
+                    break;
+                case "lowestRating":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByRatingTotalAsc("whiteboard-questions");
+                    break;
+                default:
+                    postList = postDao.findAllByPostTypeId_TypeOrderByRatingTotalDesc("whiteboard-questions");
+                    break;
+            }
+        } else {
+            postList = postDao.findAllByPostTypeId_TypeOrderByRatingTotalDesc("whiteboard-questions");
+        }
+        if (searchString != null && !searchString.equals("")) {
+            //filter for body containing
+            //filter for title containing
+            //filter for username containing
+            //case insensitive
+            postList = postList
+                    .stream()
+                    .filter(post -> post.getBody().toLowerCase().contains(searchString.toLowerCase()) || post.getTitle().toLowerCase().contains(searchString.toLowerCase()) || post.getUser().getUsername().toLowerCase().contains(searchString.toLowerCase()))
+                    .collect(Collectors.toList());
+        }
+        model.addAttribute("postList", postList);
         return "whiteboard-questions/show";
     }
 

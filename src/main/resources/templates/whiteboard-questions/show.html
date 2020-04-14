@@ -76,8 +76,8 @@
                                             <p class="mb-0" th:text="${comment.body}"
                                                th:id="'comment-body-' + ${comment.id}"></p>
                                             <div th:if="${user.id == comment.user.id}">
-                                                <div class="edit-comment-div"
-                                                     th:id="'edit-comment-div-' + ${comment.id}"></div>
+                                                <div class="edit-comment-div" th:id="'edit-comment-div-' + ${comment.id}"></div>
+                                                <button class="edit-comment-button" th:id="'edit-comment-button-' + ${comment.id}">Edit Comment</button>
                                             </div>
                                         </div>
                                     </div>

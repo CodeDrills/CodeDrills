@@ -143,6 +143,32 @@ public class InterviewQuestionController {
         postRatingDao.save(new PostRating(post, user, 0));
         return post;
     }
+    @GetMapping("/interview-questions/edit")
+    @ResponseBody
+    public Post getPostToEdit(Principal principal, @RequestParam Long id) {
+        User user = userDao.findUserByUsername(principal.getName());
+        Post post = postDao.findPostById(id);
+        if(user.getId() != post.getUser().getId()) {
+            return new Post();
+        }
+        return post;
+    }
+
+    @PostMapping("/interview-questions/edit")
+    @ResponseBody
+    public Post editPost(Principal principal, @RequestParam String title, @RequestParam String body, @RequestParam String answer, @RequestParam String employer, @RequestParam Long id) {
+        User user = userDao.findUserByUsername(principal.getName());
+        Post post = postDao.findPostById(id);
+        if(user.getId() != post.getUser().getId()) {
+            return new Post();
+        }
+        post.setTitle(title);
+        post.setBody(body);
+        post.setAnswer(answer);
+        post.setEmployer(employer);
+        post = postDao.save(post);
+        return post;
+    }
 
     @GetMapping("/interview-questions/{id}")
     public String getPost(@PathVariable Long id, Model model, Principal principal){
@@ -154,32 +180,32 @@ public class InterviewQuestionController {
         return "interview-questions/show";
     }
 
-    @GetMapping("/interview-questions/edit/{id}")
-    public String getEditPostForm(@PathVariable Long id, Model model, Principal principal){
-        User user = userDao.findUserByUsername(principal.getName());
-        Post post = postDao.findPostById(id);
-        if(user.getId() != post.getUser().getId()) {
-            return "redirect:/interview-questions/show";
-        }
-        model.addAttribute("user", user);
-        model.addAttribute("talkJSAppId", talkJSAppId);
-        model.addAttribute("post", post);
-        return "interview-questions/edit";
-    }
+//    @GetMapping("/interview-questions/edit/{id}")
+//    public String getEditPostForm(@PathVariable Long id, Model model, Principal principal){
+//        User user = userDao.findUserByUsername(principal.getName());
+//        Post post = postDao.findPostById(id);
+//        if(user.getId() != post.getUser().getId()) {
+//            return "redirect:/interview-questions/show";
+//        }
+//        model.addAttribute("user", user);
+//        model.addAttribute("talkJSAppId", talkJSAppId);
+//        model.addAttribute("post", post);
+//        return "interview-questions/edit";
+//    }
 
-    @PostMapping("/interview-questions/edit/{id}")
-    public String updatePost(@PathVariable Long id, @ModelAttribute Post post) {
-        Post dbPost = postDao.findPostById(id);
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(user.getId() != dbPost.getUser().getId()) {
-            return "redirect:/interview-questions/show";
-        }
-        dbPost.setTitle(post.getTitle());
-        dbPost.setBody(post.getBody());
-        dbPost.setAnswer(post.getAnswer());
-        postDao.save(dbPost);
-        return "redirect:/interview-questions/show";
-    }
+//    @PostMapping("/interview-questions/edit/{id}")
+//    public String updatePost(@PathVariable Long id, @ModelAttribute Post post, Principal principal) {
+//        User user = userDao.findUserByUsername(principal.getName());
+//        Post dbPost = postDao.findPostById(id);
+//        if(user.getId() != post.getUser().getId()) {
+//            return "redirect:/interview-questions/show";
+//        }
+//        dbPost.setTitle(post.getTitle());
+//        dbPost.setBody(post.getBody());
+//        dbPost.setAnswer(post.getAnswer());
+//        postDao.save(dbPost);
+//        return "redirect:/interview-questions/show";
+//    }
 
     @DeleteMapping("/interview-questions/delete")
     @ResponseBody

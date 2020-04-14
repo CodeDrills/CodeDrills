@@ -9,7 +9,7 @@
 </head>
 <body class="back">
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
-<div th:replace="fragments/create-modals.html :: create-modals"></div>
+<div th:replace="fragments/create-edit-modals.html :: create-edit-modals"></div>
 <!--The profile card at the top of the page -->
 <!--<div class="container">-->
 <div class="row mt-5 mr-5 ml-5 mb-0">
@@ -53,53 +53,68 @@
         <div class="card mb-2">
             <div class="card-body">
                 <div th:each="post : ${interviewQuestionsList}">
-                <div class="row">
-                    <div class="col-1">
-                        <i class="upvote-button fas fa-arrow-up btn btn-link"  th:id="'upvote-' + ${post.id}"></i>
-                        <p class="mb-0 ml-3">  <span th:text = "${post.getRatingTotal()}"></span></p>
-                        <i class="downvote-button fas fa-arrow-down btn btn-link" th:id="'downvote-' + ${post.id}"></i>
-                    </div>
-                    <div class="col-11">
-                        <div th:id="'post-' + ${post.id}">
-                            <p class="m-r mb-0 userprint">Posted on: <span class="userinfo" th:text = "${post.dateTime}"></span> by <span class="userinfo" th:text="${post.user.username}"></span></p>
-                            <h1 th:text = "${post.title}"></h1>
-                            <p th:text = "${post.body}"></p>
-                            <p class = "mb-0" th:text = "${post.answer}"></p>
-                            <hr class="mb-0">
-                            <div  th:if="${post.imageURLList.size() > 0 && post.imageURLList[0].url.length() > 8}" >
-                                <img th:src="${post.imageURLList[0].url}" alt="post-image">
-                            </div>
+                    <div class="row">
+                        <div class="col-1">
+                            <i class="upvote-button fas fa-arrow-up btn btn-link" th:id="'upvote-' + ${post.id}"></i>
+                            <p class="mb-0 ml-3"><span th:text="${post.getRatingTotal()}"></span></p>
+                            <i class="downvote-button fas fa-arrow-down btn btn-link"
+                               th:id="'downvote-' + ${post.id}"></i>
                         </div>
-                                <div th:each="comment : ${post.commentList}">
-                <div class="row">
-<!--                               THis is where the comment ratings are &ndash;&gt;-->
-    <div class="col-1">
-        <i class="upvote-comment-button fas fa-arrow-up btn btn-link" th:id="'upvote-comment-' + ${comment.id}"> </i>
-        <p class="mb-0 ml-3"><span th:text = "${comment.getRatingTotal()}"></span></p>
-        <i class="downvote-comment-button fas fa-arrow-down btn btn-link" th:id="'downvote-comment-' + ${comment.id}"></i>
-    </div>
-<!--                                    This is where the comment body goes-->
-    <div class="col-11 align-self-center mt-3">
-        <div class="media">
-                <img th:src="${comment.user.profileImageURL}" alt="profile"class="mr-3 rounded-circle" style="width:60px;">
-        <div class="media-body">
-                <p class="m-r mb-0 userprint">Posted on: <span class="userinfo" th:text = "${comment.dateTime}"></span> by <span class="userinfo" th:text="${comment.user.username}"></span></p>
-                <p class="mb-0" th:text = "${comment.body}" th:id="'comment-body-' + ${comment.id}"></p>
-            <div th:if="${user.id == comment.user.id}">
-                <div class="edit-comment-div" th:id="'edit-comment-div-' + ${comment.id}"></div>
-                <button class="edit-comment-button" th:id="'edit-comment-button-' + ${comment.id}">Edit Comment</button>
-            </div>
-                </div>
-                </div>
-                <hr>
-                </div>
-                </div>
-                </div>
-            <div class="create-comment-div" th:id="'create-comment-div-' + ${post.id}"></div>
-            <button class="add-comment-button btn btn-link" th:id="'add-comment-button-' + ${post.id}">Comment</button>
-            <div th:if="${user.id == post.user.id}">
-                <a th:href="@{|/interview-posts/edit/${post.id}|}"><button>Edit my post</button></a>
-                <button class="delete-button" th:id="${post.postType.type} + '-' + ${post.id}">Delete my Post</button>
+                        <div class="col-11">
+                            <div th:id="'post-' + ${post.id}">
+                                <p class="m-r mb-0 userprint">Posted on:<span class="userinfo" th:text="' ' + ${post.dateTime} + ' by ' + ${post.user.username}"></span></p>
+                                <h1 th:text="${post.title}"></h1>
+                                <p th:text="${post.body}"></p>
+                                <p class="mb-0" th:text="${post.answer}"></p>
+                                <hr>
+                                <div th:if="${post.imageURLList.size() > 0 && post.imageURLList[0].url.length() > 8}">
+                                    <img th:src="${post.imageURLList[0].url}" alt="post-image">
+                                </div>
+                            </div>
+                            <div th:each="comment : ${post.commentList}">
+                                <div class="row">
+                                    <!--                                    THis is where the comment ratings are -->
+                                    <div class="col-1">
+                                        <i class="upvote-comment-button fas fa-arrow-up btn btn-link"
+                                           th:id="'upvote-comment-' + ${comment.id}"> </i>
+                                        <p class="mb-0 ml-3"><span th:text="${comment.getRatingTotal()}"></span></p>
+                                        <i class="downvote-comment-button fas fa-arrow-down btn btn-link"
+                                           th:id="'downvote-comment-' + ${comment.id}"></i>
+                                    </div>
+                                    <!--                                    This is where the comment body goes-->
+                                    <div class="col-11 align-self-center p- commentrow">
+                                        <div class="media">
+                                            <img th:src="${comment.user.profileImageURL}" alt="profile"
+                                                 class="mr-3 rounded-circle" style="width:60px;">
+                                            <div class="media-body">
+                                                <p class="m-r mb-0 userprint">Posted on: <span class="userinfo"
+                                                                                               th:text="${comment.dateTime}"></span>
+                                                    by <span class="userinfo" th:text="${comment.user.username}"></span>
+                                                </p>
+                                                <p class="mb-0" th:text="${comment.body}"
+                                                   th:id="'comment-body-' + ${comment.id}"></p>
+                                                <div th:if="${user.id == comment.user.id}">
+                                                    <div class="edit-comment-div"
+                                                         th:id="'edit-comment-div-' + ${comment.id}"></div>
+                                                  <button class="edit-comment-button" th:id="'edit-comment-button-' + ${comment.id}">Edit Comment</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="create-comment-div" th:id="'create-comment-div-' + ${post.id}"></div>
+                            <button class="add-comment-button btn btn-link" th:id="'add-comment-button-' + ${post.id}">
+                                Comment
+                            </button>
+                            <div th:if="${user.id == post.user.id}">
+                                <button class="edit-modal-button" th:id="${post.postType.type} + '-' + ${post.id}" data-toggle="modal"
+                                        data-target="#interview-questions-edit-modal">Edit Post
+                                </button>
+                                <button class="delete-button" th:id="${post.postType.type} + '-' + ${post.id}">Delete my
+                                    Post
+                                </button>
             </div>
                     </div>
                 </div>
@@ -179,9 +194,9 @@
                                 Comment
                             </button>
                             <div th:if="${user.id == post.user.id}">
-                                <a th:href="@{|/mentorship-posts/edit/${post.id}|}">
-                                    <button>Edit my post</button>
-                                </a>
+                                <button class="edit-modal-button" th:id="${post.postType.type} + '-' + ${post.id}" data-toggle="modal"
+                                        data-target="#mentorship-posts-edit-modal">Edit Post
+                                </button>
                                 <button class="delete-button" th:id="${post.postType.type} + '-' + ${post.id}">Delete my
                                     Post
                                 </button>
@@ -267,9 +282,9 @@
                                 Comment
                             </button>
                             <div th:if="${user.id == post.user.id}">
-                                <a th:href="@{|/jobs-postings/edit/${post.id}|}">
-                                    <button>Edit my post</button>
-                                </a>
+                                <button class="edit-modal-button" th:id="${post.postType.type} + '-' + ${post.id}" data-toggle="modal"
+                                        data-target="#job-postings-edit-modal">Edit Post
+                                </button>
                                 <button class="delete-button" th:id="${post.postType.type} + '-' + ${post.id}">Delete my
                                     Post
                                 </button>
@@ -356,9 +371,9 @@
                                 Comment
                             </button>
                             <div th:if="${user.id == post.user.id}">
-                                <a th:href="@{|/whiteboard-questions/edit/${post.id}|}">
-                                    <button>Edit my post</button>
-                                </a>
+                                <button class="edit-modal-button" th:id="${post.postType.type} + '-' + ${post.id}" data-toggle="modal"
+                                        data-target="#whiteboard-questions-edit-modal">Edit Post
+                                </button>
                                 <button class="delete-button" th:id="${post.postType.type} + '-' + ${post.id}">Delete my
                                     Post
                                 </button>

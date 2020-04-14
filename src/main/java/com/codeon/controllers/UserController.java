@@ -118,7 +118,7 @@ public class UserController {
         List<Post> jobPostingsList = postDao.findAllByPostTypeId_Type("job-postings").subList(postDao.findAllByPostTypeId_Type("job-postings").size() - 2, postDao.findAllByPostTypeId_Type("job-postings").size());
         jobPostingsList.sort(Collections.reverseOrder(Comparator.comparing(Post::getId)));
         List<Post> whiteboardPostingsList = postDao.findAllByPostTypeId_Type("whiteboard-questions").subList(postDao.findAllByPostTypeId_Type("whiteboard-questions").size() - 2, postDao.findAllByPostTypeId_Type("whiteboard-questions").size());
-        jobPostingsList.sort(Collections.reverseOrder(Comparator.comparing(Post::getId)));
+        whiteboardPostingsList.sort(Collections.reverseOrder(Comparator.comparing(Post::getId)));
         model.addAttribute("filestackKey", filestackKey);
         model.addAttribute("quotesKey", theySaidSoKey);
         model.addAttribute("post", new Post());

@@ -130,33 +130,59 @@ public class JobPostingsController {
         return "job-postings/show";
     }
 
-    @GetMapping("/job-postings/edit/{id}")
-    public String getEditJobPostingForm(@PathVariable Long id, Model model, Principal principal){
+    @GetMapping("/job-postings/edit")
+    @ResponseBody
+    public Post getPostToEdit(Principal principal, @RequestParam Long id) {
         User user = userDao.findUserByUsername(principal.getName());
         Post post = postDao.findPostById(id);
         if(user.getId() != post.getUser().getId()) {
-            return "redirect:/job-postings/show";
+            return new Post();
         }
-        model.addAttribute("user", user);
-        model.addAttribute("talkJSAppId", talkJSAppId);
-        model.addAttribute("post", post);
-        return "job-postings/edit";
+        return post;
     }
 
-    @PostMapping("/job-postings/edit/{id}")
-    public String updateJobPosting(@PathVariable Long id, @ModelAttribute Post post) {
-        Post dbPost = postDao.findPostById(id);
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(user.getId() != dbPost.getUser().getId()) {
-            return "redirect:/job-postings/show";
+    @PostMapping("/job-postings/edit")
+    @ResponseBody
+    public Post editPost(Principal principal, @RequestParam String title, @RequestParam String body, @RequestParam String employer, @RequestParam Long id) {
+        User user = userDao.findUserByUsername(principal.getName());
+        Post post = postDao.findPostById(id);
+        if(user.getId() != post.getUser().getId()) {
+            return new Post();
         }
-        dbPost.setTitle(post.getTitle());
-        dbPost.setBody(post.getBody());
-        dbPost.setAnswer(post.getEmployer());
-        System.out.println("here");
-        postDao.save(dbPost);
-        return "redirect:/job-postings/show";
+        post.setTitle(title);
+        post.setBody(body);
+        post.setEmployer(employer);
+        post = postDao.save(post);
+        return post;
     }
+
+//    @GetMapping("/job-postings/edit/{id}")
+//    public String getEditJobPostingForm(@PathVariable Long id, Model model, Principal principal){
+//        User user = userDao.findUserByUsername(principal.getName());
+//        Post post = postDao.findPostById(id);
+//        if(user.getId() != post.getUser().getId()) {
+//            return "redirect:/job-postings/show";
+//        }
+//        model.addAttribute("user", user);
+//        model.addAttribute("talkJSAppId", talkJSAppId);
+//        model.addAttribute("post", post);
+//        return "job-postings/edit";
+//    }
+//
+//    @PostMapping("/job-postings/edit/{id}")
+//    public String updateJobPosting(@PathVariable Long id, @ModelAttribute Post post) {
+//        Post dbPost = postDao.findPostById(id);
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        if(user.getId() != dbPost.getUser().getId()) {
+//            return "redirect:/job-postings/show";
+//        }
+//        dbPost.setTitle(post.getTitle());
+//        dbPost.setBody(post.getBody());
+//        dbPost.setAnswer(post.getEmployer());
+//        System.out.println("here");
+//        postDao.save(dbPost);
+//        return "redirect:/job-postings/show";
+//    }
 
     @DeleteMapping("/job-postings/delete")
     @ResponseBody

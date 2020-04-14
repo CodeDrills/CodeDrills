@@ -156,31 +156,58 @@ public class WhiteboardQuestionController {
         return "whiteboard-questions/show";
     }
 
-    @GetMapping("/whiteboard-questions/edit/{id}")
-    public String getEditWhiteboardQuestionForm(@PathVariable Long id, Model model, Principal principal){
+//    @GetMapping("/whiteboard-questions/edit/{id}")
+//    public String getEditWhiteboardQuestionForm(@PathVariable Long id, Model model, Principal principal){
+//        User user = userDao.findUserByUsername(principal.getName());
+//        Post post = postDao.findPostById(id);
+//        if(user.getId() != post.getUser().getId()) {
+//            return "redirect:/whiteboard-questions/show";
+//        }
+//        model.addAttribute("user", user);
+//        model.addAttribute("talkJSAppId", talkJSAppId);
+//        model.addAttribute("post", post);
+//        return "whiteboard-questions/edit";
+//    }
+//
+//    @PostMapping("/whiteboard-questions/edit/{id}")
+//    public String updateWhiteboardQuestion(@PathVariable Long id, @ModelAttribute Post post) {
+//        Post dbPost = postDao.findPostById(id);
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        if(user.getId() != dbPost.getUser().getId()) {
+//            return "redirect:/whiteboard-questions/show";
+//        }
+//        dbPost.setTitle(post.getTitle());
+//        dbPost.setBody(post.getBody());
+//        dbPost.setAnswer(post.getAnswer());
+//        postDao.save(dbPost);
+//        return "redirect:/whiteboard-questions/show";
+//    }
+
+    @GetMapping("/whiteboard-questions/edit")
+    @ResponseBody
+    public Post getPostToEdit(Principal principal, @RequestParam Long id) {
         User user = userDao.findUserByUsername(principal.getName());
         Post post = postDao.findPostById(id);
         if(user.getId() != post.getUser().getId()) {
-            return "redirect:/whiteboard-questions/show";
+            return new Post();
         }
-        model.addAttribute("user", user);
-        model.addAttribute("talkJSAppId", talkJSAppId);
-        model.addAttribute("post", post);
-        return "whiteboard-questions/edit";
+        return post;
     }
 
-    @PostMapping("/whiteboard-questions/edit/{id}")
-    public String updateWhiteboardQuestion(@PathVariable Long id, @ModelAttribute Post post) {
-        Post dbPost = postDao.findPostById(id);
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(user.getId() != dbPost.getUser().getId()) {
-            return "redirect:/whiteboard-questions/show";
+    @PostMapping("/whiteboard-questions/edit")
+    @ResponseBody
+    public Post editPost(Principal principal, @RequestParam String title, @RequestParam String body, @RequestParam String answer, @RequestParam String employer, @RequestParam Long id) {
+        User user = userDao.findUserByUsername(principal.getName());
+        Post post = postDao.findPostById(id);
+        if(user.getId() != post.getUser().getId()) {
+            return new Post();
         }
-        dbPost.setTitle(post.getTitle());
-        dbPost.setBody(post.getBody());
-        dbPost.setAnswer(post.getAnswer());
-        postDao.save(dbPost);
-        return "redirect:/whiteboard-questions/show";
+        post.setTitle(title);
+        post.setBody(body);
+        post.setAnswer(answer);
+        post.setEmployer(employer);
+        post = postDao.save(post);
+        return post;
     }
 
     @DeleteMapping("/whiteboard-questions/delete")

@@ -7,7 +7,7 @@
 </head>
 <body class="back">
 <nav th:replace="fragments/navbar.html :: navbar"></nav>
-<div th:replace="fragments/create-modals.html :: create-modals"></div>
+<div th:replace="fragments/create-edit-modals.html :: create-edit-modals"></div>
 
 <div class="container profile-container">
     <!--    PROFILE CARD    -->
@@ -47,7 +47,7 @@
                     </div>
                     <div class="col-11">
                         <div th:id="'post-' + ${post.id}"></div>
-                        <p class="m-r mb-0 userprint">Posted on:<span class="userinfo" th:text="${post.dateTime} + 'by' + ${post.user.username}"></span></p>
+                        <p class="m-r mb-0 userprint">Posted on:<span class="userinfo" th:text="' ' + ${post.dateTime} + ' by ' + ${post.user.username}"></span></p>
                         <h1 th:text="${post.title}"></h1>
                         <h3 th:text="${post.employer}"></h3>
                         <p th:text="${post.body}"></p>
@@ -89,9 +89,9 @@
                         </button>
 
                         <div th:if="${user.id == post.user.id}">
-                            <a th:href="@{|/job-postings/edit/${post.id}|}">
-                                <button>Edit Post</button>
-                            </a>
+                            <button class="edit-modal-button" th:id="${post.postType.type} + '-' + ${post.id}" data-toggle="modal"
+                                    data-target="#job-postings-edit-modal">Edit Post
+                            </button>
                             <button class="delete-button" th:id="${post.postType.type} + '-' + ${post.id}">Delete Post
                             </button>
                         </div>

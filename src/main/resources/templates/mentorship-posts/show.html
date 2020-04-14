@@ -84,7 +84,7 @@
 
                         <div th:if="${user.id == post.user.id}">
                             <button class="edit-modal-button" th:id="${post.postType.type} + '-' + ${post.id}" data-toggle="modal"
-                                    data-target="#mentorship-questions-edit-modal">Edit Post
+                                    data-target="#mentorship-posts-edit-modal">Edit Post
                             </button>
                             <button class="delete-button" th:id="${post.postType.type} + '-' + ${post.id}">Delete Post
                             </button>

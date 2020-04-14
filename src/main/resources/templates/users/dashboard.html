@@ -27,16 +27,13 @@
         <div class="card p-5 blue-font" id="profile-card">
             <h2 class="display-1 text-center p-3 profile-header">CodeOn</h2>
         </div>
-
         <!-- Large display buttons -->
         <div class="d-flex justify-content-around">
-            <a class ="profile-button" th:href="@{|/interview-questions/show|}">Interview Questions</a>
-            <a class ="profile-button" th:href="@{|/whiteboard-questions/show|}">Whiteboard</a>
-            <a class ="profile-button" th:href="@{|/mentorship-posts/show|}">Mentorship</a>
-            <a class ="profile-button" th:href="@{|/job-postings/show|}">Job Listings</a>
+            <a class="profile-button" th:href="@{|/interview-questions/show|}">Interview Questions</a>
+            <a class="profile-button" th:href="@{|/whiteboard-questions/show|}">Whiteboard</a>
+            <a class="profile-button" th:href="@{|/mentorship-posts/show|}">Mentorship</a>
+            <a class="profile-button" th:href="@{|/job-postings/show|}">Job Listings</a>
         </div>
-
-
     </div>
 </div>
 <!--    Interview-->
@@ -56,7 +53,6 @@
         <div class="card mb-2">
             <div class="card-body">
                 <div th:each="post : ${interviewQuestionsList}">
-<<<<<<< HEAD
                 <div class="row">
                     <div class="col-1">
                         <i class="upvote-button fas fa-arrow-up btn btn-link"  th:id="'upvote-' + ${post.id}"></i>
@@ -69,43 +65,21 @@
                             <h1 th:text = "${post.title}"></h1>
                             <p th:text = "${post.body}"></p>
                             <p class = "mb-0" th:text = "${post.answer}"></p>
-                            <hr>
+                            <hr class="mb-0">
                             <div  th:if="${post.imageURLList.size() > 0 && post.imageURLList[0].url.length() > 8}" >
                                 <img th:src="${post.imageURLList[0].url}" alt="post-image">
                             </div>
                         </div>
                                 <div th:each="comment : ${post.commentList}">
                 <div class="row">
-=======
-
-<div class="row">
-    <div class="col-1">
-        <i class="upvote-button fas fa-arrow-up btn btn-link"  th:id="'upvote-' + ${post.id}"></i>
-        <p class="mb-0 ml-3">  <span th:text = "${post.getRatingTotal()}"></span></p>
-        <i class="downvote-button fas fa-arrow-down btn btn-link" th:id="'downvote-' + ${post.id}"></i>
-    </div>
-    <div class="col-11">
-        <div th:id="'post-' + ${post.id}">
-            <p class="m-r mb-0 userprint">Posted on: <span class="userinfo" th:text = "${post.dateTime}"></span> by <span class="userinfo" th:text="${post.user.username}"></span></p>
-            <h1 th:text = "${post.title}"></h1>
-            <p th:text = "${post.body}"></p>
-            <p class = "mb-0" th:text = "${post.answer}"></p>
-            <hr>
-            <div  th:if="${post.imageURLList.size() > 0 && post.imageURLList[0].url.length() > 8}" >
-                <img th:src="${post.imageURLList[0].url}" alt="post-image">
-            </div>
-        </div>
-                <div th:each="comment : ${post.commentList}">
-<div class="row">
->>>>>>> 9e11b7bf2e4ea2fe668319cb24c8c6b4143cdcc6
-<!--                                    THis is where the comment ratings are -->
+<!--                               THis is where the comment ratings are &ndash;&gt;-->
     <div class="col-1">
         <i class="upvote-comment-button fas fa-arrow-up btn btn-link" th:id="'upvote-comment-' + ${comment.id}"> </i>
         <p class="mb-0 ml-3"><span th:text = "${comment.getRatingTotal()}"></span></p>
         <i class="downvote-comment-button fas fa-arrow-down btn btn-link" th:id="'downvote-comment-' + ${comment.id}"></i>
     </div>
 <!--                                    This is where the comment body goes-->
-    <div class="col-11 align-self-center p- commentrow">
+    <div class="col-11 align-self-center mt-3">
         <div class="media">
                 <img th:src="${comment.user.profileImageURL}" alt="profile"class="mr-3 rounded-circle" style="width:60px;">
         <div class="media-body">
@@ -115,11 +89,11 @@
                 <div class="edit-comment-div" th:id="'edit-comment-div-' + ${comment.id}"></div>
                 <button class="edit-comment-button" th:id="'edit-comment-button-' + ${comment.id}">Edit Comment</button>
             </div>
-        </div>
-        </div>
-<hr>
-    </div>
-</div>
+                </div>
+                </div>
+                <hr>
+                </div>
+                </div>
                 </div>
             <div class="create-comment-div" th:id="'create-comment-div-' + ${post.id}"></div>
             <button class="add-comment-button btn btn-link" th:id="'add-comment-button-' + ${post.id}">Comment</button>
@@ -127,79 +101,8 @@
                 <a th:href="@{|/interview-posts/edit/${post.id}|}"><button>Edit my post</button></a>
                 <button class="delete-button" th:id="${post.postType.type} + '-' + ${post.id}">Delete my Post</button>
             </div>
-    </div>
-</div>
-
-<<<<<<< HEAD
-                    <div class="row">
-                        <div class="col-1">
-                            <i class="upvote-button fas fa-arrow-up btn btn-link" th:id="'upvote-' + ${post.id}"></i>
-                            <p class="mb-0 ml-3"><span th:text="${post.getRatingTotal()}"></span></p>
-                            <i class="downvote-button fas fa-arrow-down btn btn-link"
-                               th:id="'downvote-' + ${post.id}"></i>
-                        </div>
-                        <div class="col-11">
-                            <div th:id="'post-' + ${post.id}">
-                                <p class="m-r mb-0 userprint">Posted on: <span class="userinfo"
-                                                                               th:text="${post.dateTime}"></span> by
-                                    <span class="userinfo" th:text="${post.user.username}"></span></p>
-                                <h1 th:text="${post.title}"></h1>
-                                <p th:text="${post.body}"></p>
-                                <p class="mb-0" th:text="${post.answer}"></p>
-                                <hr>
-                                <div th:if="${post.imageURLList.size() > 0 && post.imageURLList[0].url.length() > 8}">
-                                    <img th:src="${post.imageURLList[0].url}" alt="post-image">
-                                </div>
-                            </div>
-                            <div th:each="comment : ${post.commentList}">
-                                <div class="row">
-                                    <!--                                    THis is where the comment ratings are -->
-                                    <div class="col-1">
-                                        <i class="upvote-comment-button fas fa-arrow-up btn btn-link"
-                                           th:id="'upvote-comment-' + ${comment.id}"> </i>
-                                        <p class="mb-0 ml-3"><span th:text="${comment.getRatingTotal()}"></span></p>
-                                        <i class="downvote-comment-button fas fa-arrow-down btn btn-link"
-                                           th:id="'downvote-comment-' + ${comment.id}"></i>
-                                    </div>
-                                    <!--                                    This is where the comment body goes-->
-                                    <div class="col-11 align-self-center p- commentrow">
-                                        <div class="media">
-                                            <img th:src="${comment.user.profileImageURL}" alt="profile"
-                                                 class="mr-3 rounded-circle" style="width:60px;">
-                                            <div class="media-body">
-                                                <p class="m-r mb-0 userprint">Posted on: <span class="userinfo"
-                                                                                               th:text="${comment.dateTime}"></span>
-                                                    by <span class="userinfo" th:text="${comment.user.username}"></span>
-                                                </p>
-                                                <p class="mb-0" th:text="${comment.body}"
-                                                   th:id="'comment-body-' + ${comment.id}"></p>
-                                                <div th:if="${user.id == comment.user.id}">
-                                                    <div class="edit-comment-div"
-                                                         th:id="'edit-comment-div-' + ${comment.id}"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="create-comment-div" th:id="'create-comment-div-' + ${post.id}"></div>
-                            <button class="add-comment-button btn btn-link" th:id="'add-comment-button-' + ${post.id}">
-                                Comment
-                            </button>
-                            <div th:if="${user.id == post.user.id}">
-                                <a th:href="@{|/interview-posts/edit/${post.id}|}">
-                                    <button>Edit my post</button>
-                                </a>
-                                <button class="delete-button" th:id="${post.postType.type} + '-' + ${post.id}">Delete my
-                                    Post
-                                </button>
-                            </div>
-                        </div>
                     </div>
->>>>>>> 92be5b1ac3ad444a36906b839413229971762e6d
-=======
->>>>>>> 9e11b7bf2e4ea2fe668319cb24c8c6b4143cdcc6
+                </div>
                     <hr>
                 </div>
             </div>
@@ -259,26 +162,12 @@
                                             <img th:src="${comment.user.profileImageURL}" alt="profile"
                                                  class="mr-3 rounded-circle" style="width:60px;">
                                             <div class="media-body">
-                                                <p class="m-r mb-0 userprint">Posted on: <span class="userinfo"
-                                                                                               th:text="${comment.dateTime}"></span>
-                                                    by <span class="userinfo" th:text="${comment.user.username}"></span>
-                                                </p>
-                                                <p class="mb-0" th:text="${comment.body}"
-                                                   th:id="'comment-body-' + ${comment.id}"></p>
+                                                <p class="m-r mb-0 userprint">Posted on: <span class="userinfo" th:text="${comment.dateTime}"></span>by <span class="userinfo" th:text="${comment.user.username}"></span></p>
+                                                <p class="mb-0" th:text="${comment.body}" th:id="'comment-body-' + ${comment.id}"></p>
                                                 <div th:if="${user.id == comment.user.id}">
-<<<<<<< HEAD
-<<<<<<< HEAD
                                                     <div class="edit-comment-div" th:id="'edit-comment-div-' + ${comment.id}"></div>
                                                     <button class="edit-comment-button" th:id="'edit-comment-button-' + ${comment.id}">Edit Comment</button>
-=======
-                                                    <div class="edit-comment-div"
-                                                         th:id="'edit-comment-div-' + ${comment.id}"></div>
->>>>>>> 92be5b1ac3ad444a36906b839413229971762e6d
                                                 </div>
-=======
-                                                    <div class="edit-comment-div" th:id="'edit-comment-div-' + ${comment.id}"></div>
-                                                    <button class="edit-comment-button" th:id="'edit-comment-button-' + ${comment.id}">Edit Comment</button>
->>>>>>> 9e11b7bf2e4ea2fe668319cb24c8c6b4143cdcc6
                                             </div>
                                         </div>
                                         <hr>
@@ -349,11 +238,9 @@
                                 <div class="row">
                                     <!--                                    THis is where the comment ratings are -->
                                     <div class="col-1">
-                                        <i class="upvote-comment-button fas fa-arrow-up btn btn-link"
-                                           th:id="'upvote-comment-' + ${comment.id}"> </i>
+                                        <i class="upvote-comment-button fas fa-arrow-up btn btn-link" th:id="'upvote-comment-' + ${comment.id}"> </i>
                                         <p class="mb-0 ml-3"><span th:text="${comment.getRatingTotal()}"></span></p>
-                                        <i class="downvote-comment-button fas fa-arrow-down btn btn-link"
-                                           th:id="'downvote-comment-' + ${comment.id}"></i>
+                                        <i class="downvote-comment-button fas fa-arrow-down btn btn-link" th:id="'downvote-comment-' + ${comment.id}"></i>
                                     </div>
                                     <!--                                    This is where the comment body goes-->
                                     <div class="col-11 align-self-center p- commentrow">
@@ -361,25 +248,13 @@
                                             <img th:src="${comment.user.profileImageURL}" alt="profile"
                                                  class="mr-3 rounded-circle" style="width:60px;">
                                             <div class="media-body">
-                                                <p class="m-r mb-0 userprint">Posted on: <span class="userinfo"
-                                                                                               th:text="${comment.dateTime}"></span>
-                                                    by <span class="userinfo" th:text="${comment.user.username}"></span>
+                                                <p class="m-r mb-0 userprint">Posted on: <span class="userinfo" th:text="${comment.dateTime}"></span>by <span class="userinfo" th:text="${comment.user.username}"></span>
                                                 </p>
                                                 <p class="mb-0" th:text="${comment.body}"
                                                    th:id="'comment-body-' + ${comment.id}"></p>
                                                 <div th:if="${user.id == comment.user.id}">
-<<<<<<< HEAD
-<<<<<<< HEAD
                                                     <div class="edit-comment-div" th:id="'edit-comment-div-' + ${comment.id}"></div>
                                                     <button class="edit-comment-button" th:id="'edit-comment-button-' + ${comment.id}">Edit Comment</button>
-=======
-                                                    <div class="edit-comment-div"
-                                                         th:id="'edit-comment-div-' + ${comment.id}"></div>
->>>>>>> 92be5b1ac3ad444a36906b839413229971762e6d
-=======
-                                                    <div class="edit-comment-div" th:id="'edit-comment-div-' + ${comment.id}"></div>
-                                                    <button class="edit-comment-button" th:id="'edit-comment-button-' + ${comment.id}">Edit Comment</button>
->>>>>>> 9e11b7bf2e4ea2fe668319cb24c8c6b4143cdcc6
                                                 </div>
                                             </div>
                                         </div>
@@ -467,8 +342,8 @@
                                                 <p class="mb-0" th:text="${comment.body}"
                                                    th:id="'comment-body-' + ${comment.id}"></p>
                                                 <div th:if="${user.id == comment.user.id}">
-                                                    <div class="edit-comment-div"
-                                                         th:id="'edit-comment-div-' + ${comment.id}"></div>
+                                                    <div class="edit-comment-div" th:id="'edit-comment-div-' + ${comment.id}"></div>
+                                                    <button class="edit-comment-button" th:id="'edit-comment-button-' + ${comment.id}">Edit Comment</button>
                                                 </div>
                                             </div>
                                         </div>

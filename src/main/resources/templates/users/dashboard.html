@@ -81,7 +81,7 @@
 <!--                                    This is where the comment body goes-->
     <div class="col-11 align-self-center mt-3">
         <div class="media">
-                <img th:src="${comment.user.profileImageURL}" alt="profile"class="mr-3 rounded-circle" style="width:60px;">
+                <img th:src="${comment.user.profileImageURL}" alt="profile" class="mr-3 rounded-circle" style="width:60px;">
         <div class="media-body">
                 <p class="m-r mb-0 userprint">Posted on: <span class="userinfo" th:text = "${comment.dateTime}"></span> by <span class="userinfo" th:text="${comment.user.username}"></span></p>
                 <p class="mb-0" th:text = "${comment.body}" th:id="'comment-body-' + ${comment.id}"></p>

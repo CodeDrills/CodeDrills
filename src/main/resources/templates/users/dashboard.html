@@ -56,6 +56,7 @@
         <div class="card mb-2">
             <div class="card-body">
                 <div th:each="post : ${interviewQuestionsList}">
+<<<<<<< HEAD
                 <div class="row">
                     <div class="col-1">
                         <i class="upvote-button fas fa-arrow-up btn btn-link"  th:id="'upvote-' + ${post.id}"></i>
@@ -75,6 +76,28 @@
                         </div>
                                 <div th:each="comment : ${post.commentList}">
                 <div class="row">
+=======
+
+<div class="row">
+    <div class="col-1">
+        <i class="upvote-button fas fa-arrow-up btn btn-link"  th:id="'upvote-' + ${post.id}"></i>
+        <p class="mb-0 ml-3">  <span th:text = "${post.getRatingTotal()}"></span></p>
+        <i class="downvote-button fas fa-arrow-down btn btn-link" th:id="'downvote-' + ${post.id}"></i>
+    </div>
+    <div class="col-11">
+        <div th:id="'post-' + ${post.id}">
+            <p class="m-r mb-0 userprint">Posted on: <span class="userinfo" th:text = "${post.dateTime}"></span> by <span class="userinfo" th:text="${post.user.username}"></span></p>
+            <h1 th:text = "${post.title}"></h1>
+            <p th:text = "${post.body}"></p>
+            <p class = "mb-0" th:text = "${post.answer}"></p>
+            <hr>
+            <div  th:if="${post.imageURLList.size() > 0 && post.imageURLList[0].url.length() > 8}" >
+                <img th:src="${post.imageURLList[0].url}" alt="post-image">
+            </div>
+        </div>
+                <div th:each="comment : ${post.commentList}">
+<div class="row">
+>>>>>>> 9e11b7bf2e4ea2fe668319cb24c8c6b4143cdcc6
 <!--                                    THis is where the comment ratings are -->
     <div class="col-1">
         <i class="upvote-comment-button fas fa-arrow-up btn btn-link" th:id="'upvote-comment-' + ${comment.id}"> </i>
@@ -107,6 +130,7 @@
     </div>
 </div>
 
+<<<<<<< HEAD
                     <div class="row">
                         <div class="col-1">
                             <i class="upvote-button fas fa-arrow-up btn btn-link" th:id="'upvote-' + ${post.id}"></i>
@@ -174,6 +198,8 @@
                         </div>
                     </div>
 >>>>>>> 92be5b1ac3ad444a36906b839413229971762e6d
+=======
+>>>>>>> 9e11b7bf2e4ea2fe668319cb24c8c6b4143cdcc6
                     <hr>
                 </div>
             </div>
@@ -241,6 +267,7 @@
                                                    th:id="'comment-body-' + ${comment.id}"></p>
                                                 <div th:if="${user.id == comment.user.id}">
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                     <div class="edit-comment-div" th:id="'edit-comment-div-' + ${comment.id}"></div>
                                                     <button class="edit-comment-button" th:id="'edit-comment-button-' + ${comment.id}">Edit Comment</button>
 =======
@@ -248,6 +275,10 @@
                                                          th:id="'edit-comment-div-' + ${comment.id}"></div>
 >>>>>>> 92be5b1ac3ad444a36906b839413229971762e6d
                                                 </div>
+=======
+                                                    <div class="edit-comment-div" th:id="'edit-comment-div-' + ${comment.id}"></div>
+                                                    <button class="edit-comment-button" th:id="'edit-comment-button-' + ${comment.id}">Edit Comment</button>
+>>>>>>> 9e11b7bf2e4ea2fe668319cb24c8c6b4143cdcc6
                                             </div>
                                         </div>
                                         <hr>
@@ -338,12 +369,17 @@
                                                    th:id="'comment-body-' + ${comment.id}"></p>
                                                 <div th:if="${user.id == comment.user.id}">
 <<<<<<< HEAD
+<<<<<<< HEAD
                                                     <div class="edit-comment-div" th:id="'edit-comment-div-' + ${comment.id}"></div>
                                                     <button class="edit-comment-button" th:id="'edit-comment-button-' + ${comment.id}">Edit Comment</button>
 =======
                                                     <div class="edit-comment-div"
                                                          th:id="'edit-comment-div-' + ${comment.id}"></div>
 >>>>>>> 92be5b1ac3ad444a36906b839413229971762e6d
+=======
+                                                    <div class="edit-comment-div" th:id="'edit-comment-div-' + ${comment.id}"></div>
+                                                    <button class="edit-comment-button" th:id="'edit-comment-button-' + ${comment.id}">Edit Comment</button>
+>>>>>>> 9e11b7bf2e4ea2fe668319cb24c8c6b4143cdcc6
                                                 </div>
                                             </div>
                                         </div>

@@ -145,30 +145,55 @@ public class MentorshipPostsController {
         return "mentorship-posts/show";
     }
 
-    @GetMapping("/mentorship-posts/edit/{id}")
-    public String getEditPostForm(@PathVariable Long id, Model model, Principal principal){
+//    @GetMapping("/mentorship-posts/edit/{id}")
+//    public String getEditPostForm(@PathVariable Long id, Model model, Principal principal){
+//        User user = userDao.findUserByUsername(principal.getName());
+//        Post post = postDao.findPostById(id);
+//        if(user.getId() != post.getUser().getId()) {
+//            return "redirect:/mentorship-posts/show";
+//        }
+//        model.addAttribute("user", user);
+//        model.addAttribute("talkJSAppId", talkJSAppId);
+//        model.addAttribute("post", post);
+//        return "mentorship-posts/edit";
+//    }
+//
+//    @PostMapping("/mentorship-posts/edit/{id}")
+//    public String updatePost(@PathVariable Long id, @ModelAttribute Post post) {
+//        Post dbPost = postDao.findPostById(id);
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        if(user.getId() != dbPost.getUser().getId()) {
+//            return "redirect:/mentorship-posts/show";
+//        }
+//        dbPost.setTitle(post.getTitle());
+//        dbPost.setBody(post.getBody());
+//        postDao.save(dbPost);
+//        return "redirect:/mentorship-posts/show";
+//    }
+
+    @GetMapping("/mentorship-posts/edit")
+    @ResponseBody
+    public Post getPostToEdit(Principal principal, @RequestParam Long id) {
         User user = userDao.findUserByUsername(principal.getName());
         Post post = postDao.findPostById(id);
         if(user.getId() != post.getUser().getId()) {
-            return "redirect:/mentorship-posts/show";
+            return new Post();
         }
-        model.addAttribute("user", user);
-        model.addAttribute("talkJSAppId", talkJSAppId);
-        model.addAttribute("post", post);
-        return "mentorship-posts/edit";
+        return post;
     }
 
-    @PostMapping("/mentorship-posts/edit/{id}")
-    public String updatePost(@PathVariable Long id, @ModelAttribute Post post) {
-        Post dbPost = postDao.findPostById(id);
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(user.getId() != dbPost.getUser().getId()) {
-            return "redirect:/mentorship-posts/show";
+    @PostMapping("/mentorship-posts/edit")
+    @ResponseBody
+    public Post editPost(Principal principal, @RequestParam String title, @RequestParam String body, @RequestParam Long id) {
+        User user = userDao.findUserByUsername(principal.getName());
+        Post post = postDao.findPostById(id);
+        if(user.getId() != post.getUser().getId()) {
+            return new Post();
         }
-        dbPost.setTitle(post.getTitle());
-        dbPost.setBody(post.getBody());
-        postDao.save(dbPost);
-        return "redirect:/mentorship-posts/show";
+        post.setTitle(title);
+        post.setBody(body);
+        post = postDao.save(post);
+        return post;
     }
 
     @DeleteMapping("/mentorship-posts/delete")

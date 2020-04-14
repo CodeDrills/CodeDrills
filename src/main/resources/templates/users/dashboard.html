@@ -111,9 +111,9 @@
                                 Comment
                             </button>
                             <div th:if="${user.id == post.user.id}">
-                                <a th:href="@{|/interview-posts/edit/${post.id}|}">
-                                    <button>Edit my post</button>
-                                </a>
+                                <button class="edit-modal-button" th:id="${post.postType.type} + '-' + ${post.id}" data-toggle="modal"
+                                        data-target="#interview-questions-edit-modal">Edit Post
+                                </button>
                                 <button class="delete-button" th:id="${post.postType.type} + '-' + ${post.id}">Delete my
                                     Post
                                 </button>
@@ -200,9 +200,9 @@
                                 Comment
                             </button>
                             <div th:if="${user.id == post.user.id}">
-                                <a th:href="@{|/mentorship-posts/edit/${post.id}|}">
-                                    <button>Edit my post</button>
-                                </a>
+                                <button class="edit-modal-button" th:id="${post.postType.type} + '-' + ${post.id}" data-toggle="modal"
+                                        data-target="#mentorship-posts-edit-modal">Edit Post
+                                </button>
                                 <button class="delete-button" th:id="${post.postType.type} + '-' + ${post.id}">Delete my
                                     Post
                                 </button>
@@ -292,9 +292,9 @@
                                 Comment
                             </button>
                             <div th:if="${user.id == post.user.id}">
-                                <a th:href="@{|/jobs-postings/edit/${post.id}|}">
-                                    <button>Edit my post</button>
-                                </a>
+                                <button class="edit-modal-button" th:id="${post.postType.type} + '-' + ${post.id}" data-toggle="modal"
+                                        data-target="#job-postings-edit-modal">Edit Post
+                                </button>
                                 <button class="delete-button" th:id="${post.postType.type} + '-' + ${post.id}">Delete my
                                     Post
                                 </button>
@@ -381,9 +381,9 @@
                                 Comment
                             </button>
                             <div th:if="${user.id == post.user.id}">
-                                <a th:href="@{|/whiteboard-questions/edit/${post.id}|}">
-                                    <button>Edit my post</button>
-                                </a>
+                                <button class="edit-modal-button" th:id="${post.postType.type} + '-' + ${post.id}" data-toggle="modal"
+                                        data-target="#whiteboard-questions-edit-modal">Edit Post
+                                </button>
                                 <button class="delete-button" th:id="${post.postType.type} + '-' + ${post.id}">Delete my
                                     Post
                                 </button>

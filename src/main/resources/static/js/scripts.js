@@ -394,7 +394,7 @@ const attachEditPostSubmitButtonListener = function() {
                 let body = document.querySelector(`#${type}-edit-body`).value;
                 let answer = document.querySelector(`#${type}-edit-answer`) ? document.querySelector(`#${type}-edit-answer`).value : null;
                 let employer = document.querySelector(`#${type}-edit-employer`) ? document.querySelector(`#${type}-edit-employer`).value : null;
-                // let photoURL = document.querySelector(`.${type}-photo-url`) ? document.querySelector(`.${type}-photo-url`).value : null;
+                let photoURL = document.querySelector(`.${type}-photo-url`) ? document.querySelector(`.${type}-photo-url`).value : null;
                 let addParams;
                 switch(`${type}`) {
                     case "interview-questions":

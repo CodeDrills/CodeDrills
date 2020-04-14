@@ -53,9 +53,7 @@
                     </div>
                     <div class="col-11">
                         <div th:id="'post-' + ${post.id}"></div>
-                        <p class="m-r mb-0 userprint">Posted on:<span class="userinfo"
-                                                                      th:text="${post.dateTime} + 'by' + ${post.user.username}"></span>
-                        </p>
+                        <p class="m-r mb-0 userprint">Posted on:<span class="userinfo" th:text="' ' + ${post.dateTime} + ' by ' + ${post.user.username}"></span></p>
                         <h1 th:text="${post.title}"></h1>
                         <p th:text="${post.body}"></p>
                         <p th:text="${post.answer}"></p>
@@ -75,14 +73,12 @@
                                         <img th:src="${comment.user.profileImageURL}" alt="profile"
                                              class="mr-3 rounded-circle" style="width:60px;">
                                         <div class="media-body">
-                                            <p class="m-r mb-0 userprint">Posted on: <span class="userinfo"
-                                                                                           th:text="${comment.dateTime}"></span>
+                                            <p class="m-r mb-0 userprint">Posted on: <span class="userinfo" th:text="${comment.dateTime}"></span>
                                                 by <span class="userinfo" th:text="${comment.user.username}"></span></p>
                                             <p class="mb-0" th:text="${comment.body}"
                                                th:id="'comment-body-' + ${comment.id}"></p>
                                             <div th:if="${user.id == comment.user.id}">
-                                                <div class="edit-comment-div"
-                                                     th:id="'edit-comment-div-' + ${comment.id}"></div>
+                                                <div class="edit-comment-div" th:id="'edit-comment-div-' + ${comment.id}"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -95,9 +91,9 @@
                             Comment
                         </button>
                         <div th:if="${user.id == post.user.id}">
-                            <a th:href="@{|/interview-questions/edit/${post.id}|}">
-                                <button>Edit Post</button>
-                            </a>
+                            <button class="edit-modal-button" th:id="${post.postType.type} + '-' + ${post.id}" data-toggle="modal"
+                                    data-target="#interview-questions-edit-modal">Edit Post
+                            </button>
                             <button class="delete-button" th:id="${post.postType.type} + '-' + ${post.id}">Delete Post
                             </button>
                         </div>

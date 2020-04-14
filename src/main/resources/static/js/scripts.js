@@ -365,10 +365,79 @@ const attachCreatePostSubmitButtonListener = function() {
         })
     }
 };
-const attachCreateModalEventListener = function() {
-    document.querySelectorAll(".nav-create-button").forEach(button => {
-        button.addEventListener("click", attachCreatePostSubmitButtonListener, attachFilestack);
+const attachEditPostSubmitButtonListener = function() {
+    let postIdSplit = this.getAttribute("id").split("-");
+    let postType = `${postIdSplit[0]}-${postIdSplit[1]}`;
+    let postId = postIdSplit[2];
+    fetch(`/${postType}/edit?id=${postId}`, {
+        method: 'GET',
+        headers: {
+            'X-CSRF-TOKEN': token
+        }
     })
+        .then(response => {
+            return response.json();
+        })
+        .then(res => {
+            document.querySelector(`#${postType}-edit-title`).value = res.title = res.title ? res.title : "";
+            document.querySelector(`#${postType}-edit-body`).value = res.body = res.body ? res.body : "";
+            document.querySelector(`#${postType}-edit-answer`) ? document.querySelector(`#${postType}-edit-answer`).value = res.answer = res.answer ? res.answer: "" : null;
+            document.querySelector(`#${postType}-edit-employer`) ? document.querySelector(`#${postType}-edit-employer`).value = res.employer = res.employer? res.employer : "" : null;
+        })
+    if(document.querySelectorAll(".submit-edit-button") !== null) {
+        document.querySelectorAll(".submit-edit-button").forEach(button => {
+            button.addEventListener("click", function(e) {
+                e.preventDefault();
+                let idSplit = this.getAttribute("id").split("-");
+                let type = `${idSplit[0]}-${idSplit[1]}`;
+                let title = document.querySelector(`#${type}-edit-title`).value;
+                let body = document.querySelector(`#${type}-edit-body`).value;
+                let answer = document.querySelector(`#${type}-edit-answer`) ? document.querySelector(`#${type}-edit-answer`).value : null;
+                let employer = document.querySelector(`#${type}-edit-employer`) ? document.querySelector(`#${type}-edit-employer`).value : null;
+                // let photoURL = document.querySelector(`.${type}-photo-url`) ? document.querySelector(`.${type}-photo-url`).value : null;
+                let addParams;
+                switch(`${type}`) {
+                    case "interview-questions":
+                        addParams = `answer=${answer}&employer=${employer}`;
+                        break;
+                    case "mentorship-posts":
+                        addParams = `photoURL=${photoURL}`;
+                        break;
+                    case "job-postings":
+                        addParams = `employer=${employer}`;
+                        break;
+                    case "whiteboard-questions":
+                        addParams = `answer=${answer}&employer=${employer}`;
+                        break;
+                    default:
+                        break;
+                }
+                fetch(`/${type}/edit?id=${postId}&title=${title}&body=${body}&${addParams}`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': token
+                    }
+                })
+                    .then(response => {
+                        location.reload(true);
+                    })
+            })
+        })
+    }
+};
+const attachCreateModalEventListener = function() {
+    if(document.querySelectorAll(".nav-create-button") != null) {
+        document.querySelectorAll(".nav-create-button").forEach(button => {
+            button.addEventListener("click", attachCreatePostSubmitButtonListener, attachFilestack);
+        })
+    }
+};
+const attachEditModalEventListener = function() {
+    if(document.querySelectorAll(".edit-modal-button")) {
+        document.querySelectorAll(".edit-modal-button").forEach(button => {
+            button.addEventListener("click", attachEditPostSubmitButtonListener, attachFilestack);
+        })
+    }
 };
 //begin main
 attachAddCommentEventListener();
@@ -379,3 +448,4 @@ attachFilestack();
 attachRatingsEventListener();
 attachGetQuestionEventListener();
 attachCreateModalEventListener();
+attachEditModalEventListener();

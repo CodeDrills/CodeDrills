@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<div th:fragment="create-modals">
+<div th:fragment="create-edit-modals">
     <!-- Interview Create Modal -->
     <div th:if="${#httpServletRequest.requestURI.contains('interview-questions') || #httpServletRequest.requestURI.contains('users/dashboard')}">
         <div class="modal fade" id="interview-questions-create-modal" tabindex="-1" role="dialog"
@@ -86,7 +86,7 @@
                                    id="interview-questions-edit-employer"/>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-secondary submit-button" id="interview-questions-edit-submit-button"
+                            <button class="btn btn-secondary submit-edit-button" id="interview-questions-edit-submit-button"
                                     data-dismiss="modal">Submit
                             </button>
                         </div>
@@ -162,7 +162,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary submit-button" id="mentorship-posts-edit-submit-button"
+                        <button class="btn btn-secondary submit-edit-button" id="mentorship-posts-edit-submit-button"
                                 data-dismiss="modal">Submit
                         </button>
                     </div>
@@ -237,7 +237,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary submit-button" id="job-postings-edit-submit-button"
+                        <button class="btn btn-secondary submit-edit-button" id="job-postings-edit-submit-button"
                                 data-dismiss="modal">Submit
                         </button>
                     </div>
@@ -327,7 +327,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary submit-button" id="whiteboard-questions-edit-submit-button"
+                        <button class="btn btn-secondary submit-edit-button" id="whiteboard-questions-edit-submit-button"
                                 data-dismiss="modal">Submit
                         </button>
                     </div>

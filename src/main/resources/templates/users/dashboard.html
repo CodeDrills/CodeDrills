@@ -65,9 +65,7 @@
                         </div>
                         <div class="col-11">
                             <div th:id="'post-' + ${post.id}">
-                                <p class="m-r mb-0 userprint">Posted on: <span class="userinfo"
-                                                                               th:text="${post.dateTime}"></span> by
-                                    <span class="userinfo" th:text="${post.user.username}"></span></p>
+                                <p class="m-r mb-0 userprint">Posted on:<span class="userinfo" th:text="' ' + ${post.dateTime} + ' by ' + ${post.user.username}"></span></p>
                                 <h1 th:text="${post.title}"></h1>
                                 <p th:text="${post.body}"></p>
                                 <p class="mb-0" th:text="${post.answer}"></p>

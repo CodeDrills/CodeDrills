@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div th:fragment="create-modals">
+    <!-- Interview Create Modal -->
+    <div th:if="${#httpServletRequest.requestURI.contains('interview-questions') || #httpServletRequest.requestURI.contains('users/dashboard')}">
+        <div class="modal fade" id="interview-questions-create-modal" tabindex="-1" role="dialog"
+             aria-labelledby="interview-questions-create-modal-title"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="interview-questions-modal-title">Create Interview Question</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="interview-questions-create-modal-body">
+                        <div class="form-group">
+                            <label for="interview-questions-title" class="col-form-label">Question:</label>
+                            <input class="form-control" name="interview-questions-title"
+                                   id="interview-questions-title"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="interview-questions-answer" class="col-form-label">Answer:</label>
+                            <textarea class="form-control" name="interview-questions-answer"
+                                      id="interview-questions-answer" cols="30" rows="5" maxlength="250"
+                                      placeholder="Please type a brief summary that is less than 250 words."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="interview-questions-body" class="col-form-label">Subject(e.g. Java,
+                                Javascript):</label>
+                            <input class="form-control" name="interview-questions-body" id="interview-questions-body"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="interview-questions-employer" class="col-form-label">Interviewed At:</label>
+                            <input class="form-control" name="interview-questions-employer"
+                                   id="interview-questions-employer"/>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary submit-button" id="interview-questions-submit-button"
+                                    data-dismiss="modal">Submit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--        Interview Edit Modal-->
+        <div class="modal fade" id="interview-questions-edit-modal" tabindex="-1" role="dialog"
+             aria-labelledby="interview-questions-edit-modal-title"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="interview-questionsedit-title">Create Interview Question</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="interview-questions-edit-modal-body">
+                        <div class="form-group">
+                            <label for="interview-questions-edit-title" class="col-form-label">Question:</label>
+                            <input class="form-control" name="interview-questions-edit-title"
+                                   id="interview-questions-edit-title"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="interview-questions-edit-answer" class="col-form-label">Answer:</label>
+                            <textarea class="form-control" name="interview-questions-edit-answer"
+                                      id="interview-questions-edit-answer" cols="30" rows="5" maxlength="250"
+                                      placeholder="Please type a brief summary that is less than 250 words."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="interview-questions-body" class="col-form-label">Subject(e.g. Java,
+                                Javascript):</label>
+                            <input class="form-control" name="interview-questions-body" id="interview-questions-edit-body"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="interview-questions-edit-employer" class="col-form-label">Interviewed At:</label>
+                            <input class="form-control" name="interview-questions-edit-employer"
+                                   id="interview-questions-edit-employer"/>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary submit-button" id="interview-questions-edit-submit-button"
+                                    data-dismiss="modal">Submit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--     Mentorship Create Modal -->
+    <div th:if="${#httpServletRequest.requestURI.contains('mentorship-posts') || #httpServletRequest.requestURI.contains('users/dashboard')}">
+        <div class="modal fade" id="mentorship-posts-create-modal" tabindex="-1" role="dialog"
+             aria-labelledby="mentorship-create-modal-title"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header text-center mb-0">
+                        <h5 class="modal-title" id="mentorship-create-modal-title">Create Mentorship Post</h5>
+                        <!--                        not working out how i want it to -->
+                        <!--                        <p class="mb-0">Have an issue with your code or wanna share. Upload a screenshot of your code by clicking on the Upload button</p>-->
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="mentorship-posts-create-modal-body">
+                        <div class="form-group">
+                            <label for="mentorship-posts-title" class="col-form-label">Title:</label>
+                            <input class="form-control" name="mentorship-posts-title" id="mentorship-posts-title"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="mentorship-posts-body" class="col-form-label">Question:</label>
+                            <textarea class="form-control" name="mentorship-posts-body" id="mentorship-posts-body"
+                                      cols="30" rows="5" maxlength="250"
+                                      placeholder="Please type a brief summary that is less than 250 words."></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="button btn btn-secondary photo-upload" type="button" id="photo-picker">Upload
+                        </button>
+                        <input type="hidden" class="mentorship-posts-photo-url" id="photo-upload"
+                               name="mentorship-posts-photo-url"/>
+                        <button class="btn btn-secondary submit-button" id="mentorship-posts-submit-button"
+                                data-dismiss="modal">Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--        Mentorship Edit Modal-->
+        <div class="modal fade" id="mentorship-posts-edit-modal" tabindex="-1" role="dialog"
+             aria-labelledby="mentorship-posts-edit-modal-title"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header text-center mb-0">
+                        <h5 class="modal-title" id="mentorship-createedit-title">Create Mentorship Post</h5>
+                        <!--                        not working out how i want it to -->
+                        <!--                        <p class="mb-0">Have an issue with your code or wanna share. Upload a screenshot of your code by clicking on the Upload button</p>-->
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="mentorship-posts-edit-modal-body">
+                        <div class="form-group">
+                            <label for="mentorship-posts-edit-title" class="col-form-label">Title:</label>
+                            <input class="form-control" name="mentorship-posts-edit-title"
+                                   id="mentorship-posts-edit-title"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="mentorship-posts-edit-body" class="col-form-label">Question:</label>
+                            <textarea class="form-control" name="mentorship-posts-edit-body"
+                                      id="mentorship-posts-edit-body" cols="30" rows="5" maxlength="250"
+                                      placeholder="Please type a brief summary that is less than 250 words."></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary submit-button" id="mentorship-posts-edit-submit-button"
+                                data-dismiss="modal">Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Job Create Modal -->
+    <div th:if="${#httpServletRequest.requestURI.contains('job-postings') || #httpServletRequest.requestURI.contains('users/dashboard')}">
+        <div class="modal fade" id="job-postings-create-modal" tabindex="-1" role="dialog"
+             aria-labelledby="job-postings-create-modal-title"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="job-postings-create-modal-title">Create Job Posting</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="job-postings-create-modal-body">
+                        <div class="form-group">
+                            <label for="job-postings-title" class="col-form-label">Job Title:</label>
+                            <input class="form-control" name="job-postings-title" id="job-postings-title"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="job-postings-body" class="col-form-label">Job Description:</label>
+                            <textarea class="form-control" name="job-postings-body" id="job-postings-body" cols="30"
+                                      rows="5" maxlength="250"
+                                      placeholder="Please type a brief summary that is less than 250 words."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="job-postings-employer" class="col-form-label">Employer:</label>
+                            <input class="form-control" name="job-postings-employer" id="job-postings-employer"/>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary submit-button" id="job-postings-submit-button"
+                                data-dismiss="modal">Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--        Job Edit Modal-->
+        <div class="modal fade" id="job-postings-edit-modal" tabindex="-1" role="dialog"
+             aria-labelledby="job-postings-edit-modal-title"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="job-postings-edit-modal-title">Create Job Posting</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="job-postings-edit-modal-body">
+                        <div class="form-group">
+                            <label for="job-postings-edit-title" class="col-form-label">Job Title:</label>
+                            <input class="form-control" name="job-postings-edit-title" id="job-postings-edit-title"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="job-postings-edit-body" class="col-form-label">Job Description:</label>
+                            <textarea class="form-control" name="job-postings-edit-body" id="job-postings-edit-body"
+                                      cols="30" rows="5" maxlength="250"
+                                      placeholder="Please type a brief summary that is less than 250 words."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="job-postings-edit-employer" class="col-form-label">Employer:</label>
+                            <input class="form-control" name="job-postings-edit-employer"
+                                   id="job-postings-edit-employer"/>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary submit-button" id="job-postings-edit-submit-button"
+                                data-dismiss="modal">Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Whiteboard Create Modal -->
+    <div th:if="${#httpServletRequest.requestURI.contains('whiteboard-questions') || #httpServletRequest.requestURI.contains('users/dashboard')}">
+        <div class="modal fade" id="whiteboard-questions-create-modal" tabindex="-1" role="dialog"
+             aria-labelledby="job-postings-create-modal-title"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="whiteboard-questions-create-modal-title">Create Whiteboard
+                            Question</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="whiteboard-questions-create-modal-body">
+                        <div class="form-group">
+                            <label for="whiteboard-questions-title" class="col-form-label">Question:</label>
+                            <input class="form-control" name="whiteboard-questions-title"
+                                   id="whiteboard-questions-title"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="whiteboard-questions-answer" class="col-form-label">Solution:</label>
+                            <textarea class="form-control" name="whiteboard-questions-answer"
+                                      id="whiteboard-questions-answer" cols="30" rows="5" maxlength="250"
+                                      placeholder="Please type a brief summary that is less than 250 words."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="whiteboard-questions-body" class="col-form-label">Subject:</label>
+                            <input class="form-control" name="whiteboard-questions-body"
+                                   id="whiteboard-questions-body"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="whiteboard-questions-employer" class="col-form-label">Interviewed At:</label>
+                            <input class="form-control" name="whiteboard-questions-employer"
+                                   id="whiteboard-questions-employer"/>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary submit-button" id="whiteboard-questions-submit-button"
+                                data-dismiss="modal">Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="whiteboard-questions-edit-modal" tabindex="-1" role="dialog"
+             aria-labelledby="job-postings-edit-modal-title"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="whiteboard-questions-edit-modal-title">Create Whiteboard
+                            Question</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="whiteboard-questions-edit-modal-body">
+                        <div class="form-group">
+                            <label for="whiteboard-questions-edit-title" class="col-form-label">Question:</label>
+                            <input class="form-control" name="whiteboard-questions-edit-title"
+                                   id="whiteboard-questions-edit-title"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="whiteboard-questions-edit-answer" class="col-form-label">Solution:</label>
+                            <textarea class="form-control" name="whiteboard-questions-edit-answer"
+                                      id="whiteboard-questions-edit-answer" cols="30" rows="5" maxlength="250"
+                                      placeholder="Please type a brief summary that is less than 250 words."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="whiteboard-questions-edit-body" class="col-form-label">Subject:</label>
+                            <input class="form-control" name="whiteboard-questions-edit-body"
+                                   id="whiteboard-questions-edit-body"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="whiteboard-questions-edit-employer" class="col-form-label">Interviewed
+                                At:</label>
+                            <input class="form-control" name="whiteboard-questions-edit-employer"
+                                   id="whiteboard-questions-edit-employer"/>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary submit-button" id="whiteboard-questions-edit-submit-button"
+                                data-dismiss="modal">Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

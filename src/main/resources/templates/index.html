@@ -2,14 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="fragments/header.html :: header(title = 'Codeon')"></head>
 <body>
-
-
 <div class="parallax">
     <div class="container h-100 ">
         <div class="d-flex h-100 text-center align-items-center ">
             <div class="w-100 ">
-                <h1 class="display-1" id ="logo">CodeOn</h1>
-                <h2 class="display-5 splash"> A network for developers to grow as a community of current students and graduates. </h2>
+                <h1 class="display-1 landlogo" style="color: #E3E7D3"; id="logo">CodeOn</h1>
+                <h2 class="display-5 splash">Stay connected and CodeOn.</h2>
                 <div class="d-flex justify-content-center">
                     <a id="index-login" th:href="@{|/login|}">Login</a>
                     <a id="index-register" th:href="@{|/register|}">Register</a>
@@ -18,9 +16,8 @@
         </div>
     </div>
 </div>
-
 <div class="d-flex text-center align-items-center">
-<h1 class="m-5">Stay connected to the other developers  and sharpen your skills  at CodeOn. With the use of talk.js and firepad editor, you can whiteboard with other members and review problems in real time.</h1>
+<h1 class="m-5">Stay connected with other developers and continue to sharpen your skills. Our community has the tools you need to prepare for interviews, search for your next career opportunity, create new connections, and troubleshoot those pesky exceptions.</h1>
 </div>
     <div class="row">
         <div class="col-xs-12 col-md-4 mb-1">
@@ -30,7 +27,7 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Whiteboard</h5>
-                    <p class="card-text">We all deal with the anxiety of interviewing and the thought of whiteboarding. We here at CodeOn have came up with an enviroment to practice and sharpen those skills that we have developed at bootcamp</p>
+                    <p class="card-text">With our collaborative whiteboard environment, you can code with other members and practice problem solving in real time.</p>
                     <a href="#" class="btn btn-link">Learn More</a>
                 </div>
             </div>
@@ -42,7 +39,7 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Interviews </h5>
-                    <p class="card-text">With an abundant number of resource on the internet, searching for the type or interview quetions you will be asked can be daunting. Here at CodeOn you have insight from fellow developers to help you land tha job.</p>
+                    <p class="card-text">Get the edge you need by preparing for your next job interview with quality questions uploaded, rated, and validated by our community.</p>
                     <a href="#" class="btn btn-link">Learn More</a>
                 </div>
             </div>
@@ -54,27 +51,20 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Mentorship</h5>
-                    <p class="card-text">Mentorship is the key to extraordinary success. CodeOn has developed a user community to meet that mentor and flourish as a developer. Here you can connect with fellow alumni and and pay it forward.</p>
+                    <p class="card-text">Meet a mentor, pay it forward to a mentee, or help the community troubleshoot their code with our mentorship section and chat features.</p>
                     <a href="#" class="btn btn-link">Learn More</a>
                 </div>
             </div>
         </div>
 </div>
-
-
 <div class="parallax2">
     <div class="d-flex h-100 text-center align-items-center">
         <h1 class="display-1">
-            To access all of CodeOn's features please log in or register
+            <a id="index-end-register" th:href="@{|/register|}">Register for an account today and CodeOn.</a>
         </h1>
 
     </div>
 </div>
-<div class="card-footer bg-transparent border-none">
-    <h1> About us mobile view link to our profile</h1>
-</div>
-
-
 <div th:replace="fragments/body-scripts.html :: body-scripts"></div>
 </body>
 </html>

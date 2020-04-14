@@ -1,6 +1,5 @@
 # DROP DATABASE codeon_db;
 
-
 use codeon_db;
 
 insert into post_types (type) values ('interview-questions'), ('mentorship-posts'), ('job-postings'), ('whiteboard-questions');
@@ -58,6 +57,16 @@ insert into users (id, is_active, bio, email, first_name, last_name, password, p
 insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (48, true, 'Monitored multi-state function', 'smckerrow1b@alibaba.com', 'Saidee',  'McKerrow', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'https://picsum.photos/id/1019/5472/3648', 'http://dummyimage.com/234x134.png/cc0000/ffffff', 'smckerrow1b');
 insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (49, true, 'Multi-layered dedicated synergy', 'lleather1c@bigcartel.com', 'Lorens', 'Leather', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'https://picsum.photos/id/1018/3914/2935', 'http://dummyimage.com/107x234.png/cc0000/ffffff', 'lleather1c');
 insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (50, true, 'Ergonomic cohesive parallelism', 'gpauling1d@dell.com', 'Gerri','Pauling', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'https://picsum.photos/id/1016/3844/2563', 'http://dummyimage.com/149x106.jpg/cc0000/ffffff', 'gpauling1d');
+insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (51, true, 'Expanded mobile hardware', 'vocoy1a@macromedia.com', 'Vivie',   'O''Collopy', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'https://picsum.photos/id/102/4320/3240', 'http://dummyimage.com/201x103.jpg/ff4444/ffffff', 'vocol45lopy1a');
+insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (52, true, 'Monitored multi-state function', 'smcke451b@alibaba.com', 'Saidee',  'McKerrow', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'https://picsum.photos/id/1019/5472/3648', 'http://dummyimage.com/234x134.png/cc0000/ffffff', 'smcker68row1b');
+insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (53, true, 'Multi-layered dedicated synergy', 'llea12r1c@bigcartel.com', 'Lorens', 'Leather', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'https://picsum.photos/id/1018/3914/2935', 'http://dummyimage.com/107x234.png/cc0000/ffffff', 'lleather1c67');
+insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (54, true, 'Ergonomic cohesive parallelism', 'gsmur123f1d@dell.com', 'Gerri','Pauling', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'https://picsum.photos/id/1016/3844/2563', 'http://dummyimage.com/149x106.jpg/cc0000/ffffff', 'gpa4ling12smurf');
+insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (55, true, 'Monitored multi-state function', 'smc34k3e451b@alibaba.com', 'Saidee',  'McKerrow', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'https://picsum.photos/id/1019/5472/3648', 'http://dummyimage.com/234x134.png/cc0000/ffffff', 'smcker68ro6633w1b');
+insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (56, true, 'Multi-layered dedicated synergy', 'llea13233265r1c@bigcartel.com', 'Lorens', 'Leather', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'https://picsum.photos/id/1018/3914/2935', 'http://dummyimage.com/107x234.png/cc0000/ffffff', 'll12eather111c67');
+insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (57, true, 'Ergonomic cohesive parallelism', 'gsmurf33561d@dell.com', 'Gerri','Pauling', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'https://picsum.photos/id/1016/3844/2563', 'http://dummyimage.com/149x106.jpg/cc0000/ffffff', 'gpaul456in78gsmurf');
+insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (58, true, 'Multi-layered dedicated synergy', 'll223ea1265r1c@bigcartel.com', 'Lorens', 'Leather', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'https://picsum.photos/id/1018/3914/2935', 'http://dummyimage.com/107x234.png/cc0000/ffffff', 'lleath224er111c67');
+insert into users (id, is_active, bio, email, first_name, last_name, password, profile_image_url, resume_url, username) values (59, true, 'Ergonomic cohesive parallelism', 'gsmur34343f561d@dell.com', 'Gerri','Pauling', '607858b389ae3bed1408281d20a2ea82b3baf46c', 'https://picsum.photos/id/1016/3844/2563', 'http://dummyimage.com/149x106.jpg/cc0000/ffffff', 'gpaul456ingsmu56rf');
+
 
 insert into users_skills (user_id, skill_id) values (4, 8);
 insert into users_skills (user_id, skill_id) values (7, 7);
@@ -89,7 +98,7 @@ insert into posts (user_id, post_type_id, title, body, answer, date_time, employ
 insert into post_ratings (user_id, post_id, rating) values (3, 1, 0);
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (6, 2, 'How do you guys deal with Imposter Syndrome', 'I feel like I don"t know enough to start applying for jobs.', '', '2019-05-21', 'codeup student');
 insert into post_ratings (user_id, post_id, rating) values (6, 2, 0);
-insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (12, 2, 'Anyone need a mentor in Java', 'I am a Java programmer and have been for the last 3 years if there is anyone that needs help or has questions let me know if i can help', '', '2019-03-23', 'alumnus working for Accenture');
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (12, 2, 'Anyone need a mentor in Java', 'I am a Java programmer and have been for the last 3 years if there is anyone that needs help or has questions let me know if i can help', '', '2019-05-23', 'alumnus working for Accenture');
 insert into post_ratings (user_id, post_id, rating) values (12, 3, 0);
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (4, 2, 'What is the (function() { } )() construct in JavaScript?', 'I used to know what this meant, but I''m struggling now... Is this basically saying document.onload?', '', '2019-05-30', 'codeup student');
 insert into post_ratings (user_id, post_id, rating) values (4, 4, 0);
@@ -114,7 +123,7 @@ insert into posts (user_id, post_type_id, title, body, answer, date_time, employ
 insert into post_ratings (user_id, post_id, rating) values (8, 11, 0);
 insert into post_ratings (user_id, post_id, rating) values (19, 11, 1);
 insert into post_ratings (user_id, post_id, rating) values (7, 11, 1);
-insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (8, 1, 'What are wrapper classes in Java?', ' Got asked this at J-Roc Co', 'Wrapper classes convert the Java primitives into the reference types (objects). Every primitive data type has a class dedicated to it. These are known as wrapper classes because they “wrap” the primitive data type into an object of that class. Refer to the below image which displays different primitive type, wrapper class and constructor argument.', '2019-06-17', 'J-Roc Co');
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (8, 1, 'What are wrapper classes in Java?', 'Java Question', 'Wrapper classes convert the Java primitives into the reference types (objects). Every primitive data type has a class dedicated to it. These are known as wrapper classes because they “wrap” the primitive data type into an object of that class. Refer to the below image which displays different primitive type, wrapper class and constructor argument.', '2019-06-17', 'J-Roc Co');
 insert into post_ratings (user_id, post_id, rating) values (8, 12, 0);
 insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (8, 1, 'What are constructors in Java?', 'Constructors', 'In Java, constructor refers to a block of code which is used to initialize an object. It must have the same name as that of the class. Also, it has no return type and it is automatically called when an object is created.', '2019-06-17', 'Alumnus');
 insert into post_ratings (user_id, post_id, rating) values (8, 13, 0);
@@ -163,11 +172,11 @@ Each method should run in constant time.','Whitboard Host Provided', '2020-04-06
 insert into post_ratings (user_id, post_id, rating) values (1, 23, 0);
 
 #More Mentorship Posts
-insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (8, 2, 'Difference between th:text and th:value in Thymeleaf', 'I just recently started using Thymeleaf through one of my projects. I have seen few examples where th:text=${example} is being used in some places th:value=${example}. I have gone through the Thymeleaf documentation but couldn''t find anything explicitly citing the difference, nor did any question on SO. Any help would be really appreciated! Thanks.', '', '2019-7-21', 'codeup student');
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (8, 2, 'Difference between th:text and th:value in Thymeleaf', 'I just recently started using Thymeleaf through one of my projects. I have seen few examples where th:text=${example} is being used in some places th:value=${example}. I have gone through the Thymeleaf documentation but couldn''t find anything explicitly citing the difference, nor did any question on SO. Any help would be really appreciated! Thanks.', '', '2020-04-10', 'codeup student');
 insert into post_ratings (user_id, post_id, rating) values (8, 24, 0);
-insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (14, 2, 'What''s the difference between JPA and Hibernate?', 'I understand that JPA 2 is a specification and Hibernate is a tool for ORM. Also, I understand that Hibernate has more features than JPA 2. But from a practical point of view, what really is the difference?', '', '2019-05-21', 'codeup student');
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (14, 2, 'What''s the difference between JPA and Hibernate?', 'I understand that JPA 2 is a specification and Hibernate is a tool for ORM. Also, I understand that Hibernate has more features than JPA 2. But from a practical point of view, what really is the difference?', '', '2020-04-11', 'codeup student');
 insert into post_ratings (user_id, post_id, rating) values (14, 25, 0);
-insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (2, 2, 'What does “!--” do in JavaScript?', 'I''m trying to follow it, and I think I understand everything except for near the end where it says !--pending. In this context, what does that command do?', '', '2019-02-02', 'codeup student');
+insert into posts (user_id, post_type_id, title, body, answer, date_time, employer) values (2, 2, 'What does “!--” do in JavaScript?', 'I''m trying to follow it, and I think I understand everything except for near the end where it says !--pending. In this context, what does that command do?', '', '2020-04-11', 'codeup student');
 insert into post_ratings (user_id, post_id, rating) values (2, 26, 0);
 
 #Post Comments
@@ -175,7 +184,7 @@ insert into post_comments (body, date_time, post_id, user_id) values ('I"m looki
 insert into post_comment_ratings (user_id, post_comment_id, rating) values (13, 1, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('How many years of experience do I need?', '2019-09-01', 15, 2);
 insert into post_comment_ratings (user_id, post_comment_id, rating) values (2, 2, 0);
-insert into post_comments (body, date_time, post_id, user_id) values ('Were Java and JavaScript created by the same coffee company?', '2019-09-01', 1, 6);
+insert into post_comments (body, date_time, post_id, user_id) values ('They weren''t created by the same people?', '2019-09-01', 1, 6);
 insert into post_comment_ratings (user_id, post_comment_id, rating) values (6, 3, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('80 years.', '2019-09-21', 15, 14);
 insert into post_comment_ratings (user_id, post_comment_id, rating) values (14, 4, 0);
@@ -212,7 +221,7 @@ insert into post_comments (body, date_time, post_id, user_id) values ('...', '20
 insert into post_comment_ratings (user_id, post_comment_id, rating) values (4, 19, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('There is a mythical 5th principal that no one knows about... yet. I''m from the future', '2020-01-19', 7, 13);
 insert into post_comment_ratings (user_id, post_comment_id, rating) values (13, 20, 0);
-insert into post_comments (body, date_time, post_id, user_id) values ('I would also like to know why you would use wrapper classes instead of primatives.', '2020-01-19', 12, 6);
+insert into post_comments (body, date_time, post_id, user_id) values ('I would also like to know why you would use wrapper classes instead of primitives.', '2020-01-19', 12, 6);
 insert into post_comment_ratings (user_id, post_comment_id, rating) values (6, 21, 0);
 insert into post_comments (body, date_time, post_id, user_id) values ('This would be easeier to understand with an example.', '2020-01-19', 6, 17);
 insert into post_comment_ratings (user_id, post_comment_id, rating) values (17, 22, 0);
@@ -305,3 +314,5 @@ insert into approved_emails_security_roles (approved_email_id, role_id) values (
 # insert into image_urls (post_id, url) values (9, 'http://dummyimage.com/183x200.bmp/dddddd/000000');
 # insert into image_urls (post_id, url) values (17, 'http://dummyimage.com/191x238.png/cc0000/ffffff');
 # insert into image_urls (post_id, url) values (20, 'http://dummyimage.com/203x237.jpg/ff4444/ffffff');
+
+

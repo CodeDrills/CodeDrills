@@ -29,7 +29,7 @@ const attachAddCommentEventListener = function() {
         let i = 0;
         document.querySelectorAll(".add-comment-button").forEach(button => button.addEventListener("click", function (e) {
             e.preventDefault();
-            document.querySelector(`#create-comment-div-${this.getAttribute("id").split("-")[3]}`).innerHTML = `<input type="text" id="comment-${this.getAttribute("id").split("-")[3]}" name="body" placeholder="Comment."><button class="post-comment-button" id="post-comment-button-${this.getAttribute("id").split("-")[3]}">Submit.</button>`;
+            document.querySelector(`#create-comment-div-${this.getAttribute("id").split("-")[3]}`).innerHTML = `<textarea class="form-control" cols="10" rows="5" maxlength="250" type="text" id="comment-${this.getAttribute("id").split("-")[3]}" name="body" placeholder="add your comment"></textarea><button class="post-comment-button" id="post-comment-button-${this.getAttribute("id").split("-")[3]}">Submit.</button>`;
             document.querySelector(`#post-comment-button-${this.getAttribute("id").split("-")[3]}`).addEventListener("click", function (e) {
                 e.preventDefault();
                 let commentInput = document.querySelector(`#comment-${this.getAttribute("id").split("-")[3]}`);
@@ -120,7 +120,7 @@ const attachRatingsEventListener = function() {
                             location.reload(true);
                             return res;
                         }
-                        document.getElementById("total-rating").innerHTML = `Rating Total: ${res}`;
+                        document.getElementById("total-rating").innerHTML = `${res}`;
                     })
             })
         });
@@ -143,7 +143,7 @@ const attachRatingsEventListener = function() {
                             location.reload(true);
                             return res;
                         }
-                        document.getElementById("total-rating").innerHTML = `Rating Total: ${res}`;
+                        document.getElementById("total-rating").innerHTML = `${res}`;
                     })
             })
         });
@@ -221,19 +221,37 @@ const getQuestion = function() {
             }
             fill.innerHTML = "";
             fill.innerHTML = `
-                    <div id="question-${res.id}">
-                        <p>Question Title: ${res.title}</p>
-                        <p id="total-rating">Rating Total: ${res.ratingTotal}</p>
-                        <p>Question: ${res.body}</p>
-                        <div id="answer-${res.id}">
-                        <p>Answer: ${res.answer}</p>
-                        <button class="upvote-button" id="upvote-${res.id}">Upvote JS</button>
-                        <button class="downvote-button" id="downvote-${res.id}">Downvote JS</button>
-                        <div class="create-comment-div" id="create-comment-div-${res.id}"></div>
-                        <button class="add-comment-button" id="add-comment-button-${res.id}">Comment</button>
+                    <div class="container question-round-container" id="question-${res.id}">
+                        <div class="d-flex justify-content-center">
+                            <button class="show-answer-button" id="answer-button-${res.id}">Show Answer</button>
+                            <button class="next-question-button" id="question-button-${res.id}">Get Another Question</button>
                         </div>
-                        <button id="answer-button-${res.id}">Show Answer</button>
-                        <button id="question-button-${res.id}">Get Another Question</button>
+                        <div class="row">
+                            <div class="card col-12">
+                                <div class="row">
+                                    <div class="col-1 p-4">
+                                        <i class="upvote-button fas fa-arrow-up btn btn-link" id="upvote-${res.id}"></i>
+                                        <p class="mb-0 ml-3">  <span id="total-rating">${res.ratingTotal}</span></p>
+                                        <i class="downvote-button fas fa-arrow-down btn btn-link" id="downvote-${res.id}"></i>
+                                    </div>
+                                    <div class="col-11 p-4">
+                                        <h3>${res.title}</h3>
+                                        <!-- <p id="total-rating">Rating Total: ${res.ratingTotal}</p> -->
+                                        <h5>${res.body}</h5>
+                                        <div id="answer-${res.id}">
+                                        <br>
+                                        <h5><b>Answer:</b>   ${res.answer}</h5>
+                                        <!--
+                                        <button class="upvote-button" id="upvote-${res.id}">Upvote JS</button>
+                                        <button class="downvote-button" id="downvote-${res.id}">Downvote JS</button>
+                                        -->
+                                        <div class="create-comment-div" id="create-comment-div-${res.id}"></div>
+                                        <button class="add-comment-button" id="add-comment-button-${res.id}">Comment</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>`;
             document.getElementById(`answer-${res.id}`).style.display = "none";
             document.getElementById(`answer-button-${res.id}`).addEventListener("click", function (e) {

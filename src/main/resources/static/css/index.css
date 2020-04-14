@@ -1,7 +1,7 @@
 html {
     scroll-behavior: smooth;
-
 }
+
 i:hover{
     text-decoration: none;
     color: #0c5460;
@@ -18,7 +18,7 @@ button{
     background: none;
     border: none;
 }
-h1,h2,h3,h4{
+h1,h2,h3,h4,h5{
     font-family: 'Montserrat', sans-serif;
 }
 p{
@@ -78,7 +78,10 @@ body, html {
     padding-bottom: 35px;
 }
 
-#interview-whiteboard-button, #interview-question-round-button {
+
+/*these are the buttons on the interview page review and see what they like*/
+/*#interview-whiteboard-button, #interview-question-round-button {*/
+#sortbutton{
     width: 200px;
     text-align: center;
     color: #E3E7D3;
@@ -86,13 +89,41 @@ body, html {
     border: 2px solid #E3E7D3;
     border-radius: 3px;
     background-color: #0f6674;
-    margin: 5px 5px;
     padding-top: 3px;
     padding-bottom: 5px;
 }
 
+.start-button, .show-answer-button, .next-question-button, .profile-button {
+    text-align: center;
+    color: #E3E7D3;
+    font-size: 20px;
+    border: 2px solid #E3E7D3;
+    border-radius: 3px;
+    background-color: #0f6674;
+    margin: 20px 10px;
+    padding-top: 3px;
+    padding-bottom: 5px;
+}
+
+.profile-button {
+    width: 188px;
+    text-align: center;
+    color: #E3E7D3;
+    font-size: 20px;
+    border: 2px solid #E3E7D3;
+    border-radius: 3px;
+    background-color: #0f6674;
+    margin: 20px 10px;
+    padding: 3px 8px 5px;
+}
+
+.question-round-container {
+    width: 100vw;
+}
+
 a:hover {
     text-decoration: none;
+    color: #E3E7D3;
 }
 
 /*landing page*/
@@ -112,7 +143,7 @@ a:hover {
 
 .logo{
     font-family: 'Orbitron', sans-serif;
-    color: #00727F;
+    color: #E3E7D3;
 }
 
 .card-body{
@@ -132,7 +163,7 @@ a:hover {
 /*this is the video portion*/
 #logo{
     font-family: 'Orbitron', sans-serif;
-    color: #0f6674;
+    color: #E3E7D3;
 }
 
 
@@ -180,7 +211,13 @@ header {
 .commentrow{
     /*background-color: #cde6ff;*/
 }
-
+/*links on dashboard*/
+.takeme{
+    color: #00727F;
+}
+.takethem{
+    color: #373E40;
+}
 /*for each job post type*/
 #profile-card{
     background-image: url("/img/blue-wallpaper.jpg");
@@ -193,18 +230,29 @@ header {
     font-family: 'Orbitron', sans-serif;
     color: #E3E7D3;
 }
+.profile-header:hover{
+    font-family: 'Orbitron', sans-serif;
+    color: #E3E7D3;
+}
 .show-chat-modal-button {
     position: fixed;
-    right: 0;
+    right: 4rem;
     border: 0;
     z-index: 50000;
-    bottom: 77px;
-    width: 190px;
-    font-size: 100px;
+    bottom: 2rem;
+    width: 3rem;
+    font-size: 3rem;
+}
+.aboutus {
+    margin-top: 15%;
 }
 
 .nav-create-button, .logout-button, .drop {
     color: rgba(255,255,255,.5) !important;
+}
+
+.nav-create-button{
+    padding-right: 6rem;
 }
 
 
@@ -212,6 +260,22 @@ header {
 .nav-link:hover, .nav-create-button:hover, .logout-button:hover, .drop:hover {
     color: #0f6674 !important;
     text-decoration: none !important;
+}
+
+#search-button{
+    width: 6rem;
+    text-align: center;
+    color: #E3E7D3;
+    font-size: 20px;
+    border: 2px solid #E3E7D3;
+    border-radius: 3px;
+    background-color: #0f6674;
+    padding-top: 3px;
+    padding-bottom: 5px;
+}
+
+.post-image {
+    max-width: 90% !important;
 }
 
 

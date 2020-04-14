@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 public class JobPostingsController {
@@ -39,16 +40,48 @@ public class JobPostingsController {
     }
 
     @GetMapping("/job-postings/show")
-    public String showAllJobPostings(Model model, Principal principal) {
+    public String showAllJobPostings(Model model, Principal principal, @RequestParam(required = false) String by, @RequestParam(required = false) String searchString) {
         model.addAttribute("filestackKey", filestackKey);
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));
         model.addAttribute("talkJSAppId", talkJSAppId);
-        List<Post> jobPostings = postDao.findAllByPostTypeId_Type("job-postings");
-        jobPostings.sort(Collections.reverseOrder(Comparator.comparing((Post::getRatingTotal))));
-        model.addAttribute("postList", jobPostings);
+        List<Post> postList;
+        if(by != null) {
+            switch (by) {
+                case "titleAsc":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByTitleAsc("job-postings");
+                    break;
+                case "titleDesc":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByTitleDesc("job-postings");
+                    break;
+                case "oldest":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByIdAsc("job-postings");
+                    break;
+                case "newest":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByIdDesc("job-postings");
+                    break;
+                case "lowestRating":
+                    postList = postDao.findAllByPostTypeId_TypeOrderByRatingTotalAsc("job-postings");
+                    break;
+                default:
+                    postList = postDao.findAllByPostTypeId_TypeOrderByRatingTotalDesc("job-postings");
+                    break;
+            }
+        } else {
+            postList = postDao.findAllByPostTypeId_TypeOrderByRatingTotalDesc("job-postings");
+        }
+        if (searchString != null && !searchString.equals("")) {
+            //filter for body containing
+            //filter for title containing
+            //filter for username containing
+            //case insensitive
+            postList = postList
+                    .stream()
+                    .filter(post -> post.getBody().toLowerCase().contains(searchString.toLowerCase()) || post.getTitle().toLowerCase().contains(searchString.toLowerCase()) || post.getUser().getUsername().toLowerCase().contains(searchString.toLowerCase()))
+                    .collect(Collectors.toList());
+        }
+        model.addAttribute("postList", postList);
         return "job-postings/show";
     }
-
     @GetMapping("/job-postings/create")
     public String jobPostingsCreateForm(Model model, Principal principal) {
         model.addAttribute("user", userDao.findUserByUsername(principal.getName()));

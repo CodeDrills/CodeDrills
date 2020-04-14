@@ -14,56 +14,75 @@
 
     <!--    PROFILE CARD    -->
     <div class="card p-5 mt-5 blue-font" id="profile-card">
-        <h2 class="card-title text-center p-3 profile-header">Interview</h2>
-        <div class="card-text media">
-
-        </div>
-        <p class="align-self-end profile-btns">
-            <!--                maybe add some buttons to the front-->
-        </p>
+        <h2 class="display-1 card-title text-center p-3 profile-header">Interview</h2>
     </div>
 </div>
-<br>
-
-<div class="d-flex justify-content-sm-around">
-    <a id="interview-whiteboard-button" th:href="@{|/whiteboard|}">Whiteboard</a>
-    <a id="interview-question-round-button" th:href="@{|/api/interview-questions|}">Question Round</a>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8 d-flex align-content-center justify-content-around">
+        <a class ="profile-button" th:href="@{|/whiteboard|}">Whiteboard</a>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" name="searchString" placeholder="Search"
+                   aria-label="Search">
+            <select class="custom-select" id="select-sort" name="by">
+                <option selected disabled value="highestRating">Sort Results By</option>
+                <option value="highestRating">Highest Rating</option>
+                <option value="lowestRating">Lowest Rating</option>
+                <option value="titleAsc">Title Ascending</option>
+                <option value="titleDesc">Title Descending</option>
+                <option value="newest">Most Recent</option>
+                <option value="oldest">Oldest</option>
+            </select>
+            <button class="btn my-2 my-sm-0 ml-2" id="search-button" type="submit">Search</button>
+        </form>
+        <a class ="profile-button" th:href="@{|/api/interview-questions|}">Question Round</a>
+    </div>
+    <div class="col-2"></div>
 </div>
 
-<br>
-<div class="container">
+<div class="container post-container">
+    <!--    POST FILLING BEGINS HERE-->
     <div th:each="post : ${postList}">
         <div class="card mb-2">
             <div class="card-body">
                 <div class="row">
                     <div class="col-1">
-                        <i class="upvote-button fas fa-arrow-up btn btn-link"  th:id="'upvote-' + ${post.id}"></i>
-                        <p class="mb-0 ml-3">  <span th:text = "${post.getRatingTotal()}"></span></p>
+                        <i class="upvote-button fas fa-arrow-up btn btn-link" th:id="'upvote-' + ${post.id}"></i>
+                        <p class="mb-0 ml-3"><span th:text="${post.getRatingTotal()}"></span></p>
                         <i class="downvote-button fas fa-arrow-down btn btn-link" th:id="'downvote-' + ${post.id}"></i>
                     </div>
                     <div class="col-11">
                         <div th:id="'post-' + ${post.id}"></div>
-                        <p class="m-r mb-0 userprint">Posted on: <span class="userinfo" th:text = "${post.dateTime}"></span> by <span class="userinfo" th:text="${post.user.username}"></span>    </p>
-                        <h1 th:text = "${post.title}"></h1>
-                        <p th:text = "${post.body}"></p>
-                        <p th:text = "${post.answer}"></p>
+                        <p class="m-r mb-0 userprint">Posted on:<span class="userinfo"
+                                                                      th:text="${post.dateTime} + 'by' + ${post.user.username}"></span>
+                        </p>
+                        <h1 th:text="${post.title}"></h1>
+                        <p th:text="${post.body}"></p>
+                        <p th:text="${post.answer}"></p>
                         <div th:each="comment : ${post.commentList}">
                             <div class="row">
                                 <!--                                    THis is where the comment ratings are -->
                                 <div class="col-1">
-                                    <i class="upvote-comment-button fas fa-arrow-up btn btn-link" th:id="'upvote-comment-' + ${comment.id}"> </i>
-                                    <p class="mb-0 ml-3"><span th:text = "${comment.getRatingTotal()}"></span></p>
-                                    <i class="downvote-comment-button fas fa-arrow-down btn btn-link" th:id="'downvote-comment-' + ${comment.id}"></i>
+                                    <i class="upvote-comment-button fas fa-arrow-up btn btn-link"
+                                       th:id="'upvote-comment-' + ${comment.id}"> </i>
+                                    <p class="mb-0 ml-3"><span th:text="${comment.getRatingTotal()}"></span></p>
+                                    <i class="downvote-comment-button fas fa-arrow-down btn btn-link"
+                                       th:id="'downvote-comment-' + ${comment.id}"></i>
                                 </div>
                                 <!--                                    This is where the comment body goes-->
                                 <div class="col-11 align-self-center p- commentrow">
                                     <div class="media">
-                                        <img th:src="${comment.user.profileImageURL}" alt="profile"class="mr-3 rounded-circle" style="width:60px;">
+                                        <img th:src="${comment.user.profileImageURL}" alt="profile"
+                                             class="mr-3 rounded-circle" style="width:60px;">
                                         <div class="media-body">
-                                            <p class="m-r mb-0 userprint">Posted on: <span class="userinfo" th:text = "${comment.dateTime}"></span> by <span class="userinfo" th:text="${comment.user.username}"></span></p>
-                                            <p class="mb-0" th:text = "${comment.body}" th:id="'comment-body-' + ${comment.id}"></p>
+                                            <p class="m-r mb-0 userprint">Posted on: <span class="userinfo"
+                                                                                           th:text="${comment.dateTime}"></span>
+                                                by <span class="userinfo" th:text="${comment.user.username}"></span></p>
+                                            <p class="mb-0" th:text="${comment.body}"
+                                               th:id="'comment-body-' + ${comment.id}"></p>
                                             <div th:if="${user.id == comment.user.id}">
-                                                <div class="edit-comment-div" th:id="'edit-comment-div-' + ${comment.id}"></div>
+                                                <div class="edit-comment-div"
+                                                     th:id="'edit-comment-div-' + ${comment.id}"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -72,11 +91,16 @@
                             </div>
                         </div>
                         <div class="create-comment-div" th:id="'create-comment-div-' + ${post.id}"></div>
-                        <button class="add-comment-button btn btn-link" th:id="'add-comment-button-' + ${post.id}">Comment</button>
-        <div th:if="${user.id == post.user.id}">
-            <a th:href="@{|/interview-questions/edit/${post.id}|}"><button>Edit Post</button></a>
-            <button class="delete-button" th:id="${post.postType.type} + '-' + ${post.id}">Delete Post</button>
-        </div>
+                        <button class="add-comment-button btn btn-link" th:id="'add-comment-button-' + ${post.id}">
+                            Comment
+                        </button>
+                        <div th:if="${user.id == post.user.id}">
+                            <a th:href="@{|/interview-questions/edit/${post.id}|}">
+                                <button>Edit Post</button>
+                            </a>
+                            <button class="delete-button" th:id="${post.postType.type} + '-' + ${post.id}">Delete Post
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

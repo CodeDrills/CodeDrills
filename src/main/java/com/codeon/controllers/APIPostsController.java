@@ -4,11 +4,13 @@ import com.codeon.models.Post;
 
 import com.codeon.repositories.PostRepo;
 import com.codeon.repositories.UserRepo;
+import org.apache.coyote.Request;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.security.Principal;
@@ -71,21 +73,7 @@ public class APIPostsController {
     @GetMapping("/api/{postType}/show-one")
     @ResponseBody
     public Post getPostAlg(@PathVariable String postType) {
-        List<Post> postList;
-        switch(postType) {
-            case "interview-questions":
-                postList = postDao.findAllByPostTypeId_Type("interview-questions");
-                break;
-            case "mentorship-posts":
-                postList = postDao.findAllByPostTypeId_Type("mentorship-posts");
-                break;
-            case "job-postings":
-                postList = postDao.findAllByPostTypeId_Type("job-postings");
-                break;
-            default:
-                postList = postDao.findAllByPostTypeId_Type("whiteboard-questions");
-                break;
-        }
+        List<Post> postList = postDao.findAllByPostTypeId_Type(postType);
         Post selectedPost = null;
         Integer pickQuestion, questionRoll, selectedPostRating;
         boolean determiningPost = true;
@@ -99,6 +87,34 @@ public class APIPostsController {
             }
         }
         return selectedPost;
+    }
+    @GetMapping("/api/{postType}/sort")
+    @ResponseBody
+    public List <Post> getSortedPosts(@PathVariable String postType, @RequestParam String by) {
+        List<Post> postList = new ArrayList<>();
+        switch (by) {
+            case "titleAsc":
+                postList = postDao.findAllByPostTypeId_TypeOrderByTitleAsc(postType);
+                break;
+            case "titleDesc":
+                postList = postDao.findAllByPostTypeId_TypeOrderByTitleDesc(postType);
+                break;
+            case "newest":
+                postList = postDao.findAllByPostTypeId_TypeOrderByIdAsc(postType);
+                break;
+            case "oldest":
+                postList = postDao.findAllByPostTypeId_TypeOrderByIdDesc(postType);
+                break;
+            case "highestRating":
+                postList = postDao.findAllByPostTypeId_TypeOrderByRatingTotalDesc(postType);
+                break;
+            case "lowestRating":
+                postList = postDao.findAllByPostTypeId_TypeOrderByRatingTotalAsc(postType);
+                break;
+            default:
+                break;
+        }
+        return postList;
     }
 
 
